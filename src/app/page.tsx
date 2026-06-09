@@ -1,0 +1,35 @@
+export const dynamic = 'force-dynamic';
+
+import { db } from '@/db';
+import { species, articles } from '@/db/schema';
+import { eq, desc, asc } from 'drizzle-orm';
+import Hero from '@/components/landing/hero';
+import StatsBar from '@/components/landing/stats-bar';
+import FeaturedSpecies from '@/components/landing/featured-species';
+import PollinatorSection from '@/components/landing/pollinator-section';
+import LatestArticles from '@/components/landing/latest-articles';
+import VisitCta from '@/components/landing/visit-cta';
+import Footer from '@/components/landing/footer';
+
+export default async function HomePage() {
+  const [allSpecies, activeArticles] = await Promise.all([
+    db.select().from(species).where(eq(species.isPublished, true)),
+    db.select().from(articles).where(eq(articles.status, 'active')).orderBy(desc(articles.publishedAt)),
+  ]);
+
+  const featuredSpecies = allSpecies
+    .filter((s: any) => s.featuredOnHome)
+    .sort((a: any, b: any) => a.homeOrder - b.homeOrder);
+
+  return (
+    <>
+      <Hero species={allSpecies} />
+      <StatsBar speciesCount={allSpecies.length} areaHa={33} foundedYear={1967} />
+      <FeaturedSpecies species={allSpecies} featuredSpecies={featuredSpecies} />
+      <PollinatorSection />
+      <LatestArticles articles={activeArticles} />
+      <VisitCta />
+      <Footer />
+    </>
+  );
+}

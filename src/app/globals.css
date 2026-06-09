@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+
+  --color-bg: #f9f5ee;
+  --color-fg: #1c1917;
+  --color-fg-muted: #78716c;
+  --color-primary: #2b7a4b;
+  --color-primary-light: #e8f5ec;
+  --color-accent-warm: #c8905a;
+  --color-accent-teal: #5ba4a9;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e7e1d8;
+  --color-section-dark: #1a2f23;
+  --color-danger: #dc2626;
+  --color-warning: #d97706;
+  --color-success: #2b7a4b;
+
+  /* ── Kiosk: Bright Green Palette (kiosk-redesign) ───────────────── */
+  /* Canvas / surfaces — bright mint canvas */
+  --color-kiosk-bg:            #F0FDF4;  /* page canvas */
+  --color-kiosk-surface:       #FFFFFF;  /* cards */
+  --color-kiosk-surface-tint:  #DCFCE7;  /* tinted panels */
+
+  /* Green scale — dominant hue */
+  --color-kiosk-green-50:  #F0FDF4;
+  --color-kiosk-green-100: #DCFCE7;
+  --color-kiosk-green-200: #BBF7D0;
+  --color-kiosk-green-300: #86EFAC;
+  --color-kiosk-green-400: #4ADE80;
+  --color-kiosk-green-500: #22C55E;  /* primary bright green (fills, icons, decoration) */
+  --color-kiosk-green-600: #16A34A;  /* primary-strong (large-text buttons) */
+  --color-kiosk-green-700: #15803D;  /* min green for WHITE body text (≥4.5:1) */
+  --color-kiosk-green-800: #166534;
+  --color-kiosk-green-900: #14532D;  /* deepest green */
+
+  /* Text inks */
+  --color-kiosk-ink:        #0B2818;  /* primary text on light canvas */
+  --color-kiosk-ink-muted:  #3F6B52;  /* secondary text / EN captions */
+  --color-kiosk-on-green:   #FFFFFF;  /* text on green-700+ surfaces */
+
+  /* Supporting accents (green stays dominant) */
+  --color-kiosk-accent-amber: #F59E0B;
+  --color-kiosk-accent-teal:  #0D9488;
+
+  /* IUCN status */
+  --color-kiosk-iucn-lc: #15803D;  /* Least Concern */
+  --color-kiosk-iucn-nt: #B45309;
+  --color-kiosk-iucn-vu: #C2410C;
+  --color-kiosk-iucn-en: #B91C1C;
+  --color-kiosk-iucn-cr: #7F1D1D;
+  --color-kiosk-iucn-na: #6B7280;  /* neutral placeholder */
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .page-container {
+    width: min(1400px, calc(100% - 2rem));
+    margin-inline: auto;
+  }
+
+  .content-narrow {
+    width: min(720px, calc(100% - 2rem));
+    margin-inline: auto;
+  }
+
+  .icon-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-slot-sm { width: 32px; height: 32px; }
+  .icon-slot-md { width: 44px; height: 44px; }
+  .icon-slot-lg { width: 56px; height: 56px; }
+
+  .iucn-badge {
+    @apply text-xs font-bold px-2 py-0.5 rounded;
+  }
+
+  .section-kicker {
+    @apply text-xs font-bold uppercase tracking-[0.16em] text-primary;
+  }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #e7e1d8; }
+::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #78716c; }
+
+.kiosk-scrollbar::-webkit-scrollbar { width: 6px; }
+.kiosk-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+.kiosk-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }

@@ -8,6 +8,7 @@
  * Requirements: 12.1, 12.2, 12.3
  */
 
+import { useState } from 'react';
 import { Droplet, Mountain, Sparkles, type LucideIcon } from 'lucide-react';
 import { Caption } from '../components/Caption';
 import { KIOSK_ASSETS } from '../content/assets';
@@ -15,8 +16,12 @@ import {
   KOLAM_CONCEPTS,
   KOLAM_MEGALITIK_INTRO,
   KOLAM_MEGALITIK_TITLE,
+  KOLAM_INFO_CARDS,
+  type InfoCard
 } from '../content/i18n';
 import { useLang } from '../i18n/language';
+import InfoHotspot from '../components/InfoHotspot';
+import InfoModal from '../components/InfoModal';
 
 const CONCEPT_ICONS: Record<string, LucideIcon> = {
   Droplet,
@@ -26,6 +31,8 @@ const CONCEPT_ICONS: Record<string, LucideIcon> = {
 
 export default function KolamMegalitikScreen() {
   const { t, lang } = useLang();
+  const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
+
   return (
     <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
       {/* Screen heading + framing caption. */}
@@ -64,6 +71,7 @@ export default function KolamMegalitikScreen() {
       <ul className="grid grid-cols-1 gap-[1.618rem] lg:grid-cols-3">
         {KOLAM_CONCEPTS.map((concept, idx) => {
           const Icon = CONCEPT_ICONS[concept.icon] ?? Droplet;
+          const card = KOLAM_INFO_CARDS.find((c) => c.key === concept.key);
           
           const accentColors = [
             'text-kiosk-accent-teal bg-kiosk-accent-teal/10',
@@ -74,7 +82,11 @@ export default function KolamMegalitikScreen() {
 
           return (
             <li key={concept.key} className="list-none">
-              <article className="group flex h-full flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+              <article 
+                className="group relative flex h-full cursor-pointer flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+                onClick={() => card && setInfoCard(card)}
+              >
+                {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Dominant icon element. */}
                 <span className={`flex h-[5rem] w-[5rem] items-center justify-center rounded-full ${accentClass} transition-transform duration-500 group-hover:scale-105`}>
                   <Icon className="h-8 w-8" strokeWidth={1.5} aria-hidden="true" />
@@ -92,6 +104,7 @@ export default function KolamMegalitikScreen() {
           );
         })}
       </ul>
+      <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );
 }

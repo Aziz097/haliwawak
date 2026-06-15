@@ -10,6 +10,7 @@
  * Requirements: 9.1, 9.2
  */
 
+import { useState } from 'react';
 import {
   ArrowRight,
   Bug,
@@ -23,10 +24,14 @@ import { KIOSK_ASSETS } from '../content/assets';
 import {
   METAMORFOSIS_STAGES,
   METAMORFOSIS_TITLE,
+  METAMORFOSIS_INFO_CARDS,
   type Caption,
   type MetamorphosisStage,
+  type InfoCard
 } from '../content/i18n';
 import { useLang } from '../i18n/language';
+import InfoHotspot from '../components/InfoHotspot';
+import InfoModal from '../components/InfoModal';
 
 /** Per-stage presentation: icon, accent token classes, description + duration. */
 interface StageDetail {
@@ -84,6 +89,7 @@ const STAGE_DETAILS: Record<MetamorphosisStage, StageDetail> = {
 
 export default function MetamorfosisScreen() {
   const { t, lang } = useLang();
+  const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
 
   return (
     <section className="flex h-full w-full flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
@@ -109,10 +115,15 @@ export default function MetamorfosisScreen() {
           const detail = STAGE_DETAILS[stage];
           const Icon = detail.icon;
           const isLast = index === METAMORFOSIS_STAGES.length - 1;
+          const card = METAMORFOSIS_INFO_CARDS.find((c) => c.key === stage);
 
           return (
             <div key={stage} className="flex flex-1 items-center">
-              <article className="group flex h-full w-full flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+              <article 
+                className="group relative flex h-full w-full cursor-pointer flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+                onClick={() => card && setInfoCard(card)}
+              >
+                {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Medallion with number badge */}
                 <div className="relative mb-2">
                   <span
@@ -174,6 +185,7 @@ export default function MetamorfosisScreen() {
           </p>
         </div>
       </div>
+      <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );
 }

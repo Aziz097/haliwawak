@@ -8,12 +8,14 @@
  * Requirements: 14.1, 14.2, 14.3, 14.4, 14.5
  */
 
+import { useState } from 'react';
 import { ImageOff, Table } from 'lucide-react';
 import EmptyState from '../components/EmptyState';
 import SpeciesPhotoPair from '../components/SpeciesPhotoPair';
 import { DATA_SPESIES_COLUMNS, DATA_SPESIES_TITLE } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
+import SpeciesDetailModal from '../components/SpeciesDetailModal';
 
 export interface DataSpesiesScreenProps {
   /** The full list of kiosk species to display in the data grid. */
@@ -68,7 +70,7 @@ function TaxonField({ label, value }: { label: string; value: string }) {
 }
 
 /** A single species record rendered as a photo + taxonomic-fields card. */
-function SpeciesRecord({ species }: { species: KioskSpecies }) {
+function SpeciesRecord({ species, onSelect }: { species: KioskSpecies, onSelect?: () => void }) {
   const { t } = useLang();
   const name = species.commonName || species.scientificName || species.family;
   const badge = resolveIucnBadge(species.iucnStatus);
@@ -77,7 +79,10 @@ function SpeciesRecord({ species }: { species: KioskSpecies }) {
   const singlePhoto = species.topPhotoUrl ?? species.undersidePhotoUrl ?? null;
 
   return (
-    <article className="group flex flex-col gap-6 rounded-[2rem] border-2 border-white bg-white p-6 shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+    <article 
+      className="group flex cursor-pointer flex-col gap-6 rounded-[2rem] border-2 border-white bg-white p-6 shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+      onClick={onSelect}
+    >
       {/* Photos */}
       {hasBothPhotos ? (
         <SpeciesPhotoPair
@@ -138,6 +143,8 @@ function SpeciesRecord({ species }: { species: KioskSpecies }) {
 
 export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
   const { t, lang } = useLang();
+  const [selectedSpecies, setSelectedSpecies] = useState<KioskSpecies | null>(null);
+
   return (
     <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
       {/* Heading */}
@@ -156,10 +163,11 @@ export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
       ) : (
         <div className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 xl:grid-cols-3">
           {species.map((record) => (
-            <SpeciesRecord key={record.id} species={record} />
+            <SpeciesRecord key={record.id} species={record} onSelect={() => setSelectedSpecies(record)} />
           ))}
         </div>
       )}
+      <SpeciesDetailModal open={selectedSpecies !== null} onClose={() => setSelectedSpecies(null)} species={selectedSpecies} />
     </section>
   );
 }

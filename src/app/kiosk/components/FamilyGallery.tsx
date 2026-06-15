@@ -19,6 +19,8 @@ export interface FamilyGalleryProps {
   family: string;
   /** Species belonging to this family. When empty, an EmptyState is shown. */
   species: KioskSpecies[];
+  /** Optional callback when a species is tapped. */
+  onSelectSpecies?: (species: KioskSpecies) => void;
 }
 
 /** Resolve the bilingual heading for a family, falling back to the raw name. */
@@ -27,11 +29,20 @@ function familyCaption(family: string): Caption {
 }
 
 /** A single inline, image-dominant species card (name caption below image). */
-function SpeciesGalleryCard({ species }: { species: KioskSpecies }) {
+function SpeciesGalleryCard({
+  species,
+  onSelect,
+}: {
+  species: KioskSpecies;
+  onSelect?: () => void;
+}) {
   const name = species.commonName || species.scientificName || species.family;
 
   return (
-    <figure className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+    <figure
+      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)] cursor-pointer"
+      onClick={onSelect}
+    >
       <div className="relative aspect-square w-full overflow-hidden bg-kiosk-surface-tint">
         {species.topPhotoUrl ? (
           <img
@@ -61,7 +72,7 @@ function SpeciesGalleryCard({ species }: { species: KioskSpecies }) {
 }
 
 /** A family-grouped gallery grid with elegant headings and empty fallback. */
-export default function FamilyGallery({ family, species }: FamilyGalleryProps) {
+export default function FamilyGallery({ family, species, onSelectSpecies }: FamilyGalleryProps) {
   const { t } = useLang();
   const heading = familyCaption(family);
 
@@ -83,7 +94,7 @@ export default function FamilyGallery({ family, species }: FamilyGalleryProps) {
         <ul className="grid grid-cols-2 gap-[1.618rem] sm:grid-cols-3 lg:grid-cols-4">
           {species.map((item) => (
             <li key={String(item.id)} className="list-none">
-              <SpeciesGalleryCard species={item} />
+              <SpeciesGalleryCard species={item} onSelect={() => onSelectSpecies?.(item)} />
             </li>
           ))}
         </ul>

@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * TimKamiScreen — Screen 10 of the kiosk flow.
  *
@@ -8,6 +10,7 @@
  * Requirements: 15.1, 15.2, 15.3, 15.4
  */
 
+import { useState } from 'react';
 import { Building2, HandCoins, ScrollText, Users } from 'lucide-react';
 import { Caption } from '../components/Caption';
 import { KIOSK_LOGOS } from '../content/assets';
@@ -19,9 +22,13 @@ import {
   TEAM_MEMBERS,
   TIM_KAMI_PROGRAM,
   TIM_KAMI_TITLE,
+  TIM_KAMI_INFO,
   type Caption as CaptionType,
   type TeamRole,
+  type InfoCard
 } from '../content/i18n';
+import InfoHotspot from '../components/InfoHotspot';
+import InfoModal from '../components/InfoModal';
 
 const ROLE_ORDER: { role: TeamRole; heading: CaptionType }[] = [
   { role: 'ketua', heading: { id: 'Ketua', en: 'Principal Investigator' } },
@@ -40,6 +47,8 @@ const PROGRAM_LOGOS = KIOSK_LOGOS;
 
 export default function TimKamiScreen() {
   const { t, lang } = useLang();
+  const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
+
   return (
     <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
       {/* Screen heading. */}
@@ -94,7 +103,11 @@ export default function TimKamiScreen() {
       </div>
 
       {/* Funding acknowledgement. */}
-      <div className="mt-10 flex flex-col gap-8 rounded-[2.618rem] border-4 border-white bg-kiosk-surface-tint p-10 shadow-[0_8px_30px_rgba(30,51,40,0.05)]">
+      <div 
+        className="group relative mt-10 flex cursor-pointer flex-col gap-8 rounded-[2.618rem] border-4 border-white bg-kiosk-surface-tint p-10 shadow-[0_8px_30px_rgba(30,51,40,0.05)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+        onClick={() => setInfoCard(TIM_KAMI_INFO)}
+      >
+        <InfoHotspot onClick={() => setInfoCard(TIM_KAMI_INFO)} />
         <div className="flex flex-col items-center gap-4 text-center">
           <span className="flex h-[5rem] w-[5rem] items-center justify-center rounded-full bg-kiosk-accent-amber/10 text-kiosk-accent-amber">
             <HandCoins className="h-8 w-8" strokeWidth={1.5} aria-hidden="true" />
@@ -152,6 +165,7 @@ export default function TimKamiScreen() {
           ))}
         </div>
       </footer>
+      <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );
 }

@@ -17,11 +17,15 @@ import { Landmark } from 'lucide-react';
 import {
   LIVING_HERITAGE_TITLE,
   LIVING_HERITAGE_INTRO,
+  LIVING_HERITAGE_INFO,
+  type InfoCard
 } from '../content/i18n';
 import { KIOSK_ASSETS } from '../content/assets';
 import { fadeUp, stagger } from '../kiosk-theme/motion';
 import { useLang } from '../i18n/language';
 import Caption from '../components/Caption';
+import InfoHotspot from '../components/InfoHotspot';
+import InfoModal from '../components/InfoModal';
 
 export interface LivingHeritageScreenProps {
   /**
@@ -44,6 +48,7 @@ export default function LivingHeritageScreen({
 }: LivingHeritageScreenProps) {
   const { t } = useLang();
   const [imageOk, setImageOk] = useState(true);
+  const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
 
   return (
     <section className="relative flex h-full w-full overflow-hidden bg-kiosk-bg text-kiosk-ink">
@@ -88,8 +93,10 @@ export default function LivingHeritageScreen({
 
           <motion.div
             variants={fadeUp}
-            className="border-l-2 border-kiosk-accent-amber/40 pl-[1.618rem]"
+            className="relative cursor-pointer border-l-2 border-kiosk-accent-amber/40 pl-[1.618rem] transition-transform hover:-translate-y-1"
+            onClick={() => setInfoCard(LIVING_HERITAGE_INFO)}
           >
+            <InfoHotspot onClick={() => setInfoCard(LIVING_HERITAGE_INFO)} className="-right-10 -top-4" />
             {/* Bilingual intro on a warm panel: the Caption component
                 renders ID primary then EN secondary (Req 7.2). */}
             <Caption caption={LIVING_HERITAGE_INTRO} size="md" />
@@ -97,6 +104,7 @@ export default function LivingHeritageScreen({
         </motion.div>
 
       </div>
+      <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );
 }

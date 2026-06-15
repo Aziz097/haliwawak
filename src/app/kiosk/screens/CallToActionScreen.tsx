@@ -9,14 +9,19 @@
  * Requirements: 13.1, 13.2
  */
 
+import { useState } from 'react';
 import { Ban, Camera, Droplets, QrCode, Sprout, Megaphone, type LucideIcon } from 'lucide-react';
 import { Caption } from '../components/Caption';
 import {
   CALL_TO_ACTIONS,
   CALL_TO_ACTION_INTRO,
   CALL_TO_ACTION_TITLE,
+  CALL_TO_ACTION_INFO_CARDS,
+  type InfoCard
 } from '../content/i18n';
 import { useLang } from '../i18n/language';
+import InfoHotspot from '../components/InfoHotspot';
+import InfoModal from '../components/InfoModal';
 
 const ACTION_ICONS: Record<string, LucideIcon> = {
   Sprout,
@@ -28,6 +33,8 @@ const ACTION_ICONS: Record<string, LucideIcon> = {
 
 export default function CallToActionScreen() {
   const { t, lang } = useLang();
+  const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
+
   return (
     <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
       {/* Screen heading + short intro. */}
@@ -48,6 +55,7 @@ export default function CallToActionScreen() {
       <ul className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 lg:grid-cols-3">
         {CALL_TO_ACTIONS.map((action, idx) => {
           const Icon = ACTION_ICONS[action.icon] ?? Sprout;
+          const card = CALL_TO_ACTION_INFO_CARDS.find((c) => c.key === action.key);
           
           const accentColors = [
             'text-kiosk-green-600 bg-kiosk-green-100',
@@ -58,7 +66,11 @@ export default function CallToActionScreen() {
 
           return (
             <li key={action.key} className="list-none">
-              <article className="group flex h-full flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+              <article 
+                className="group relative flex h-full cursor-pointer flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+                onClick={() => card && setInfoCard(card)}
+              >
+                {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Dominant icon element. */}
                 <span className={`flex h-[6rem] w-[6rem] items-center justify-center rounded-full ${accentClass} transition-transform duration-500 group-hover:scale-105`}>
                   <Icon className="h-10 w-10" strokeWidth={1.5} aria-hidden="true" />
@@ -76,6 +88,7 @@ export default function CallToActionScreen() {
           );
         })}
       </ul>
+      <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );
 }

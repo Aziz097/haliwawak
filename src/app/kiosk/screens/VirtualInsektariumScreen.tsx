@@ -8,12 +8,14 @@
  * Requirements: 8.1, 8.2, 8.3, 8.4, 8.5
  */
 
+import { useState } from 'react';
 import { Sparkles, Fingerprint } from 'lucide-react';
 import FamilyGallery from '../components/FamilyGallery';
 import { INSEKTARIUM_ATTRIBUTION, INSEKTARIUM_TITLE } from '../content/i18n';
 import { KIOSK_ASSETS } from '../content/assets';
 import { groupByFamily, type KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
+import SpeciesDetailModal from '../components/SpeciesDetailModal';
 
 export interface VirtualInsektariumScreenProps {
   /** The full list of kiosk species; grouped by family for the galleries. */
@@ -30,6 +32,7 @@ export default function VirtualInsektariumScreen({
 }: VirtualInsektariumScreenProps) {
   const { t, lang } = useLang();
   const grouped = groupByFamily(species, [...INSEKTARIUM_FAMILIES]);
+  const [selectedSpecies, setSelectedSpecies] = useState<KioskSpecies | null>(null);
 
   return (
     <section className="flex flex-col bg-kiosk-bg p-10 lg:p-14">
@@ -74,10 +77,15 @@ export default function VirtualInsektariumScreen({
             </div>
             
             {/* The Gallery Grid */}
-            <FamilyGallery family={family} species={grouped[family] ?? []} />
+            <FamilyGallery 
+              family={family} 
+              species={grouped[family] ?? []} 
+              onSelectSpecies={setSelectedSpecies}
+            />
           </div>
         ))}
       </div>
+      <SpeciesDetailModal open={selectedSpecies !== null} onClose={() => setSelectedSpecies(null)} species={selectedSpecies} />
     </section>
   );
 }

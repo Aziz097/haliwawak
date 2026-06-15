@@ -213,5 +213,3 @@ export async function seedPages() {
   }
   console.log('Static pages seeding complete.');
 }
-
-seedPages().catch(console.error);

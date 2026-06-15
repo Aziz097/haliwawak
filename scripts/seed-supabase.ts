@@ -11,6 +11,7 @@ function slugify(s: string): string {
 }
 
 async function seedAccounts() {
+  // Dev-only default passwords. Change these credentials immediately after first login in production.
   const users = [
     { name: 'Super Admin', email: 'superadmin@eduwisata.id', password: 'admin123', role: 'super_admin' },
     { name: 'Admin', email: 'admin@eduwisata.id', password: 'admin123', role: 'admin' },

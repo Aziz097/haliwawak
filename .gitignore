@@ -6,3 +6,4 @@ public/uploads/*
 dist/
 *.tsbuildinfo
 next-env.d.ts
+dev.log

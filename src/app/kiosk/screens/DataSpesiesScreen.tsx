@@ -15,6 +15,7 @@ import SpeciesPhotoPair from '../components/SpeciesPhotoPair';
 import { DATA_SPESIES_COLUMNS, DATA_SPESIES_TITLE } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
+import ClickableCard from '../components/ClickableCard';
 import SpeciesDetailModal from '../components/SpeciesDetailModal';
 
 export interface DataSpesiesScreenProps {
@@ -70,7 +71,7 @@ function TaxonField({ label, value }: { label: string; value: string }) {
 }
 
 /** A single species record rendered as a photo + taxonomic-fields card. */
-function SpeciesRecord({ species, onSelect }: { species: KioskSpecies, onSelect?: () => void }) {
+function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?: () => void }) {
   const { t } = useLang();
   const name = species.commonName || species.scientificName || species.family;
   const badge = resolveIucnBadge(species.iucnStatus);
@@ -79,9 +80,10 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies, onSelect?
   const singlePhoto = species.topPhotoUrl ?? species.undersidePhotoUrl ?? null;
 
   return (
-    <article 
-      className="group flex cursor-pointer flex-col gap-6 rounded-[2rem] border-2 border-white bg-white p-6 shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+    <ClickableCard
       onClick={onSelect}
+      ariaLabel={name}
+      className="group flex flex-col gap-6 rounded-[2rem] border-2 border-white bg-white p-6 shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
     >
       {/* Photos */}
       {hasBothPhotos ? (
@@ -137,7 +139,7 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies, onSelect?
           {badge.label}
         </span>
       </div>
-    </article>
+    </ClickableCard>
   );
 }
 

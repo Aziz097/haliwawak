@@ -1,4 +1,4 @@
-import { SPECIES_DETAILS, getSpeciesDetail } from './speciesDetails';
+import { getSpeciesDetail } from './speciesDetails';
 import { describe, it, expect } from 'vitest';
 
 describe('SPECIES_DETAILS', () => {

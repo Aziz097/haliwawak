@@ -4,7 +4,6 @@ export interface SpeciesDetail {
   scientificName: string;
   funFact: Caption;
   ecosystemRole: Caption;
-  localName?: Caption;
 }
 
 export const SPECIES_DETAILS: Record<string, SpeciesDetail> = {

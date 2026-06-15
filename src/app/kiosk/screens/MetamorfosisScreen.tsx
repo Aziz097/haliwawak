@@ -30,6 +30,7 @@ import {
   type InfoCard
 } from '../content/i18n';
 import { useLang } from '../i18n/language';
+import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
 
@@ -119,9 +120,10 @@ export default function MetamorfosisScreen() {
 
           return (
             <div key={stage} className="flex flex-1 items-center">
-              <article 
-                className="group relative flex h-full w-full cursor-pointer flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+              <ClickableCard
                 onClick={() => card && setInfoCard(card)}
+                ariaLabel={card ? t(card.title) : undefined}
+                className="group relative flex h-full w-full flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Medallion with number badge */}
@@ -152,7 +154,7 @@ export default function MetamorfosisScreen() {
                 <span className="mt-auto inline-flex items-center rounded-full bg-kiosk-surface-tint px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-widest text-kiosk-ink">
                   {t(detail.duration)}
                 </span>
-              </article>
+              </ClickableCard>
 
               {/* Connector chevron between stages */}
               <span className="mx-2 hidden shrink-0 text-kiosk-green-300 lg:block">

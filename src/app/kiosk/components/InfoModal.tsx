@@ -24,7 +24,6 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
         />
         <Dialog.Content
           className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-[2rem] bg-white p-0 shadow-[0_20px_60px_rgba(30,51,40,0.18)] outline-none"
-          aria-describedby="info-modal-body"
         >
           <div className="flex max-h-[85vh] flex-col">
             <div className="flex items-start justify-between border-b border-kiosk-green-100 p-8">
@@ -47,9 +46,11 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
             </div>
 
             <div className="overflow-y-auto p-8">
-              <p id="info-modal-body" className="text-lg leading-relaxed text-kiosk-ink-muted">
-                {t(card.body)}
-              </p>
+              <Dialog.Description asChild>
+                <p className="text-lg leading-relaxed text-kiosk-ink-muted">
+                  {t(card.body)}
+                </p>
+              </Dialog.Description>
               <div className="mt-6 rounded-2xl border border-kiosk-green-200 bg-kiosk-green-50 p-6">
                 <h4 className="mb-2 font-sans text-base font-bold text-kiosk-green-800">
                   {t({ id: 'Kenapa Ini Penting?', en: 'Why Does This Matter?' })}

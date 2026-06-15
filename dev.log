@@ -1,0 +1,13 @@
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3001
+   - Network:      http://100.69.153.197:3001
+   - Environments: .env
+   - Experiments (use with caution):
+     · serverActions
+
+ ✓ Starting...
+ ✓ Ready in 3.4s
+ ○ Compiling /kiosk ...
+ ✓ Compiled /kiosk in 3.1s (1717 modules)
+ GET /kiosk 200 in 3972ms
+ GET /kiosk 200 in 173ms

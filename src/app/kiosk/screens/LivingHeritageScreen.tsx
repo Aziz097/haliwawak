@@ -23,6 +23,7 @@ import {
 import { KIOSK_ASSETS } from '../content/assets';
 import { fadeUp, stagger } from '../kiosk-theme/motion';
 import { useLang } from '../i18n/language';
+import ClickableCard from '../components/ClickableCard';
 import Caption from '../components/Caption';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
@@ -91,15 +92,17 @@ export default function LivingHeritageScreen({
             {t(LIVING_HERITAGE_TITLE)}
           </motion.h1>
 
-          <motion.div
-            variants={fadeUp}
-            className="relative cursor-pointer border-l-2 border-kiosk-accent-amber/40 pl-[1.618rem] transition-transform hover:-translate-y-1"
-            onClick={() => setInfoCard(LIVING_HERITAGE_INFO)}
-          >
-            <InfoHotspot onClick={() => setInfoCard(LIVING_HERITAGE_INFO)} className="-right-10 -top-4" />
-            {/* Bilingual intro on a warm panel: the Caption component
-                renders ID primary then EN secondary (Req 7.2). */}
-            <Caption caption={LIVING_HERITAGE_INTRO} size="md" />
+          <motion.div variants={fadeUp}>
+            <ClickableCard
+              onClick={() => setInfoCard(LIVING_HERITAGE_INFO)}
+              ariaLabel={t(LIVING_HERITAGE_INFO.title)}
+              className="relative border-l-2 border-kiosk-accent-amber/40 pl-[1.618rem] pr-16 pt-14 transition-transform hover:-translate-y-1"
+            >
+              <InfoHotspot onClick={() => setInfoCard(LIVING_HERITAGE_INFO)} className="right-4 top-4" />
+              {/* Bilingual intro on a warm panel: the Caption component
+                  renders ID primary then EN secondary (Req 7.2). */}
+              <Caption caption={LIVING_HERITAGE_INTRO} size="md" />
+            </ClickableCard>
           </motion.div>
         </motion.div>
 

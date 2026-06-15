@@ -59,7 +59,7 @@ export function useSpeciesData(): SpeciesData {
     // Reset to loading on mount (also guards against React Strict Mode re-runs).
     setState({ status: 'loading', species: [], usedFallback: false });
 
-    const useFallback = () => {
+    const applyFallback = () => {
       if (cancelled) return;
       setState({
         status: 'error',
@@ -76,7 +76,7 @@ export function useSpeciesData(): SpeciesData {
 
         // Non-2xx responses are failures (Req 16.3).
         if (!response.ok) {
-          useFallback();
+          applyFallback();
           return;
         }
 
@@ -84,7 +84,7 @@ export function useSpeciesData(): SpeciesData {
         const payload: unknown = await response.json();
 
         if (!Array.isArray(payload)) {
-          useFallback();
+          applyFallback();
           return;
         }
 
@@ -96,7 +96,7 @@ export function useSpeciesData(): SpeciesData {
         setState({ status: 'ready', species, usedFallback: false });
       } catch {
         // Network error, abort/timeout, or invalid JSON all fall back (Req 16.4).
-        useFallback();
+        applyFallback();
       }
     };
 

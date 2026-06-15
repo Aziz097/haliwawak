@@ -83,6 +83,8 @@ export function useKioskNavigation(): UseKioskNavigation {
 
   const canGoBack = state.history.length > 0;
 
+  // state is a ref-like mutable object; we only need to recalculate when the current screen changes.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const nextScreen = useMemo(() => successorOf(state.current), [state.current]);
 
   return {

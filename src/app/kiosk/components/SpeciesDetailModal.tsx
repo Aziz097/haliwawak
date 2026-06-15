@@ -33,7 +33,6 @@ export default function SpeciesDetailModal({
         />
         <Dialog.Content
           className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[1000px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] bg-white shadow-[0_20px_60px_rgba(30,51,40,0.18)] outline-none"
-          aria-describedby="species-modal-body"
         >
           <div className="flex max-h-[85vh] flex-col md:flex-row">
             {/* Photo */}
@@ -75,7 +74,7 @@ export default function SpeciesDetailModal({
                 </button>
               </div>
 
-              <div id="species-modal-body" className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-xl bg-kiosk-surface-tint p-4">
                   <p className="text-xs font-bold uppercase tracking-widest text-kiosk-green-700">{t({ id: 'Famili', en: 'Family' })}</p>
                   <p className="font-semibold text-kiosk-ink">{species.family}</p>
@@ -94,13 +93,15 @@ export default function SpeciesDetailModal({
                 </div>
               </div>
 
-              {detail && (
+              {detail ? (
                 <>
                   <div className="mt-6">
                     <h4 className="mb-2 font-serif text-xl font-semibold text-kiosk-ink">
                       {t({ id: 'Fakta Menarik', en: 'Fun Fact' })}
                     </h4>
-                    <p className="leading-relaxed text-kiosk-ink-muted">{t(detail.funFact)}</p>
+                    <Dialog.Description asChild>
+                      <p className="leading-relaxed text-kiosk-ink-muted">{t(detail.funFact)}</p>
+                    </Dialog.Description>
                   </div>
                   <div className="mt-6 rounded-2xl border border-kiosk-accent-amber/20 bg-kiosk-accent-amber/10 p-6">
                     <h4 className="mb-2 font-sans text-base font-bold text-kiosk-accent-amber">
@@ -109,6 +110,10 @@ export default function SpeciesDetailModal({
                     <p className="text-sm leading-relaxed text-kiosk-ink">{t(detail.ecosystemRole)}</p>
                   </div>
                 </>
+              ) : (
+                <Dialog.Description className="sr-only">
+                  {t({ id: 'Detail spesies tidak tersedia.', en: 'Species detail not available.' })}
+                </Dialog.Description>
               )}
             </div>
           </div>

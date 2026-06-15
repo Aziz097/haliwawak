@@ -106,3 +106,20 @@
 .kiosk-scrollbar::-webkit-scrollbar { width: 6px; }
 .kiosk-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
 .kiosk-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+/* ── Kiosk Site Map tile container queries ─────────────────────────────── */
+.kiosk-tile-container {
+  container-type: size;
+}
+
+@container (max-height: 100px) {
+  .kiosk-tile-subtitle {
+    display: none;
+  }
+}
+
+@container (max-height: 72px) {
+  .kiosk-tile-icon {
+    display: none;
+  }
+}

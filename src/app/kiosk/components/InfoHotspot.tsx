@@ -16,7 +16,10 @@ export default function InfoHotspot({
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
       aria-label={label}
       className={`
         absolute right-4 top-4 z-10 flex h-12 w-12 items-center justify-center

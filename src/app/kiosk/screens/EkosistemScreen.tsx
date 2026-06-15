@@ -14,6 +14,7 @@ import { KIOSK_ASSETS } from '../content/assets';
 import { EKOSISTEM_INTRO, EKOSISTEM_TITLE, METRICS, EKOSISTEM_INFO_CARDS, type InfoCard } from '../content/i18n';
 import { useLang } from '../i18n/language';
 import { Leaf } from 'lucide-react';
+import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
 
@@ -61,9 +62,10 @@ export default function EkosistemScreen() {
           const card = EKOSISTEM_INFO_CARDS.find((c) => c.key === metric.key);
           return (
             <li key={metric.key} className="relative flex list-none flex-col gap-4">
-              <article
-                className="relative cursor-pointer transition-transform hover:-translate-y-1"
+              <ClickableCard
                 onClick={() => card && setInfoCard(card)}
+                ariaLabel={card ? t(card.title) : undefined}
+                className="relative transition-transform hover:-translate-y-1"
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 <MetricGauge
@@ -71,7 +73,7 @@ export default function EkosistemScreen() {
                   label={metric.label}
                   category={metric.category}
                 />
-              </article>
+              </ClickableCard>
               {/* Brief single-language supporting note beneath each gauge. */}
               <p className="px-4 text-center font-sans text-[0.8rem] font-medium leading-relaxed text-kiosk-ink-muted">
                 {t(metric.note)}

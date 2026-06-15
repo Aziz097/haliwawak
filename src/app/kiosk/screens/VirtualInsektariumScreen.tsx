@@ -55,7 +55,7 @@ export default function VirtualInsektariumScreen({
               <Sparkles className="h-5 w-5" aria-hidden="true" />
             </div>
             <p className="font-sans text-[0.9rem] leading-relaxed text-kiosk-ink-muted">
-              <span className="mb-1 block font-bold text-kiosk-ink">Curator's Note</span>
+              <span className="mb-1 block font-bold text-kiosk-ink">Curator&apos;s Note</span>
               {t(INSEKTARIUM_ATTRIBUTION)}
             </p>
           </div>

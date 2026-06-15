@@ -25,8 +25,9 @@ import {
   TIM_KAMI_INFO,
   type Caption as CaptionType,
   type TeamRole,
-  type InfoCard
+  type InfoCard,
 } from '../content/i18n';
+import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
 
@@ -93,19 +94,20 @@ export default function TimKamiScreen() {
                       <p className="inline-block w-max rounded-full bg-kiosk-surface-tint px-3 py-1 font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-700">
                         {t(member.roleLabel)}
                       </p>
-                    </article>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
           );
         })}
       </div>
 
       {/* Funding acknowledgement. */}
-      <div 
-        className="group relative mt-10 flex cursor-pointer flex-col gap-8 rounded-[2.618rem] border-4 border-white bg-kiosk-surface-tint p-10 shadow-[0_8px_30px_rgba(30,51,40,0.05)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+      <ClickableCard
         onClick={() => setInfoCard(TIM_KAMI_INFO)}
+        ariaLabel={t(TIM_KAMI_INFO.title)}
+        className="group relative mt-10 flex flex-col gap-8 rounded-[2.618rem] border-4 border-white bg-kiosk-surface-tint p-10 shadow-[0_8px_30px_rgba(30,51,40,0.05)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
       >
         <InfoHotspot onClick={() => setInfoCard(TIM_KAMI_INFO)} />
         <div className="flex flex-col items-center gap-4 text-center">
@@ -137,7 +139,7 @@ export default function TimKamiScreen() {
             </li>
           ))}
         </ul>
-      </div>
+      </ClickableCard>
 
       {/* Footer logos. */}
       <footer className="mt-10 flex flex-col items-center gap-8 border-t border-kiosk-green-200 pt-12 pb-10">

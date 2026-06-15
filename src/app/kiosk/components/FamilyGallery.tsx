@@ -12,6 +12,7 @@ import { ImageOff, Tag } from 'lucide-react';
 import { FAMILY_LABELS, type Caption } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
+import ClickableCard from './ClickableCard';
 import EmptyState from './EmptyState';
 
 export interface FamilyGalleryProps {
@@ -37,16 +38,18 @@ function SpeciesGalleryCard({
   onSelect?: () => void;
 }) {
   const name = species.commonName || species.scientificName || species.family;
+  const photoUrl = species.topPhotoUrl || species.undersidePhotoUrl;
 
   return (
-    <figure
-      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)] cursor-pointer"
+    <ClickableCard
       onClick={onSelect}
+      ariaLabel={name}
+      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-kiosk-surface-tint">
-        {species.topPhotoUrl ? (
+        {photoUrl ? (
           <img
-            src={species.topPhotoUrl}
+            src={photoUrl}
             alt={name}
             loading="lazy"
             className="h-full w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
@@ -67,7 +70,7 @@ function SpeciesGalleryCard({
           </span>
         ) : null}
       </figcaption>
-    </figure>
+    </ClickableCard>
   );
 }
 

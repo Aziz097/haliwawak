@@ -14,6 +14,7 @@ import { Caption } from '../components/Caption';
 import { KIOSK_ASSETS } from '../content/assets';
 import { FOOD_SECURITY, KETAHANAN_PANGAN_TITLE, FOOD_SECURITY_INFO_CARDS, type InfoCard } from '../content/i18n';
 import { useLang } from '../i18n/language';
+import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
 
@@ -61,9 +62,10 @@ export default function KetahananPanganScreen() {
 
           return (
             <li key={section.key} className="list-none">
-              <article 
-                className="group relative flex h-full cursor-pointer flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-10 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+              <ClickableCard
                 onClick={() => card && setInfoCard(card)}
+                ariaLabel={card ? t(card.title) : undefined}
+                className="group relative flex h-full flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-10 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Dominant icon element. */}
@@ -83,7 +85,7 @@ export default function KetahananPanganScreen() {
                 <p className="font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
                   {t(section.description)}
                 </p>
-              </article>
+              </ClickableCard>
             </li>
           );
         })}

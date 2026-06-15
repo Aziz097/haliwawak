@@ -57,7 +57,9 @@ function LiveClock() {
   );
 }
 
-export default function TopBar(_props: TopBarProps) {
+// Props are reserved for future home-button behavior; kept for API compatibility with KioskShell.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function TopBar({ showHome, onHome }: TopBarProps) {
   const { lang, toggle } = useLang();
   // The button shows the language you will switch TO.
   const switchToLabel = lang === 'id' ? 'English' : 'Indonesia';

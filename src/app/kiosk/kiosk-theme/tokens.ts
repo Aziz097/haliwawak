@@ -11,39 +11,39 @@
 
 /** Every kiosk palette token as a hex constant (mirrors `--color-kiosk-*`). */
 export const palette = {
-  // Canvas / surfaces — bright mint canvas
-  'bg': '#F0FDF4', // page canvas
-  'surface': '#FFFFFF', // cards
-  'surface-tint': '#DCFCE7', // tinted panels
+  // Canvas / surfaces — Bright organic paper
+  'bg': '#FDFBF7', // warm parchment
+  'surface': '#FFFFFF', // clean white cards
+  'surface-tint': '#F4EFE6', // soft clay tint
 
-  // Green scale — dominant hue
-  'green-50': '#F0FDF4',
-  'green-100': '#DCFCE7',
-  'green-200': '#BBF7D0',
-  'green-300': '#86EFAC',
-  'green-400': '#4ADE80',
-  'green-500': '#22C55E', // primary bright green (fills, icons, decoration)
-  'green-600': '#16A34A', // primary-strong (large-text buttons)
-  'green-700': '#15803D', // min green for WHITE body text (>=4.5:1)
-  'green-800': '#166534',
-  'green-900': '#14532D', // deepest green
+  // Green scale — Soft Sage to Deep Forest
+  'green-50': '#F5F8F6',
+  'green-100': '#E6EFE9',
+  'green-200': '#C7D7CD',
+  'green-300': '#A4BBAE',
+  'green-400': '#81A08F',
+  'green-500': '#618571', // primary soft sage
+  'green-600': '#4A725D', // primary-strong
+  'green-700': '#385A48', // good for contrast
+  'green-800': '#2A4537',
+  'green-900': '#1E3328', // deepest forest
 
   // Text inks
-  'ink': '#0B2818', // primary text on light canvas
-  'ink-muted': '#3F6B52', // secondary text / EN captions
-  'on-green': '#FFFFFF', // text on green-700+ surfaces
+  'ink': '#1E3328', // primary text is deep forest
+  'ink-muted': '#618571', // secondary text
+  'on-green': '#FFFFFF', // text on dark green surfaces
 
-  // Supporting accents (green stays dominant)
-  'accent-amber': '#F59E0B',
-  'accent-teal': '#0D9488',
+  // Supporting accents (Nature combo)
+  'accent-amber': '#EBA741', // Sunlit yellow
+  'accent-teal': '#D05A3D',  // Terracotta
 
-  // IUCN status
-  'iucn-lc': '#15803D', // Least Concern
-  'iucn-nt': '#B45309',
-  'iucn-vu': '#C2410C',
+  // IUCN status (keep these standard but harmonious)
+  'iucn-lc': '#4A725D', 
+  'iucn-nt': '#EBA741',
+  'iucn-vu': '#D05A3D',
   'iucn-en': '#B91C1C',
   'iucn-cr': '#7F1D1D',
-  'iucn-na': '#6B7280', // neutral placeholder
+  'iucn-na': '#6B7280', 
 } as const;
 
 /** A kiosk palette token name (key of {@link palette}). */

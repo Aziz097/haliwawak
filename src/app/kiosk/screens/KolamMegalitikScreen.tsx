@@ -1,26 +1,9 @@
 /**
- * KolamMegalitikScreen — Screen 7 of the kiosk flow ("Menjaga Kolam
- * Megalitik" / "Protecting the Megalithic Spring").
+ * KolamMegalitikScreen — Screen 7 of the kiosk flow.
  *
- * Presents THREE icon-led concept blocks, each pairing a DOMINANT lucide
- * icon with a short bilingual {@link Caption} (Indonesian primary / English
- * secondary):
- *   1. Puddling — male butterflies absorbing minerals from damp soil for
- *      energy and reproduction (Droplet) — Req 12.1.
- *   2. Bioindikator — abundant butterflies signalling pure, clean water
- *      free of chemical pollutants (Sparkles) — Req 12.2.
- *   3. Harmoni Leluhur — the pool uniting Earth / Air / Water as the
- *      ancestral point of ecological & spiritual balance (Mountain) —
- *      Req 12.3.
- *
- * Block content (icon name + bilingual title + description) is sourced from
- * `content/i18n.ts` (`KOLAM_CONCEPTS`, `KOLAM_MEGALITIK_TITLE`,
- * `KOLAM_MEGALITIK_INTRO`) so copy stays out of the component. Styling uses
- * ONLY the bright-green kiosk design tokens (`text-kiosk-*`, `bg-kiosk-*`,
- * `border-kiosk-*`) — no raw hex and no legacy palette values.
- *
- * This is a purely presentational component (no client hooks), so it omits
- * the `'use client'` directive.
+ * Designed for the "Bright Organic Heritage" aesthetic:
+ * Golden ratio typography, elegant photo grid with white frames, and 
+ * organic white cards featuring soft shadow depth and distinct color accents.
  *
  * Requirements: 12.1, 12.2, 12.3
  */
@@ -35,10 +18,6 @@ import {
 } from '../content/i18n';
 import { useLang } from '../i18n/language';
 
-/**
- * Maps the lucide icon names declared in `KOLAM_CONCEPTS` to their concrete
- * icon components.
- */
 const CONCEPT_ICONS: Record<string, LucideIcon> = {
   Droplet,
   Sparkles,
@@ -46,55 +25,66 @@ const CONCEPT_ICONS: Record<string, LucideIcon> = {
 };
 
 export default function KolamMegalitikScreen() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
-    <section className="flex flex-col gap-8 p-8">
-      {/* Single-language screen heading + framing caption. */}
-      <header className="flex flex-col items-center gap-2 text-center">
-        <h2 className="text-4xl font-extrabold leading-tight text-kiosk-ink">
+    <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
+      {/* Screen heading + framing caption. */}
+      <header className="flex flex-col items-center gap-4 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-kiosk-accent-teal/30 bg-kiosk-accent-teal/10 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">
+          <Droplet className="h-4 w-4" aria-hidden="true" />
+          {lang === 'id' ? 'Mata Air Suci' : 'Sacred Spring'}
+        </span>
+        <h2 className="font-serif text-[2.618rem] font-medium leading-none text-kiosk-ink">
           {t(KOLAM_MEGALITIK_TITLE)}
         </h2>
-        <p className="mt-1 max-w-3xl text-lg font-semibold leading-snug text-kiosk-ink-muted">
+        <p className="max-w-3xl font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
           {t(KOLAM_MEGALITIK_INTRO)}
         </p>
       </header>
 
       {/* Megalithic pool scene photos. */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2">
         {KIOSK_ASSETS.scenes.kolam.map((src, i) => (
           <div
             key={src}
-            className="aspect-video overflow-hidden rounded-3xl border border-kiosk-green-200 shadow-sm"
+            className="aspect-video overflow-hidden rounded-[2rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.1)]"
           >
             <img
               src={src}
               alt={`Kolam Megalitik Pugung Raharjo ${i + 1}`}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover mix-blend-multiply"
             />
           </div>
         ))}
       </div>
 
       {/* Three icon-led concept blocks. */}
-      <ul className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        {KOLAM_CONCEPTS.map((concept) => {
+      <ul className="grid grid-cols-1 gap-[1.618rem] lg:grid-cols-3">
+        {KOLAM_CONCEPTS.map((concept, idx) => {
           const Icon = CONCEPT_ICONS[concept.icon] ?? Droplet;
+          
+          const accentColors = [
+            'text-kiosk-accent-teal bg-kiosk-accent-teal/10',
+            'text-kiosk-accent-amber bg-kiosk-accent-amber/10',
+            'text-kiosk-green-600 bg-kiosk-green-100'
+          ];
+          const accentClass = accentColors[idx % accentColors.length];
 
           return (
             <li key={concept.key} className="list-none">
-              <article className="flex h-full flex-col items-center gap-5 rounded-3xl border border-kiosk-green-200 bg-kiosk-surface p-8 text-center shadow-sm">
+              <article className="group flex h-full flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
                 {/* Dominant icon element. */}
-                <span className="flex h-36 w-36 items-center justify-center rounded-full bg-kiosk-green-100 text-kiosk-green-700">
-                  <Icon className="h-20 w-20" strokeWidth={1.75} aria-hidden="true" />
+                <span className={`flex h-[5rem] w-[5rem] items-center justify-center rounded-full ${accentClass} transition-transform duration-500 group-hover:scale-105`}>
+                  <Icon className="h-8 w-8" strokeWidth={1.5} aria-hidden="true" />
                 </span>
 
-                {/* Concept title — single-language caption. */}
-                <Caption caption={concept.title} size="lg" align="center" />
+                {/* Concept title. */}
+                <Caption caption={concept.title} size="md" align="center" />
 
                 {/* Supporting description. */}
-                <p className="text-base leading-snug text-kiosk-ink">
+                <p className="font-sans text-[0.9rem] leading-relaxed text-kiosk-ink-muted">
                   {t(concept.description)}
                 </p>
               </article>

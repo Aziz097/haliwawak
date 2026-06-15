@@ -1,35 +1,14 @@
 /**
- * DataSpesiesScreen — Screen 9 of the kiosk flow ("Data Spesies" /
- * "Species Data").
+ * DataSpesiesScreen — Screen 9 of the kiosk flow.
  *
- * Renders a scrollable grid of species records. For each record the screen
- * surfaces the taxonomic fields the data table requires — family, genus,
- * species name (common + scientific), and IUCN status — alongside the species
- * photos (Req 14.1, 14.2):
- *
- *   - When a record has BOTH a top-view and an underside-view photo, the photos
- *     are rendered via {@link SpeciesPhotoPair} (Req 14.3).
- *   - Otherwise the single available photo is shown (top preferred, then
- *     underside), or a token-colored placeholder when no photo exists.
- *
- * The IUCN cell reuses the same neutral-token approach as `SpeciesCard`: a
- * known status maps to its `kiosk-iucn-*` token, while a null/empty status
- * renders a NEUTRAL "N/A" placeholder using `kiosk-iucn-na` rather than an
- * empty value (Req 14.4).
- *
- * When the species list is empty, a bilingual {@link EmptyState} is shown
- * instead of a blank grid (Req 14.5).
- *
- * A bilingual screen heading (Indonesian primary / English secondary) sits at
- * the top. Styling uses ONLY the bright-green kiosk design tokens
- * (`text-kiosk-*`, `bg-kiosk-*`, `border-kiosk-*`) — no raw hex and no legacy
- * palette values. The grid is static (no client hooks), so this component omits
- * the `'use client'` directive; all photos use plain <img loading="lazy" />.
+ * Designed for the "Bright Organic Heritage" aesthetic:
+ * Golden ratio typography, elegant table-like cards with soft shadows
+ * (rounded-[2rem]), and a spacious botanical feel.
  *
  * Requirements: 14.1, 14.2, 14.3, 14.4, 14.5
  */
 
-import { ImageOff } from 'lucide-react';
+import { ImageOff, Table } from 'lucide-react';
 import EmptyState from '../components/EmptyState';
 import SpeciesPhotoPair from '../components/SpeciesPhotoPair';
 import { DATA_SPESIES_COLUMNS, DATA_SPESIES_TITLE } from '../content/i18n';
@@ -51,11 +30,6 @@ interface IucnBadge {
   bgClass: string;
 }
 
-/**
- * Mapping from a normalized IUCN status label (lowercase, trimmed) to its
- * abbreviation and matching `kiosk-iucn-*` token background class. Class
- * strings are written in full so Tailwind can detect them at build time.
- */
 const IUCN_MAP: Record<string, IucnBadge> = {
   'least concern': { label: 'LC', title: 'Least Concern', bgClass: 'bg-kiosk-iucn-lc' },
   lc: { label: 'LC', title: 'Least Concern', bgClass: 'bg-kiosk-iucn-lc' },
@@ -69,31 +43,26 @@ const IUCN_MAP: Record<string, IucnBadge> = {
   cr: { label: 'CR', title: 'Critically Endangered', bgClass: 'bg-kiosk-iucn-cr' },
 };
 
-/**
- * The NEUTRAL placeholder badge shown when no IUCN status is available — the
- * same neutral-token approach used by `SpeciesCard` (Req 14.4).
- */
 const IUCN_NEUTRAL: IucnBadge = {
   label: 'N/A',
   title: 'Tidak Ada Data / Not Assessed',
   bgClass: 'bg-kiosk-iucn-na',
 };
 
-/** Resolve an IUCN status string to a badge, falling back to the neutral one. */
 function resolveIucnBadge(status: string | null): IucnBadge {
   const key = (status ?? '').trim().toLowerCase();
   if (key.length === 0) return IUCN_NEUTRAL;
   return IUCN_MAP[key] ?? { label: status!.trim(), title: status!.trim(), bgClass: 'bg-kiosk-iucn-na' };
 }
 
-/** A small labeled taxonomic field (single-language column label + value). */
+/** A small labeled taxonomic field. */
 function TaxonField({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-0.5">
-      <dt className="text-xs font-semibold uppercase tracking-wide text-kiosk-green-700">
+    <div className="flex flex-col gap-1">
+      <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
         {label}
       </dt>
-      <dd className="text-base font-medium text-kiosk-ink">{value || '—'}</dd>
+      <dd className="font-sans text-[0.9rem] font-semibold text-kiosk-ink">{value || '—'}</dd>
     </div>
   );
 }
@@ -108,9 +77,8 @@ function SpeciesRecord({ species }: { species: KioskSpecies }) {
   const singlePhoto = species.topPhotoUrl ?? species.undersidePhotoUrl ?? null;
 
   return (
-    <article className="flex flex-col gap-4 rounded-3xl border border-kiosk-green-200 bg-kiosk-surface p-5 shadow-sm">
-      {/* Photos: both views as a pair, otherwise the single available photo or
-          a token-colored placeholder (Req 14.3). */}
+    <article className="group flex flex-col gap-6 rounded-[2rem] border-2 border-white bg-white p-6 shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+      {/* Photos */}
       {hasBothPhotos ? (
         <SpeciesPhotoPair
           top={species.topPhotoUrl}
@@ -118,48 +86,48 @@ function SpeciesRecord({ species }: { species: KioskSpecies }) {
           alt={name}
         />
       ) : (
-        <div className="aspect-video w-full overflow-hidden rounded-2xl border border-kiosk-green-200 bg-kiosk-green-100">
+        <div className="aspect-video w-full overflow-hidden rounded-[1.618rem] bg-kiosk-surface-tint">
           {singlePhoto ? (
             <img
               src={singlePhoto}
               alt={name}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
             />
           ) : (
-            <span className="flex h-full w-full items-center justify-center text-kiosk-green-400">
-              <ImageOff className="h-12 w-12" aria-hidden="true" />
+            <span className="flex h-full w-full items-center justify-center text-kiosk-green-300">
+              <ImageOff className="h-12 w-12 opacity-30" aria-hidden="true" />
             </span>
           )}
         </div>
       )}
 
-      {/* Taxonomic fields: family, genus, species name (Req 14.2). */}
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
+      {/* Taxonomic fields */}
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 px-2">
         <TaxonField label={t(DATA_SPESIES_COLUMNS.family)} value={species.family} />
         <TaxonField label={t(DATA_SPESIES_COLUMNS.genus)} value={species.genus} />
-        <div className="col-span-2 flex flex-col gap-0.5">
-          <dt className="text-xs font-semibold uppercase tracking-wide text-kiosk-green-700">
+        <div className="col-span-2 flex flex-col gap-1">
+          <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
             {t(DATA_SPESIES_COLUMNS.species)}
           </dt>
-          <dd className="flex flex-col leading-tight">
-            <span className="text-lg font-semibold text-kiosk-ink">{name}</span>
+          <dd className="flex flex-col">
+            <span className="font-serif text-[1.618rem] font-semibold text-kiosk-ink leading-tight">{name}</span>
             {species.scientificName && species.scientificName !== name ? (
-              <span className="text-sm italic text-kiosk-ink-muted">{species.scientificName}</span>
+              <span className="font-sans text-[0.8rem] italic tracking-wide text-kiosk-ink-muted">{species.scientificName}</span>
             ) : null}
           </dd>
         </div>
       </dl>
 
-      {/* IUCN status with neutral placeholder when absent (Req 14.4). */}
-      <div className="flex items-center gap-3 border-t border-kiosk-green-100 pt-3">
-        <span className="text-xs font-semibold uppercase tracking-wide text-kiosk-green-700">
+      {/* IUCN status */}
+      <div className="mt-auto flex items-center gap-3 border-t border-kiosk-surface-tint px-2 pt-4">
+        <span className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
           {t(DATA_SPESIES_COLUMNS.iucn)}
         </span>
         <span
           title={badge.title}
-          className={`ml-auto rounded-lg px-3 py-1 text-sm font-bold text-kiosk-on-green shadow-sm ${badge.bgClass}`}
+          className={`ml-auto rounded-full px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-widest text-white shadow-sm ${badge.bgClass}`}
         >
           {badge.label}
         </span>
@@ -168,17 +136,17 @@ function SpeciesRecord({ species }: { species: KioskSpecies }) {
   );
 }
 
-/**
- * The Data Spesies screen: a single-language heading plus a scrollable grid of
- * species records, or an empty state when there is no data.
- */
 export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
-    <section className="flex flex-col gap-8 p-8">
-      {/* Single-language screen heading. */}
-      <header className="flex flex-col gap-2">
-        <h2 className="text-4xl font-extrabold leading-tight text-kiosk-ink">
+    <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
+      {/* Heading */}
+      <header className="flex flex-col items-start gap-4 border-b border-kiosk-green-200 pb-8">
+        <span className="flex items-center gap-2 rounded-full border border-kiosk-green-300 bg-kiosk-green-100 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-green-700">
+          <Table className="h-4 w-4" aria-hidden="true" />
+          {lang === 'id' ? 'Database Bio' : 'Bio Database'}
+        </span>
+        <h2 className="font-serif text-[2.618rem] font-medium leading-none text-kiosk-ink">
           {t(DATA_SPESIES_TITLE)}
         </h2>
       </header>
@@ -186,7 +154,7 @@ export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
       {species.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 xl:grid-cols-3">
           {species.map((record) => (
             <SpeciesRecord key={record.id} species={record} />
           ))}

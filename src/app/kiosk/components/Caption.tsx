@@ -7,7 +7,9 @@
  * language (default Indonesian), resolved via {@link useLang}. The optional
  * `subtitle` caption renders a secondary muted line (also single-language).
  *
- * Styling uses ONLY the bright-green kiosk design tokens.
+ * Designed for the "Bright Organic Heritage" aesthetic:
+ * Uses golden ratio scaling for typography, blending elegant serif for primary
+ * and clean sans-serif for secondary.
  */
 
 import type { Caption as CaptionType } from '../content/i18n';
@@ -27,15 +29,15 @@ export interface CaptionProps {
 }
 
 const PRIMARY_SIZE: Record<CaptionSize, string> = {
-  sm: 'text-base',
-  md: 'text-xl',
-  lg: 'text-3xl',
+  sm: 'font-sans text-[1rem] font-bold tracking-wide uppercase',
+  md: 'font-serif text-[1.618rem] font-medium leading-tight',
+  lg: 'font-serif text-[2.618rem] font-medium leading-none',
 };
 
 const SECONDARY_SIZE: Record<CaptionSize, string> = {
-  sm: 'text-xs',
-  md: 'text-sm',
-  lg: 'text-lg',
+  sm: 'font-sans text-[0.7rem] font-medium tracking-widest uppercase',
+  md: 'font-sans text-[1rem] font-medium leading-relaxed',
+  lg: 'font-sans text-[1.618rem] font-medium leading-relaxed italic',
 };
 
 export function Caption({ caption, subtitle, size = 'md', align }: CaptionProps) {
@@ -43,12 +45,12 @@ export function Caption({ caption, subtitle, size = 'md', align }: CaptionProps)
   const alignCls = align === 'center' ? 'items-center text-center' : '';
 
   return (
-    <div className={`flex flex-col gap-0.5 ${alignCls}`}>
-      <p className={`font-bold leading-tight text-kiosk-ink ${PRIMARY_SIZE[size]}`}>
+    <div className={`flex flex-col gap-2 ${alignCls}`}>
+      <p className={`text-kiosk-ink ${PRIMARY_SIZE[size]}`}>
         {t(caption)}
       </p>
       {subtitle && (
-        <p className={`font-medium leading-snug text-kiosk-ink-muted ${SECONDARY_SIZE[size]}`}>
+        <p className={`text-kiosk-ink-muted ${SECONDARY_SIZE[size]}`}>
           {t(subtitle)}
         </p>
       )}

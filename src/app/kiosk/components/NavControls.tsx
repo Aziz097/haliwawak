@@ -29,9 +29,9 @@ export interface NavControlsProps {
   onForward: () => void;
 }
 
-/** Shared classes guaranteeing a ≥64×64px touch target with token colors. */
+  /** Shared classes guaranteeing a ≥48×48px touch target with token colors. */
 const BUTTON_BASE =
-  'flex min-h-[64px] min-w-[64px] items-center justify-center rounded-2xl transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300';
+  'flex min-h-[48px] min-w-[48px] items-center justify-center rounded-xl transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300';
 
 export default function NavControls({
   canGoBack,
@@ -49,7 +49,7 @@ export default function NavControls({
   return (
     <nav
       aria-label="Navigasi kios / Kiosk navigation"
-      className="flex items-center justify-between gap-4 border-t-2 border-kiosk-green-200 bg-kiosk-surface px-6 py-4"
+      className="flex items-center justify-between gap-4 border-t border-kiosk-green-200 bg-kiosk-surface px-6 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.02)]"
     >
       {/* Back — hidden when there is no history */}
       <div className="flex flex-1 justify-start">
@@ -58,10 +58,10 @@ export default function NavControls({
             type="button"
             onClick={onBack}
             aria-label={L.back}
-            className={`${BUTTON_BASE} gap-2 bg-kiosk-surface-tint px-5 text-kiosk-ink hover:bg-kiosk-green-200`}
+            className={`${BUTTON_BASE} gap-1.5 bg-kiosk-surface-tint px-4 text-kiosk-ink hover:bg-kiosk-green-100`}
           >
-            <ChevronLeft className="h-8 w-8" strokeWidth={2.25} />
-            <span className="text-lg font-semibold">{L.back}</span>
+            <ChevronLeft className="h-6 w-6" strokeWidth={2} />
+            <span className="text-base font-medium">{L.back}</span>
           </button>
         )}
       </div>
@@ -72,10 +72,10 @@ export default function NavControls({
           type="button"
           onClick={onHome}
           aria-label={L.home}
-          className={`${BUTTON_BASE} gap-2 bg-kiosk-green-700 px-6 text-kiosk-on-green hover:bg-kiosk-green-800`}
+          className={`${BUTTON_BASE} gap-1.5 bg-kiosk-green-700 px-5 text-kiosk-on-green hover:bg-kiosk-green-800`}
         >
-          <Home className="h-8 w-8" strokeWidth={2.25} />
-          <span className="text-lg font-semibold">{L.home}</span>
+          <Home className="h-5 w-5" strokeWidth={2} />
+          <span className="text-base font-medium">{L.home}</span>
         </button>
       </div>
 
@@ -86,10 +86,10 @@ export default function NavControls({
             type="button"
             onClick={onForward}
             aria-label={L.next}
-            className={`${BUTTON_BASE} gap-2 bg-kiosk-green-600 px-5 text-kiosk-on-green hover:bg-kiosk-green-700`}
+            className={`${BUTTON_BASE} gap-1.5 bg-kiosk-green-600 px-4 text-kiosk-on-green hover:bg-kiosk-green-700`}
           >
-            <span className="text-lg font-semibold">{L.next}</span>
-            <ChevronRight className="h-8 w-8" strokeWidth={2.25} />
+            <span className="text-base font-medium">{L.next}</span>
+            <ChevronRight className="h-6 w-6" strokeWidth={2} />
           </button>
         )}
       </div>

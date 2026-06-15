@@ -3,16 +3,9 @@
 /**
  * MetamorfosisScreen — Screen 4 of the kiosk flow.
  *
- * A visual-first, single-language depiction of the four butterfly life stages
- * (egg → larva → pupa → imago) presented as a connected timeline: each stage
- * is a medallion card with its own accent color, an order number, a large
- * icon, a short description and a typical-duration chip, joined by chevrons
- * that convey the cyclical progression. A documentary scene banner anchors the
- * top and a closing "siklus berulang" note reinforces the loop.
- *
- * Stage order/labels come from `METAMORFOSIS_STAGES`; richer copy (description
- * + duration) is provided locally. Styling uses ONLY the bright-green kiosk
- * design tokens.
+ * Designed for the "Bright Organic Heritage" aesthetic:
+ * Soft organic cards, golden ratio typography, warm accents 
+ * (sunlit yellow, terracotta, soft sage), and spacious flow.
  *
  * Requirements: 9.1, 9.2
  */
@@ -49,8 +42,8 @@ interface StageDetail {
 const STAGE_DETAILS: Record<MetamorphosisStage, StageDetail> = {
   egg: {
     icon: Egg,
-    ring: 'from-kiosk-green-300 to-kiosk-green-500',
-    badge: 'bg-kiosk-green-500',
+    ring: 'from-kiosk-accent-amber/80 to-kiosk-accent-amber',
+    badge: 'bg-kiosk-accent-amber',
     description: {
       id: 'Telur mungil diletakkan menempel pada daun tanaman inang.',
       en: 'Tiny eggs are laid, attached to the leaves of a host plant.',
@@ -59,8 +52,8 @@ const STAGE_DETAILS: Record<MetamorphosisStage, StageDetail> = {
   },
   larva: {
     icon: Leaf,
-    ring: 'from-kiosk-green-400 to-kiosk-green-600',
-    badge: 'bg-kiosk-green-600',
+    ring: 'from-kiosk-green-400 to-kiosk-green-500',
+    badge: 'bg-kiosk-green-500',
     description: {
       id: 'Ulat rakus memakan daun, tumbuh pesat dan berganti kulit.',
       en: 'The caterpillar eats voraciously, growing fast and molting.',
@@ -69,8 +62,8 @@ const STAGE_DETAILS: Record<MetamorphosisStage, StageDetail> = {
   },
   pupa: {
     icon: CircleDot,
-    ring: 'from-kiosk-accent-teal to-kiosk-green-700',
-    badge: 'bg-kiosk-green-700',
+    ring: 'from-kiosk-accent-teal/80 to-kiosk-accent-teal',
+    badge: 'bg-kiosk-accent-teal',
     description: {
       id: 'Dalam kepompong, tubuh ulat berubah total menjadi kupu-kupu.',
       en: 'Inside the chrysalis, the body fully transforms into a butterfly.',
@@ -79,8 +72,8 @@ const STAGE_DETAILS: Record<MetamorphosisStage, StageDetail> = {
   },
   imago: {
     icon: Bug,
-    ring: 'from-kiosk-green-500 to-kiosk-green-800',
-    badge: 'bg-kiosk-green-800',
+    ring: 'from-kiosk-green-600 to-kiosk-green-800',
+    badge: 'bg-kiosk-green-700',
     description: {
       id: 'Kupu-kupu dewasa muncul, siap terbang dan menyerbuki bunga.',
       en: 'The adult butterfly emerges, ready to fly and pollinate flowers.',
@@ -93,17 +86,17 @@ export default function MetamorfosisScreen() {
   const { t, lang } = useLang();
 
   return (
-    <section className="flex h-full w-full flex-col gap-7 px-8 py-8">
+    <section className="flex h-full w-full flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
       {/* Heading */}
-      <header className="flex flex-col items-center gap-2 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full bg-kiosk-green-100 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-kiosk-green-700">
+      <header className="flex flex-col items-center gap-4 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-kiosk-accent-teal/30 bg-kiosk-accent-teal/10 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">
           <RotateCw className="h-4 w-4" aria-hidden="true" />
-          {lang === 'id' ? 'Metamorfosis Sempurna' : 'Complete Metamorphosis'}
+          {lang === 'id' ? 'Siklus Kehidupan' : 'Life Cycle'}
         </span>
-        <h2 className="text-4xl font-extrabold leading-tight text-kiosk-ink">
+        <h2 className="font-serif text-[2.618rem] font-medium leading-none text-kiosk-ink">
           {t(METAMORFOSIS_TITLE)}
         </h2>
-        <p className="max-w-2xl text-base text-kiosk-ink-muted">
+        <p className="max-w-2xl font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
           {lang === 'id'
             ? 'Empat tahap menakjubkan dari telur hingga kupu-kupu dewasa penyerbuk.'
             : 'Four remarkable stages from egg to a pollinating adult butterfly.'}
@@ -111,7 +104,7 @@ export default function MetamorfosisScreen() {
       </header>
 
       {/* Connected stage timeline */}
-      <div className="flex flex-1 flex-wrap items-stretch justify-center gap-2 lg:flex-nowrap">
+      <div className="flex flex-1 flex-wrap items-stretch justify-center gap-4 lg:flex-nowrap">
         {METAMORFOSIS_STAGES.map(({ stage, label }, index) => {
           const detail = STAGE_DETAILS[stage];
           const Icon = detail.icon;
@@ -119,43 +112,43 @@ export default function MetamorfosisScreen() {
 
           return (
             <div key={stage} className="flex flex-1 items-center">
-              <article className="group flex h-full w-full flex-col items-center gap-4 rounded-3xl border border-kiosk-green-200 bg-kiosk-surface p-6 text-center shadow-sm transition-transform hover:-translate-y-1">
+              <article className="group flex h-full w-full flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
                 {/* Medallion with number badge */}
-                <div className="relative">
+                <div className="relative mb-2">
                   <span
-                    className={`flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br ${detail.ring} text-kiosk-on-green shadow-lg`}
+                    className={`flex h-[6rem] w-[6rem] items-center justify-center rounded-full bg-gradient-to-br ${detail.ring} text-white shadow-inner transition-transform duration-500 group-hover:scale-105`}
                   >
-                    <Icon className="h-16 w-16" strokeWidth={1.75} aria-hidden="true" />
+                    <Icon className="h-10 w-10" strokeWidth={1.5} aria-hidden="true" />
                   </span>
                   <span
-                    className={`absolute -right-1 -top-1 flex h-10 w-10 items-center justify-center rounded-full ${detail.badge} text-lg font-extrabold text-kiosk-on-green ring-4 ring-kiosk-surface`}
+                    className={`absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full ${detail.badge} font-serif text-[1rem] font-bold text-white shadow-md ring-4 ring-white`}
                   >
                     {index + 1}
                   </span>
                 </div>
 
                 {/* Stage label */}
-                <h3 className="text-2xl font-bold leading-tight text-kiosk-ink">
+                <h3 className="font-serif text-[1.618rem] font-semibold leading-tight text-kiosk-ink">
                   {t(label)}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm leading-snug text-kiosk-ink-muted">
+                <p className="font-sans text-[0.9rem] leading-relaxed text-kiosk-ink-muted">
                   {t(detail.description)}
                 </p>
 
                 {/* Duration chip */}
-                <span className="mt-auto inline-flex items-center rounded-full bg-kiosk-green-100 px-4 py-1.5 text-sm font-semibold text-kiosk-green-700">
+                <span className="mt-auto inline-flex items-center rounded-full bg-kiosk-surface-tint px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-widest text-kiosk-ink">
                   {t(detail.duration)}
                 </span>
               </article>
 
-              {/* Connector chevron between stages (cycles back after the last) */}
-              <span className="mx-1 hidden shrink-0 text-kiosk-green-500 lg:block">
+              {/* Connector chevron between stages */}
+              <span className="mx-2 hidden shrink-0 text-kiosk-green-300 lg:block">
                 {isLast ? (
-                  <RotateCw className="h-7 w-7" aria-hidden="true" />
+                  <RotateCw className="h-8 w-8 opacity-50" aria-hidden="true" />
                 ) : (
-                  <ArrowRight className="h-7 w-7" aria-hidden="true" />
+                  <ArrowRight className="h-8 w-8 opacity-50" aria-hidden="true" />
                 )}
               </span>
             </div>
@@ -164,19 +157,20 @@ export default function MetamorfosisScreen() {
       </div>
 
       {/* Documentary scene banner + closing note */}
-      <div className="relative overflow-hidden rounded-3xl border border-kiosk-green-200 shadow-sm">
+      <div className="relative overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
         <img
           src={KIOSK_ASSETS.scenes.metamorfosis}
           alt="Habitat kupu-kupu di Situs Pugung Raharjo"
           loading="lazy"
           decoding="async"
-          className="h-40 w-full object-cover"
+          className="h-48 w-full object-cover mix-blend-multiply"
         />
-        <div className="absolute inset-0 flex items-center bg-gradient-to-r from-kiosk-green-900/85 to-transparent px-8">
-          <p className="max-w-md text-lg font-semibold text-kiosk-on-green">
+        {/* Soft Organic Overlay instead of harsh black gradient */}
+        <div className="absolute inset-0 flex items-center bg-gradient-to-r from-kiosk-ink/90 via-kiosk-ink/50 to-transparent px-10">
+          <p className="max-w-md font-serif text-[1.618rem] italic text-white drop-shadow-md">
             {lang === 'id'
-              ? 'Siklus berulang — setiap kupu-kupu dewasa memulai kembali kehidupan baru.'
-              : 'The cycle repeats — every adult butterfly begins a new life anew.'}
+              ? '"Siklus berulang — setiap kupu-kupu dewasa memulai kembali kehidupan baru."'
+              : '"The cycle repeats — every adult butterfly begins a new life anew."'}
           </p>
         </div>
       </div>

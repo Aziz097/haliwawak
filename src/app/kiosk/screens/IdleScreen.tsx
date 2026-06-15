@@ -3,22 +3,15 @@
 /**
  * IdleScreen — the attract / screensaver state of the kiosk (Screen 0, IDLE).
  *
- * While mounted it runs a single `setInterval` (every `IDLE_CYCLE_MS`) that
- * advances a cycle tick; `idleCycleIndex(tick, n)` maps it onto the available
- * species hero imagery so the background slowly cross-fades through butterfly
- * photos (Req 3.2, 3.3). The interval is created in a `useEffect` and cleared
- * on unmount, so cycling stops when leaving idle (Req 3.5).
- *
- * Any touch / click anywhere calls `onStart` (Req 3.6). A richly composed
- * attract panel — brand logo, title, tagline, animated touch cue, and a
- * footer credit row — invites the visitor in (bilingual ID primary / EN
- * secondary). Styling uses ONLY the bright-green kiosk design tokens.
+ * Designed with a "Bright Organic Heritage" aesthetic:
+ * Golden ratio typography and layout (38.2% / 61.8%). Warm parchment background,
+ * deep forest text, sunlit yellow and terracotta accents. Elegant and airy.
  *
  * Requirements: 3.2, 3.3, 3.5, 3.6
  */
 
 import { useEffect, useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Hand, MapPin, Sparkles } from 'lucide-react';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { idleCycleIndex } from '../lib/idleCycle';
@@ -26,7 +19,7 @@ import { IDLE_CYCLE_MS } from '../kiosk-theme/motion';
 import { IDLE_PROMPT } from '../content/i18n';
 import { useLang } from '../i18n/language';
 
-const BRAND_LOGO = '/kupu-logo-white.svg';
+const BRAND_LOGO = '/kupu2-logo-black.svg'; // Use the dark logo for the light background
 
 export interface IdleScreenProps {
   /** Species whose hero imagery the attract loop cycles through. */
@@ -43,7 +36,7 @@ function collectImageUrls(species: KioskSpecies[]): string[] {
   return Array.from(new Set(urls));
 }
 
-/** Live HH:MM clock; null-first to avoid hydration mismatch. */
+/** Soft elegant clock. */
 function IdleClock() {
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
@@ -51,15 +44,15 @@ function IdleClock() {
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
-  const label = now
-    ? `${now.getHours().toString().padStart(2, '0')}:${now
-        .getMinutes()
-        .toString()
-        .padStart(2, '0')}`
-    : '--:--';
+  
+  if (!now) return <span className="font-serif text-[1.618rem] text-kiosk-ink-muted">--:--</span>;
+  
+  const h = now.getHours().toString().padStart(2, '0');
+  const m = now.getMinutes().toString().padStart(2, '0');
+
   return (
-    <span suppressHydrationWarning className="font-mono text-lg font-semibold tabular-nums">
-      {label}
+    <span suppressHydrationWarning className="font-serif text-[1.618rem] italic text-kiosk-ink-muted">
+      {h}:{m}
     </span>
   );
 }
@@ -91,86 +84,91 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
           onStart();
         }
       }}
-      className="relative flex h-full w-full cursor-pointer select-none flex-col items-center justify-center overflow-hidden bg-kiosk-green-900"
+      className="relative flex h-full w-full cursor-pointer select-none overflow-hidden bg-kiosk-bg text-kiosk-ink"
     >
-      {/* Cycling hero imagery — dominant background (Req 3.2, 3.3) */}
-      <div className="absolute inset-0">
-        {currentImage ? (
-          <motion.img
-            key={currentImage}
-            src={currentImage}
-            alt=""
-            aria-hidden="true"
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, ease: 'easeOut' }}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <div
-            aria-hidden="true"
-            className="h-full w-full bg-gradient-to-br from-kiosk-green-400 via-kiosk-green-600 to-kiosk-green-900"
-          />
-        )}
-        {/* Deep readability scrim */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-kiosk-green-900 via-kiosk-green-900/70 to-kiosk-green-900/45"
-        />
+      {/* Golden Ratio Right Panel (61.8% width): Breathing Hero Imagery */}
+      <div className="absolute right-0 top-0 z-10 h-full w-[61.8%] overflow-hidden rounded-l-[40px] shadow-2xl">
+        <AnimatePresence mode="wait">
+          {currentImage ? (
+            <motion.div
+              key={currentImage}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 2.5, ease: 'easeInOut' }}
+              className="absolute inset-0"
+            >
+              <img
+                src={currentImage}
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-cover"
+              />
+              {/* Soft vignette for text legibility if needed, though text is on the left */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/10" />
+            </motion.div>
+          ) : (
+            <div className="h-full w-full bg-kiosk-green-100" />
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Top status bar: location chip + clock */}
-      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-10 py-6 text-kiosk-on-green">
-        <span className="flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-          <MapPin className="h-4 w-4 text-kiosk-green-300" aria-hidden="true" />
-          Situs Purbakala Pugung Raharjo
-        </span>
-        <span className="flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-4 py-2 backdrop-blur-sm">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-kiosk-green-300" />
-          <IdleClock />
-        </span>
-      </div>
+      {/* Golden Ratio Left Panel (38.2% width): Airy Typography & Content */}
+      <div className="absolute left-0 top-0 z-20 flex h-full w-[38.2%] flex-col justify-between px-[2.618rem] py-[4.236rem]">
+        
+        {/* Top: Location & Clock */}
+        <div className="flex flex-col gap-[1.618rem]">
+          <div className="flex items-center gap-4">
+            <img src={BRAND_LOGO} alt="Logo" className="h-12 w-12 object-contain opacity-80" />
+            <IdleClock />
+          </div>
+          <div className="flex items-center gap-2 text-kiosk-accent-teal">
+            <MapPin className="h-5 w-5" />
+            <span className="font-sans text-[1rem] font-medium tracking-wide">
+              Situs Purbakala Pugung Raharjo
+            </span>
+          </div>
+        </div>
 
-      {/* Center attract panel */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.15 }}
-        className="relative z-10 flex max-w-3xl flex-col items-center px-8 text-center text-kiosk-on-green"
-      >
-        {/* Brand logo in a glowing ring */}
-        <span className="mb-6 flex h-28 w-28 items-center justify-center rounded-full border border-white/25 bg-white/10 shadow-2xl backdrop-blur-md">
-          <img src={BRAND_LOGO} alt="Eduwisata Polinator" className="h-16 w-16 object-contain" />
-        </span>
-
-        <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-kiosk-green-500/30 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-kiosk-green-100">
-          <Sparkles className="h-4 w-4" aria-hidden="true" /> Virtual Insektarium
-        </span>
-
-        <h1 className="font-heading text-5xl font-extrabold leading-[1.05] drop-shadow-lg sm:text-6xl lg:text-7xl">
-          Eduwisata Polinator
-        </h1>
-        <p className="mt-4 max-w-xl text-lg font-light leading-relaxed text-white/80 sm:text-xl">
-          {lang === 'id'
-            ? 'Jelajahi keanekaragaman kupu-kupu dan perannya bagi ketahanan pangan di situs megalitik Pugung Raharjo.'
-            : 'Explore butterfly biodiversity and its role in food security at the Pugung Raharjo megalithic site.'}
-        </p>
-
-        {/* Animated touch cue */}
+        {/* Center: Main Titles (Golden Ratio Scaling) */}
         <motion.div
-          animate={{ scale: [1, 1.05, 1], opacity: [0.85, 1, 0.85] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          className="mt-10 flex items-center gap-3 rounded-2xl bg-kiosk-green-600 px-8 py-4 shadow-xl shadow-black/30"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+          className="flex flex-col items-start gap-[1.618rem]"
         >
-          <Hand className="h-7 w-7" aria-hidden="true" />
-          <span className="text-2xl font-bold">{t(IDLE_PROMPT)}</span>
-        </motion.div>
-      </motion.div>
+          <span className="flex items-center gap-2 rounded-full border border-kiosk-accent-amber/30 bg-kiosk-accent-amber/10 px-4 py-1.5 font-sans text-[1rem] font-semibold text-kiosk-accent-amber">
+            <Sparkles className="h-4 w-4" /> Virtual Insektarium
+          </span>
 
-      {/* Footer credit */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-center px-10 py-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-        Institut Teknologi Sumatera · Kemdiktisaintek RI
+          <h1 className="font-serif text-[4.236rem] leading-[1.05] tracking-tight text-kiosk-ink">
+            Eduwisata<br/>
+            <span className="italic text-kiosk-green-700">Polinator.</span>
+          </h1>
+
+          <p className="max-w-md font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
+            {lang === 'id'
+              ? 'Jelajahi keanekaragaman kupu-kupu dan perannya bagi ketahanan pangan di situs megalitik Pugung Raharjo.'
+              : 'Explore butterfly biodiversity and its role in food security at the Pugung Raharjo megalithic site.'}
+          </p>
+        </motion.div>
+
+        {/* Bottom: Gentle Touch Prompt */}
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex w-max items-center gap-3 rounded-full bg-kiosk-green-700 px-[1.618rem] py-[1rem] text-kiosk-on-green shadow-lg transition-transform hover:scale-105 hover:bg-kiosk-green-800"
+        >
+          <Hand className="h-6 w-6" />
+          <span className="font-sans text-[1rem] font-semibold tracking-wide">{t(IDLE_PROMPT)}</span>
+        </motion.div>
+        
+        {/* Footer info inside the left panel */}
+        <div className="absolute bottom-[1rem] left-[2.618rem] font-sans text-[0.7rem] uppercase tracking-widest text-kiosk-ink-muted/50">
+          Institut Teknologi Sumatera · Kemdiktisaintek RI
+        </div>
       </div>
     </section>
   );
 }
+

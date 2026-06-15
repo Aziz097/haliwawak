@@ -1,21 +1,14 @@
 /**
- * FamilyGallery — a grid of butterfly species grouped under one family, used by
- * the Virtual Insektarium screen (one gallery per family).
+ * FamilyGallery — a grid of butterfly species grouped under one family.
  *
- * Renders a bilingual family heading and an image-led grid of species cards.
- * Cards are rendered inline (image + name caption) to avoid a hard dependency
- * on `SpeciesCard` (task 7.6) — swap to `SpeciesCard` once it exists.
- *
- * When the family group is empty, an `EmptyState` is rendered for that group
- * so the screen never shows a blank area (Req 8.5).
- *
- * Uses only the bright-green kiosk design tokens (no raw hex / legacy colors).
- * Images use plain <img loading="lazy" /> per the kiosk image strategy.
+ * Designed for the "Bright Organic Heritage" aesthetic:
+ * Golden ratio serif headings, soft shadow cards (rounded-[2rem]),
+ * warm off-white surfaces, and an elegant botanical feel.
  *
  * Requirements: 8.5
  */
 
-import { ImageOff } from 'lucide-react';
+import { ImageOff, Tag } from 'lucide-react';
 import { FAMILY_LABELS, type Caption } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
@@ -38,27 +31,27 @@ function SpeciesGalleryCard({ species }: { species: KioskSpecies }) {
   const name = species.commonName || species.scientificName || species.family;
 
   return (
-    <figure className="flex flex-col overflow-hidden rounded-2xl border border-kiosk-green-200 bg-kiosk-surface shadow-sm">
-      <div className="relative aspect-square w-full overflow-hidden bg-kiosk-green-100">
+    <figure className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+      <div className="relative aspect-square w-full overflow-hidden bg-kiosk-surface-tint">
         {species.topPhotoUrl ? (
           <img
             src={species.topPhotoUrl}
             alt={name}
             loading="lazy"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
-          <span className="flex h-full w-full items-center justify-center text-kiosk-green-400">
-            <ImageOff className="h-10 w-10" aria-hidden="true" />
+          <span className="flex h-full w-full items-center justify-center text-kiosk-green-300">
+            <ImageOff className="h-10 w-10 opacity-30" aria-hidden="true" />
           </span>
         )}
       </div>
-      <figcaption className="flex flex-col gap-0.5 px-3 py-3">
-        <span className="text-base font-semibold leading-tight text-kiosk-ink">
+      <figcaption className="flex flex-col gap-1 p-5">
+        <span className="font-serif text-[1.618rem] font-semibold leading-tight text-kiosk-ink">
           {name}
         </span>
         {species.scientificName && species.scientificName !== name ? (
-          <span className="text-sm italic leading-tight text-kiosk-ink-muted">
+          <span className="font-sans text-[0.8rem] font-bold uppercase tracking-widest text-kiosk-green-600">
             {species.scientificName}
           </span>
         ) : null}
@@ -67,24 +60,27 @@ function SpeciesGalleryCard({ species }: { species: KioskSpecies }) {
   );
 }
 
-/** A family-grouped gallery grid with a single-language heading and empty fallback. */
+/** A family-grouped gallery grid with elegant headings and empty fallback. */
 export default function FamilyGallery({ family, species }: FamilyGalleryProps) {
   const { t } = useLang();
   const heading = familyCaption(family);
 
   return (
-    <section className="flex flex-col gap-4">
-      <header className="flex items-center gap-3">
-        <h3 className="text-2xl font-bold text-kiosk-ink">{t(heading)}</h3>
-        <span className="rounded-full bg-kiosk-green-100 px-3 py-1 text-sm font-semibold text-kiosk-green-700">
-          {species.length}
+    <section className="flex flex-col gap-8">
+      <header className="flex items-center gap-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-kiosk-green-100 text-kiosk-green-700">
+          <Tag className="h-5 w-5" strokeWidth={2} />
+        </div>
+        <h3 className="font-serif text-[2.618rem] text-kiosk-ink">{t(heading)}</h3>
+        <span className="ml-2 rounded-full border border-kiosk-green-200 bg-kiosk-surface px-4 py-1.5 font-sans text-[1rem] font-bold text-kiosk-green-700 shadow-sm">
+          {species.length} Spesies
         </span>
       </header>
 
       {species.length === 0 ? (
         <EmptyState />
       ) : (
-        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-[1.618rem] sm:grid-cols-3 lg:grid-cols-4">
           {species.map((item) => (
             <li key={String(item.id)} className="list-none">
               <SpeciesGalleryCard species={item} />

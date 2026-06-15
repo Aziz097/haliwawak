@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { db } from '../src/db';
 import { accounts, species } from '../src/db/schema';
 import { CORRECTED_SPECIES } from '../src/db/seed-species-corrected';

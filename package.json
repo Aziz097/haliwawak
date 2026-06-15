@@ -11,6 +11,7 @@
     "seed": "tsx seed.ts",
     "seed:species": "tsx seed_species.ts",
     "seed:articles": "tsx seed_articles.ts",
+    "seed:supabase": "tsx scripts/seed-supabase.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:migrate": "drizzle-kit migrate",

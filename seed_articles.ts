@@ -10,12 +10,12 @@ async function main() {
       title: 'Menjaga Kolam Megalitik: Mata Air Kehidupan Kupu-Kupu',
       slug: 'menjaga-kolam-megalitik-mata-air-kehidupan-kupu-kupu',
       category: 'Edukasi Ekosistem',
-      summary: 'Kolam purba di Pugung Raharjo bukan sekadar peninggalan sejarah—ia adalah jantung ekosistem yang memberi kehidupan bagi kupu-kupu. Pelajari tentang puddling, bioindikator, dan harmoni leluhur.',
+      summary: 'Kolam purba di Pugung Raharjo bukan sekadar peninggalan sejarah-ia adalah jantung ekosistem yang memberi kehidupan bagi kupu-kupu. Pelajari tentang puddling, bioindikator, dan harmoni leluhur.',
       content: `<h2>Kolam Purba yang Hidup</h2>
 <p>Kolam Purba di Pugung Raharjo bukan sekadar peninggalan sejarah yang mati. Hingga hari ini, ia adalah jantung ekosistem yang berdenyut, memberi kehidupan bagi ratusan kepakan sayap kupu-kupu.</p>
 <h3>Mengapa satu tetes air di kolam ini begitu berarti?</h3>
 <h4>Puddling: Rahasia Cinta Kupu-Kupu Jantan</h4>
-<p>Pernahkah Anda melihat kupu-kupu berkumpul di tepi kolam yang basah? Mereka tidak hanya minum. Kupu-kupu jantan sedang melakukan proses <em>puddling</em> (mengasin)—menyerap mineral esensial dari tanah basah di sekitar kolam untuk modal energi dan kesuksesan proses reproduksi mereka. Tanpa kolam ini, generasi baru kupu-kupu indah di sini akan terancam.</p>
+<p>Pernahkah Anda melihat kupu-kupu berkumpul di tepi kolam yang basah? Mereka tidak hanya minum. Kupu-kupu jantan sedang melakukan proses <em>puddling</em> (mengasin)-menyerap mineral esensial dari tanah basah di sekitar kolam untuk modal energi dan kesuksesan proses reproduksi mereka. Tanpa kolam ini, generasi baru kupu-kupu indah di sini akan terancam.</p>
 <h4>Penjaga Alami Kualitas Air (Bioindikator)</h4>
 <p>Kupu-kupu adalah mahluk yang sangat sensitif. Kehadiran mereka yang melimpah di sekitar kolam adalah sertifikat alami dari alam: bukti bahwa air di Situs Pugung Raharjo masih murni, bersih, dan bebas dari polutan kimia berbahaya.</p>
 <h4>Harmoni Leluhur: Titik Keseimbangan Alam</h4>
@@ -36,7 +36,7 @@ async function main() {
 <h3>2. Fase Ulat (Larva)</h3>
 <p>Ulat memakan daun inangnya tanpa henti untuk mengumpulkan energi. Fase ini sangat krusial karena energi yang diserap digunakan untuk seluruh hidupnya kelak. Ulat mengalami beberapa kali pergantian kulit (instar) sebelum memasuki fase berikutnya.</p>
 <h3>3. Fase Kepompong (Pupa)</h3>
-<p>Ulat berubah menjadi kepompong yang diam dan tampak tidak bergerak. Di dalam kepompong, terjadi transformasi luar biasa—jaringan tubuh ulat hancur dan terbentuk kembali menjadi struktur tubuh kupu-kupu dewasa. Fase ini berlangsung selama 10–20 hari tergantung spesies.</p>
+<p>Ulat berubah menjadi kepompong yang diam dan tampak tidak bergerak. Di dalam kepompong, terjadi transformasi luar biasa-jaringan tubuh ulat hancur dan terbentuk kembali menjadi struktur tubuh kupu-kupu dewasa. Fase ini berlangsung selama 10–20 hari tergantung spesies.</p>
 <h3>4. Fase Dewasa (Imago)</h3>
 <p>Kupu-kupu dewasa keluar dari kepompong dengan sayap yang masih basah dan lembek. Dalam beberapa jam, sayap mengering dan mengeras, siap untuk terbang mencari nektar dan memulai siklus reproduksi.</p>`,
       status: 'active',
@@ -49,14 +49,14 @@ async function main() {
       category: 'Laporan Konservasi',
       summary: 'Penilaian ekologis menunjukkan Situs Megalitik Pugung Raharjo adalah habitat yang stabil dan seimbang bagi populasi kupu-kupu.',
       content: `<h2>Penilaian Ekologis Situs Megalitik Pugung Raharjo</h2>
-<p>Penilaian ekologis kami menunjukkan bahwa Situs Megalitik Pugung Raharjo jauh lebih dari sekadar jendela ke masa lalu—ini adalah tempat perlindungan alam yang berkembang dan tangguh. Data yang dikumpulkan menggambarkan habitat yang sangat stabil dan seimbang di mana populasi kupu-kupu lokal berkembang dalam harmoni yang sempurna.</p>
+<p>Penilaian ekologis kami menunjukkan bahwa Situs Megalitik Pugung Raharjo jauh lebih dari sekadar jendela ke masa lalu-ini adalah tempat perlindungan alam yang berkembang dan tangguh. Data yang dikumpulkan menggambarkan habitat yang sangat stabil dan seimbang di mana populasi kupu-kupu lokal berkembang dalam harmoni yang sempurna.</p>
 <p>Dari keragaman spesies yang kaya hingga distribusi yang sangat merata di seluruh ekosistem, metrik ini menyoroti lingkungan sehat yang tetap tidak terganggu oleh kerusakan ekologis.</p>
 <h3>Indeks Keanekaragaman (H')</h3>
-<p><strong>2,77</strong> — Kategori: Sedang. Menunjukkan kekayaan spesies kupu-kupu yang melimpah dan terjaga di habitatnya.</p>
+<p><strong>2,77</strong> - Kategori: Sedang. Menunjukkan kekayaan spesies kupu-kupu yang melimpah dan terjaga di habitatnya.</p>
 <h3>Indeks Kemerataan (E)</h3>
-<p><strong>0,91</strong> — Kategori: Tinggi. Populasi antar-spesies tersebar merata, menandakan tidak adanya kesenjangan ekologis.</p>
+<p><strong>0,91</strong> - Kategori: Tinggi. Populasi antar-spesies tersebar merata, menandakan tidak adanya kesenjangan ekologis.</p>
 <h3>Indeks Dominansi (D)</h3>
-<p><strong>0,00 – 0,13</strong> — Kategori: Rendah. Lingkungan yang sehat, di mana tidak ada spesies tunggal yang mendominasi habitat.</p>
+<p><strong>0,00 – 0,13</strong> - Kategori: Rendah. Lingkungan yang sehat, di mana tidak ada spesies tunggal yang mendominasi habitat.</p>
 <p>Temuan ini menegaskan bahwa Pugung Raharjo bukan hanya warisan budaya, tetapi juga kawasan konservasi keanekaragaman hayati yang perlu dijaga keberlanjutannya.</p>`,
       status: 'active',
       publishedAt: new Date(),
@@ -68,7 +68,7 @@ async function main() {
       category: 'Edukasi Ekosistem',
       summary: 'Lima aksi nyata yang dapat Anda lakukan untuk membantu menjaga kelestarian kupu-kupu di Situs Pugung Raharjo.',
       content: `<h2>5 Aksi Nyata Menjaga Kupu-Kupu</h2>
-<p>Kepakan sayap kupu-kupu di Pugung Raharjo adalah tanda alam yang sehat—mari ambil peran nyata untuk menjaga kelestarian mereka hari ini!</p>
+<p>Kepakan sayap kupu-kupu di Pugung Raharjo adalah tanda alam yang sehat-mari ambil peran nyata untuk menjaga kelestarian mereka hari ini!</p>
 <h3>1. Tanam Masa Depan: Satu Bibit untuk Seribu Sayap</h3>
 <p><strong>Aksi Nyata:</strong> Jangan petik tanaman liar di sekitar situs.</p>
 <p><strong>Mengapa Penting?</strong> Tanpa ulat yang memakan daun inang ini, tidak akan pernah ada kupu-kupu yang terbang indah.</p>

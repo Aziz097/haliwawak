@@ -62,7 +62,7 @@ function RadialGauge({ value, fraction }: { value: string; fraction: number }) {
         strokeLinecap="round"
         className="stroke-kiosk-surface-tint"
       />
-      {/* Filled arc — starts at 12 o'clock */}
+      {/* Filled arc - starts at 12 o'clock */}
       <circle
         cx={size / 2}
         cy={size / 2}

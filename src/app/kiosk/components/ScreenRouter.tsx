@@ -1,13 +1,13 @@
 'use client';
 
 /**
- * ScreenRouter — renders exactly one kiosk screen at a time inside an
+ * ScreenRouter - renders exactly one kiosk screen at a time inside an
  * `AnimatePresence` that slides between screens on flow transitions.
  *
  * Each screen is wrapped in a `motion.div` using the shared `slideVariants`
  * (keyed on `direction`: forward = +x, back = −x). The wrapper is the scroll
  * container and is keyed by the current screen id, so React remounts it on
- * every transition — guaranteeing each screen enters scrolled to the top
+ * every transition - guaranteeing each screen enters scrolled to the top
  * (Req 5.4).
  *
  * Requirements: 5.4

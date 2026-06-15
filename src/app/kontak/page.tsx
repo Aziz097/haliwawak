@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kontak — Eduwisata Polinator',
+  title: 'Kontak - Eduwisata Polinator',
 };
 
 export default function KontakPage() {

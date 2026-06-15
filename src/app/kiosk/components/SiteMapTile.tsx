@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * SiteMapTile — a single Site Map hub tile.
+ * SiteMapTile - a single Site Map hub tile.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Image-led cards with organic depth, rounded corners, a soft gradient

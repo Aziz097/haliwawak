@@ -3,7 +3,7 @@
  *
  * Owns the navigation state machine for the kiosk: the current screen, a
  * back-history stack, and a `direction` hint used to drive transition
- * animation. This module is a pure function with no side effects — it is the
+ * animation. This module is a pure function with no side effects - it is the
  * single source of truth for flow order, back-history, home-to-SiteMap, and
  * idle reset, which keeps the navigation logic testable independent of any
  * React/control rendering.
@@ -14,10 +14,10 @@ import { Screen, SCREEN_FLOW } from './screens';
 /**
  * Kiosk navigation state.
  *
- * - `current`  — the screen currently displayed.
- * - `history`  — back-history stack; the screen at the end is the most recent
+ * - `current`  - the screen currently displayed.
+ * - `history`  - back-history stack; the screen at the end is the most recent
  *                predecessor. `BACK` pops from the end.
- * - `direction`— transition hint: `1` = forward (slide +x), `-1` = back
+ * - `direction`- transition hint: `1` = forward (slide +x), `-1` = back
  *                (slide -x). Derived from flow-index comparison on `NAVIGATE`.
  */
 export type KioskState = {
@@ -29,11 +29,11 @@ export type KioskState = {
 /**
  * Actions the reducer understands.
  *
- * - `NAVIGATE` — go to `to`, pushing the current screen onto history.
- * - `BACK`     — pop history; no-op when the stack is empty.
- * - `HOME`     — navigate to the Site Map hub (pushes history).
- * - `START`    — begin the flow from `IDLE` (clears history).
- * - `RESET_IDLE` — return to the idle attract state (clears transient state).
+ * - `NAVIGATE` - go to `to`, pushing the current screen onto history.
+ * - `BACK`     - pop history; no-op when the stack is empty.
+ * - `HOME`     - navigate to the Site Map hub (pushes history).
+ * - `START`    - begin the flow from `IDLE` (clears history).
+ * - `RESET_IDLE` - return to the idle attract state (clears transient state).
  */
 export type KioskAction =
   | { type: 'NAVIGATE'; to: Screen }

@@ -1,5 +1,5 @@
 /**
- * SpeciesPhotoPair — renders both the top-view and underside-view photos of a
+ * SpeciesPhotoPair - renders both the top-view and underside-view photos of a
  * species side by side, each under a bilingual label ("Tampak Atas / Top" and
  * "Tampak Bawah / Underside").
  *
@@ -72,8 +72,8 @@ export default function SpeciesPhotoPair({
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      <PhotoView url={top} label={topLabel} alt={`${alt} — ${topLabel}`} />
-      <PhotoView url={underside} label={underLabel} alt={`${alt} — ${underLabel}`} />
+      <PhotoView url={top} label={topLabel} alt={`${alt} - ${topLabel}`} />
+      <PhotoView url={underside} label={underLabel} alt={`${alt} - ${underLabel}`} />
     </div>
   );
 }

@@ -88,7 +88,7 @@ export const settings = pgTable('settings', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
-// Audit Log — Keamanan & Non-Fungsional
+// Audit Log - Keamanan & Non-Fungsional
 export const activityLogs = pgTable('activity_logs', {
   id: serial('id').primaryKey(),
   userId: integer('user_id').references(() => accounts.id, { onDelete: 'set null' }),

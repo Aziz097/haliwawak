@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Tentang — Situs Purbakala Pugung Raharjo',
+  title: 'Tentang - Situs Purbakala Pugung Raharjo',
 };
 
 const FALLBACK_CONTENT = `

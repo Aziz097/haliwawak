@@ -84,7 +84,7 @@ export type TileMeta = {
 };
 
 /**
- * Site Map tiles — exactly one tile per content screen (Req 6.1), each with a
+ * Site Map tiles - exactly one tile per content screen (Req 6.1), each with a
  * lucide-react icon name and a bilingual label, Indonesian primary (Req 6.4).
  */
 export const SITE_MAP_TILES: TileMeta[] = [

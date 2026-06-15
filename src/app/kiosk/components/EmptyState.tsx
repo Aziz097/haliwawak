@@ -1,5 +1,5 @@
 /**
- * EmptyState — bilingual empty-state message for the kiosk.
+ * EmptyState - bilingual empty-state message for the kiosk.
  *
  * Shown when a list/group has no data to display (e.g. an empty family group
  * in the Virtual Insektarium, or an empty species list on Data Spesies).

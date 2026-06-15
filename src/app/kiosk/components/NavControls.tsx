@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * NavControls — kiosk back / home / forward controls.
+ * NavControls - kiosk back / home / forward controls.
  *
  * - Back is hidden when there is no history (`!canGoBack`, Req 5.3).
  * - Forward is hidden when there is no successor screen (`!hasNext`, Req 5.2).
@@ -51,7 +51,7 @@ export default function NavControls({
       aria-label="Navigasi kios / Kiosk navigation"
       className="flex items-center justify-between gap-4 border-t border-kiosk-green-200 bg-kiosk-surface px-6 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.02)]"
     >
-      {/* Back — hidden when there is no history */}
+      {/* Back - hidden when there is no history */}
       <div className="flex flex-1 justify-start">
         {canGoBack && (
           <button
@@ -66,7 +66,7 @@ export default function NavControls({
         )}
       </div>
 
-      {/* Home — always available */}
+      {/* Home - always available */}
       <div className="flex flex-1 justify-center">
         <button
           type="button"
@@ -79,7 +79,7 @@ export default function NavControls({
         </button>
       </div>
 
-      {/* Forward — hidden when there is no successor screen */}
+      {/* Forward - hidden when there is no successor screen */}
       <div className="flex flex-1 justify-end">
         {hasNext && (
           <button

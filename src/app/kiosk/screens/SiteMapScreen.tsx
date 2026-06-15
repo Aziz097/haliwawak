@@ -1,5 +1,5 @@
 /**
- * SiteMapScreen — Screen 2 of the kiosk flow: the central navigation hub.
+ * SiteMapScreen - Screen 2 of the kiosk flow: the central navigation hub.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * A spacious, elegant grid of image-led tiles with generous padding,
@@ -27,7 +27,7 @@ export default function SiteMapScreen({ onSelect }: SiteMapScreenProps) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-kiosk-ink/5 to-transparent mix-blend-multiply" />
 
       <div className="flex h-full flex-col gap-[clamp(0.75rem,2vh,1.5rem)] p-[clamp(1rem,2.5vw,2rem)] lg:p-[clamp(1.25rem,3vw,2.5rem)]">
-        {/* Elegant Hub Heading — kept compact so the grid gets the space it needs. */}
+        {/* Elegant Hub Heading - kept compact so the grid gets the space it needs. */}
         <header className="flex flex-col items-start gap-2 border-b border-kiosk-green-200 pb-[clamp(0.5rem,1.5vh,1rem)]">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-kiosk-accent-teal/10 text-kiosk-accent-teal lg:h-10 lg:w-10">

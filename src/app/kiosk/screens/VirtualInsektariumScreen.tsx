@@ -1,5 +1,5 @@
 /**
- * VirtualInsektariumScreen — Screen 3 of the kiosk flow.
+ * VirtualInsektariumScreen - Screen 3 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Soft paper background, serif headings, terracota/sage accents, and 

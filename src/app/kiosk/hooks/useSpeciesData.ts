@@ -7,8 +7,8 @@
  * the `KioskSpecies` view model, and exposes a small state object the
  * species-dependent screens (Virtual Insektarium, Data Spesies) consume.
  *
- * Resilience (Req 16): any failure — a network error, a non-2xx response,
- * invalid JSON, or a hung request that exceeds the defensive ~10s timeout — is
+ * Resilience (Req 16): any failure - a network error, a non-2xx response,
+ * invalid JSON, or a hung request that exceeds the defensive ~10s timeout - is
  * treated the same way: the hook substitutes the static fallback list from
  * `content/staticSpecies.ts`, sets `usedFallback = true`, and reports
  * `status = 'error'` without throwing or navigating away.
@@ -40,7 +40,7 @@ const REQUEST_TIMEOUT_MS = 10_000;
 /**
  * Fetch kiosk species with a static fallback.
  *
- * @returns `{ status, species, usedFallback }` — `species` is the mapped API
+ * @returns `{ status, species, usedFallback }` - `species` is the mapped API
  * result when `status === 'ready'`, or the static fallback list when
  * `status === 'error'` (in which case `usedFallback` is `true`).
  */

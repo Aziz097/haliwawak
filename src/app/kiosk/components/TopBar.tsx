@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * TopBar — persistent kiosk header / navbar.
+ * TopBar - persistent kiosk header / navbar.
  *
  * Layout (left → right):
  *   1. Brand lockup: kiosk wordmark logo + "Eduwisata Polinator" + site subtitle.

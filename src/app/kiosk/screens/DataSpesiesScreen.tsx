@@ -1,5 +1,5 @@
 /**
- * DataSpesiesScreen — Screen 9 of the kiosk flow.
+ * DataSpesiesScreen - Screen 9 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Golden ratio typography, elegant table-like cards with soft shadows
@@ -65,7 +65,7 @@ function TaxonField({ label, value }: { label: string; value: string }) {
       <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
         {label}
       </dt>
-      <dd className="font-sans text-[0.9rem] font-semibold text-kiosk-ink">{value || '—'}</dd>
+      <dd className="font-sans text-[0.9rem] font-semibold text-kiosk-ink">{value || '-'}</dd>
     </div>
   );
 }

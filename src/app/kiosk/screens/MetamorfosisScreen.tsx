@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * MetamorfosisScreen — Screen 4 of the kiosk flow.
+ * MetamorfosisScreen - Screen 4 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Soft organic cards, golden ratio typography, warm accents 
@@ -182,8 +182,8 @@ export default function MetamorfosisScreen() {
         <div className="absolute inset-0 flex items-center bg-gradient-to-r from-kiosk-ink/90 via-kiosk-ink/50 to-transparent px-10">
           <p className="max-w-md font-serif text-[1.618rem] italic text-white drop-shadow-md">
             {lang === 'id'
-              ? '"Siklus berulang — setiap kupu-kupu dewasa memulai kembali kehidupan baru."'
-              : '"The cycle repeats — every adult butterfly begins a new life anew."'}
+              ? '"Siklus berulang - setiap kupu-kupu dewasa memulai kembali kehidupan baru."'
+              : '"The cycle repeats - every adult butterfly begins a new life anew."'}
           </p>
         </div>
       </div>

@@ -23,7 +23,7 @@
 export type Caption = { id: string; en: string };
 
 // ---------------------------------------------------------------------------
-// Screen 1 — The Living Heritage (Req 7.2)
+// Screen 1 - The Living Heritage (Req 7.2)
 // ---------------------------------------------------------------------------
 
 /** Hero title for the Living Heritage intro screen. */
@@ -35,11 +35,11 @@ export const LIVING_HERITAGE_TITLE: Caption = {
 /** Short bilingual intro caption for the Living Heritage screen (Req 7.2). */
 export const LIVING_HERITAGE_INTRO: Caption = {
   id: 'Taman Purbakala Situs Megalitik Pugung Raharjo, Lampung Timur: bukan hanya warisan budaya, tetapi juga habitat penting bagi keanekaragaman hayati, khususnya kupu-kupu.',
-  en: 'The Pugung Raharjo Megalithic Site in East Lampung is more than cultural heritage — it is a vital sanctuary for biodiversity, especially butterflies.',
+  en: 'The Pugung Raharjo Megalithic Site in East Lampung is more than cultural heritage - it is a vital sanctuary for biodiversity, especially butterflies.',
 };
 
 // ---------------------------------------------------------------------------
-// Screen 3 — Virtual Insektarium (Req 8 — attribution + family labels)
+// Screen 3 - Virtual Insektarium (Req 8 - attribution + family labels)
 // ---------------------------------------------------------------------------
 
 export const INSEKTARIUM_TITLE: Caption = {
@@ -74,7 +74,7 @@ export const FAMILY_LABELS: Record<string, Caption> = {
 };
 
 // ---------------------------------------------------------------------------
-// Screen 4 — Metamorfosis (Req 9.2 — four stage labels)
+// Screen 4 - Metamorfosis (Req 9.2 - four stage labels)
 // ---------------------------------------------------------------------------
 
 export const METAMORFOSIS_TITLE: Caption = {
@@ -94,7 +94,7 @@ export const METAMORFOSIS_STAGES: { stage: MetamorphosisStage; label: Caption }[
 ];
 
 // ---------------------------------------------------------------------------
-// Screen 5 — Ekosistem metrics (Req 10.1, 10.2, 10.3)
+// Screen 5 - Ekosistem metrics (Req 10.1, 10.2, 10.3)
 // ---------------------------------------------------------------------------
 
 export const EKOSISTEM_TITLE: Caption = {
@@ -104,7 +104,7 @@ export const EKOSISTEM_TITLE: Caption = {
 
 /** Short bilingual ecosystem framing caption. */
 export const EKOSISTEM_INTRO: Caption = {
-  id: 'Penilaian ekologis menunjukkan Situs Pugung Raharjo adalah habitat stabil dan seimbang — populasi kupu-kupu berkembang harmonis.',
+  id: 'Penilaian ekologis menunjukkan Situs Pugung Raharjo adalah habitat stabil dan seimbang - populasi kupu-kupu berkembang harmonis.',
   en: 'Ecological assessment shows Pugung Raharjo is a stable, balanced habitat where butterfly populations thrive in harmony.',
 };
 
@@ -113,9 +113,9 @@ export type MetricKey = 'diversity' | 'evenness' | 'dominance';
 
 /**
  * Ecosystem metrics: value + bilingual category + short note.
- * - Diversity (H'): 2,77 — Sedang / Moderate (Req 10.1)
- * - Evenness (E):   0,91 — Tinggi / High     (Req 10.2)
- * - Dominance (D):  0,00–0,13 — Rendah / Low  (Req 10.3)
+ * - Diversity (H'): 2,77 - Sedang / Moderate (Req 10.1)
+ * - Evenness (E):   0,91 - Tinggi / High     (Req 10.2)
+ * - Dominance (D):  0,00–0,13 - Rendah / Low  (Req 10.3)
  */
 export const METRICS: {
   key: MetricKey;
@@ -157,7 +157,7 @@ export const METRICS: {
 ];
 
 // ---------------------------------------------------------------------------
-// Screen 6 — Ketahanan Pangan / Food Security (Req 11.1, 11.2)
+// Screen 6 - Ketahanan Pangan / Food Security (Req 11.1, 11.2)
 // ---------------------------------------------------------------------------
 
 export const KETAHANAN_PANGAN_TITLE: Caption = {
@@ -208,7 +208,7 @@ export const FOOD_SECURITY: {
 ];
 
 // ---------------------------------------------------------------------------
-// Screen 7 — Kolam Megalitik (Req 12.1, 12.2, 12.3)
+// Screen 7 - Kolam Megalitik (Req 12.1, 12.2, 12.3)
 // ---------------------------------------------------------------------------
 
 export const KOLAM_MEGALITIK_TITLE: Caption = {
@@ -218,8 +218,8 @@ export const KOLAM_MEGALITIK_TITLE: Caption = {
 
 /** Short bilingual framing caption for the megalithic spring screen. */
 export const KOLAM_MEGALITIK_INTRO: Caption = {
-  id: 'Mata Air Kehidupan Kupu-Kupu — kolam purba adalah jantung ekosistem.',
-  en: "The Spring of Butterfly Life — the ancient pool is the heart of the ecosystem.",
+  id: 'Mata Air Kehidupan Kupu-Kupu - kolam purba adalah jantung ekosistem.',
+  en: "The Spring of Butterfly Life - the ancient pool is the heart of the ecosystem.",
 };
 
 /** Stable identifiers for the three megalithic-spring concepts. */
@@ -265,7 +265,7 @@ export const KOLAM_CONCEPTS: {
 ];
 
 // ---------------------------------------------------------------------------
-// Screen 8 — Call to Action (Req 13.1 — five actions, icon + bilingual)
+// Screen 8 - Call to Action (Req 13.1 - five actions, icon + bilingual)
 // ---------------------------------------------------------------------------
 
 export const CALL_TO_ACTION_TITLE: Caption = {
@@ -275,8 +275,8 @@ export const CALL_TO_ACTION_TITLE: Caption = {
 
 /** Short bilingual header for the Call to Action screen. */
 export const CALL_TO_ACTION_INTRO: Caption = {
-  id: 'Kepakan sayap kupu-kupu di Pugung Raharjo adalah tanda alam yang sehat — ambil peran nyata!',
-  en: 'The fluttering of butterflies at Pugung Raharjo signals a healthy nature — play your part!',
+  id: 'Kepakan sayap kupu-kupu di Pugung Raharjo adalah tanda alam yang sehat - ambil peran nyata!',
+  en: 'The fluttering of butterflies at Pugung Raharjo signals a healthy nature - play your part!',
 };
 
 /** Stable identifiers for the five conservation actions. */
@@ -289,7 +289,7 @@ export type ActionKey =
 
 /**
  * Five CTA actions, each with a lucide-react icon name and a bilingual
- * caption (title + supporting note) — Req 13.1.
+ * caption (title + supporting note) - Req 13.1.
  */
 export const CALL_TO_ACTIONS: {
   key: ActionKey;
@@ -345,7 +345,7 @@ export const CALL_TO_ACTIONS: {
 ];
 
 // ---------------------------------------------------------------------------
-// Screen 9 — Data Spesies (column headers)
+// Screen 9 - Data Spesies (column headers)
 // ---------------------------------------------------------------------------
 
 export const DATA_SPESIES_TITLE: Caption = {
@@ -373,7 +373,7 @@ export const DATA_SPESIES_COLUMNS: {
 };
 
 // ---------------------------------------------------------------------------
-// Screen 10 — Tim Kami & Logo / Credits (Req 15.1, 15.2, 15.3, 15.4)
+// Screen 10 - Tim Kami & Logo / Credits (Req 15.1, 15.2, 15.3, 15.4)
 // ---------------------------------------------------------------------------
 
 export const TIM_KAMI_TITLE: Caption = {
@@ -383,8 +383,8 @@ export const TIM_KAMI_TITLE: Caption = {
 
 /** Program framing caption for the team / credits screen (Req 15.1). */
 export const TIM_KAMI_PROGRAM: Caption = {
-  id: 'Program Pengabdian kepada Masyarakat — Skema Pemberdayaan Kemitraan Masyarakat — 2026.',
-  en: 'Community Service Program — Community Partnership Empowerment Scheme — 2026.',
+  id: 'Program Pengabdian kepada Masyarakat - Skema Pemberdayaan Kemitraan Masyarakat - 2026.',
+  en: 'Community Service Program - Community Partnership Empowerment Scheme - 2026.',
 };
 
 /** Role of a team member, bilingual. */
@@ -467,12 +467,12 @@ export const CONTRACTS: { label: Caption; number: string; date: string }[] = [
 
 /** ITERA institutional attribution (Req 15.4). */
 export const ITERA_ATTRIBUTION: Caption = {
-  id: 'Institut Teknologi Sumatera — 2026.',
-  en: 'Institut Teknologi Sumatera — 2026.',
+  id: 'Institut Teknologi Sumatera - 2026.',
+  en: 'Institut Teknologi Sumatera - 2026.',
 };
 
 // ---------------------------------------------------------------------------
-// Shared UI messages — empty-state, loading, non-blocking data notice
+// Shared UI messages - empty-state, loading, non-blocking data notice
 // ---------------------------------------------------------------------------
 
 /** Bilingual empty-state message (Req 8.5 / 14.5). */

@@ -136,7 +136,7 @@ export default function AdminPostsPage() {
                         {IUCN_ABBR[p.iucnStatus] || p.iucnStatus}
                       </span>
                     ) : (
-                      <span className="text-[#9CA3AF]">—</span>
+                      <span className="text-[#9CA3AF]">-</span>
                     )}
                   </td>
                   <td className="px-4 py-3">

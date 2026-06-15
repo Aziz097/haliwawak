@@ -21,7 +21,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: 'Eduwisata Polinator — Situs Purbakala Pugung Raharjo',
+  title: 'Eduwisata Polinator - Situs Purbakala Pugung Raharjo',
   description:
     'Sistem Informasi Eduwisata Polinator. Temukan keanekaragaman kupu-kupu dan perannya dalam ketahanan pangan di Situs Purbakala Pugung Raharjo.',
 };

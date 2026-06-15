@@ -8,8 +8,8 @@
  * starting from idle, and resetting to the idle attract state. It also derives
  * two convenience selectors used to drive the navigation controls:
  *
- * - `canGoBack`  — whether the back control should be available (Req 5.3).
- * - `nextScreen` — the flow successor of the current screen, or `null` at the
+ * - `canGoBack`  - whether the back control should be available (Req 5.3).
+ * - `nextScreen` - the flow successor of the current screen, or `null` at the
  *                  end of the flow / when the current screen is outside it.
  *                  Drives the forward control's enabled state (Req 5.2).
  */

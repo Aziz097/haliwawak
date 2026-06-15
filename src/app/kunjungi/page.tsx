@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Kunjungi — Situs Purbakala Pugung Raharjo',
+  title: 'Kunjungi - Situs Purbakala Pugung Raharjo',
 };
 
 export default async function KunjungiPage() {

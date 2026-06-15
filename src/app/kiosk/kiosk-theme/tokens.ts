@@ -11,12 +11,12 @@
 
 /** Every kiosk palette token as a hex constant (mirrors `--color-kiosk-*`). */
 export const palette = {
-  // Canvas / surfaces — Bright organic paper
+  // Canvas / surfaces - Bright organic paper
   'bg': '#FDFBF7', // warm parchment
   'surface': '#FFFFFF', // clean white cards
   'surface-tint': '#F4EFE6', // soft clay tint
 
-  // Green scale — Soft Sage to Deep Forest
+  // Green scale - Soft Sage to Deep Forest
   'green-50': '#F5F8F6',
   'green-100': '#E6EFE9',
   'green-200': '#C7D7CD',
@@ -68,7 +68,7 @@ export interface TextPairing {
  * text size it is approved for.
  *
  * Rule: white text uses `green-700` or darker; bright `green-500`/`green-600`
- * are reserved for fills, icons, borders, and large display text only — never
+ * are reserved for fills, icons, borders, and large display text only - never
  * small body text on a green fill (so `green-600` is intentionally excluded
  * from this body-text pairing list).
  */

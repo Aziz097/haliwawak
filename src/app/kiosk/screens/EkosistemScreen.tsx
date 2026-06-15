@@ -1,5 +1,5 @@
 /**
- * EkosistemScreen — Screen 5 of the kiosk flow.
+ * EkosistemScreen - Screen 5 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Golden ratio serif typography, spacious layout, and organic 

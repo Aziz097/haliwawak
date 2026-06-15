@@ -5,7 +5,7 @@
 // Data Spesies and Virtual Insektarium screens always have something to render.
 //
 // Families are the CORRECTED taxonomy from content-source.md (Papilionidae / Pieridae /
-// Nymphalidae / Lycaenidae) — NOT the misspelled "PAPILIONIDE"/"LYKANIDE" in the original
+// Nymphalidae / Lycaenidae) - NOT the misspelled "PAPILIONIDE"/"LYKANIDE" in the original
 // document. Rows 7–12 are biologically Pieridae even though the source table grouped them
 // under PAPILIONIDE.
 //

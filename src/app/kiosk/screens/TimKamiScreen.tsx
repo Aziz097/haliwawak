@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * TimKamiScreen — Screen 10 of the kiosk flow.
+ * TimKamiScreen - Screen 10 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Editorial/museum styling, golden ratio typography, elegant grouping 

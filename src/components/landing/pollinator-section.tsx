@@ -15,7 +15,7 @@ export default function PollinatorSection() {
           <p className="text-[#4ADE80] text-xs font-bold tracking-[0.16em] uppercase mb-3">Mengapa Ini Penting?</p>
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Peran Polinator dalam Ketahanan Pangan</h2>
           <p className="text-white/60 max-w-xl mx-auto text-base leading-relaxed">
-            Kupu-kupu bukan sekadar indah — mereka adalah agen penyerbukan kritis yang menjaga ekosistem pertanian kita tetap berjalan.
+            Kupu-kupu bukan sekadar indah - mereka adalah agen penyerbukan kritis yang menjaga ekosistem pertanian kita tetap berjalan.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">

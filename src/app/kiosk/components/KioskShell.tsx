@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * KioskShell — the persistent kiosk frame.
+ * KioskShell - the persistent kiosk frame.
  *
  * Composes the three presentation concerns into a full-screen flex column:
  * `TopBar` (header) + `ScreenRouter` (the one active screen) + `NavControls`

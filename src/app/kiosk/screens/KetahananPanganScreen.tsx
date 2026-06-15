@@ -1,5 +1,5 @@
 /**
- * KetahananPanganScreen — Screen 6 of the kiosk flow.
+ * KetahananPanganScreen - Screen 6 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Spacious layouts, golden ratio serif typography, and elegant 
@@ -73,7 +73,7 @@ export default function KetahananPanganScreen() {
                   <Icon className="h-10 w-10" strokeWidth={1.5} aria-hidden="true" />
                 </span>
 
-                {/* Section title — single-language caption. */}
+                {/* Section title - single-language caption. */}
                 <Caption caption={section.title} size="md" align="center" />
 
                 {/* Key species line. */}

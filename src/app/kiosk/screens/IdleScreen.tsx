@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * IdleScreen — the attract / screensaver state of the kiosk (Screen 0, IDLE).
+ * IdleScreen - the attract / screensaver state of the kiosk (Screen 0, IDLE).
  *
  * Designed with a "Bright Organic Heritage" aesthetic:
  * Golden ratio typography and layout (38.2% / 61.8%). Warm parchment background,

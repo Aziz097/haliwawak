@@ -4,10 +4,10 @@
  * All static imagery delivered in the "Asset foto" package is organized under
  * `public/kiosk/` and referenced here by URL so screens never hard-code paths.
  *
- *   public/kiosk/scenes/       — photographic scene/hero images per screen
- *   public/kiosk/insektarium/  — family collage plates (Papilionidae, …)
- *   public/kiosk/species/      — per-species top + underside photos
- *   public/kiosk/logos/        — funder / institution / program logos
+ *   public/kiosk/scenes/       - photographic scene/hero images per screen
+ *   public/kiosk/insektarium/  - family collage plates (Papilionidae, …)
+ *   public/kiosk/species/      - per-species top + underside photos
+ *   public/kiosk/logos/        - funder / institution / program logos
  */
 
 export const KIOSK_ASSETS = {

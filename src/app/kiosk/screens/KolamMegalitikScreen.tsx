@@ -1,5 +1,5 @@
 /**
- * KolamMegalitikScreen — Screen 7 of the kiosk flow.
+ * KolamMegalitikScreen - Screen 7 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Golden ratio typography, elegant photo grid with white frames, and 

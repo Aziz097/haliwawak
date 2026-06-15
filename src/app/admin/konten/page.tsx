@@ -97,7 +97,7 @@ export default function AdminKontenPage() {
                   </span>
                 </td>
                 <td className="px-5 py-4 text-[#6B7280]">
-                  {a.createdAt ? new Date(a.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
+                  {a.createdAt ? new Date(a.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '-'}
                 </td>
                 <td className="px-5 py-4 text-right">
                   <div className="flex items-center justify-end gap-1.5">

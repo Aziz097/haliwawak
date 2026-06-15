@@ -1,8 +1,8 @@
 /**
  * Species mapping & grouping for the kiosk.
  *
- * Converts raw `species` rows from the database (see `src/db/schema.ts`) — or
- * static fallback entries shaped like them — into the `KioskSpecies` view model
+ * Converts raw `species` rows from the database (see `src/db/schema.ts`) - or
+ * static fallback entries shaped like them - into the `KioskSpecies` view model
  * the kiosk screens consume, and groups a list of species by family for the
  * Virtual Insektarium galleries.
  *
@@ -65,7 +65,7 @@ function toNullableStr(value: unknown): string | null {
  * Normalize an unknown `galleryUrls` input into a `string[]`.
  *
  * The DB column is `jsonb` (default `'[]'`), so at runtime the value may already
- * be an array, or — defensively — a JSON-encoded string, or null/undefined.
+ * be an array, or - defensively - a JSON-encoded string, or null/undefined.
  * Non-string entries are dropped and empty strings are filtered out.
  */
 export function normalizeGalleryUrls(input: unknown): string[] {

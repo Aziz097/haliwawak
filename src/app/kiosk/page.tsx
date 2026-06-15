@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Kiosk route entry — thin client shell.
+ * Kiosk route entry - thin client shell.
  *
  * Composes the kiosk's concerns and hands them to the presentation layer:
  * - Navigation state via {@link useKioskNavigation} (reducer-backed flow
@@ -11,7 +11,7 @@
  *   screens; on timeout it resets the kiosk to the IDLE attract state.
  *
  * Species data is currently HARD-CODED from the curated static list
- * (`STATIC_SPECIES`, with delivered top/underside photos) — no backend call —
+ * (`STATIC_SPECIES`, with delivered top/underside photos) - no backend call -
  * per the current product decision. Swap back to `useSpeciesData()` to source
  * from `/api/kiosk/species` later.
  *

@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Presentational caption renderer — SINGLE language.
+ * Presentational caption renderer - SINGLE language.
  *
  * Renders a bilingual {@link Caption} value as one line in the active kiosk
  * language (default Indonesian), resolved via {@link useLang}. The optional

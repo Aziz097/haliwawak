@@ -21,12 +21,12 @@
   --color-success: #2b7a4b;
 
   /* ── Kiosk: Bright Green Palette (kiosk-redesign) ───────────────── */
-  /* Canvas / surfaces — Bright organic paper */
+  /* Canvas / surfaces - Bright organic paper */
   --color-kiosk-bg:            #FDFBF7;  /* page canvas */
   --color-kiosk-surface:       #FFFFFF;  /* cards */
   --color-kiosk-surface-tint:  #F4EFE6;  /* tinted panels */
 
-  /* Green scale — Soft Sage to Deep Forest */
+  /* Green scale - Soft Sage to Deep Forest */
   --color-kiosk-green-50:  #F5F8F6;
   --color-kiosk-green-100: #E6EFE9;
   --color-kiosk-green-200: #C7D7CD;

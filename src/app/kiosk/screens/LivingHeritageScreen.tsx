@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * LivingHeritageScreen — Screen 1, the opening / hero screen of the kiosk flow.
+ * LivingHeritageScreen - Screen 1, the opening / hero screen of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Editorial/museum layout using the Golden Ratio (61.8% image / 38.2% text).

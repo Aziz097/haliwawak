@@ -1,5 +1,5 @@
 /**
- * CallToActionScreen — Screen 8 of the kiosk flow.
+ * CallToActionScreen - Screen 8 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Golden ratio typography, warm parchment background, and a 

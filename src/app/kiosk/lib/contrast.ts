@@ -4,7 +4,7 @@
  * Implements the relative-luminance / contrast-ratio formula used to validate
  * that approved foreground/background text pairings meet the AA threshold.
  *
- * Spec: kiosk-redesign — Requirements 2.5
+ * Spec: kiosk-redesign - Requirements 2.5
  */
 
 /** AA contrast threshold for normal body text. */
@@ -103,7 +103,7 @@ export function meetsAA(ratio: number): boolean {
  * palette (design.md "Contrast pairing rules"). These are the body-text
  * pairings expected to meet the AA 4.5:1 threshold.
  *
- * Note: white-on-green-600 (`#16A34A`, ~3.6:1) is intentionally excluded — it
+ * Note: white-on-green-600 (`#16A34A`, ~3.6:1) is intentionally excluded - it
  * is reserved for large text / non-text only and does NOT meet AA for body
  * text. If `kiosk-theme/tokens.ts` later exports an authoritative list, prefer
  * importing and re-exporting it from there.

@@ -1,5 +1,5 @@
 /**
- * LoadingIndicator — bilingual loading message with a spinner.
+ * LoadingIndicator - bilingual loading message with a spinner.
  *
  * Shown by species-dependent screens (Virtual Insektarium, Data Spesies) while
  * the species data request is in flight (Req 16.2). Renders a spinning lucide

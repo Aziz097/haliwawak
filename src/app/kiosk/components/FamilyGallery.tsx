@@ -1,5 +1,5 @@
 /**
- * FamilyGallery — a grid of butterfly species grouped under one family.
+ * FamilyGallery - a grid of butterfly species grouped under one family.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Golden ratio serif headings, soft shadow cards (rounded-[2rem]),

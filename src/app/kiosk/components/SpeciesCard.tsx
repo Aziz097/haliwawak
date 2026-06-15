@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * SpeciesCard — image-dominant card for a single butterfly species.
+ * SpeciesCard - image-dominant card for a single butterfly species.
  *
  * Renders the species' top-view photo as the dominant element (with a
  * token-colored placeholder icon when the photo is missing), a bilingual-style
@@ -125,7 +125,7 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
       <button
         type="button"
         onClick={() => onSelect?.(species)}
-        aria-label={`${name} — ${badge.label}`}
+        aria-label={`${name} - ${badge.label}`}
         className={`${frameClass} text-left transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300`}
       >
         {content}

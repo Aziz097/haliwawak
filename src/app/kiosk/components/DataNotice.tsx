@@ -1,5 +1,5 @@
 /**
- * DataNotice — bilingual, NON-BLOCKING notice banner for the kiosk.
+ * DataNotice - bilingual, NON-BLOCKING notice banner for the kiosk.
  *
  * Surfaced when the kiosk falls back to the static species list after a data
  * request failure. It informs without blocking: the current screen and its

@@ -11,31 +11,31 @@
 
 /** Every kiosk palette token as a hex constant (mirrors `--color-kiosk-*`). */
 export const palette = {
-  // Canvas / surfaces - warm peach paper
-  'bg': '#FFF5ED', // warm peach
+  // Canvas / surfaces - warm cream paper
+  'bg': '#FFF7ED', // warm cream
   'surface': '#FFFFFF', // clean white cards
   'surface-tint': '#FFE8D9', // soft peach tint
 
-  // Orange-bata scale - bright saturated earth tones
-  'green-50': '#FFF8F3',
+  // Orange scale - bright Claude orange
+  'green-50': '#FFF7ED',
   'green-100': '#FFE8D9',
-  'green-200': '#FFD0B3',
-  'green-300': '#FFB08A',
-  'green-400': '#F48A5A',
-  'green-500': '#E06C35', // primary orange-bata
-  'green-600': '#C5572A', // primary-strong
-  'green-700': '#9C421F', // good for contrast
-  'green-800': '#763118',
-  'green-900': '#4F2110', // deepest brown
+  'green-200': '#FED7AA',
+  'green-300': '#FDBA74',
+  'green-400': '#FB923C',
+  'green-500': '#F97316', // primary orange
+  'green-600': '#EA580C', // primary-strong
+  'green-700': '#C2410C', // good for contrast
+  'green-800': '#9A3412',
+  'green-900': '#7C2D12', // deepest brown
 
   // Text inks
-  'ink': '#4F2110', // primary text is dark brown
-  'ink-muted': '#A35F3F', // secondary text
+  'ink': '#431407', // primary text is dark brown
+  'ink-muted': '#9A3412', // secondary text
   'on-green': '#FFFFFF', // text on dark surfaces
 
   // Supporting accents
-  'accent-amber': '#F4A23A', // bright amber
-  'accent-teal': '#E06C35',  // orange-bata
+  'accent-amber': '#F59E0B', // amber
+  'accent-teal': '#F97316',  // claude orange
 
   // IUCN status (keep these standard but harmonious)
   'iucn-lc': '#4A725D', 

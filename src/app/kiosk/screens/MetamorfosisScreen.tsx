@@ -176,7 +176,7 @@ export default function MetamorfosisScreen() {
           alt="Habitat kupu-kupu di Situs Pugung Raharjo"
           loading="lazy"
           decoding="async"
-          className="h-48 w-full object-cover mix-blend-multiply"
+          className="h-72 w-full object-cover sm:h-96"
         />
         {/* Soft Organic Overlay instead of harsh black gradient */}
         <div className="absolute inset-0 flex items-center bg-gradient-to-r from-kiosk-ink/90 via-kiosk-ink/50 to-transparent px-10">

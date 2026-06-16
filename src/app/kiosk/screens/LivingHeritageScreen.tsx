@@ -96,12 +96,19 @@ export default function LivingHeritageScreen({
             <ClickableCard
               onClick={() => setInfoCard(LIVING_HERITAGE_INFO)}
               ariaLabel={t(LIVING_HERITAGE_INFO.title)}
-              className="relative border-l-2 border-kiosk-accent-amber/40 pl-[1.618rem] pr-16 pt-14 transition-transform hover:-translate-y-1"
+              className="relative border-l-2 border-kiosk-accent-amber/40 py-6 pl-[1.618rem] pr-4 transition-transform hover:-translate-y-1"
             >
-              <InfoHotspot onClick={() => setInfoCard(LIVING_HERITAGE_INFO)} className="right-4 top-4" />
-              {/* Bilingual intro on a warm panel: the Caption component
-                  renders ID primary then EN secondary (Req 7.2). */}
-              <Caption caption={LIVING_HERITAGE_INTRO} size="md" />
+              <div className="flex items-start gap-4">
+                {/* Bilingual intro on a warm panel: the Caption component
+                    renders ID primary then EN secondary (Req 7.2). */}
+                <div className="min-w-0 flex-1">
+                  <Caption caption={LIVING_HERITAGE_INTRO} size="md" />
+                </div>
+                <InfoHotspot
+                  onClick={() => setInfoCard(LIVING_HERITAGE_INFO)}
+                  className="relative shrink-0"
+                />
+              </div>
             </ClickableCard>
           </motion.div>
         </motion.div>

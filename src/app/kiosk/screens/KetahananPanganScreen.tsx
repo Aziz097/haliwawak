@@ -47,7 +47,7 @@ export default function KetahananPanganScreen() {
           alt="Kupu-kupu penyerbuk di sekitar ladang Situs Pugung Raharjo"
           loading="lazy"
           decoding="async"
-          className="h-56 w-full object-cover mix-blend-multiply sm:h-72"
+          className="h-72 w-full object-cover object-center sm:h-96"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-kiosk-green-900/40 to-transparent" />
       </div>

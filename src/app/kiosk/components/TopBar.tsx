@@ -63,22 +63,21 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
   const { lang, toggle } = useLang();
   // The button shows the language you will switch TO.
   const switchToLabel = lang === 'id' ? 'English' : 'Indonesia';
-  const switchToCode = lang === 'id' ? 'EN' : 'ID';
 
   return (
-    <header className="flex items-center justify-between gap-6 border-b-2 border-kiosk-green-200 bg-kiosk-surface px-6 py-3 shadow-sm">
+    <header className="flex items-center justify-between gap-6 border-b-2 border-kiosk-green-200 bg-kiosk-surface px-6 py-2 shadow-sm">
       {/* 1. Brand lockup */}
       <div className="flex shrink-0 items-center gap-3">
         <img
           src={KIOSK_BRAND_LOGO}
           alt="Eduwisata Polinator"
-          className="h-12 w-12 object-contain"
+          className="h-10 w-10 object-contain"
         />
         <span className="flex flex-col leading-tight">
-          <span className="text-xl font-extrabold text-kiosk-ink">
+          <span className="text-lg font-extrabold text-kiosk-ink">
             Eduwisata Polinator
           </span>
-          <span className="text-sm font-medium text-kiosk-green-700">
+          <span className="text-xs font-medium text-kiosk-green-700">
             Situs Purbakala Pugung Raharjo
           </span>
         </span>
@@ -94,7 +93,7 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
             title={logo.alt}
             loading="lazy"
             decoding="async"
-            className="h-12 w-auto max-w-[88px] object-contain"
+            className="h-10 w-auto max-w-[88px] object-contain"
           />
         ))}
       </div>
@@ -106,15 +105,10 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
           type="button"
           onClick={toggle}
           aria-label={`Ganti bahasa ke ${switchToLabel} / Switch language to ${switchToLabel}`}
-          className="flex min-h-[56px] items-center gap-2 rounded-2xl bg-kiosk-green-700 px-5 text-kiosk-on-green transition-colors hover:bg-kiosk-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300"
+          className="flex min-h-[48px] items-center gap-1.5 rounded-xl bg-kiosk-green-700 px-5 text-kiosk-on-green transition-colors hover:bg-kiosk-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300"
         >
-          <Languages className="h-6 w-6" strokeWidth={2.25} />
-          <span className="flex items-center gap-1.5 text-lg font-semibold">
-            {switchToCode}
-            <span className="text-sm font-medium text-kiosk-green-100">
-              {switchToLabel}
-            </span>
-          </span>
+          <Languages className="h-5 w-5" strokeWidth={2} />
+          <span className="text-base font-medium">{switchToLabel}</span>
         </button>
       </div>
     </header>

@@ -4,7 +4,7 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Playfair Display", Georgia, serif;
-  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-bg: #f9f5ee;
   --color-fg: #1c1917;
@@ -20,32 +20,32 @@
   --color-warning: #d97706;
   --color-success: #2b7a4b;
 
-  /* ── Kiosk: Bright Orange-Bata Palette ───────────────── */
-  /* Canvas / surfaces - warm peach paper */
-  --color-kiosk-bg:            #FFF5ED;  /* page canvas */
+  /* ── Kiosk: Claude-inspired Orange Palette ─────────────── */
+  /* Canvas / surfaces - warm cream paper */
+  --color-kiosk-bg:            #FFF7ED;  /* page canvas */
   --color-kiosk-surface:       #FFFFFF;  /* cards */
   --color-kiosk-surface-tint:  #FFE8D9;  /* tinted panels */
 
-  /* Orange-bata scale - bright saturated earth tones */
-  --color-kiosk-green-50:  #FFF8F3;
+  /* Orange scale - bright Claude orange */
+  --color-kiosk-green-50:  #FFF7ED;
   --color-kiosk-green-100: #FFE8D9;
-  --color-kiosk-green-200: #FFD0B3;
-  --color-kiosk-green-300: #FFB08A;
-  --color-kiosk-green-400: #F48A5A;
-  --color-kiosk-green-500: #E06C35;  /* primary orange-bata */
-  --color-kiosk-green-600: #C5572A;
-  --color-kiosk-green-700: #9C421F;
-  --color-kiosk-green-800: #763118;
-  --color-kiosk-green-900: #4F2110;
+  --color-kiosk-green-200: #FED7AA;
+  --color-kiosk-green-300: #FDBA74;
+  --color-kiosk-green-400: #FB923C;
+  --color-kiosk-green-500: #F97316;  /* primary orange */
+  --color-kiosk-green-600: #EA580C;
+  --color-kiosk-green-700: #C2410C;
+  --color-kiosk-green-800: #9A3412;
+  --color-kiosk-green-900: #7C2D12;
 
   /* Text inks */
-  --color-kiosk-ink:        #4F2110;
-  --color-kiosk-ink-muted:  #A35F3F;
+  --color-kiosk-ink:        #431407;
+  --color-kiosk-ink-muted:  #9A3412;
   --color-kiosk-on-green:   #FFFFFF;
 
   /* Supporting accents */
-  --color-kiosk-accent-amber: #F4A23A; /* bright amber */
-  --color-kiosk-accent-teal:  #E06C35; /* orange-bata */
+  --color-kiosk-accent-amber: #F59E0B; /* amber */
+  --color-kiosk-accent-teal:  #F97316; /* claude orange */
 
   /* IUCN status */
   --color-kiosk-iucn-lc: #4A725D;  

@@ -34,8 +34,6 @@ export const viewport = {
   themeColor: '#F97316',
 };
 
-import Navbar from '@/components/landing/navbar';
-
 export default function RootLayout({
   children,
 }: {
@@ -44,7 +42,6 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${inter.variable} ${playfair.variable} ${sourceSerif.variable}`}>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <Navbar />
         {children}
       </body>
     </html>

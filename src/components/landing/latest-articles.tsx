@@ -3,14 +3,7 @@ import { BookOpen, ChevronRight, ImageOff } from 'lucide-react';
 
 export default function LatestArticles({ articles }: { articles: any[] }) {
   if (articles.length === 0) {
-    return (
-      <section className="py-20 px-4 bg-kiosk-bg">
-        <div className="page-container text-center">
-          <BookOpen className="w-10 h-10 text-kiosk-ink-muted mx-auto mb-3" />
-          <p className="text-kiosk-ink-muted">Belum ada artikel yang dipublikasikan.</p>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   const featured = articles[0];

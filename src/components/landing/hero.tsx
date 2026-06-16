@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Bug, Calendar, ArrowRight, Monitor } from 'lucide-react';
 
 export default function Hero({ species }: { species: { primaryPhotoUrl?: string | null }[] }) {
-  const bgImage = species.find((s) => s.primaryPhotoUrl)?.primaryPhotoUrl ?? '/kiosk/scenes/living-heritage-1.jpg';
+  const bgImage = '/kiosk/scenes/living-heritage-1.jpg';
 
   return (
     <section className="relative overflow-hidden bg-kiosk-bg">

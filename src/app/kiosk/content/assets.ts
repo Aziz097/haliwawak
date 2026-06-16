@@ -40,18 +40,20 @@ export const KIOSK_ASSETS = {
     diktisaintek: '/kiosk/logos/diktisaintek.png',
     bima: '/kiosk/logos/bima.png',
     lampungTimur: '/kiosk/logos/lampung-timur.png',
-    partner: '/kiosk/logos/partner.jpg',
+    itera: '/kiosk/logos/itera.jpg',
+    kemenbud: '/kiosk/logos/kemenbud.png',
   },
 } as const;
 
 /**
  * Ordered list of funder/institution logos, shown in the navbar (centered) and
  * on the credits screen. Order requested by the client:
- * partner → program → Lampung Timur → Diktisaintek → BIMA.
+ * itera → program → kemenbud → Lampung Timur → Diktisaintek → BIMA.
  */
 export const KIOSK_LOGOS: { src: string; alt: string }[] = [
-  { src: KIOSK_ASSETS.logos.partner, alt: 'Institut Teknologi Sumatera' },
+  { src: KIOSK_ASSETS.logos.itera, alt: 'Institut Teknologi Sumatera' },
   { src: KIOSK_ASSETS.logos.program, alt: 'Logo Program Eduwisata Polinator' },
+  { src: KIOSK_ASSETS.logos.kemenbud, alt: 'Kementerian Kebudayaan' },
   { src: KIOSK_ASSETS.logos.lampungTimur, alt: 'Kabupaten Lampung Timur' },
   { src: KIOSK_ASSETS.logos.diktisaintek, alt: 'Diktisaintek Berdampak' },
   { src: KIOSK_ASSETS.logos.bima, alt: 'BIMA Kemdiktisaintek' },

@@ -1,8 +1,9 @@
 export const dynamic = 'force-dynamic';
 
 import { db } from '@/db';
-import { species, articles } from '@/db/schema';
-import { eq, desc, asc } from 'drizzle-orm';
+import { articles } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
+import { STATIC_SPECIES } from '@/app/kiosk/content/staticSpecies';
 import Hero from '@/components/landing/hero';
 import InfoBar from '@/components/landing/info-bar';
 import ExploreThemes from '@/components/landing/explore-themes';
@@ -13,14 +14,18 @@ import VisitCta from '@/components/landing/visit-cta';
 import Footer from '@/components/landing/footer';
 
 export default async function HomePage() {
-  const [allSpecies, activeArticles] = await Promise.all([
-    db.select().from(species).where(eq(species.isPublished, true)),
-    db.select().from(articles).where(eq(articles.status, 'active')).orderBy(desc(articles.publishedAt)),
-  ]);
+  const activeArticles = await db.select().from(articles).where(eq(articles.status, 'active')).orderBy(desc(articles.publishedAt));
 
-  const featuredSpecies = allSpecies
-    .filter((s: any) => s.featuredOnHome)
-    .sort((a: any, b: any) => a.homeOrder - b.homeOrder);
+  const allSpecies = STATIC_SPECIES.map((s) => ({
+    ...s,
+    primaryPhotoUrl: s.topPhotoUrl,
+    slug: s.commonName.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-'),
+  }));
+
+  // We can manually feature a few species for the home page based on the curated static list.
+  // For example, species 3, 14, 17, 23 (Least Concern species)
+  const featuredIds = [3, 14, 17, 23];
+  const featuredSpecies = allSpecies.filter((s) => featuredIds.includes(Number(s.id)));
 
   return (
     <>

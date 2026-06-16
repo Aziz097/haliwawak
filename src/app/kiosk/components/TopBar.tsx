@@ -63,6 +63,7 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
   const { lang, toggle } = useLang();
   // The button shows the language you will switch TO.
   const switchToLabel = lang === 'id' ? 'English' : 'Indonesia';
+  const switchToCode = lang === 'id' ? 'EN' : 'ID';
 
   return (
     <header className="flex items-center justify-between gap-6 border-b-2 border-kiosk-green-200 bg-kiosk-surface px-6 py-2 shadow-sm">
@@ -108,7 +109,8 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
           className="flex min-h-[48px] items-center gap-1.5 rounded-xl bg-kiosk-green-700 px-5 text-kiosk-on-green transition-colors hover:bg-kiosk-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300"
         >
           <Languages className="h-5 w-5" strokeWidth={2} />
-          <span className="text-base font-medium">{switchToLabel}</span>
+          <span className="text-base font-medium">{switchToCode}</span>
+          <span className="text-base font-medium opacity-90">{switchToLabel}</span>
         </button>
       </div>
     </header>

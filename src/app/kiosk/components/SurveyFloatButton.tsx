@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import QRCode from 'qrcode';
-import { ClipboardList, X } from 'lucide-react';
+import { Star, X } from 'lucide-react';
 import { useLang } from '../i18n/language';
 
 const SURVEY_URL = 'https://s.itera.id/surveyhaliwawakpugung';
 const APPEAR_DELAY_MS = 10_000;
-const BUTTON_WIDTH = 150;
+const BUTTON_WIDTH = 220;
 const BUTTON_HEIGHT = 56;
 
 interface Position {
@@ -102,13 +102,13 @@ export default function SurveyFloatButton() {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onClick={onClick}
-        aria-label={lang === 'id' ? 'Buka survei evaluasi kiosk' : 'Open kiosk evaluation survey'}
-        className="fixed z-40 flex h-14 items-center gap-2 rounded-full bg-kiosk-accent-teal px-5 text-white shadow-[0_8px_30px_rgba(30,51,40,0.25)] transition-transform hover:scale-105 active:scale-95"
+        aria-label={lang === 'id' ? 'Buka penilaian pengalaman kiosk' : 'Open kiosk experience rating'}
+        className="fixed z-40 flex h-14 w-[220px] items-center justify-center gap-2 rounded-full bg-kiosk-accent-teal px-5 text-white shadow-[0_8px_30px_rgba(30,51,40,0.25)] transition-transform hover:scale-105 active:scale-95"
         style={{ right: pos.x, bottom: pos.y }}
       >
-        <ClipboardList className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
-        <span className="font-sans text-sm font-bold uppercase tracking-wide">
-          {lang === 'id' ? 'Survei' : 'Survey'}
+        <Star className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+        <span className="font-sans text-xs font-bold uppercase tracking-wide">
+          {lang === 'id' ? 'Rate Pengalaman' : 'Rate Experience'}
         </span>
       </button>
 

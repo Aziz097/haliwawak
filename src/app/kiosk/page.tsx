@@ -39,6 +39,15 @@ export default function KioskPage() {
   // returns the kiosk to IDLE and clears transient navigation state (Req 4.1, 4.2).
   useIdleTimer(IDLE_TIMEOUT_MS, resetIdle, state.current !== 'IDLE');
 
+  const handleStart = () => {
+    start();
+    if (typeof document !== 'undefined' && document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {
+        // Fullscreen may be blocked by the browser; ignore silently.
+      });
+    }
+  };
+
   return (
     <LanguageProvider initial="id">
       <KioskShell
@@ -48,7 +57,7 @@ export default function KioskPage() {
         canGoBack={canGoBack}
         hasNext={nextScreen !== null}
         usedFallback={false}
-        onStart={start}
+        onStart={handleStart}
         onSelectTile={go}
         onBack={back}
         onForward={() => nextScreen && go(nextScreen)}

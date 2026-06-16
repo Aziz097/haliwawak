@@ -24,6 +24,14 @@ export const metadata: Metadata = {
   title: 'Eduwisata Polinator - Situs Purbakala Pugung Raharjo',
   description:
     'Sistem Informasi Eduwisata Polinator. Temukan keanekaragaman kupu-kupu dan perannya dalam ketahanan pangan di Situs Purbakala Pugung Raharjo.',
+  manifest: '/manifest.json',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#F97316',
 };
 
 export default function RootLayout({

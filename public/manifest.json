@@ -1,0 +1,18 @@
+{
+  "name": "Eduwisata Polinator - Kiosk",
+  "short_name": "Polinator Kiosk",
+  "description": "Kiosk edukasi kupu-kupu dan ketahanan pangan di Situs Purbakala Pugung Raharjo.",
+  "start_url": "/kiosk",
+  "display": "fullscreen",
+  "background_color": "#FFF7ED",
+  "theme_color": "#F97316",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "/kupu2-logo-black.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

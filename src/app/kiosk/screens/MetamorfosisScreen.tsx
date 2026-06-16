@@ -111,7 +111,7 @@ export default function MetamorfosisScreen() {
       </header>
 
       {/* Connected stage timeline */}
-      <div className="flex flex-1 flex-wrap items-stretch justify-center gap-4 lg:flex-nowrap">
+      <div className="flex min-h-0 flex-[2] flex-wrap items-stretch justify-center gap-4 overflow-y-auto lg:flex-nowrap">
         {METAMORFOSIS_STAGES.map(({ stage, label }, index) => {
           const detail = STAGE_DETAILS[stage];
           const Icon = detail.icon;
@@ -123,7 +123,7 @@ export default function MetamorfosisScreen() {
               <ClickableCard
                 onClick={() => card && setInfoCard(card)}
                 ariaLabel={card ? t(card.title) : undefined}
-                className="group relative flex h-full w-full flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+                className="group relative flex w-full flex-col items-center gap-5 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Medallion with number badge */}
@@ -170,13 +170,13 @@ export default function MetamorfosisScreen() {
       </div>
 
       {/* Documentary scene banner + closing note */}
-      <div className="relative overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
+      <div className="relative min-h-0 flex-1 overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
         <img
           src={KIOSK_ASSETS.scenes.metamorfosis}
           alt="Habitat kupu-kupu di Situs Pugung Raharjo"
           loading="lazy"
           decoding="async"
-          className="h-72 w-full object-cover sm:h-96"
+          className="h-full w-full object-cover"
         />
         {/* Soft Organic Overlay instead of harsh black gradient */}
         <div className="absolute inset-0 flex items-center bg-gradient-to-r from-kiosk-ink/90 via-kiosk-ink/50 to-transparent px-10">

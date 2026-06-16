@@ -9,29 +9,31 @@ const POLLINATORS = [
 
 export default function PollinatorSection() {
   return (
-    <section className="py-24 px-4 bg-section-dark text-white relative overflow-hidden">
+    <section className="relative overflow-hidden bg-kiosk-surface py-20 px-4">
       <div className="page-container relative z-10">
-        <div className="text-center mb-16">
-          <p className="text-[#4ADE80] text-xs font-bold tracking-[0.16em] uppercase mb-3">Mengapa Ini Penting?</p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Peran Polinator dalam Ketahanan Pangan</h2>
-          <p className="text-white/60 max-w-xl mx-auto text-base leading-relaxed">
-            Kupu-kupu bukan sekadar indah - mereka adalah agen penyerbukan kritis yang menjaga ekosistem pertanian kita tetap berjalan.
+        <div className="mb-12 text-center">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">Mengapa Ini Penting?</p>
+          <h2 className="font-heading text-3xl font-medium text-kiosk-ink md:text-4xl">
+            Peran Polinator dalam Ketahanan Pangan
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-kiosk-ink-muted">
+            Kupu-kupu bukan sekadar indah — mereka adalah agen penyerbukan kritis yang menjaga ekosistem pertanian kita tetap berjalan.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {POLLINATORS.map((p, i) => (
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-12">
+          {POLLINATORS.map((p) => (
             <div key={p.label} className="flex flex-col items-center text-center group">
-              <div className="icon-slot icon-slot-lg rounded-2xl bg-primary/20 border border-primary/40 mb-5 group-hover:bg-primary/30 transition-colors">
-                <p.icon className="w-7 h-7 text-[#4ADE80]" />
+              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-kiosk-accent-teal/30 bg-kiosk-accent-teal/10 transition-colors group-hover:bg-kiosk-accent-teal/20">
+                <p.icon className="h-7 w-7 text-kiosk-accent-teal" />
               </div>
-              <p className="font-heading font-semibold text-white text-lg mb-2">{p.label}</p>
-              <p className="text-sm text-white/50">{p.sub}</p>
+              <p className="font-heading text-lg font-semibold text-kiosk-ink">{p.label}</p>
+              <p className="mt-1 text-sm text-kiosk-ink-muted">{p.sub}</p>
             </div>
           ))}
         </div>
-        <blockquote className="mt-16 max-w-2xl mx-auto text-center">
-          <p className="font-serif text-lg md:text-xl italic text-white/70 border-t border-white/10 pt-8">
-            &ldquo;Kupu-kupu adalah agen penyerbukan yang tak tergantikan bagi ekosistem.&rdquo;
+        <blockquote className="mx-auto mt-14 max-w-2xl text-center">
+          <p className="border-t border-kiosk-surface-tint pt-8 font-serif text-lg italic leading-relaxed text-kiosk-ink-muted md:text-xl">
+            “Kupu-kupu adalah agen penyerbukan yang tak tergantikan bagi ekosistem.”
           </p>
         </blockquote>
       </div>

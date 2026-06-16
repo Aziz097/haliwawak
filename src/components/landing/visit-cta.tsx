@@ -3,23 +3,26 @@ import { Clock, Ticket, ChevronRight } from 'lucide-react';
 
 export default function VisitCta() {
   return (
-    <section className="py-20 px-4 bg-primary relative overflow-hidden">
-      <div className="page-container text-center text-white relative z-10">
-        <Ticket className="w-12 h-12 mx-auto mb-6 text-white/60" />
-        <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Rencanakan Kunjungan Anda</h2>
-        <p className="text-white/70 text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+    <section className="relative overflow-hidden bg-kiosk-accent-teal py-20 px-4">
+      <div className="page-container relative z-10 text-center text-white">
+        <Ticket className="mx-auto mb-6 h-12 w-12 text-white/70" />
+        <h2 className="font-heading text-3xl font-bold md:text-4xl">Rencanakan Kunjungan Anda</h2>
+        <p className="mx-auto mb-8 mt-4 max-w-xl text-lg leading-relaxed text-white/80">
           Saksikan langsung keindahan alam Pugung Raharjo dan berinteraksi dengan keanekaragaman kupu-kupu polinator.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-3 mb-8 text-sm font-medium">
-          <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-xl border border-white/20">
-            <Clock className="w-4 h-4" /> Sen–Min, 08.00–16.00 WIB
+        <div className="mb-8 flex flex-col justify-center gap-3 text-sm font-medium sm:flex-row">
+          <span className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 backdrop-blur-sm">
+            <Clock className="h-4 w-4" /> Sen–Min, 08.00–16.00 WIB
           </span>
-          <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-xl border border-white/20">
-            <Ticket className="w-4 h-4" /> Tiket Masuk Rp 5.000
+          <span className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 backdrop-blur-sm">
+            <Ticket className="h-4 w-4" /> Tiket Masuk Gratis
           </span>
         </div>
-        <Link href="/kunjungi" className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3.5 rounded-xl hover:bg-white/90 transition-colors shadow-lg">
-          Informasi Lengkap <ChevronRight className="w-4 h-4" />
+        <Link
+          href="/kunjungi"
+          className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 font-bold text-kiosk-accent-teal shadow-lg transition-colors hover:bg-white/90"
+        >
+          Informasi Lengkap <ChevronRight className="h-4 w-4" />
         </Link>
       </div>
     </section>

@@ -6,16 +6,16 @@
   --font-heading: "Playfair Display", Georgia, serif;
   --font-serif: "Playfair Display", Georgia, serif;
 
-  --color-bg: #f9f5ee;
-  --color-fg: #1c1917;
-  --color-fg-muted: #78716c;
-  --color-primary: #2b7a4b;
-  --color-primary-light: #e8f5ec;
-  --color-accent-warm: #c8905a;
-  --color-accent-teal: #5ba4a9;
-  --color-card-bg: #ffffff;
-  --color-card-border: #e7e1d8;
-  --color-section-dark: #1a2f23;
+  --color-bg: #FFF7ED;
+  --color-fg: #431407;
+  --color-fg-muted: #9A3412;
+  --color-primary: #F97316;
+  --color-primary-light: #FFE8D9;
+  --color-accent-warm: #F59E0B;
+  --color-accent-teal: #F97316;
+  --color-card-bg: #FFFFFF;
+  --color-card-border: #FFE8D9;
+  --color-section-dark: #431407;
   --color-danger: #dc2626;
   --color-warning: #d97706;
   --color-success: #2b7a4b;

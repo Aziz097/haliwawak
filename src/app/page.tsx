@@ -4,7 +4,8 @@ import { db } from '@/db';
 import { species, articles } from '@/db/schema';
 import { eq, desc, asc } from 'drizzle-orm';
 import Hero from '@/components/landing/hero';
-import StatsBar from '@/components/landing/stats-bar';
+import InfoBar from '@/components/landing/info-bar';
+import ExploreThemes from '@/components/landing/explore-themes';
 import FeaturedSpecies from '@/components/landing/featured-species';
 import PollinatorSection from '@/components/landing/pollinator-section';
 import LatestArticles from '@/components/landing/latest-articles';
@@ -24,7 +25,8 @@ export default async function HomePage() {
   return (
     <>
       <Hero species={allSpecies} />
-      <StatsBar speciesCount={allSpecies.length} areaHa={33} foundedYear={1967} />
+      <InfoBar />
+      <ExploreThemes />
       <FeaturedSpecies species={allSpecies} featuredSpecies={featuredSpecies} />
       <PollinatorSection />
       <LatestArticles articles={activeArticles} />

@@ -45,7 +45,7 @@ export default async function KunjungiPage() {
             <Ticket className="w-8 h-8 text-primary mb-4" />
             <h2 className="font-heading text-2xl font-bold text-fg mb-4">Tiket Masuk</h2>
             <p className="text-fg-muted mb-2">Dewasa &amp; Anak-anak</p>
-            <p className="text-fg font-semibold">Rp 5.000 / orang</p>
+            <p className="text-fg font-semibold">Gratis</p>
           </div>
         </div>
       </section>

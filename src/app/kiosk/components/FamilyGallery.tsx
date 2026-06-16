@@ -61,11 +61,11 @@ function SpeciesGalleryCard({
         )}
       </div>
       <figcaption className="flex flex-col gap-1 p-5">
-        <span className="font-serif text-[1.618rem] font-semibold leading-tight text-kiosk-ink">
+        <span className="font-serif text-[1.618rem] font-semibold italic leading-tight text-kiosk-ink">
           {name}
         </span>
         {species.scientificName && species.scientificName !== name ? (
-          <span className="font-sans text-[0.8rem] font-bold uppercase tracking-widest text-kiosk-green-600">
+          <span className="font-sans text-[0.8rem] font-bold uppercase italic tracking-widest text-kiosk-green-600">
             {species.scientificName}
           </span>
         ) : null}

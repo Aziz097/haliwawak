@@ -105,7 +105,7 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
       </div>
 
       <figcaption className="flex flex-col gap-0.5 px-3 py-3 text-left">
-        <span className="text-base font-semibold leading-tight text-kiosk-ink">
+        <span className="text-base font-semibold italic leading-tight text-kiosk-ink">
           {name}
         </span>
         {species.scientificName && species.scientificName !== name ? (

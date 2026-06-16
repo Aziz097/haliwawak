@@ -20,32 +20,32 @@
   --color-warning: #d97706;
   --color-success: #2b7a4b;
 
-  /* ── Kiosk: Bright Green Palette (kiosk-redesign) ───────────────── */
-  /* Canvas / surfaces - Bright organic paper */
-  --color-kiosk-bg:            #FDFBF7;  /* page canvas */
+  /* ── Kiosk: Warm Terracotta / Orange-Bata Palette ───────────────── */
+  /* Canvas / surfaces - warm sand/clay paper */
+  --color-kiosk-bg:            #F9F1EB;  /* page canvas */
   --color-kiosk-surface:       #FFFFFF;  /* cards */
-  --color-kiosk-surface-tint:  #F4EFE6;  /* tinted panels */
+  --color-kiosk-surface-tint:  #F5EAE3;  /* tinted panels */
 
-  /* Green scale - Soft Sage to Deep Forest */
-  --color-kiosk-green-50:  #F5F8F6;
-  --color-kiosk-green-100: #E6EFE9;
-  --color-kiosk-green-200: #C7D7CD;
-  --color-kiosk-green-300: #A4BBAE;
-  --color-kiosk-green-400: #81A08F;
-  --color-kiosk-green-500: #618571;  
-  --color-kiosk-green-600: #4A725D;  
-  --color-kiosk-green-700: #385A48;  
-  --color-kiosk-green-800: #2A4537;
-  --color-kiosk-green-900: #1E3328;  
+  /* Terracotta / clay scale - warm earth tones */
+  --color-kiosk-green-50:  #FCF8F5;
+  --color-kiosk-green-100: #F5EAE3;
+  --color-kiosk-green-200: #E8D4C8;
+  --color-kiosk-green-300: #D4B5A3;
+  --color-kiosk-green-400: #BC947E;
+  --color-kiosk-green-500: #A67C6B;
+  --color-kiosk-green-600: #8B5E4D;
+  --color-kiosk-green-700: #6F4638;
+  --color-kiosk-green-800: #533429;
+  --color-kiosk-green-900: #3D261E;
 
   /* Text inks */
-  --color-kiosk-ink:        #1E3328;  
-  --color-kiosk-ink-muted:  #618571;  
-  --color-kiosk-on-green:   #FFFFFF;  
+  --color-kiosk-ink:        #3D261E;
+  --color-kiosk-ink-muted:  #8B5E4D;
+  --color-kiosk-on-green:   #FFFFFF;
 
-  /* Supporting accents (Nature combo) */
-  --color-kiosk-accent-amber: #EBA741; 
-  --color-kiosk-accent-teal:  #D05A3D; /* Terracotta */
+  /* Supporting accents */
+  --color-kiosk-accent-amber: #E89A4C; /* sunset amber */
+  --color-kiosk-accent-teal:  #C45D3A; /* terracotta */
 
   /* IUCN status */
   --color-kiosk-iucn-lc: #4A725D;  

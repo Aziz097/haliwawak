@@ -29,6 +29,7 @@ import TopBar from './TopBar';
 import NavControls from './NavControls';
 import DataNotice from './DataNotice';
 import ScreenRouter from './ScreenRouter';
+import SurveyFloatButton from './SurveyFloatButton';
 
 export interface KioskShellProps {
   /** The screen currently displayed. */
@@ -118,6 +119,8 @@ export default function KioskShell({
         onHome={onHome}
         onForward={onForward}
       />
+
+      <SurveyFloatButton />
     </div>
   );
 }

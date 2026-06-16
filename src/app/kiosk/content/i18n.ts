@@ -56,20 +56,20 @@ export const INSEKTARIUM_ATTRIBUTION: Caption = {
 /** Bilingual butterfly-family group labels for the gallery. */
 export const FAMILY_LABELS: Record<string, Caption> = {
   Papilionidae: {
-    id: 'Spesies Papilionidae Terekam',
-    en: 'Recorded Papilionidae Species',
+    id: 'Famili Papilionidae Terekam',
+    en: 'Recorded Papilionidae Family',
   },
   Pieridae: {
-    id: 'Spesies Pieridae Terekam',
-    en: 'Recorded Pieridae Species',
+    id: 'Famili Pieridae Terekam',
+    en: 'Recorded Pieridae Family',
   },
   Nymphalidae: {
-    id: 'Spesies Nymphalidae Terekam',
-    en: 'Recorded Nymphalidae Species',
+    id: 'Famili Nymphalidae Terekam',
+    en: 'Recorded Nymphalidae Family',
   },
   Lycaenidae: {
-    id: 'Spesies Lycaenidae Terekam',
-    en: 'Recorded Lycaenidae Species',
+    id: 'Famili Lycaenidae Terekam',
+    en: 'Recorded Lycaenidae Family',
   },
 };
 

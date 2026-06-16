@@ -11,31 +11,31 @@
 
 /** Every kiosk palette token as a hex constant (mirrors `--color-kiosk-*`). */
 export const palette = {
-  // Canvas / surfaces - Bright organic paper
-  'bg': '#FDFBF7', // warm parchment
+  // Canvas / surfaces - warm sand/clay paper
+  'bg': '#F9F1EB', // warm sand
   'surface': '#FFFFFF', // clean white cards
-  'surface-tint': '#F4EFE6', // soft clay tint
+  'surface-tint': '#F5EAE3', // soft clay tint
 
-  // Green scale - Soft Sage to Deep Forest
-  'green-50': '#F5F8F6',
-  'green-100': '#E6EFE9',
-  'green-200': '#C7D7CD',
-  'green-300': '#A4BBAE',
-  'green-400': '#81A08F',
-  'green-500': '#618571', // primary soft sage
-  'green-600': '#4A725D', // primary-strong
-  'green-700': '#385A48', // good for contrast
-  'green-800': '#2A4537',
-  'green-900': '#1E3328', // deepest forest
+  // Terracotta / clay scale - warm earth tones
+  'green-50': '#FCF8F5',
+  'green-100': '#F5EAE3',
+  'green-200': '#E8D4C8',
+  'green-300': '#D4B5A3',
+  'green-400': '#BC947E',
+  'green-500': '#A67C6B', // primary clay
+  'green-600': '#8B5E4D', // primary-strong
+  'green-700': '#6F4638', // good for contrast
+  'green-800': '#533429',
+  'green-900': '#3D261E', // deepest brown
 
   // Text inks
-  'ink': '#1E3328', // primary text is deep forest
-  'ink-muted': '#618571', // secondary text
-  'on-green': '#FFFFFF', // text on dark green surfaces
+  'ink': '#3D261E', // primary text is dark brown
+  'ink-muted': '#8B5E4D', // secondary text
+  'on-green': '#FFFFFF', // text on dark surfaces
 
-  // Supporting accents (Nature combo)
-  'accent-amber': '#EBA741', // Sunlit yellow
-  'accent-teal': '#D05A3D',  // Terracotta
+  // Supporting accents
+  'accent-amber': '#E89A4C', // sunset amber
+  'accent-teal': '#C45D3A',  // terracotta
 
   // IUCN status (keep these standard but harmonious)
   'iucn-lc': '#4A725D', 

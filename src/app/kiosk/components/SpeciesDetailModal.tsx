@@ -57,7 +57,7 @@ export default function SpeciesDetailModal({
                   <span className="text-xs font-bold uppercase tracking-[0.2em] text-kiosk-green-700">
                     {t({ id: 'Detail Spesies', en: 'Species Detail' })}
                   </span>
-                  <Dialog.Title className="mt-1 font-serif text-3xl font-semibold text-kiosk-ink">
+                  <Dialog.Title className="mt-1 font-serif text-3xl font-semibold italic text-kiosk-ink">
                     {displayName}
                   </Dialog.Title>
                   {species.scientificName !== displayName && (

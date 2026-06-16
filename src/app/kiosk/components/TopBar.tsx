@@ -106,9 +106,9 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
           type="button"
           onClick={toggle}
           aria-label={`Ganti bahasa ke ${switchToLabel} / Switch language to ${switchToLabel}`}
-          className="flex min-h-[48px] items-center gap-1.5 rounded-xl bg-kiosk-green-700 px-5 text-kiosk-on-green transition-colors hover:bg-kiosk-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300"
+          className="flex min-h-[64px] items-center gap-1.5 rounded-xl bg-kiosk-green-700 px-5 text-kiosk-on-green transition-colors hover:bg-kiosk-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300"
         >
-          <Languages className="h-5 w-5" strokeWidth={2} />
+          <Languages className="h-6 w-6" strokeWidth={2} />
           <span className="text-base font-medium">{switchToCode}</span>
           <span className="text-base font-medium opacity-90">{switchToLabel}</span>
         </button>

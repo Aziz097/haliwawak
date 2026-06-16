@@ -28,7 +28,7 @@ export default function KetahananPanganScreen() {
   const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
 
   return (
-    <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
+    <section className="flex h-full flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
       {/* Screen heading. */}
       <header className="flex flex-col items-center gap-4 text-center">
         <span className="inline-flex items-center gap-2 rounded-full border border-kiosk-accent-amber/30 bg-kiosk-accent-amber/10 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-accent-amber">
@@ -41,19 +41,19 @@ export default function KetahananPanganScreen() {
       </header>
 
       {/* Scene banner: pollinators at work around the site. */}
-      <div className="relative overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
+      <div className="relative min-h-0 flex-[1.2] overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
         <img
           src={KIOSK_ASSETS.scenes.ketahananPangan}
           alt="Kupu-kupu penyerbuk di sekitar ladang Situs Pugung Raharjo"
           loading="lazy"
           decoding="async"
-          className="h-72 w-full object-cover object-center sm:h-96"
+          className="h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-kiosk-green-900/40 to-transparent" />
       </div>
 
       {/* Two icon-led food-security sections. */}
-      <ul className="grid grid-cols-1 gap-[1.618rem] lg:grid-cols-2">
+      <ul className="grid min-h-0 flex-1 grid-cols-1 gap-[1.618rem] overflow-y-auto lg:grid-cols-2">
         {FOOD_SECURITY.map((section, idx) => {
           const Icon = SECTION_ICONS[section.icon] ?? Sprout;
           const card = FOOD_SECURITY_INFO_CARDS.find((c) => c.key === section.key);

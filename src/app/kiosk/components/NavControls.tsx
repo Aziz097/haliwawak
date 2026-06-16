@@ -29,9 +29,9 @@ export interface NavControlsProps {
   onForward: () => void;
 }
 
-  /** Shared classes guaranteeing a ≥48×48px touch target with token colors. */
+  /** Shared classes guaranteeing a ≥64×64px touch target with token colors. */
 const BUTTON_BASE =
-  'flex min-h-[48px] min-w-[48px] items-center justify-center rounded-xl transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300';
+  'flex min-h-[64px] min-w-[64px] items-center justify-center rounded-xl transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300';
 
 export default function NavControls({
   canGoBack,

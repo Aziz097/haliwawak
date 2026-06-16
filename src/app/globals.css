@@ -20,32 +20,32 @@
   --color-warning: #d97706;
   --color-success: #2b7a4b;
 
-  /* ── Kiosk: Warm Terracotta / Orange-Bata Palette ───────────────── */
-  /* Canvas / surfaces - warm sand/clay paper */
-  --color-kiosk-bg:            #F9F1EB;  /* page canvas */
+  /* ── Kiosk: Bright Orange-Bata Palette ───────────────── */
+  /* Canvas / surfaces - warm peach paper */
+  --color-kiosk-bg:            #FFF5ED;  /* page canvas */
   --color-kiosk-surface:       #FFFFFF;  /* cards */
-  --color-kiosk-surface-tint:  #F5EAE3;  /* tinted panels */
+  --color-kiosk-surface-tint:  #FFE8D9;  /* tinted panels */
 
-  /* Terracotta / clay scale - warm earth tones */
-  --color-kiosk-green-50:  #FCF8F5;
-  --color-kiosk-green-100: #F5EAE3;
-  --color-kiosk-green-200: #E8D4C8;
-  --color-kiosk-green-300: #D4B5A3;
-  --color-kiosk-green-400: #BC947E;
-  --color-kiosk-green-500: #A67C6B;
-  --color-kiosk-green-600: #8B5E4D;
-  --color-kiosk-green-700: #6F4638;
-  --color-kiosk-green-800: #533429;
-  --color-kiosk-green-900: #3D261E;
+  /* Orange-bata scale - bright saturated earth tones */
+  --color-kiosk-green-50:  #FFF8F3;
+  --color-kiosk-green-100: #FFE8D9;
+  --color-kiosk-green-200: #FFD0B3;
+  --color-kiosk-green-300: #FFB08A;
+  --color-kiosk-green-400: #F48A5A;
+  --color-kiosk-green-500: #E06C35;  /* primary orange-bata */
+  --color-kiosk-green-600: #C5572A;
+  --color-kiosk-green-700: #9C421F;
+  --color-kiosk-green-800: #763118;
+  --color-kiosk-green-900: #4F2110;
 
   /* Text inks */
-  --color-kiosk-ink:        #3D261E;
-  --color-kiosk-ink-muted:  #8B5E4D;
+  --color-kiosk-ink:        #4F2110;
+  --color-kiosk-ink-muted:  #A35F3F;
   --color-kiosk-on-green:   #FFFFFF;
 
   /* Supporting accents */
-  --color-kiosk-accent-amber: #E89A4C; /* sunset amber */
-  --color-kiosk-accent-teal:  #C45D3A; /* terracotta */
+  --color-kiosk-accent-amber: #F4A23A; /* bright amber */
+  --color-kiosk-accent-teal:  #E06C35; /* orange-bata */
 
   /* IUCN status */
   --color-kiosk-iucn-lc: #4A725D;  

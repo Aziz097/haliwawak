@@ -119,7 +119,7 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?
             {t(DATA_SPESIES_COLUMNS.species)}
           </dt>
           <dd className="flex flex-col">
-            <span className="font-serif text-[1.618rem] font-semibold text-kiosk-ink leading-tight">{name}</span>
+            <span className="font-serif text-[1.618rem] font-semibold italic text-kiosk-ink leading-tight">{name}</span>
             {species.scientificName && species.scientificName !== name ? (
               <span className="font-sans text-[0.8rem] italic tracking-wide text-kiosk-ink-muted">{species.scientificName}</span>
             ) : null}

@@ -120,7 +120,7 @@ export default function KioskShell({
         onForward={onForward}
       />
 
-      <SurveyFloatButton />
+      <SurveyFloatButton key={current} />
     </div>
   );
 }

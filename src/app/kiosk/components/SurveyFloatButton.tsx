@@ -3,12 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import QRCode from 'qrcode';
-import { MessageSquareText, X } from 'lucide-react';
+import { ClipboardList, X } from 'lucide-react';
 import { useLang } from '../i18n/language';
 
 const SURVEY_URL = 'https://s.itera.id/surveyhaliwawakpugung';
-const APPEAR_DELAY_MS = 30_000;
-const BUTTON_SIZE = 64;
+const APPEAR_DELAY_MS = 10_000;
+const BUTTON_WIDTH = 150;
+const BUTTON_HEIGHT = 56;
 
 interface Position {
   x: number;
@@ -34,7 +35,7 @@ export default function SurveyFloatButton() {
     QRCode.toDataURL(SURVEY_URL, {
       width: 200,
       margin: 2,
-      color: { dark: '#3D261E', light: '#FFFFFF' },
+      color: { dark: '#4F2110', light: '#FFFFFF' },
     })
       .then(setQrUrl)
       .catch(console.error);
@@ -51,8 +52,8 @@ export default function SurveyFloatButton() {
     if (!dragging.current) return;
     const dx = pointerStart.current.x - e.clientX;
     const dy = pointerStart.current.y - e.clientY;
-    const vw = window.innerWidth - BUTTON_SIZE;
-    const vh = window.innerHeight - BUTTON_SIZE;
+    const vw = window.innerWidth - BUTTON_WIDTH;
+    const vh = window.innerHeight - BUTTON_HEIGHT;
     setPos({
       x: Math.max(0, Math.min(vw, startPos.current.x + dx)),
       y: Math.max(0, Math.min(vh, startPos.current.y + dy)),
@@ -79,10 +80,13 @@ export default function SurveyFloatButton() {
         onPointerUp={onPointerUp}
         onClick={onClick}
         aria-label={lang === 'id' ? 'Buka survei evaluasi kiosk' : 'Open kiosk evaluation survey'}
-        className="fixed z-40 flex h-16 w-16 items-center justify-center rounded-full bg-kiosk-accent-teal text-white shadow-[0_8px_30px_rgba(30,51,40,0.25)] transition-transform hover:scale-110 active:scale-95"
+        className="fixed z-40 flex h-14 items-center gap-2 rounded-full bg-kiosk-accent-teal px-5 text-white shadow-[0_8px_30px_rgba(30,51,40,0.25)] transition-transform hover:scale-105 active:scale-95"
         style={{ right: pos.x, bottom: pos.y }}
       >
-        <MessageSquareText className="h-7 w-7" strokeWidth={2} />
+        <ClipboardList className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+        <span className="font-sans text-sm font-bold uppercase tracking-wide">
+          {lang === 'id' ? 'Survei' : 'Survey'}
+        </span>
       </button>
 
       <Dialog.Root open={open} onOpenChange={setOpen}>

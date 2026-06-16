@@ -27,8 +27,31 @@ export default function SurveyFloatButton() {
   const pointerStart = useRef<Position>({ x: 0, y: 0 });
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), APPEAR_DELAY_MS);
-    return () => clearTimeout(timer);
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let triggered = false;
+
+    const resetIdleTimer = () => {
+      if (triggered) return;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        triggered = true;
+        setVisible(true);
+      }, APPEAR_DELAY_MS);
+    };
+
+    resetIdleTimer();
+
+    const events = ['pointerdown', 'keydown', 'touchstart', 'mousemove', 'wheel'];
+    events.forEach((event) =>
+      window.addEventListener(event, resetIdleTimer, { passive: true })
+    );
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      events.forEach((event) =>
+        window.removeEventListener(event, resetIdleTimer)
+      );
+    };
   }, []);
 
   useEffect(() => {

@@ -3,6 +3,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { useLang } from '../i18n/language';
+import { sci } from '../content/sci';
 import type { InfoCard } from '../content/i18n';
 
 interface InfoModalProps {
@@ -26,20 +27,20 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
           className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-[2rem] bg-white p-0 shadow-[0_20px_60px_rgba(30,51,40,0.18)] outline-none"
         >
           <div className="flex max-h-[85vh] flex-col">
-            <div className="flex items-start justify-between border-b border-kiosk-green-100 p-8">
+            <div className="flex items-start justify-between border-b border-kiosk-orange-100 p-8">
               <div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-kiosk-green-700">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-kiosk-orange-700">
                   {t({ id: 'Tahukah Kamu?', en: 'Did You Know?' })}
                 </span>
                 <Dialog.Title className="mt-1 font-serif text-3xl font-semibold text-kiosk-ink">
-                  {t(card.title)}
+                  {sci(t(card.title))}
                 </Dialog.Title>
               </div>
               <button
                 type="button"
                 onClick={onClose}
                 aria-label={t({ id: 'Tutup', en: 'Close' })}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-kiosk-surface-tint text-kiosk-ink transition-colors hover:bg-kiosk-green-100"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-kiosk-surface-tint text-kiosk-ink transition-colors hover:bg-kiosk-orange-100"
               >
                 <X className="h-6 w-6" strokeWidth={2} />
               </button>
@@ -48,15 +49,15 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
             <div className="overflow-y-auto p-8">
               <Dialog.Description asChild>
                 <p className="text-lg leading-relaxed text-kiosk-ink-muted">
-                  {t(card.body)}
+                  {sci(t(card.body))}
                 </p>
               </Dialog.Description>
-              <div className="mt-6 rounded-2xl border border-kiosk-green-200 bg-kiosk-green-50 p-6">
-                <h4 className="mb-2 font-sans text-base font-bold text-kiosk-green-800">
+              <div className="mt-6 rounded-2xl border border-kiosk-orange-200 bg-kiosk-orange-50 p-6">
+                <h4 className="mb-2 font-sans text-base font-bold text-kiosk-orange-800">
                   {t({ id: 'Kenapa Ini Penting?', en: 'Why Does This Matter?' })}
                 </h4>
-                <p className="text-sm leading-relaxed text-kiosk-green-900">
-                  {t(card.whyItMatters)}
+                <p className="text-sm leading-relaxed text-kiosk-orange-900">
+                  {sci(t(card.whyItMatters))}
                 </p>
               </div>
             </div>

@@ -3,7 +3,7 @@
  *
  * The delivered "Asset foto" package contains top + underside photos for the
  * documented butterfly species. Those files are organized under
- * `public/kiosk/species/<slug>-top.jpg` / `<slug>-under.jpg`.
+ * `public/kiosk/species/<slug>-top.webp` / `<slug>-under.webp`.
  *
  * The kiosk's species API (`/api/kiosk/species`) may return records without
  * photo URLs, so this module enriches mapped species by matching on scientific
@@ -97,14 +97,29 @@ export function resolvePhotoSlug(
  * Existing non-empty photo URLs on the record are preserved (DB wins); only
  * missing URLs are backfilled from the delivered asset set.
  */
+/**
+ * Delivered kiosk imagery is served as WebP; the original .jpg/.png files are
+ * gone. Stored records can still carry the old extensions (the database predates
+ * the conversion, and DB values win over the backfill below), so normalise here
+ * rather than trusting every writer. Only `/kiosk/` paths are rewritten —
+ * uploaded and external URLs are passed through exactly as stored.
+ */
+function toWebp<T extends string | null | undefined>(url: T): T {
+  return (
+    typeof url === 'string' && url.startsWith(`${BASE}/`)
+      ? url.replace(/\.(jpe?g|png)$/i, '.webp')
+      : url
+  ) as T;
+}
+
 export function withCuratedPhotos(species: KioskSpecies): KioskSpecies {
   const slug = resolvePhotoSlug(species.scientificName, species.commonName);
   if (!slug) return species;
 
   const meta = PHOTO_SLUGS[slug];
-  const top = species.topPhotoUrl ?? `${BASE}/${slug}-top.jpg`;
+  const top = toWebp(species.topPhotoUrl) ?? `${BASE}/${slug}-top.webp`;
   const underside =
-    species.undersidePhotoUrl ?? (meta.under ? `${BASE}/${slug}-under.jpg` : null);
+    toWebp(species.undersidePhotoUrl) ?? (meta.under ? `${BASE}/${slug}-under.webp` : null);
 
   return { ...species, topPhotoUrl: top, undersidePhotoUrl: underside };
 }

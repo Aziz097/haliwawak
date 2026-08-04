@@ -9,63 +9,66 @@
  */
 
 import { useState } from 'react';
-import { MetricGauge } from '../components/MetricGauge';
-import { KIOSK_ASSETS } from '../content/assets';
-import { EKOSISTEM_INTRO, EKOSISTEM_TITLE, METRICS, EKOSISTEM_INFO_CARDS, type InfoCard } from '../content/i18n';
-import { useLang } from '../i18n/language';
 import { Leaf } from 'lucide-react';
+import { MetricGauge } from '../components/MetricGauge';
+import KioskImage from '../components/KioskImage';
+import CuratorNote from '../components/CuratorNote';
+import ScreenHeader from '../components/ScreenHeader';
+import { StaggerList, StaggerItem } from '../components/ScreenEntrance';
+import { KIOSK_ASSETS } from '../content/assets';
+import {
+  EKOSISTEM_ATTRIBUTION,
+  EKOSISTEM_INTRO,
+  EKOSISTEM_TITLE,
+  METRICS,
+  EKOSISTEM_INFO_CARDS,
+  type InfoCard,
+} from '../content/i18n';
+import { useLang } from '../i18n/language';
 import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
 
 /** Renders the three ecosystem indices as visual-first metric gauges. */
 export default function EkosistemScreen() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
-  
-  return (
-    <section className="flex h-full w-full flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
-      <header className="flex flex-col items-center gap-4 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-kiosk-green-300 bg-kiosk-green-100 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-green-700">
-          <Leaf className="h-4 w-4" aria-hidden="true" />
-          {lang === 'id' ? 'Kesehatan Habitat' : 'Habitat Health'}
-        </span>
-        <h2 className="font-serif text-[2.618rem] font-medium leading-none text-kiosk-ink">
-          {t(EKOSISTEM_TITLE)}
-        </h2>
-        <p className="max-w-3xl font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
-          {t(EKOSISTEM_INTRO)}
-        </p>
-      </header>
 
-      {/* Habitat photo strip from the ecological survey. */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+  return (
+    <section className="flex h-full w-full flex-col gap-[clamp(0.75rem,1.8vh,1.5rem)] bg-kiosk-bg px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(0.9rem,2.2vh,1.75rem)]">
+      <ScreenHeader
+        icon={Leaf}
+        eyebrow={{ id: 'Kesehatan Habitat', en: 'Habitat Health' }}
+        title={EKOSISTEM_TITLE}
+        description={EKOSISTEM_INTRO}
+        aside={<CuratorNote body={EKOSISTEM_ATTRIBUTION} />}
+      />
+
+      {/* Habitat photo strip from the ecological survey. Sized as a band that
+          shares leftover height rather than by a fixed aspect ratio. */}
+      <StaggerList className="grid min-h-0 flex-[0.75] grid-cols-2 gap-[clamp(0.5rem,0.9vw,1rem)] sm:grid-cols-4" delay={0.15}>
         {KIOSK_ASSETS.scenes.ekosistem.map((src, i) => (
-          <div
-            key={src}
-            className="aspect-[4/3] overflow-hidden rounded-[2rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
-          >
-            <img
+          <StaggerItem key={src} className="min-h-0 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.04)]">
+            <KioskImage
               src={src}
               alt={`Dokumentasi ekosistem ${i + 1}`}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover mix-blend-multiply"
+              hoverScale
+              className="h-full w-full"
             />
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerList>
 
       {/* Three dominant metric gauges: diversity (H′), evenness (E), dominance (D). */}
-      <ul className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <StaggerList className="grid min-h-0 flex-[1.6] grid-cols-1 gap-[clamp(0.75rem,1.4vw,1.5rem)] sm:grid-cols-2 lg:grid-cols-3" delay={0.25}>
         {METRICS.map((metric) => {
           const card = EKOSISTEM_INFO_CARDS.find((c) => c.key === metric.key);
           return (
-            <li key={metric.key} className="relative flex list-none flex-col gap-4">
+            <StaggerItem key={metric.key} className="relative flex min-h-0 list-none flex-col gap-[clamp(0.4rem,1vh,1rem)]">
               <ClickableCard
                 onClick={() => card && setInfoCard(card)}
                 ariaLabel={card ? t(card.title) : undefined}
-                className="relative transition-transform hover:-translate-y-1"
+                className="relative"
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 <MetricGauge
@@ -75,13 +78,13 @@ export default function EkosistemScreen() {
                 />
               </ClickableCard>
               {/* Brief single-language supporting note beneath each gauge. */}
-              <p className="px-4 text-center font-sans text-[0.8rem] font-medium leading-relaxed text-kiosk-ink-muted">
+              <p className="px-4 text-center font-sans text-[clamp(0.85rem,0.95vw,1.05rem)] font-medium leading-relaxed text-kiosk-ink-muted">
                 {t(metric.note)}
               </p>
-            </li>
+            </StaggerItem>
           );
         })}
-      </ul>
+      </StaggerList>
       <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );

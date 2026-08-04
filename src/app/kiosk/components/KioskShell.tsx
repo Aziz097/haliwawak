@@ -17,7 +17,7 @@
  * is shown within the content area; it informs without blocking interaction
  * (Req 16.5).
  *
- * Uses kiosk bright-green design tokens only (no raw hex / legacy colors).
+ * Uses kiosk bright-orange design tokens only (no raw hex / legacy colors).
  *
  * Requirements: 5.4, 6.3
  */
@@ -30,6 +30,7 @@ import NavControls from './NavControls';
 import DataNotice from './DataNotice';
 import ScreenRouter from './ScreenRouter';
 import SurveyFloatButton from './SurveyFloatButton';
+import { AmbientParticles, GrainOverlay } from './AmbientParticles';
 
 export interface KioskShellProps {
   /** The screen currently displayed. */
@@ -78,7 +79,9 @@ export default function KioskShell({
   // IDLE: render only the full-bleed attract router, no chrome.
   if (isIdle) {
     return (
-      <div className="flex h-screen w-screen flex-col overflow-hidden bg-kiosk-bg text-kiosk-ink">
+      <div className="relative flex h-screen w-screen flex-col overflow-hidden bg-kiosk-bg text-kiosk-ink">
+        <AmbientParticles />
+        <GrainOverlay />
         <ScreenRouter
           current={current}
           direction={direction}
@@ -92,7 +95,9 @@ export default function KioskShell({
 
   // Non-idle: TopBar + content (flex-1) + NavControls.
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-kiosk-bg text-kiosk-ink">
+    <div className="relative flex h-screen w-screen flex-col overflow-hidden bg-kiosk-bg text-kiosk-ink">
+      <AmbientParticles />
+      <GrainOverlay />
       <TopBar showHome={current !== 'SITE_MAP'} onHome={onHome} />
 
       <main className="relative flex min-h-0 flex-1 flex-col">

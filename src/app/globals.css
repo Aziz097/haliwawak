@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Playfair Display", Georgia, serif;
   --font-serif: "Playfair Display", Georgia, serif;
 
@@ -27,16 +27,16 @@
   --color-kiosk-surface-tint:  #FFE8D9;  /* tinted panels */
 
   /* Orange scale - bright Claude orange */
-  --color-kiosk-green-50:  #FFF7ED;
-  --color-kiosk-green-100: #FFE8D9;
-  --color-kiosk-green-200: #FED7AA;
-  --color-kiosk-green-300: #FDBA74;
-  --color-kiosk-green-400: #FB923C;
-  --color-kiosk-green-500: #F97316;  /* primary orange */
-  --color-kiosk-green-600: #EA580C;
-  --color-kiosk-green-700: #C2410C;
-  --color-kiosk-green-800: #9A3412;
-  --color-kiosk-green-900: #7C2D12;
+  --color-kiosk-orange-50:  #FFF7ED;
+  --color-kiosk-orange-100: #FFE8D9;
+  --color-kiosk-orange-200: #FED7AA;
+  --color-kiosk-orange-300: #FDBA74;
+  --color-kiosk-orange-400: #FB923C;
+  --color-kiosk-orange-500: #F97316;  /* primary orange */
+  --color-kiosk-orange-600: #EA580C;
+  --color-kiosk-orange-700: #C2410C;
+  --color-kiosk-orange-800: #9A3412;
+  --color-kiosk-orange-900: #7C2D12;
 
   /* Text inks */
   --color-kiosk-ink:        #431407;
@@ -103,13 +103,33 @@
 ::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #78716c; }
 
-.kiosk-scrollbar::-webkit-scrollbar { width: 6px; }
-.kiosk-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
-.kiosk-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+/* Kiosk screens that legitimately run long (species catalogue, credits) must
+   SHOW that they scroll - a touch panel gives no other hint. Sized for a
+   fingertip and coloured against the cream canvas, not the old dark theme. */
+.kiosk-scrollbar::-webkit-scrollbar { width: 14px; }
+.kiosk-scrollbar::-webkit-scrollbar-track { background: #FFE8D9; border-radius: 7px; }
+.kiosk-scrollbar::-webkit-scrollbar-thumb {
+  background: #FB923C;
+  border: 3px solid #FFE8D9;
+  border-radius: 7px;
+}
+.kiosk-scrollbar::-webkit-scrollbar-thumb:active { background: #C2410C; }
 
 /* ── Kiosk Site Map tile container queries ─────────────────────────────── */
 .kiosk-tile-container {
   container-type: size;
+}
+
+@keyframes particleDrift {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(1); }
+  20% { opacity: 0.8; }
+  50% { opacity: 0.4; transform: translate(var(--drift, 20px), -30px) scale(1.2); }
+  80% { opacity: 0.6; }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 @container (max-height: 100px) {
@@ -121,5 +141,13 @@
 @container (max-height: 72px) {
   .kiosk-tile-icon {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

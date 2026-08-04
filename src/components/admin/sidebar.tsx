@@ -17,7 +17,13 @@ const NAV = [
 
 const GROUPS = ['Menu Utama', 'Sistem'];
 
-export default function AdminSidebar() {
+const ROLE_LABEL: Record<string, string> = {
+  super_admin: 'Super Admin',
+  admin: 'Admin',
+  editor: 'Editor',
+};
+
+export default function AdminSidebar({ user }: { user?: { name: string; role: string } }) {
   const pathname = usePathname();
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
@@ -28,9 +34,9 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className={`fixed left-0 top-0 bottom-0 ${collapsed ? 'w-[72px]' : 'w-[260px]'} bg-[#1A3A2A] text-white flex flex-col z-50 transition-all duration-300`}>
+    <aside className={`fixed left-0 top-0 bottom-0 ${collapsed ? 'w-[72px]' : 'w-[260px]'} bg-kiosk-ink text-white flex flex-col z-50 transition-all duration-300`}>
       <div className={`p-5 border-b border-white/10 flex items-center ${collapsed ? 'justify-center' : 'gap-3'}`}>
-        <div className="w-9 h-9 rounded-full bg-[#059669] flex items-center justify-center shrink-0">
+        <div className="w-9 h-9 rounded-full bg-kiosk-orange-600 flex items-center justify-center shrink-0">
           <Bug className="w-5 h-5 text-white" />
         </div>
         {!collapsed && <span className="font-heading font-bold text-lg tracking-tight">CMS Pugung</span>}
@@ -49,7 +55,7 @@ export default function AdminSidebar() {
                   <Link key={href} href={href} title={collapsed ? label : undefined}
                     className={`flex items-center gap-3 ${collapsed ? 'justify-center px-3' : 'px-5'} py-2.5 text-sm font-medium transition-all ${
                       isActive
-                        ? 'bg-[#059669] !text-white font-semibold'
+                        ? 'bg-kiosk-orange-600 !text-white font-semibold'
                         : 'text-white/60 hover:bg-white/10 hover:text-white'
                     }`}>
                     <Icon className="w-[18px] h-[18px] shrink-0" />
@@ -65,22 +71,24 @@ export default function AdminSidebar() {
       <div className="border-t border-white/10 p-4">
         {!collapsed && (
           <div className="flex items-center gap-3 mb-3 px-2">
-            <div className="w-8 h-8 rounded-full bg-[#059669] flex items-center justify-center text-xs font-bold shrink-0">A</div>
+            <div className="w-8 h-8 rounded-full bg-kiosk-orange-600 flex items-center justify-center text-xs font-bold shrink-0">
+              {(user?.name ?? '?').charAt(0).toUpperCase()}
+            </div>
             <div className="min-w-0">
-              <p className="text-sm font-medium text-white truncate">Admin</p>
-              <p className="text-[11px] text-white/40 truncate">Super Admin</p>
+              <p className="text-sm font-medium text-white truncate">{user?.name ?? 'Pengguna'}</p>
+              <p className="text-[11px] text-white/40 truncate">{ROLE_LABEL[user?.role ?? ''] ?? user?.role ?? '-'}</p>
             </div>
           </div>
         )}
         <button onClick={handleLogout} title={collapsed ? 'Keluar' : undefined}
-          className={`flex items-center gap-3 ${collapsed ? 'justify-center px-3' : 'px-4'} py-2.5 rounded-xl text-sm font-medium text-red-300 hover:bg-red-500/10 w-full transition-colors`}>
+          className={`flex items-center gap-3 ${collapsed ? 'justify-center px-3' : 'px-4'} py-2.5 rounded-[1.618rem] text-sm font-medium text-red-300 hover:bg-red-500/10 w-full transition-colors`}>
           <LogOut className="w-[18px] h-[18px] shrink-0" />
           {!collapsed && <span>Keluar</span>}
         </button>
       </div>
 
       <button onClick={() => setCollapsed(!collapsed)}
-        className="absolute -right-3 top-20 w-6 h-6 bg-[#059669] rounded-full flex items-center justify-center shadow-lg hover:bg-[#047857] transition-colors cursor-pointer z-10">
+        className="absolute -right-3 top-20 w-6 h-6 bg-kiosk-orange-600 rounded-full flex items-center justify-center shadow-lg hover:bg-kiosk-orange-700 transition-colors cursor-pointer z-10">
         {collapsed ? <ChevronRight className="w-3.5 h-3.5 text-white" /> : <ChevronLeft className="w-3.5 h-3.5 text-white" />}
       </button>
     </aside>

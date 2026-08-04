@@ -3,18 +3,19 @@
  * species side by side, each under a bilingual label ("Tampak Atas / Top" and
  * "Tampak Bawah / Underside").
  *
- * Both views are always rendered: when a photo is present it is shown via a
- * plain <img loading="lazy" /> (per the kiosk image strategy); when a photo is
- * missing a token-colored placeholder icon is shown in its place so the pairing
- * layout is preserved (Req 14.3).
+ * Both views are always rendered: when a photo is present it is shown via the
+ * shared <KioskImage /> component (loading skeleton + error fallback); when a
+ * photo is missing a token-colored placeholder icon is shown in its place so the
+ * pairing layout is preserved (Req 14.3).
  *
- * Uses only the bright-green kiosk design tokens (no raw hex / legacy colors).
+ * Uses only the bright-orange kiosk design tokens (no raw hex / legacy colors).
  *
  * Requirements: 14.3
  */
 
 import { ImageOff } from 'lucide-react';
 import { useLang } from '../i18n/language';
+import KioskImage from './KioskImage';
 
 export interface SpeciesPhotoPairProps {
   /** Top-view photo URL (mapped from `primaryPhotoUrl`). */
@@ -37,18 +38,16 @@ interface PhotoViewProps {
 /** A single labeled photo view with a placeholder fallback when missing. */
 function PhotoView({ url, label, alt }: PhotoViewProps) {
   return (
-    <figure className="flex flex-col overflow-hidden rounded-2xl border border-kiosk-green-200 bg-kiosk-surface shadow-sm">
-      <div className="relative aspect-square w-full overflow-hidden bg-kiosk-green-100">
+    <figure className="flex flex-col overflow-hidden rounded-2xl border border-kiosk-orange-200 bg-kiosk-surface shadow-sm">
+      <div className="relative aspect-square w-full overflow-hidden bg-kiosk-orange-100">
         {url ? (
-          <img
+          <KioskImage
             src={url}
             alt={alt}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover"
+            className="h-full w-full"
           />
         ) : (
-          <span className="flex h-full w-full items-center justify-center text-kiosk-green-400">
+          <span className="flex h-full w-full items-center justify-center text-kiosk-orange-400">
             <ImageOff className="h-12 w-12" aria-hidden="true" />
           </span>
         )}

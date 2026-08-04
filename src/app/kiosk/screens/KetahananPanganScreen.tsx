@@ -11,8 +11,18 @@
 import { useState } from 'react';
 import { ShieldCheck, Sprout, type LucideIcon } from 'lucide-react';
 import { Caption } from '../components/Caption';
+import KioskImage from '../components/KioskImage';
+import { FadeUp, StaggerList, StaggerItem } from '../components/ScreenEntrance';
+import ScreenHeader from '../components/ScreenHeader';
 import { KIOSK_ASSETS } from '../content/assets';
-import { FOOD_SECURITY, KETAHANAN_PANGAN_TITLE, FOOD_SECURITY_INFO_CARDS, type InfoCard } from '../content/i18n';
+import {
+  FOOD_SECURITY,
+  KETAHANAN_PANGAN_TITLE,
+  KETAHANAN_PANGAN_INTRO,
+  FOOD_SECURITY_INFO_CARDS,
+  type InfoCard,
+} from '../content/i18n';
+import { sci } from '../content/sci';
 import { useLang } from '../i18n/language';
 import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
@@ -24,72 +34,79 @@ const SECTION_ICONS: Record<string, LucideIcon> = {
 };
 
 export default function KetahananPanganScreen() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
 
   return (
-    <section className="flex h-full flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-8 lg:px-14">
-      {/* Screen heading. */}
-      <header className="flex flex-col items-center gap-4 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-kiosk-accent-amber/30 bg-kiosk-accent-amber/10 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-accent-amber">
-          <Sprout className="h-4 w-4" aria-hidden="true" />
-          {lang === 'id' ? 'Sinergi Alam' : 'Natural Synergy'}
-        </span>
-        <h2 className="font-serif text-[2.618rem] font-medium leading-none text-kiosk-ink">
-          {t(KETAHANAN_PANGAN_TITLE)}
-        </h2>
-      </header>
+    <section className="flex h-full flex-col gap-[clamp(0.75rem,1.8vh,1.5rem)] bg-kiosk-bg px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(0.9rem,2.2vh,1.75rem)]">
+      <ScreenHeader
+        icon={Sprout}
+        eyebrow={{ id: 'Sinergi Alam', en: 'Natural Synergy' }}
+        title={KETAHANAN_PANGAN_TITLE}
+        description={KETAHANAN_PANGAN_INTRO}
+      />
 
-      {/* Scene banner: pollinators at work around the site. */}
-      <div className="relative min-h-0 flex-1 overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
-        <img
+      {/* Scene banner: pollinators at work around the site. The flex sizing
+          has to live on the FadeUp wrapper itself - on an inner child there is
+          no flex parent for `flex-1` to resolve against, so the banner
+          collapsed to zero height and the photo silently vanished. */}
+      {/* The banner is itself a flex row so the image stretches to its height.
+          `h-full` cannot do that job here: a percentage height does not resolve
+          against a flex item whose basis is 0, which is why the wrapper
+          measured zero and the photo never appeared. */}
+      <FadeUp
+        delay={0.1}
+        className="relative flex min-h-0 flex-1 overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]"
+      >
+        <KioskImage
           src={KIOSK_ASSETS.scenes.ketahananPangan}
           alt="Kupu-kupu penyerbuk di sekitar ladang Situs Pugung Raharjo"
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full object-cover object-center"
+          imgClassName="object-center"
+          className="w-full"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-kiosk-green-900/40 to-transparent" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-kiosk-orange-900/40 to-transparent" />
+      </FadeUp>
 
       {/* Two icon-led food-security sections. */}
-      <ul className="grid min-h-0 flex-[1.5] grid-cols-1 gap-[1.618rem] overflow-y-auto lg:grid-cols-2">
+      <StaggerList className="grid min-h-0 flex-[1.5] grid-cols-1 gap-[1.618rem] overflow-y-auto lg:grid-cols-2" delay={0.2}>
         {FOOD_SECURITY.map((section, idx) => {
           const Icon = SECTION_ICONS[section.icon] ?? Sprout;
           const card = FOOD_SECURITY_INFO_CARDS.find((c) => c.key === section.key);
           // Alternate accent colors for the two cards
-          const accentClass = idx === 0 ? 'text-kiosk-accent-amber bg-kiosk-accent-amber/10' : 'text-kiosk-green-600 bg-kiosk-green-100';
+          const accentClass = idx === 0 ? 'text-kiosk-accent-amber bg-kiosk-accent-amber/10' : 'text-kiosk-orange-600 bg-kiosk-orange-100';
 
           return (
-            <li key={section.key} className="list-none">
+            <StaggerItem key={section.key} className="list-none">
               <ClickableCard
                 onClick={() => card && setInfoCard(card)}
                 ariaLabel={card ? t(card.title) : undefined}
-                className="group relative flex h-full flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-10 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]"
+                className="group relative flex h-full flex-col items-center justify-center gap-[clamp(0.5rem,1.4vh,1.25rem)] rounded-[2rem] border-2 border-white bg-white p-[clamp(1rem,2vh,2rem)] text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-200 active:scale-[0.99]"
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Dominant icon element. */}
-                <span className={`flex h-[6rem] w-[6rem] items-center justify-center rounded-full ${accentClass} transition-transform duration-500 group-hover:scale-105`}>
-                  <Icon className="h-10 w-10" strokeWidth={1.5} aria-hidden="true" />
+                <span className={`flex h-[clamp(3rem,7vh,6rem)] w-[clamp(3rem,7vh,6rem)] shrink-0 items-center justify-center rounded-full ${accentClass}`}>
+                  <Icon className="h-[55%] w-[55%]" strokeWidth={1.5} aria-hidden="true" />
                 </span>
 
                 {/* Section title - single-language caption. */}
                 <Caption caption={section.title} size="md" align="center" />
 
-                {/* Key species line. */}
-                <p className="font-sans text-[0.9rem] font-bold uppercase tracking-widest text-kiosk-green-700">
-                  {t(section.keySpecies)}
+                {/* Key species line. Not uppercased: scientific names carry
+                    meaning in their casing (genus capitalised, epithet not),
+                    and uppercasing would destroy it. */}
+                <p className="font-sans text-[0.95rem] font-bold tracking-wide text-kiosk-orange-700">
+                  {sci(t(section.keySpecies))}
                 </p>
 
                 {/* Supporting description. */}
                 <p className="font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
-                  {t(section.description)}
+                  {sci(t(section.description))}
                 </p>
               </ClickableCard>
-            </li>
+            </StaggerItem>
           );
         })}
-      </ul>
+      </StaggerList>
       <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>
   );

@@ -34,8 +34,8 @@ export const LIVING_HERITAGE_TITLE: Caption = {
 
 /** Short bilingual intro caption for the Living Heritage screen (Req 7.2). */
 export const LIVING_HERITAGE_INTRO: Caption = {
-  id: 'Taman Purbakala Situs Megalitik Pugung Raharjo, Lampung Timur: bukan hanya warisan budaya, tetapi juga habitat penting bagi keanekaragaman hayati, khususnya kupu-kupu.',
-  en: 'The Pugung Raharjo Megalithic Site in East Lampung is more than cultural heritage - it is a vital sanctuary for biodiversity, especially butterflies.',
+  id: 'Taman Purbakala Pugung Raharjo, Lampung Timur: bukan hanya warisan budaya, tetapi juga habitat penting bagi keanekaragaman hayati, khususnya kupu-kupu.',
+  en: 'The Pugung Raharjo Ancient Site in East Lampung is more than cultural heritage - it is a vital sanctuary for biodiversity, especially butterflies.',
 };
 
 // ---------------------------------------------------------------------------
@@ -47,10 +47,16 @@ export const INSEKTARIUM_TITLE: Caption = {
   en: 'Virtual Insektarium: Digital Butterfly Collection Gallery',
 };
 
+/** One-sentence screen intro, shown under the title (see `ScreenHeader`). */
+export const INSEKTARIUM_INTRO: Caption = {
+  id: 'Jelajahi koleksi kupu-kupu Pugung Raharjo, dikelompokkan menurut famili.',
+  en: 'Browse the Pugung Raharjo butterfly collection, grouped by family.',
+};
+
 /** Curation / research attribution (Dr. Yanti Ariyanti / ITERA Biology). */
 export const INSEKTARIUM_ATTRIBUTION: Caption = {
-  id: 'Dikurasi dari penelitian Dr. Yanti Ariyanti dan Tim Program Studi Biologi, Institut Teknologi Sumatera.',
-  en: 'Curated from the research of Dr. Yanti Ariyanti and the Biology Study Program team, Institut Teknologi Sumatera.',
+  id: 'Dikurasi dari penelitian Dr. Yanti Ariyanti dan Tim Program Studi Biologi, Institut Teknologi Sumatera 2025.',
+  en: 'Curated from the research of Dr. Yanti Ariyanti and the Biology Study Program team, Institut Teknologi Sumatera 2025.',
 };
 
 /** Bilingual butterfly-family group labels for the gallery. */
@@ -82,6 +88,12 @@ export const METAMORFOSIS_TITLE: Caption = {
   en: 'Butterfly Metamorphosis',
 };
 
+/** One-sentence screen intro, shown under the title (see `ScreenHeader`). */
+export const METAMORFOSIS_INTRO: Caption = {
+  id: 'Empat tahap menakjubkan dari telur hingga kupu-kupu dewasa penyerbuk.',
+  en: 'Four remarkable stages from egg to a pollinating adult butterfly.',
+};
+
 /** Stage identifiers for the four-stage metamorphosis sequence. */
 export type MetamorphosisStage = 'egg' | 'larva' | 'pupa' | 'imago';
 
@@ -96,6 +108,16 @@ export const METAMORFOSIS_STAGES: { stage: MetamorphosisStage; label: Caption }[
 // ---------------------------------------------------------------------------
 // Screen 5 - Ekosistem metrics (Req 10.1, 10.2, 10.3)
 // ---------------------------------------------------------------------------
+
+/**
+ * Curation attribution for the ecosystem indices, mirroring
+ * {@link INSEKTARIUM_ATTRIBUTION}. The three indices are survey results, so the
+ * screen names their source the same way the collection gallery does.
+ */
+export const EKOSISTEM_ATTRIBUTION: Caption = {
+  id: 'Indeks keanekaragaman, kemerataan, dan dominansi dihitung dari survei lapangan Dr. Yanti Ariyanti dan Tim Program Studi Biologi, Institut Teknologi Sumatera 2025.',
+  en: 'Diversity, evenness, and dominance indices calculated from field surveys by Dr. Yanti Ariyanti and the Biology Study Program team, Institut Teknologi Sumatera 2025.',
+};
 
 export const EKOSISTEM_TITLE: Caption = {
   id: 'Ekosistem Kupu-Kupu',
@@ -165,6 +187,12 @@ export const KETAHANAN_PANGAN_TITLE: Caption = {
   en: 'Food Security',
 };
 
+/** One-sentence screen intro, shown under the title (see `ScreenHeader`). */
+export const KETAHANAN_PANGAN_INTRO: Caption = {
+  id: 'Kupu-kupu menyerbuki tanaman pangan dan menahan hama - panen bergantung padanya.',
+  en: 'Butterflies pollinate food crops and hold pests back - the harvest depends on them.',
+};
+
 /** Stable identifiers for the two food-security sections. */
 export type FoodSecurityKey = 'sahabat-petani' | 'benteng-alami';
 
@@ -182,27 +210,27 @@ export const FOOD_SECURITY: {
   {
     key: 'sahabat-petani',
     icon: 'Sprout',
-    title: { id: 'Sahabat Petani', en: "The Farmer's Friend" },
+    title: { id: 'Pengunjung Bunga dan Penyerbuk Umum', en: 'Flower Visitors and General Pollinators' },
     keySpecies: {
-      id: 'Spesies kunci: Eurema blanda, Catopsilia pyranthe, Appias olferna (Famili Pieridae).',
-      en: 'Key species: Eurema blanda, Catopsilia pyranthe, Appias olferna (Family Pieridae).',
+      id: 'Spesies: _Eurema blanda_, _Catopsilia pyranthe_, _Appias olferna_ (Famili Pieridae).',
+      en: 'Species: _Eurema blanda_, _Catopsilia pyranthe_, _Appias olferna_ (Family Pieridae).',
     },
     description: {
-      id: 'Rajin mengunjungi bunga sayur, buah, dan kacang; polinasinya meningkatkan hasil panen.',
-      en: 'Frequent visitors to vegetable, fruit, and legume flowers; their pollination boosts crop yields.',
+      id: 'Kupu-kupu ini aktif mengunjungi berbagai bunga liar dan tanaman budidaya untuk mengisap nektar.',
+      en: 'These butterflies actively visit a range of wild and cultivated flowers to sip nectar.',
     },
   },
   {
     key: 'benteng-alami',
     icon: 'ShieldCheck',
-    title: { id: 'Benteng Alami Penolak Hama', en: 'Natural Pest Barrier' },
+    title: { id: 'Zona Penyangga Alami Pengendali Hama', en: 'Natural Buffer Zone for Pest Control' },
     keySpecies: {
-      id: 'Spesies kunci: genus Junonia dan Hypolimnas (Famili Nymphalidae).',
-      en: 'Key species: genus Junonia and Hypolimnas (Family Nymphalidae).',
+      id: 'Indikator Kesehatan Lingkungan: Genus _Junonia_ dan _Hypolimnas_ (Famili Nymphalidae).',
+      en: 'Environmental Health Indicator: Genus _Junonia_ and _Hypolimnas_ (Family Nymphalidae).',
     },
     description: {
-      id: 'Menjaga keseimbangan vegetasi liar; kawasan lestari menjadi buffer zone penahan wabah hama agar sawah dan ladang aman dari gagal panen.',
-      en: 'They balance wild vegetation; a preserved area becomes a buffer zone that curbs pest outbreaks, protecting fields from crop failure.',
+      id: 'Kehadiran kupu-kupu ini menandakan vegetasi liar di sekitar lahan pertanian masih terjaga dengan baik.',
+      en: 'Their presence signals that wild vegetation around farmland remains well preserved.',
     },
   },
 ];
@@ -247,10 +275,10 @@ export const KOLAM_CONCEPTS: {
   {
     key: 'bioindicator',
     icon: 'Sparkles',
-    title: { id: 'Penjaga Alami Kualitas Air', en: 'Natural Water-Quality Guardian' },
+    title: { id: 'Kupu-Kupu sebagai Indikator Lingkungan Sehat', en: 'Butterflies as Indicators of a Healthy Environment' },
     description: {
-      id: 'Kehadiran kupu-kupu yang melimpah adalah bukti air murni, bersih, dan bebas polutan kimia.',
-      en: 'Abundant butterflies are proof of pure, clean water free of chemical pollutants.',
+      id: 'Kehadiran kupu-kupu yang melimpah adalah bukti bahwa ekosistem darat di sekitar sumber air masih sehat, alami, dan bebas dari polusi udara serta pestisida berlebih.',
+      en: 'An abundance of butterflies is evidence that the land ecosystem around the water source remains healthy, natural, and free of air pollution and excess pesticides.',
     },
   },
   {
@@ -309,10 +337,13 @@ export const CALL_TO_ACTIONS: {
   {
     key: 'stop-pestisida',
     icon: 'Ban',
-    title: { id: 'Stop Pestisida', en: 'Stop Pesticides' },
+    title: {
+      id: 'Stop Pestisida: Lindungi Penjaga Alami Pugung Raharjo',
+      en: 'Stop Pesticides: Protect the Natural Guardians of Pugung Raharjo',
+    },
     note: {
-      id: 'Hindari pestisida dan racun kimia. Kupu-kupu adalah bioindikator udara dan air murni.',
-      en: 'Avoid pesticides and chemical poisons. Butterflies indicate pure air and water.',
+      id: 'Dampak Bahan Kimia: Hindari penggunaan pestisida dan racun kimia di sekitar kawasan.',
+      en: 'Chemical Impact: Avoid using pesticides and chemical poisons around the site.',
     },
   },
   {
@@ -329,8 +360,8 @@ export const CALL_TO_ACTIONS: {
     icon: 'Droplets',
     title: { id: 'Jaga Kolam, Jaga Kupu-Kupu', en: 'Protect the Pool, Protect the Butterflies' },
     note: {
-      id: 'Jangan buang sampah atau sabun di Kolam Megalitik. Jantan butuh mineral puddling untuk reproduksi.',
-      en: 'Do not dump waste or soap in the Megalithic Pool. Males need puddling minerals to reproduce.',
+      id: 'Lindungi Sumber Mineral: Jangan membuang sampah atau menggunakan sabun (mencuci) di area Kolam Megalitik. Kupu-kupu jantan sangat membutuhkan mineral alami dari tanah basah di tepian kolam ini untuk proses reproduksi (mud-puddling).',
+      en: 'Protect the Mineral Source: Do not dump waste or use soap (washing) around the Megalithic Pool. Male butterflies depend on natural minerals from the damp soil at its edges to reproduce (mud-puddling).',
     },
   },
   {
@@ -338,11 +369,24 @@ export const CALL_TO_ACTIONS: {
     icon: 'QrCode',
     title: { id: 'Scan & Learn: Jadilah Ilmuwan Warga', en: 'Scan & Learn: Be a Citizen Scientist' },
     note: {
-      id: 'Pindai QR Code untuk pelajari spesies dan laporkan temuan. Data foto membantu tim peneliti ITERA.',
-      en: 'Scan the QR code to learn species and report sightings. Photo data helps the ITERA research team.',
+      id: 'Segera hadir. Pindai QR Code untuk mempelajari spesies dan melaporkan temuan Anda ke tim peneliti ITERA.',
+      en: 'Coming soon. Scan a QR code to identify species and report your sightings to the ITERA research team.',
     },
   },
 ];
+
+/**
+ * Actions that are announced but not yet live. The CTA screen marks these with
+ * a "Segera Hadir" badge and a non-committal modal, so the kiosk never promises
+ * a scan flow a visitor cannot complete today.
+ */
+export const COMING_SOON_ACTIONS: ReadonlySet<ActionKey> = new Set<ActionKey>(['scan-learn']);
+
+/** Badge text for an action that is not yet available. */
+export const COMING_SOON_BADGE: Caption = {
+  id: 'Segera Hadir',
+  en: 'Coming Soon',
+};
 
 // ---------------------------------------------------------------------------
 // Screen 9 - Data Spesies (column headers)
@@ -351,6 +395,12 @@ export const CALL_TO_ACTIONS: {
 export const DATA_SPESIES_TITLE: Caption = {
   id: 'Data Spesies',
   en: 'Species Data',
+};
+
+/** One-sentence screen intro, shown under the title (see `ScreenHeader`). */
+export const DATA_SPESIES_INTRO: Caption = {
+  id: 'Catatan lengkap setiap spesies yang terekam di situs - ketuk untuk detailnya.',
+  en: 'The full record of every species logged at the site - tap any card for details.',
 };
 
 /** Bilingual column headers for the species data table (Req 14.2). */
@@ -564,14 +614,14 @@ export const KOLAM_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'bioindicator',
-    title: { id: 'Kupu-Kupu sebagai Penjaga Air', en: 'Butterflies as Water Guardians' },
+    title: { id: 'Kupu-Kupu sebagai Indikator Lingkungan Sehat', en: 'Butterflies as Indicators of a Healthy Environment' },
     body: {
-      id: 'Kupu-kupu sangat sensitif terhadap polusi. Kehadiran mereka yang melimpah di sekitar kolam menunjukkan air masih murni, tanpa pestisida atau bahan kimia berbahaya.',
-      en: 'Butterflies are very sensitive to pollution. Their abundance around the pool shows the water is still pure, free of pesticides or harmful chemicals.',
+      id: 'Kupu-kupu sangat sensitif terhadap perubahan lingkungan.',
+      en: 'Butterflies are highly sensitive to environmental change.',
     },
     whyItMatters: {
-      id: 'Kolam yang bersih bukan hanya penting bagi kupu-kupu, tapi juga bagi petani setempat. Air berkualitas baik menopang irigasi sawah dan ladang sekitar situs.',
-      en: 'A clean pool matters not only for butterflies but also for local farmers. Good-quality water supports irrigation for surrounding rice fields and farms.',
+      id: 'Lingkungan yang bebas dari paparan bahan kimia berbahaya tidak hanya menjaga kelestarian kupu-kupu, tetapi juga memastikan tanah dan area sekitar sumber irigasi tetap subur dan aman untuk pertanian.',
+      en: 'An environment free of harmful chemical exposure not only sustains butterflies, but also keeps the soil and the area around the irrigation source fertile and safe for farming.',
     },
   },
   {
@@ -591,10 +641,10 @@ export const KOLAM_INFO_CARDS: InfoCard[] = [
 export const FOOD_SECURITY_INFO_CARDS: InfoCard[] = [
   {
     key: 'sahabat-petani',
-    title: { id: 'Mengapa Pieridae Sahabat Petani?', en: 'Why Are Pieridae Farmer Friends?' },
+    title: { id: 'Pengunjung Bunga dan Penyerbuk Umum', en: 'Flower Visitors and General Pollinators' },
     body: {
-      id: 'Kupu-kupu kecil dari famili Pieridae sangat rajin mengunjungi bunga sayur, buah, dan kacang-kacangan. Saat mereka minjar nektar, serbuk sari menempel dan menyerbuki bunga lain.',
-      en: 'Small butterflies in the Pieridae family diligently visit vegetable, fruit, and legume flowers. As they sip nectar, pollen sticks to them and pollinates other flowers.',
+      id: 'Peran polinasinya membantu reproduksi tanaman secara umum di ekosistem terbuka, meskipun pada fase ulatnya, sebagian besar spesies ini mengonsumsi daun dari tanaman suku kacang-kacangan (Fabaceae) dan sesawi (Brassicaceae).',
+      en: 'Their pollination supports plant reproduction broadly across open ecosystems, even though in the caterpillar stage most of these species feed on the leaves of legumes (Fabaceae) and mustards (Brassicaceae).',
     },
     whyItMatters: {
       id: 'Polinasi yang lebih baik berarti lebih banyak buah dan biji terbentuk. Hasil panen meningkat tanpa biaya, mendukung ketahanan pangan keluarga petani.',
@@ -603,14 +653,14 @@ export const FOOD_SECURITY_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'benteng-alami',
-    title: { id: 'Nymphalidae: Benteng Alami Penolak Hama', en: 'Nymphalidae: Natural Pest Barrier' },
+    title: { id: 'Zona Penyangga Alami Pengendali Hama', en: 'Natural Buffer Zone for Pest Control' },
     body: {
-      id: 'Genus Junonia dan Hypolimnas membantu menjaga keseimbangan vegetasi liar. Kawasan situs yang lestari menjadi zona penyangga yang menahan ledakan populasi hama.',
-      en: 'Junonia and Hypolimnas help keep wild vegetation balanced. A preserved site acts as a buffer zone that prevents pest population explosions.',
+      id: 'Kawasan alami yang lestari ini berfungsi sebagai zona penyangga (buffer zone) yang menyediakan rumah bagi berbagai musuh alami hama (seperti predator dan parasitoid). Ekosistem yang seimbang ini membantu mencegah ledakan populasi hama di sawah dan ladang sekitarnya.',
+      en: 'This preserved natural area acts as a buffer zone that houses a range of the pests’ natural enemies (predators and parasitoids). A balanced ecosystem like this helps prevent pest population explosions in the surrounding rice fields and farms.',
     },
     whyItMatters: {
-      id: 'Dengan ekosistem yang seimbang, sawah dan ladang sekitar tidak perlu banyak pestisida. Ini menghemat biaya dan menjaga air tetap bersih.',
-      en: 'With a balanced ecosystem, nearby rice fields and farms need fewer pesticides. This saves money and keeps water clean.',
+      id: 'Dengan menjaga kelestarian area penyangga ini, pengendalian hama hayati dapat berjalan optimal. Petani dapat mengurangi penggunaan pestisida kimia, menghemat biaya produksi, serta menjaga kualitas air dan tanah tetap bersih.',
+      en: 'Keeping this buffer area intact lets biological pest control work at its best. Farmers can cut chemical pesticide use, lower production costs, and keep water and soil quality clean.',
     },
   },
 ];
@@ -681,14 +731,17 @@ export const CALL_TO_ACTION_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'stop-pestisida',
-    title: { id: 'Stop Pestisida: Lindungi Penjaga Alam', en: 'Stop Pesticides: Protect Nature Guardians' },
+    title: {
+      id: 'Stop Pestisida: Lindungi Penjaga Alami Pugung Raharjo',
+      en: 'Stop Pesticides: Protect the Natural Guardians of Pugung Raharjo',
+    },
     body: {
-      id: 'Pestisida kimia tidak hanya membunuh hama, tapi juga kupu-kupu, lebah, dan serangga bermanfaat lainnya.',
-      en: 'Chemical pesticides do not only kill pests; they also kill butterflies, bees, and other beneficial insects.',
+      id: 'Bahan kimia berbahaya tidak hanya membunuh hama tanaman, tetapi juga mematikan kupu-kupu, lebah, dan berbagai serangga yang menguntungkan bagi petani.',
+      en: 'Harmful chemicals do not only kill crop pests; they also kill butterflies, bees, and the many insects that benefit farmers.',
     },
     whyItMatters: {
-      id: 'Kupu-kupu adalah bioindikator. Kehadiran mereka menunjukkan udara, air, dan tanah di Pugung Raharjo masih sehat.',
-      en: 'Butterflies are bioindicators. Their presence shows that the air, water, and soil at Pugung Raharjo are still healthy.',
+      id: 'Kupu-kupu adalah bioindikator alam. Kehadiran mereka yang melimpah menjadi bukti nyata bahwa udara, tanah, dan vegetasi di Situs Megalitik Pugung Raharjo masih sehat, alami, dan bebas dari pencemaran racun kimia yang berbahaya bagi mahluk hidup.',
+      en: 'Butterflies are nature’s bioindicators. Their abundance is clear evidence that the air, soil, and vegetation at the Pugung Raharjo Megalithic Site remain healthy, natural, and free of chemical contamination harmful to living things.',
     },
   },
   {
@@ -707,24 +760,24 @@ export const CALL_TO_ACTION_INFO_CARDS: InfoCard[] = [
     key: 'jaga-kolam',
     title: { id: 'Jaga Kolam, Jaga Kupu-Kupu', en: 'Protect the Pool, Protect the Butterflies' },
     body: {
-      id: 'Kupu-kupu jantan butuh mineral dari tepian kolam bersih untuk reproduksi. Sabun dan sampah dapat mencemari kolam.',
-      en: 'Male butterflies need minerals from clean pool edges to reproduce. Soap and trash can contaminate the pool.',
+      id: 'Zat kimia dari sabun dan sampah dapat merusak kandungan mineral tersebut.',
+      en: 'Chemicals from soap and waste can destroy those mineral deposits.',
     },
     whyItMatters: {
-      id: 'Kolam yang bersih menopang reproduksi kupu-kupu dan kualitas air irigasi pertanian sekitar.',
-      en: 'A clean pool supports butterfly reproduction and the quality of irrigation water for surrounding farms.',
+      id: 'Menjaga keaslian tanah dan air di tepian kolam tidak hanya menyelamatkan generasi baru kupu-kupu, tetapi juga memastikan kualitas air yang mengalir ke area irigasi pertanian di sekitar situs tetap aman dan bebas dari limbah kimia.',
+      en: 'Keeping the soil and water at the pool’s edge pristine does more than save the next generation of butterflies — it keeps the water flowing to farmland around the site safe and free of chemical waste.',
     },
   },
   {
     key: 'scan-learn',
     title: { id: 'Scan & Learn: Jadilah Ilmuwan Warga', en: 'Scan & Learn: Be a Citizen Scientist' },
     body: {
-      id: 'Laporan foto dari pengunjung membantu tim peneliti ITERA memantau populasi kupu-kupu dari waktu ke waktu.',
-      en: 'Visitor photo reports help the ITERA research team monitor butterfly populations over time.',
+      id: 'Fitur ini sedang disiapkan dan belum tersedia di kios. Nantinya Anda dapat memindai QR Code untuk mengenali spesies dan mengirim hasil pengamatan langsung ke tim peneliti ITERA.',
+      en: 'This feature is still in preparation and is not yet available at the kiosk. Soon you will be able to scan a QR code to identify species and send your observations straight to the ITERA research team.',
     },
     whyItMatters: {
-      id: 'Data dari masyarakat memperkaya penelitian ilmiah dan memperkuat upaya pelestarian berbasis bukti.',
-      en: 'Community data enriches scientific research and strengthens evidence-based conservation.',
+      id: 'Sampai fitur ini hadir, cara terbaik untuk membantu tetap sama: amati, foto, jangan tangkap, dan biarkan setiap kupu-kupu terbang bebas di kawasan situs.',
+      en: 'Until it arrives, the best way to help stays the same: observe, photograph, do not catch, and let every butterfly fly free across the site.',
     },
   },
 ];

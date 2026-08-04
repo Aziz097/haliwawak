@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Bug, Calendar, ArrowRight, Monitor } from 'lucide-react';
+import { Bug, Calendar, ArrowRight } from 'lucide-react';
 
 export default function Hero({ species }: { species: { primaryPhotoUrl?: string | null }[] }) {
-  const bgImage = '/kiosk/scenes/living-heritage-1.jpg';
+  const bgImage = '/kiosk/scenes/living-heritage-1.webp';
 
   return (
     <section className="relative overflow-hidden bg-kiosk-bg">
@@ -19,12 +19,6 @@ export default function Hero({ species }: { species: { primaryPhotoUrl?: string 
             ketahanan pangan di ekosistem Situs Purbakala Pugung Raharjo.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/kiosk"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-kiosk-accent-teal px-8 py-4 font-bold text-white transition-all hover:bg-kiosk-green-600"
-            >
-              <Monitor className="h-5 w-5" /> Buka Kiosk
-            </Link>
             <Link
               href="/katalog"
               className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-kiosk-accent-teal bg-white px-8 py-4 font-bold text-kiosk-accent-teal transition-all hover:bg-kiosk-surface-tint"

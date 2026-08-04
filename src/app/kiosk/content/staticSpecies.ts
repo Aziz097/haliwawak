@@ -9,7 +9,7 @@
 // document. Rows 7–12 are biologically Pieridae even though the source table grouped them
 // under PAPILIONIDE.
 //
-// Photos live under `public/kiosk/species/<slug>-top.jpg` and `<slug>-under.jpg`
+// Photos live under `public/kiosk/species/<slug>-top.webp` and `<slug>-under.webp`
 // (organized from the "Asset foto" delivery). Species without a delivered photo keep null.
 
 import type { KioskSpecies } from "../lib/speciesMapping";
@@ -24,8 +24,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Papilionidae",
     genus: "Graphium",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/graphium-agamemnon-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/graphium-agamemnon-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/graphium-agamemnon-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/graphium-agamemnon-under.webp`,
     galleryUrls: [],
   },
   {
@@ -35,8 +35,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Papilionidae",
     genus: "Graphium",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/graphium-doson-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/graphium-doson-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/graphium-doson-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/graphium-doson-under.webp`,
     galleryUrls: [],
   },
   {
@@ -46,8 +46,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Papilionidae",
     genus: "Graphium",
     iucnStatus: "Least Concern",
-    topPhotoUrl: `${SPECIES_BASE}/graphium-sarpedon-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/graphium-sarpedon-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/graphium-sarpedon-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/graphium-sarpedon-under.webp`,
     galleryUrls: [],
   },
   {
@@ -57,8 +57,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Papilionidae",
     genus: "Papilio",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/papilio-demoleus-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/papilio-demoleus-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/papilio-demoleus-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/papilio-demoleus-under.webp`,
     galleryUrls: [],
   },
   {
@@ -68,8 +68,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Papilionidae",
     genus: "Papilio",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/papilio-memnon-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/papilio-memnon-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/papilio-memnon-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/papilio-memnon-under.webp`,
     galleryUrls: [],
   },
   {
@@ -79,8 +79,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Papilionidae",
     genus: "Papilio",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/papilio-polytes-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/papilio-polytes-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/papilio-polytes-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/papilio-polytes-under.webp`,
     galleryUrls: [],
   },
   {
@@ -90,8 +90,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Pieridae",
     genus: "Appias",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/appias-olferna-jantan-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/appias-olferna-jantan-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/appias-olferna-jantan-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/appias-olferna-jantan-under.webp`,
     galleryUrls: [],
   },
   {
@@ -101,7 +101,7 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Pieridae",
     genus: "Appias",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/appias-olferna-betina-top.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/appias-olferna-betina-top.webp`,
     undersidePhotoUrl: null,
     galleryUrls: [],
   },
@@ -112,8 +112,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Pieridae",
     genus: "Delias",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/delias-hyparete-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/delias-hyparete-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/delias-hyparete-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/delias-hyparete-under.webp`,
     galleryUrls: [],
   },
   {
@@ -123,8 +123,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Pieridae",
     genus: "Eurema",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/eurema-blanda-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/eurema-blanda-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/eurema-blanda-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/eurema-blanda-under.webp`,
     galleryUrls: [],
   },
   {
@@ -134,8 +134,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Pieridae",
     genus: "Catopsilia",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/catopsilia-pyranthe-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/catopsilia-pyranthe-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/catopsilia-pyranthe-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/catopsilia-pyranthe-under.webp`,
     galleryUrls: [],
   },
   {
@@ -145,8 +145,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Pieridae",
     genus: "Leptosia",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/leptosia-nina-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/leptosia-nina-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/leptosia-nina-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/leptosia-nina-under.webp`,
     galleryUrls: [],
   },
   {
@@ -156,8 +156,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Acraea",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/acraea-terpsicore-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/acraea-terpsicore-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/acraea-terpsicore-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/acraea-terpsicore-under.webp`,
     galleryUrls: [],
   },
   {
@@ -167,8 +167,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Junonia",
     iucnStatus: "Least Concern",
-    topPhotoUrl: `${SPECIES_BASE}/junonia-orithya-jantan-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/junonia-orithya-jantan-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/junonia-orithya-jantan-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/junonia-orithya-jantan-under.webp`,
     galleryUrls: [],
   },
   {
@@ -178,8 +178,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Junonia",
     iucnStatus: "Least Concern",
-    topPhotoUrl: `${SPECIES_BASE}/junonia-orithya-betina-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/junonia-orithya-betina-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/junonia-orithya-betina-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/junonia-orithya-betina-under.webp`,
     galleryUrls: [],
   },
   {
@@ -189,8 +189,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Neptis",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/neptis-hylas-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/neptis-hylas-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/neptis-hylas-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/neptis-hylas-under.webp`,
     galleryUrls: [],
   },
   {
@@ -200,8 +200,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Hypolimnas",
     iucnStatus: "Least Concern",
-    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-jantan-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-jantan-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-jantan-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-jantan-under.webp`,
     galleryUrls: [],
   },
   {
@@ -211,8 +211,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Hypolimnas",
     iucnStatus: "Least Concern",
-    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-betina-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-betina-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-betina-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-missipus-betina-under.webp`,
     galleryUrls: [],
   },
   {
@@ -222,8 +222,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Doleschallia",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/doleschallia-bisaltide-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/doleschallia-bisaltide-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/doleschallia-bisaltide-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/doleschallia-bisaltide-under.webp`,
     galleryUrls: [],
   },
   {
@@ -233,8 +233,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Euploea",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/euploea-leucostictos-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/euploea-leucostictos-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/euploea-leucostictos-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/euploea-leucostictos-under.webp`,
     galleryUrls: [],
   },
   {
@@ -244,8 +244,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Hypolimnas",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-jantan-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-jantan-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-jantan-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-jantan-under.webp`,
     galleryUrls: [],
   },
   {
@@ -255,8 +255,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Hypolimnas",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-betina-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-betina-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-betina-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/hypolimnas-bolina-betina-under.webp`,
     galleryUrls: [],
   },
   {
@@ -266,8 +266,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Melanitis",
     iucnStatus: "Least Concern",
-    topPhotoUrl: `${SPECIES_BASE}/melanitis-leda-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/melanitis-leda-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/melanitis-leda-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/melanitis-leda-under.webp`,
     galleryUrls: [],
   },
   {
@@ -277,8 +277,8 @@ export const STATIC_SPECIES: KioskSpecies[] = [
     family: "Nymphalidae",
     genus: "Junonia",
     iucnStatus: null,
-    topPhotoUrl: `${SPECIES_BASE}/junonia-iphita-top.jpg`,
-    undersidePhotoUrl: `${SPECIES_BASE}/junonia-iphita-under.jpg`,
+    topPhotoUrl: `${SPECIES_BASE}/junonia-iphita-top.webp`,
+    undersidePhotoUrl: `${SPECIES_BASE}/junonia-iphita-under.webp`,
     galleryUrls: [],
   },
   {

@@ -86,32 +86,32 @@ export default function AdminSettingsPage() {
     setShowAddForm(false);
   };
 
-  if (loading) return <p className="text-[#6B7280]">Memuat...</p>;
+  if (loading) return <p className="text-kiosk-ink-muted">Memuat...</p>;
 
   const tabSettings = settings.filter(s => s.group === activeTab);
 
   return (
     <div className="relative">
       {toast && (
-        <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-[#ECFDF5] border border-[#A7F3D0] text-[#059669] px-5 py-3 rounded-xl shadow-lg text-sm font-medium animate-[fadeIn_0.2s_ease-out]">
+        <div className="fixed top-6 right-6 z-50 flex items-center gap-2 bg-success/10 border border-success/30 text-success px-5 py-3 rounded-[1.618rem] shadow-lg text-sm font-medium animate-[fadeIn_0.2s_ease-out]">
           <Check className="w-4 h-4" />
           Pengaturan disimpan
         </div>
       )}
 
       <div className="flex items-center justify-between mb-6">
-        <h1 className="font-heading text-2xl font-bold text-[#111827]">Pengaturan</h1>
+        <h1 className="font-heading text-2xl font-bold text-kiosk-ink">Pengaturan</h1>
       </div>
 
-      <div className="flex gap-1 bg-white border border-[#E5E7EB] rounded-xl p-1 mb-6">
+      <div className="flex gap-1 bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-1 mb-6">
         {TABS.map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`px-4 py-2 rounded-[1rem] text-sm font-medium transition-all ${
               activeTab === tab.key
-                ? 'bg-[#059669] text-white shadow-sm'
-                : 'text-[#6B7280] hover:bg-[#F9FAFB]'
+                ? 'bg-kiosk-orange-600 text-white shadow-sm'
+                : 'text-kiosk-ink-muted hover:bg-kiosk-bg'
             }`}
           >
             {tab.label}
@@ -119,31 +119,31 @@ export default function AdminSettingsPage() {
         ))}
       </div>
 
-      <div className="bg-white border border-[#E5E7EB] rounded-xl p-6">
+      <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6">
         {tabSettings.length === 0 && !showAddForm ? (
-          <p className="text-[#6B7280] text-center py-8">Belum ada pengaturan untuk tab ini.</p>
+          <p className="text-kiosk-ink-muted text-center py-8">Belum ada pengaturan untuk tab ini.</p>
         ) : (
           <div className="space-y-5">
             {tabSettings.map(s => (
               <div key={s.id || s.key}>
-                <label className="block text-sm font-medium text-[#111827] mb-1.5">
+                <label className="block text-sm font-medium text-kiosk-ink mb-1.5">
                   {s.key.replace(/_/g, ' ')}
                 </label>
                 {KEY_DESCRIPTIONS[s.key] && (
-                  <p className="text-xs text-[#6B7280] mb-1.5">{KEY_DESCRIPTIONS[s.key]}</p>
+                  <p className="text-xs text-kiosk-ink-muted mb-1.5">{KEY_DESCRIPTIONS[s.key]}</p>
                 )}
                 {isLongField(s.key) ? (
                   <textarea
                     value={s.value || ''}
                     onChange={e => updateSetting(s.id, e.target.value)}
                     rows={3}
-                    className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-sm focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] resize-y"
+                    className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 resize-y"
                   />
                 ) : (
                   <input
                     value={s.value || ''}
                     onChange={e => updateSetting(s.id, e.target.value)}
-                    className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-sm focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669]"
+                    className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
                 )}
               </div>
@@ -152,42 +152,42 @@ export default function AdminSettingsPage() {
         )}
 
         {showAddForm && (
-          <div className="mt-5 pt-5 border-t border-[#E5E7EB]">
-            <h3 className="text-xs font-bold text-[#059669] uppercase tracking-wider mb-3">Tambah Pengaturan Baru</h3>
+          <div className="mt-5 pt-5 border-t border-kiosk-orange-100">
+            <h3 className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-3">Tambah Pengaturan Baru</h3>
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-medium text-[#6B7280] mb-1">Key</label>
+                <label className="block text-xs font-medium text-kiosk-ink-muted mb-1">Key</label>
                 <input
                   value={newKey}
                   onChange={e => setNewKey(e.target.value)}
                   placeholder="contoh: site_tagline"
-                  className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-sm focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669]"
+                  className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-[#6B7280] mb-1">Value</label>
+                <label className="block text-xs font-medium text-kiosk-ink-muted mb-1">Value</label>
                 {isLongField(newKey) ? (
                   <textarea
                     value={newValue}
                     onChange={e => setNewValue(e.target.value)}
                     rows={3}
                     placeholder="Nilai pengaturan"
-                    className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-sm focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] resize-y"
+                    className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 resize-y"
                   />
                 ) : (
                   <input
                     value={newValue}
                     onChange={e => setNewValue(e.target.value)}
                     placeholder="Nilai pengaturan"
-                    className="w-full px-4 py-2.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg text-sm focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669]"
+                    className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
                 )}
               </div>
               <div className="flex gap-2 justify-end">
-                <button onClick={() => { setShowAddForm(false); setNewKey(''); setNewValue(''); }} className="px-4 py-2 rounded-lg text-sm text-[#6B7280] hover:bg-[#F9FAFB] transition-colors">
+                <button onClick={() => { setShowAddForm(false); setNewKey(''); setNewValue(''); }} className="px-4 py-2 rounded-[1rem] text-sm text-kiosk-ink-muted hover:bg-kiosk-bg transition-colors">
                   Batal
                 </button>
-                <button onClick={handleAdd} className="flex items-center gap-1.5 bg-[#059669] hover:bg-[#047857] text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                <button onClick={handleAdd} className="flex items-center gap-1.5 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-4 py-2 rounded-[1rem] text-sm font-bold transition-all">
                   <Plus className="w-3.5 h-3.5" />
                   Tambah
                 </button>
@@ -200,13 +200,13 @@ export default function AdminSettingsPage() {
       <div className="flex items-center justify-between mt-6">
         <button
           onClick={() => setShowAddForm(true)}
-          className="flex items-center gap-1.5 text-sm font-medium text-[#059669] hover:underline"
+          className="flex items-center gap-1.5 text-sm font-medium text-kiosk-orange-600 hover:underline"
         >
           <Plus className="w-4 h-4" />
           Tambah Pengaturan
         </button>
         <button onClick={handleSave} disabled={saving}
-          className="flex items-center gap-2 bg-[#059669] hover:bg-[#047857] text-white px-6 py-3 rounded-lg font-bold text-sm transition-all disabled:opacity-50">
+          className="flex items-center gap-2 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-6 py-3 rounded-[1rem] font-bold text-sm transition-all disabled:opacity-50">
           <Save className="w-4 h-4" />
           {saving ? 'Menyimpan...' : 'Simpan Pengaturan'}
         </button>

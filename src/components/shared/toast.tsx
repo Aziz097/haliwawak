@@ -31,9 +31,9 @@ const ICONS = {
 };
 
 const COLORS = {
-  success: 'bg-[#ECFDF5] border border-[#A7F3D0] text-[#059669]',
-  error: 'bg-[#FEF2F2] border border-[#FECACA] text-[#DC2626]',
-  warning: 'bg-[#FFFBEB] border border-[#FDE68A] text-[#D97706]',
+  success: 'bg-success/10 border border-success/30 text-success',
+  error: 'bg-danger/10 border border-danger/30 text-danger',
+  warning: 'bg-warning/10 border border-warning/30 text-warning',
 };
 
 export default function ToastContainer() {
@@ -56,7 +56,7 @@ export default function ToastContainer() {
       {items.map(item => {
         const Icon = ICONS[item.type];
         return (
-          <div key={item.id} className={`rounded-xl px-5 py-3 shadow-lg flex items-center gap-3 text-sm font-medium animate-in slide-in-from-right ${COLORS[item.type]}`}>
+          <div key={item.id} className={`rounded-[1.618rem] px-5 py-3 shadow-lg flex items-center gap-3 text-sm font-medium animate-in slide-in-from-right ${COLORS[item.type]}`}>
             <Icon className="w-5 h-5 shrink-0" />
             <p className="flex-1">{item.message}</p>
             <button onClick={() => remove(item.id)} className="shrink-0 opacity-60 hover:opacity-100 transition-opacity">

@@ -23,8 +23,8 @@ export default function InfoHotspot({
       aria-label={label}
       className={`
         absolute right-4 top-4 z-10 flex h-12 w-12 items-center justify-center
-        rounded-full bg-kiosk-accent-amber text-white shadow-lg
-        transition-transform duration-200 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-kiosk-accent-amber/40
+        rounded-full bg-kiosk-orange-700 text-white shadow-lg
+        transition-transform duration-200 active:scale-95 focus:outline-none focus:ring-4 focus:ring-kiosk-orange-300
         ${className}
       `}
     >

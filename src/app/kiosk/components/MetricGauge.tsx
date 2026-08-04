@@ -48,7 +48,9 @@ function RadialGauge({ value, fraction }: { value: string; fraction: number }) {
   return (
     <svg
       viewBox={`0 0 ${size} ${size}`}
-      className="h-[13.75rem] w-[13.75rem]"
+      // Scales with the display instead of pinning 220px, so the gauge card
+      // still fits a 1080p kiosk once the header and photo strip take theirs.
+      className="h-[clamp(8rem,17vh,13.75rem)] w-[clamp(8rem,17vh,13.75rem)]"
       role="img"
       aria-hidden="true"
     >
@@ -80,7 +82,11 @@ function RadialGauge({ value, fraction }: { value: string; fraction: number }) {
         y="50%"
         dominantBaseline="central"
         textAnchor="middle"
-        className="fill-kiosk-ink font-serif text-[2.618rem] font-semibold"
+        // A range like "0,00 – 0,13" is far wider than a single figure and
+        // spills out of the ring at the headline size.
+        className={`fill-kiosk-ink font-serif font-semibold ${
+          value.length > 6 ? 'text-[1.5rem]' : 'text-[2.618rem]'
+        }`}
       >
         {value}
       </text>
@@ -126,7 +132,7 @@ export function MetricGauge({ value, label, category }: MetricGaugeProps) {
   const fraction = categoryToFraction(category);
 
   const textFallback = (
-    <div className="flex h-[13.75rem] w-[13.75rem] items-center justify-center rounded-full bg-kiosk-surface-tint shadow-inner">
+    <div className="flex h-[clamp(8rem,17vh,13.75rem)] w-[clamp(8rem,17vh,13.75rem)] items-center justify-center rounded-full bg-kiosk-surface-tint shadow-inner">
       <span className="px-4 text-center font-serif text-[2.618rem] font-semibold text-kiosk-ink">
         {value}
       </span>
@@ -134,7 +140,7 @@ export function MetricGauge({ value, label, category }: MetricGaugeProps) {
   );
 
   return (
-    <div className="flex flex-col items-center gap-6 rounded-[2rem] border-2 border-white bg-white p-8 text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(30,51,40,0.08)]">
+    <div className="flex flex-col items-center gap-[clamp(0.75rem,1.6vh,1.5rem)] rounded-[2rem] border-2 border-white bg-white p-[clamp(1rem,2vh,2rem)] text-center shadow-[0_8px_30px_rgba(30,51,40,0.04)] transition-transform duration-200 active:scale-[0.99]">
       {/* Dominant visual indicator, guarded by an error boundary. */}
       <GaugeBoundary fallback={textFallback}>
         <RadialGauge value={value} fraction={fraction} />
@@ -150,7 +156,7 @@ export function MetricGauge({ value, label, category }: MetricGaugeProps) {
         <Caption caption={label} size="sm" align="center" />
 
         <span
-          className="mt-2 inline-flex items-center rounded-full bg-kiosk-green-100 px-5 py-2 font-sans text-[0.9rem] font-bold tracking-widest text-kiosk-green-700"
+          className="mt-2 inline-flex items-center rounded-full bg-kiosk-orange-100 px-5 py-2 font-sans text-[0.9rem] font-bold tracking-widest text-kiosk-orange-700"
           data-metric-category
         >
           {t(category)}

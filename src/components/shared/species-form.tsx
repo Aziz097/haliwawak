@@ -27,11 +27,11 @@ function MultiCheckbox({ label, options, selected, onChange }: {
     onChange(selected.includes(opt) ? selected.filter((x) => x !== opt) : [...selected, opt]);
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-sm font-semibold text-[#374151]">{label}</label>
+      <label className="text-sm font-semibold text-kiosk-ink">{label}</label>
       <div className="flex flex-wrap gap-2">
         {options.map((opt) => (
           <button key={opt} type="button" onClick={() => toggle(opt)}
-            className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-all cursor-pointer ${selected.includes(opt) ? 'bg-[#059669] text-white border-[#059669]' : 'bg-white text-[#6B7280] border-[#E5E7EB] hover:border-[#059669]/50'}`}>
+            className={`px-3 py-1.5 rounded-[1rem] border text-xs font-medium transition-all cursor-pointer ${selected.includes(opt) ? 'bg-kiosk-orange-600 text-white border-kiosk-orange-600' : 'bg-white text-kiosk-ink-muted border-kiosk-orange-100 hover:border-kiosk-orange-600/50'}`}>
             {opt}
           </button>
         ))}
@@ -45,10 +45,10 @@ function CommaInput({ label, value, onChange, placeholder }: {
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-[#374151]">{label}</label>
+      <label className="text-sm font-semibold text-kiosk-ink">{label}</label>
       <input type="text" value={value} onChange={e => onChange(e.target.value)}
         placeholder={placeholder ?? 'Pisahkan dengan koma, contoh: Mangga, Jambu'}
-        className="w-full bg-[#F9FAFB] px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all placeholder:text-[#9CA3AF]" />
+        className="w-full bg-kiosk-bg px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all placeholder:text-kiosk-ink-muted" />
     </div>
   );
 }
@@ -168,12 +168,12 @@ export default function SpeciesForm({ initialData, isEdit, speciesId }: SpeciesF
 
   return (
     <form onSubmit={handleSubmit}>
-      <Link href="/admin/posts" className="inline-flex items-center gap-2 text-[#6B7280] hover:text-gray-700 mb-6 text-sm">
+      <Link href="/admin/posts" className="inline-flex items-center gap-2 text-kiosk-ink-muted hover:text-kiosk-ink mb-6 text-sm">
         <ChevronLeft className="w-4 h-4" /> Kembali
       </Link>
       <div className="flex items-center gap-3 mb-6">
-        <Bug className="w-6 h-6 text-[#059669]" />
-        <h1 className="font-heading text-2xl font-bold text-[#111827]">
+        <Bug className="w-6 h-6 text-kiosk-orange-600" />
+        <h1 className="font-heading text-2xl font-bold text-kiosk-ink">
           {isEdit ? 'Edit Spesies' : 'Tambah Spesies'}
         </h1>
       </div>
@@ -182,68 +182,68 @@ export default function SpeciesForm({ initialData, isEdit, speciesId }: SpeciesF
         {/* Main content - 2/3 */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           {/* Identitas */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Identitas Spesies
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-[#374151]">Nama Umum *</label>
+                <label className="text-sm font-semibold text-kiosk-ink">Nama Umum *</label>
                 <input required type="text" value={form.commonName} onChange={e => set('commonName')(e.target.value)}
                   placeholder="Contoh: Peacock Pansy"
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-[#374151]">Nama Ilmiah *</label>
+                <label className="text-sm font-semibold text-kiosk-ink">Nama Ilmiah *</label>
                 <input required type="text" value={form.scientificName} onChange={e => set('scientificName')(e.target.value)}
                   placeholder="Contoh: Junonia almana"
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-[#374151]">Famili *</label>
+                <label className="text-sm font-semibold text-kiosk-ink">Famili *</label>
                 <select required value={form.family} onChange={e => set('family')(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all">
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all">
                   <option value="">Pilih famili...</option>
                   {FAMILIES.map(f => <option key={f}>{f}</option>)}
                 </select>
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-[#374151]">Slug</label>
+                <label className="text-sm font-semibold text-kiosk-ink">Slug</label>
                 <input type="text" value={form.slug} onChange={e => set('slug')(e.target.value)}
                   placeholder="Otomatis dari nama umum"
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-[#374151]">Rentang Sayap</label>
+                <label className="text-sm font-semibold text-kiosk-ink">Rentang Sayap</label>
                 <input type="text" value={form.wingspan} onChange={e => set('wingspan')(e.target.value)}
                   placeholder="Contoh: 45-55 mm"
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                  className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
               </div>
             </div>
           </div>
 
           {/* Description */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Deskripsi
             </p>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">Deskripsi Umum</label>
+              <label className="text-sm font-semibold text-kiosk-ink">Deskripsi Umum</label>
               <textarea rows={6} value={form.description} onChange={e => set('description')(e.target.value)}
                 placeholder="Deskripsi lengkap tentang spesies ini..."
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">Karakteristik</label>
+              <label className="text-sm font-semibold text-kiosk-ink">Karakteristik</label>
               <textarea rows={4} value={form.characteristics} onChange={e => set('characteristics')(e.target.value)}
                 placeholder="Ciri-ciri fisik dan perilaku spesies ini..."
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
             </div>
           </div>
 
           {/* Ekologi */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Peran Ekosistem
             </p>
             <CommaInput label="Tanaman Inang" value={form.hostPlants} onChange={set('hostPlants')}
@@ -251,24 +251,24 @@ export default function SpeciesForm({ initialData, isEdit, speciesId }: SpeciesF
             <CommaInput label="Tanaman yang Diserbuki" value={form.pollinatedPlants} onChange={set('pollinatedPlants')}
               placeholder="Pisahkan dengan koma, contoh: Pisang, Pepaya" />
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">Peran dalam Ekosistem</label>
+              <label className="text-sm font-semibold text-kiosk-ink">Peran dalam Ekosistem</label>
               <select value={form.ecosystemRole} onChange={e => set('ecosystemRole')(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all">
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all">
                 <option value="">Pilih peran...</option>
                 {ECOSYSTEM_ROLES.map(r => <option key={r}>{r}</option>)}
               </select>
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">Catatan Ekologi</label>
+              <label className="text-sm font-semibold text-kiosk-ink">Catatan Ekologi</label>
               <textarea rows={3} value={form.ecologyNotes} onChange={e => set('ecologyNotes')(e.target.value)}
                 placeholder="Catatan tambahan tentang ekologi spesies..."
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
             </div>
           </div>
 
           {/* Distribusi */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Distribusi & Musim
             </p>
             <MultiCheckbox label="Musim Aktif" options={MONTHS}
@@ -278,35 +278,35 @@ export default function SpeciesForm({ initialData, isEdit, speciesId }: SpeciesF
           </div>
 
           {/* Galeri Foto */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <div className="flex items-center justify-between border-b border-amber-200 pb-3 -mb-1">
-              <p className="text-sm font-bold text-[#059669] uppercase tracking-wider">Galeri Foto</p>
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <div className="flex items-center justify-between border-b border-kiosk-orange-100 pb-3 -mb-1">
+              <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider">Galeri Foto</p>
               <div className="flex gap-2">
                 <button type="button" onClick={handleAddGalleryUrl}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#059669] border border-[#059669]/30 rounded-lg hover:bg-[#ECFDF5] transition-colors cursor-pointer">
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-kiosk-orange-600 border border-kiosk-orange-600/30 rounded-[1rem] hover:bg-kiosk-orange-50 transition-colors cursor-pointer">
                   <ImagePlus className="w-3.5 h-3.5" /> Tambah URL
                 </button>
-                <label className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-[#059669] rounded-lg hover:bg-[#047857] transition-all cursor-pointer">
+                <label className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-kiosk-orange-600 rounded-[1rem] hover:bg-kiosk-orange-700 transition-all cursor-pointer">
                   <Upload className="w-3.5 h-3.5" /> Upload
                   <input ref={galleryInputRef} type="file" accept="image/*" multiple onChange={handleGalleryUpload} className="hidden" />
                 </label>
               </div>
             </div>
-            {uploadingGallery && <p className="text-sm text-[#6B7280] animate-pulse">Mengunggah foto galeri...</p>}
+            {uploadingGallery && <p className="text-sm text-kiosk-ink-muted animate-pulse">Mengunggah foto galeri...</p>}
             {form.galleryUrls.length > 0 ? (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                 {form.galleryUrls.map((url: string, idx: number) => (
-                  <div key={idx} className="relative aspect-square rounded-lg overflow-hidden border border-amber-200 group">
+                  <div key={idx} className="relative aspect-square rounded-[1rem] overflow-hidden border border-kiosk-orange-100 group">
                     <img src={url} alt={`Galeri ${idx + 1}`} className="w-full h-full object-cover" />
                     <button type="button" onClick={() => handleRemoveGalleryUrl(idx)}
-                      className="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                      className="absolute top-1 right-1 w-6 h-6 bg-danger text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-[#9CA3AF] text-center py-4">Belum ada foto galeri. Upload atau tambahkan URL.</p>
+              <p className="text-sm text-kiosk-ink-muted text-center py-4">Belum ada foto galeri. Upload atau tambahkan URL.</p>
             )}
           </div>
         </div>
@@ -314,55 +314,55 @@ export default function SpeciesForm({ initialData, isEdit, speciesId }: SpeciesF
         {/* Sidebar - 1/3 */}
         <div className="flex flex-col gap-6">
           {/* Foto Utama */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Foto Utama
             </p>
             {form.primaryPhotoUrl ? (
-              <div className="relative aspect-video rounded-lg overflow-hidden border border-amber-200">
+              <div className="relative aspect-video rounded-[1rem] overflow-hidden border border-kiosk-orange-100">
                 <img src={form.primaryPhotoUrl} alt="Foto utama" className="w-full h-full object-cover" />
                 <button type="button" onClick={() => set('primaryPhotoUrl')('')}
-                  className="absolute top-2 right-2 w-7 h-7 bg-red-500/90 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer shadow-md">
+                  className="absolute top-2 right-2 w-7 h-7 bg-danger/90 text-white rounded-full flex items-center justify-center hover:bg-danger transition-colors cursor-pointer shadow-md">
                   <X className="w-4 h-4" />
                 </button>
               </div>
             ) : (
-              <label className="flex flex-col items-center justify-center gap-2 aspect-video rounded-lg border-2 border-dashed border-[#D1D5DB] hover:border-[#059669] hover:bg-[#ECFDF5] cursor-pointer transition-colors">
+              <label className="flex flex-col items-center justify-center gap-2 aspect-video rounded-[1rem] border-2 border-dashed border-kiosk-orange-200 hover:border-kiosk-orange-600 hover:bg-kiosk-orange-50 cursor-pointer transition-colors">
                 {uploading ? (
-                  <p className="text-sm text-[#9CA3AF] animate-pulse">Mengunggah...</p>
+                  <p className="text-sm text-kiosk-ink-muted animate-pulse">Mengunggah...</p>
                 ) : (
                   <>
                     <Upload className="w-8 h-8 text-gray-300" />
-                    <p className="text-sm text-[#9CA3AF] font-medium">Upload foto atau masukkan URL</p>
+                    <p className="text-sm text-kiosk-ink-muted font-medium">Upload foto atau masukkan URL</p>
                   </>
                 )}
                 <input ref={primaryInputRef} type="file" accept="image/*" onChange={handlePrimaryUpload} className="hidden" />
               </label>
             )}
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">atau masukkan URL</label>
+              <label className="text-sm font-semibold text-kiosk-ink">atau masukkan URL</label>
               <input type="text" value={form.primaryPhotoUrl} onChange={e => set('primaryPhotoUrl')(e.target.value)}
                 placeholder="https://example.com/photo.jpg"
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
             </div>
           </div>
 
           {/* Status */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Status Konservasi
             </p>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">Status IUCN</label>
+              <label className="text-sm font-semibold text-kiosk-ink">Status IUCN</label>
               <select value={form.iucnStatus} onChange={e => set('iucnStatus')(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all">
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all">
                 {IUCN_STATUSES.map(s => <option key={s}>{s}</option>)}
               </select>
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#374151]">Status di Situs</label>
+              <label className="text-sm font-semibold text-kiosk-ink">Status di Situs</label>
               <select value={form.siteStatus} onChange={e => set('siteStatus')(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all">
+                className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all">
                 <option value="">Pilih status...</option>
                 {SITE_STATUSES.map(s => <option key={s}>{s}</option>)}
               </select>
@@ -370,47 +370,47 @@ export default function SpeciesForm({ initialData, isEdit, speciesId }: SpeciesF
           </div>
 
           {/* Publikasi */}
-          <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col gap-5">
-            <p className="text-sm font-bold text-[#059669] uppercase tracking-wider border-b border-[#E5E7EB] pb-3 -mb-1">
+          <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6 flex flex-col gap-5">
+            <p className="text-sm font-bold text-kiosk-orange-600 uppercase tracking-wider border-b border-kiosk-orange-100 pb-3 -mb-1">
               Publikasi
             </p>
-            <div className="flex items-center justify-between p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <div className="flex items-center justify-between p-3 bg-warning/10 rounded-[1rem] border border-warning/30">
               <div>
-                <p className="text-sm font-bold text-[#111827]">{form.isPublished ? 'Aktif / Publik' : 'Draft'}</p>
-                <p className="text-xs text-[#6B7280] mt-0.5">
+                <p className="text-sm font-bold text-kiosk-ink">{form.isPublished ? 'Aktif / Publik' : 'Draft'}</p>
+                <p className="text-xs text-kiosk-ink-muted mt-0.5">
                   {form.isPublished ? 'Tampil di website dan kiosk' : 'Hanya bisa dilihat pengelola'}
                 </p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" className="sr-only peer" checked={form.isPublished}
                   onChange={e => set('isPublished')(e.target.checked)} />
-                <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#059669]/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#059669]" />
+                <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-success/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success" />
               </label>
             </div>
-            <div className="flex items-center justify-between p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <div className="flex items-center justify-between p-3 bg-warning/10 rounded-[1rem] border border-warning/30">
               <div className="flex items-center gap-3">
-                <Star className={`w-5 h-5 ${form.featuredOnHome ? 'text-amber-500 fill-amber-500' : 'text-gray-300'}`} />
+                <Star className={`w-5 h-5 ${form.featuredOnHome ? 'text-warning fill-warning' : 'text-gray-300'}`} />
                 <div>
-                  <p className="text-sm font-bold text-[#111827]">Spesies Unggulan</p>
-                  <p className="text-xs text-[#6B7280] mt-0.5">Tampil di halaman utama</p>
+                  <p className="text-sm font-bold text-kiosk-ink">Spesies Unggulan</p>
+                  <p className="text-xs text-kiosk-ink-muted mt-0.5">Tampil di halaman utama</p>
                 </div>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" className="sr-only peer" checked={form.featuredOnHome}
                   onChange={e => set('featuredOnHome')(e.target.checked)} />
-                <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-amber-500/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500" />
+                <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-warning/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-warning" />
               </label>
             </div>
             {form.featuredOnHome && (
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-[#374151]">Urutan di Halaman Utama</label>
+                <label className="text-sm font-semibold text-kiosk-ink">Urutan di Halaman Utama</label>
                 <input type="number" value={form.homeOrder} onChange={e => set('homeOrder')(parseInt(e.target.value) || 0)}
-                  min={0} className="w-full px-4 py-2.5 rounded-lg border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] transition-all" />
-                <p className="text-xs text-[#9CA3AF]">Angka lebih kecil = tampil lebih dulu</p>
+                  min={0} className="w-full px-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 text-sm text-kiosk-ink focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-all" />
+                <p className="text-xs text-kiosk-ink-muted">Angka lebih kecil = tampil lebih dulu</p>
               </div>
             )}
             <button type="submit" disabled={saving}
-              className="bg-[#059669] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#047857] transition-all disabled:opacity-50 w-full">
+              className="bg-kiosk-orange-600 text-white px-6 py-3 rounded-[1.618rem] font-bold text-sm hover:bg-kiosk-orange-700 transition-all disabled:opacity-50 w-full">
               {saving ? 'Menyimpan...' : (isEdit ? 'Simpan Perubahan' : 'Simpan')}
             </button>
           </div>

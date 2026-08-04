@@ -9,7 +9,7 @@
  *   3. A live clock that updates once per second.
  *   4. A "Beranda" (home) button, shown on non-idle, non-SiteMap screens.
  *
- * Uses kiosk bright-green design tokens only (no raw hex / legacy colors).
+ * Uses kiosk bright-orange design tokens only (no raw hex / legacy colors).
  *
  * Requirements: 1.4, 6.3
  */
@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import { Languages } from 'lucide-react';
 import { KIOSK_BRAND_LOGO, KIOSK_LOGOS } from '../content/assets';
 import { useLang } from '../i18n/language';
+import KioskImage from './KioskImage';
 
 export interface TopBarProps {
   /** Reserved for future use; the navbar's right action is the language toggle. */
@@ -50,7 +51,7 @@ function LiveClock() {
     <time
       suppressHydrationWarning
       aria-label="Waktu saat ini / Current time"
-      className="font-mono text-2xl font-semibold tabular-nums text-kiosk-ink"
+      className="font-mono text-[clamp(1rem,1.8vw,1.5rem)] font-semibold tabular-nums text-kiosk-ink"
     >
       {now ? formatClock(now) : '--:--:--'}
     </time>
@@ -66,51 +67,55 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
   const switchToCode = lang === 'id' ? 'EN' : 'ID';
 
   return (
-    <header className="flex items-center justify-between gap-6 border-b-2 border-kiosk-green-200 bg-kiosk-surface px-6 py-2 shadow-sm">
+    <header className="flex items-center justify-between gap-[clamp(0.5rem,2vw,1.5rem)] border-b-2 border-kiosk-orange-200 bg-kiosk-surface px-[clamp(0.75rem,2vw,1.5rem)] py-2 shadow-sm">
       {/* 1. Brand lockup */}
-      <div className="flex shrink-0 items-center gap-3">
-        <img
+      <div className="flex min-w-0 shrink items-center gap-[clamp(0.5rem,1.2vw,0.75rem)]">
+        <KioskImage
           src={KIOSK_BRAND_LOGO}
           alt="Eduwisata Polinator"
-          className="h-10 w-10 object-contain"
+          className="h-[clamp(2rem,3.2vw,2.75rem)] w-[clamp(2rem,3.2vw,2.75rem)]"
+          fill={false}
         />
-        <span className="flex flex-col leading-tight">
-          <span className="text-lg font-extrabold text-kiosk-ink">
+        <span className="flex min-w-0 flex-col leading-tight">
+          <span className="truncate text-[clamp(0.9rem,1.5vw,1.125rem)] font-extrabold text-kiosk-ink">
             Eduwisata Polinator
           </span>
-          <span className="text-xs font-medium text-kiosk-green-700">
+          <span className="truncate text-[clamp(0.6rem,0.9vw,0.75rem)] font-medium text-kiosk-orange-700">
             Situs Purbakala Pugung Raharjo
           </span>
         </span>
       </div>
 
-      {/* 2. Centered partner / funder logos */}
-      <div className="flex min-w-0 flex-1 items-center justify-center gap-5">
+      {/* 2. Centered partner / funder logos.
+          `min-w-0` + per-logo `shrink` lets the row give up width to the brand
+          lockup and clock before anything overflows the bar. */}
+      <div className="flex min-w-0 flex-1 items-center justify-center gap-[clamp(0.5rem,1.5vw,1.25rem)]">
         {KIOSK_LOGOS.map((logo) => (
-          <img
+          <KioskImage
             key={logo.src}
             src={logo.src}
             alt={logo.alt}
-            title={logo.alt}
-            loading="lazy"
-            decoding="async"
-            className="h-10 w-auto max-w-[88px] object-contain"
+            className="h-[clamp(1.5rem,2.8vw,2.5rem)] max-w-[clamp(48px,7vw,88px)] shrink"
+            fill={false}
           />
         ))}
       </div>
 
       {/* 3. Clock + 4. Language toggle */}
-      <div className="flex shrink-0 items-center gap-4">
+      <div className="flex shrink-0 items-center gap-[clamp(0.5rem,1.5vw,1rem)]">
         <LiveClock />
         <button
           type="button"
           onClick={toggle}
           aria-label={`Ganti bahasa ke ${switchToLabel} / Switch language to ${switchToLabel}`}
-          className="flex min-h-[64px] items-center gap-1.5 rounded-xl bg-kiosk-green-700 px-5 text-kiosk-on-green transition-colors hover:bg-kiosk-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300"
+          className="flex min-h-[clamp(48px,6vh,64px)] items-center gap-1.5 rounded-xl bg-kiosk-orange-700 px-[clamp(0.75rem,1.5vw,1.25rem)] text-kiosk-on-green transition-colors hover:bg-kiosk-orange-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300"
         >
-          <Languages className="h-6 w-6" strokeWidth={2} />
-          <span className="text-base font-medium">{switchToCode}</span>
-          <span className="text-base font-medium opacity-90">{switchToLabel}</span>
+          <Languages className="h-[clamp(1.25rem,2vw,1.5rem)] w-[clamp(1.25rem,2vw,1.5rem)]" strokeWidth={2} />
+          <span className="text-[clamp(0.8rem,1.2vw,1rem)] font-medium">{switchToCode}</span>
+          {/* The full language name is the first thing to go when the bar tightens. */}
+          <span className="hidden text-[clamp(0.8rem,1.2vw,1rem)] font-medium opacity-90 xl:inline">
+            {switchToLabel}
+          </span>
         </button>
       </div>
     </header>

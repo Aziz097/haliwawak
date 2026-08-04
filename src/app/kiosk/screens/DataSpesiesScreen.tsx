@@ -11,8 +11,15 @@
 import { useState } from 'react';
 import { ImageOff, Table } from 'lucide-react';
 import EmptyState from '../components/EmptyState';
+import KioskImage from '../components/KioskImage';
+import { FadeUp, StaggerList, StaggerItem } from '../components/ScreenEntrance';
+import ScreenHeader from '../components/ScreenHeader';
 import SpeciesPhotoPair from '../components/SpeciesPhotoPair';
-import { DATA_SPESIES_COLUMNS, DATA_SPESIES_TITLE } from '../content/i18n';
+import {
+  DATA_SPESIES_COLUMNS,
+  DATA_SPESIES_INTRO,
+  DATA_SPESIES_TITLE,
+} from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
 import ClickableCard from '../components/ClickableCard';
@@ -62,7 +69,7 @@ function resolveIucnBadge(status: string | null): IucnBadge {
 function TaxonField({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1">
-      <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
+      <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-orange-600">
         {label}
       </dt>
       <dd className="font-sans text-[0.9rem] font-semibold text-kiosk-ink">{value || '-'}</dd>
@@ -95,15 +102,14 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?
       ) : (
         <div className="aspect-video w-full overflow-hidden rounded-[1.618rem] bg-kiosk-surface-tint">
           {singlePhoto ? (
-            <img
+            <KioskImage
               src={singlePhoto}
               alt={name}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+              hoverScale
+              className="h-full w-full rounded-[1.618rem]"
             />
           ) : (
-            <span className="flex h-full w-full items-center justify-center text-kiosk-green-300">
+            <span className="flex h-full w-full items-center justify-center text-kiosk-orange-300">
               <ImageOff className="h-12 w-12 opacity-30" aria-hidden="true" />
             </span>
           )}
@@ -115,7 +121,7 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?
         <TaxonField label={t(DATA_SPESIES_COLUMNS.family)} value={species.family} />
         <TaxonField label={t(DATA_SPESIES_COLUMNS.genus)} value={species.genus} />
         <div className="col-span-2 flex flex-col gap-1">
-          <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
+          <dt className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-orange-600">
             {t(DATA_SPESIES_COLUMNS.species)}
           </dt>
           <dd className="flex flex-col">
@@ -129,7 +135,7 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?
 
       {/* IUCN status */}
       <div className="mt-auto flex items-center gap-3 border-t border-kiosk-surface-tint px-2 pt-4">
-        <span className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-green-600">
+        <span className="font-sans text-[0.7rem] font-bold uppercase tracking-widest text-kiosk-orange-600">
           {t(DATA_SPESIES_COLUMNS.iucn)}
         </span>
         <span
@@ -149,25 +155,23 @@ export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
 
   return (
     <section className="flex flex-col gap-[2.618rem] bg-kiosk-bg px-10 py-10 lg:px-14">
-      {/* Heading */}
-      <header className="flex flex-col items-start gap-4 border-b border-kiosk-green-200 pb-8">
-        <span className="flex items-center gap-2 rounded-full border border-kiosk-green-300 bg-kiosk-green-100 px-4 py-1.5 font-sans text-[0.8rem] font-bold uppercase tracking-[0.2em] text-kiosk-green-700">
-          <Table className="h-4 w-4" aria-hidden="true" />
-          {lang === 'id' ? 'Database Bio' : 'Bio Database'}
-        </span>
-        <h2 className="font-serif text-[2.618rem] font-medium leading-none text-kiosk-ink">
-          {t(DATA_SPESIES_TITLE)}
-        </h2>
-      </header>
+      <ScreenHeader
+        icon={Table}
+        eyebrow={{ id: 'Database Bio', en: 'Bio Database' }}
+        title={DATA_SPESIES_TITLE}
+        description={DATA_SPESIES_INTRO}
+      />
 
       {species.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 xl:grid-cols-3">
+        <StaggerList className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 xl:grid-cols-3" delay={0.15}>
           {species.map((record) => (
-            <SpeciesRecord key={record.id} species={record} onSelect={() => setSelectedSpecies(record)} />
+            <StaggerItem key={record.id}>
+              <SpeciesRecord species={record} onSelect={() => setSelectedSpecies(record)} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerList>
       )}
       <SpeciesDetailModal open={selectedSpecies !== null} onClose={() => setSelectedSpecies(null)} species={selectedSpecies} />
     </section>

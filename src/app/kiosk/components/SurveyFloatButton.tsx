@@ -5,6 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import QRCode from 'qrcode';
 import { Star, X } from 'lucide-react';
 import { useLang } from '../i18n/language';
+import KioskImage from './KioskImage';
 
 const SURVEY_URL = 'https://s.itera.id/surveyhaliwawakpugung';
 const APPEAR_DELAY_MS = 10_000;
@@ -131,7 +132,7 @@ export default function SurveyFloatButton() {
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label={lang === 'id' ? 'Tutup' : 'Close'}
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-kiosk-surface-tint text-kiosk-ink transition-colors hover:bg-kiosk-green-100"
+                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-kiosk-surface-tint text-kiosk-ink transition-colors hover:bg-kiosk-orange-100"
               >
                 <X className="h-5 w-5" strokeWidth={2} />
               </button>
@@ -145,10 +146,13 @@ export default function SurveyFloatButton() {
                   rel="noopener noreferrer"
                   aria-label={lang === 'id' ? 'Buka survei' : 'Open survey'}
                 >
-                  <img
+                  <KioskImage
                     src={qrUrl}
                     alt={lang === 'id' ? 'Kode QR survei' : 'Survey QR code'}
-                    className="h-48 w-48 rounded-2xl border-4 border-white bg-white shadow-md"
+                    loading="eager"
+                    imgClassName="rounded-2xl border-4 border-white bg-white shadow-md"
+                    className="h-48 w-48"
+                    fill={false}
                   />
                 </a>
               ) : (

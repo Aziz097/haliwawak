@@ -16,8 +16,8 @@ export default function EditPostPage() {
     });
   }, [params.id]);
 
-  if (loading) return <p className="text-[#6B7280]">Memuat...</p>;
-  if (!data) return <p className="text-[#DC2626]">Data tidak ditemukan</p>;
+  if (loading) return <p className="text-kiosk-ink-muted">Memuat...</p>;
+  if (!data) return <p className="text-danger">Data tidak ditemukan</p>;
 
   return <SpeciesForm initialData={data} isEdit speciesId={String(params.id)} />;
 }

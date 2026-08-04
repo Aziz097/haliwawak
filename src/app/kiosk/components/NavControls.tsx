@@ -8,7 +8,7 @@
  * - Home is always available so a visitor can return to the Site Map (Req 6.3).
  *
  * Every interactive button is at least 64×64 CSS px (Req 1.4). Uses kiosk
- * bright-green design tokens only (no raw hex / legacy colors).
+ * bright-orange design tokens only (no raw hex / legacy colors).
  *
  * Requirements: 1.4, 5.2, 5.3, 6.3
  */
@@ -29,9 +29,8 @@ export interface NavControlsProps {
   onForward: () => void;
 }
 
-  /** Shared classes guaranteeing a ≥64×64px touch target with token colors. */
 const BUTTON_BASE =
-  'flex min-h-[64px] min-w-[64px] items-center justify-center rounded-xl transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300';
+  'group flex min-h-[64px] min-w-[64px] items-center justify-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300 active:scale-[0.98]';
 
 export default function NavControls({
   canGoBack,
@@ -49,7 +48,7 @@ export default function NavControls({
   return (
     <nav
       aria-label="Navigasi kios / Kiosk navigation"
-      className="flex items-center justify-between gap-4 border-t border-kiosk-green-200 bg-kiosk-surface px-6 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.02)]"
+      className="flex items-center justify-between gap-4 border-t border-kiosk-orange-200/60 bg-kiosk-surface/95 px-6 py-3 shadow-[0_-8px_30px_rgba(30,51,40,0.06)] backdrop-blur-md"
     >
       {/* Back - hidden when there is no history */}
       <div className="flex flex-1 justify-start">
@@ -58,10 +57,12 @@ export default function NavControls({
             type="button"
             onClick={onBack}
             aria-label={L.back}
-            className={`${BUTTON_BASE} gap-1.5 bg-kiosk-surface-tint px-4 text-kiosk-ink hover:bg-kiosk-green-100`}
+            className={`${BUTTON_BASE} gap-2 bg-kiosk-surface-tint/80 pl-2 pr-5 text-kiosk-ink ring-1 ring-kiosk-orange-200 hover:bg-kiosk-orange-100 hover:shadow-md`}
           >
-            <ChevronLeft className="h-6 w-6" strokeWidth={2} />
-            <span className="text-base font-medium">{L.back}</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/50 transition-transform duration-500 group-hover:-translate-x-1">
+              <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
+            </span>
+            <span className="text-base font-semibold">{L.back}</span>
           </button>
         )}
       </div>
@@ -72,10 +73,12 @@ export default function NavControls({
           type="button"
           onClick={onHome}
           aria-label={L.home}
-          className={`${BUTTON_BASE} gap-1.5 bg-kiosk-green-700 px-5 text-kiosk-on-green hover:bg-kiosk-green-800`}
+          className={`${BUTTON_BASE} gap-2 bg-kiosk-orange-700 pl-2 pr-5 text-kiosk-on-green shadow-[0_4px_20px_rgba(199,70,15,0.25)] hover:bg-kiosk-orange-800 hover:shadow-[0_6px_28px_rgba(199,70,15,0.35)]`}
         >
-          <Home className="h-5 w-5" strokeWidth={2} />
-          <span className="text-base font-medium">{L.home}</span>
+          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 transition-transform duration-500 group-hover:rotate-12">
+            <Home className="h-5 w-5" strokeWidth={1.5} />
+          </span>
+          <span className="text-base font-semibold">{L.home}</span>
         </button>
       </div>
 
@@ -86,10 +89,12 @@ export default function NavControls({
             type="button"
             onClick={onForward}
             aria-label={L.next}
-            className={`${BUTTON_BASE} gap-1.5 bg-kiosk-green-600 px-4 text-kiosk-on-green hover:bg-kiosk-green-700`}
+            className={`${BUTTON_BASE} gap-2 bg-kiosk-orange-600 pl-5 pr-2 text-kiosk-on-green shadow-[0_4px_20px_rgba(249,115,22,0.25)] hover:bg-kiosk-orange-700 hover:shadow-[0_6px_28px_rgba(249,115,22,0.35)]`}
           >
-            <span className="text-base font-medium">{L.next}</span>
-            <ChevronRight className="h-6 w-6" strokeWidth={2} />
+            <span className="text-base font-semibold">{L.next}</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 transition-transform duration-500 group-hover:translate-x-1">
+              <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
+            </span>
           </button>
         )}
       </div>

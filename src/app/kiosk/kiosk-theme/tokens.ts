@@ -1,5 +1,5 @@
 /**
- * Typed mirror of the bright-green kiosk palette defined in the Tailwind v4
+ * Typed mirror of the bright-orange kiosk palette defined in the Tailwind v4
  * `@theme` block in `globals.css`. This module is the single source of truth
  * for logic/tests (contrast checks, IUCN mapping) that needs the same hex
  * values used in class-based styling.
@@ -17,16 +17,16 @@ export const palette = {
   'surface-tint': '#FFE8D9', // soft peach tint
 
   // Orange scale - bright Claude orange
-  'green-50': '#FFF7ED',
-  'green-100': '#FFE8D9',
-  'green-200': '#FED7AA',
-  'green-300': '#FDBA74',
-  'green-400': '#FB923C',
-  'green-500': '#F97316', // primary orange
-  'green-600': '#EA580C', // primary-strong
-  'green-700': '#C2410C', // good for contrast
-  'green-800': '#9A3412',
-  'green-900': '#7C2D12', // deepest brown
+  'orange-50': '#FFF7ED',
+  'orange-100': '#FFE8D9',
+  'orange-200': '#FED7AA',
+  'orange-300': '#FDBA74',
+  'orange-400': '#FB923C',
+  'orange-500': '#F97316', // primary orange
+  'orange-600': '#EA580C', // primary-strong
+  'orange-700': '#C2410C', // good for contrast
+  'orange-800': '#9A3412',
+  'orange-900': '#7C2D12', // deepest brown
 
   // Text inks
   'ink': '#431407', // primary text is dark brown
@@ -67,15 +67,15 @@ export interface TextPairing {
  * pairing table. Each pairing is documented to meet WCAG AA (>=4.5:1) for the
  * text size it is approved for.
  *
- * Rule: white text uses `green-700` or darker; bright `green-500`/`green-600`
+ * Rule: white text uses `orange-700` or darker; bright `orange-500`/`orange-600`
  * are reserved for fills, icons, borders, and large display text only - never
- * small body text on a green fill (so `green-600` is intentionally excluded
+ * small body text on an orange fill (so `orange-600` is intentionally excluded
  * from this body-text pairing list).
  */
 export const TEXT_PAIRINGS: readonly TextPairing[] = [
   { fg: palette['ink'], bg: palette['bg'], use: 'primary text on canvas' },
   { fg: palette['ink-muted'], bg: palette['bg'], use: 'EN secondary captions' },
-  { fg: palette['on-green'], bg: palette['green-700'], use: 'body text on primary buttons' },
-  { fg: palette['on-green'], bg: palette['green-800'], use: 'text on deep panels' },
-  { fg: palette['on-green'], bg: palette['green-900'], use: 'text on deepest green panels' },
+  { fg: palette['on-green'], bg: palette['orange-700'], use: 'body text on primary buttons' },
+  { fg: palette['on-green'], bg: palette['orange-800'], use: 'text on deep panels' },
+  { fg: palette['on-green'], bg: palette['orange-900'], use: 'text on deepest orange panels' },
 ] as const;

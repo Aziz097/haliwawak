@@ -18,6 +18,7 @@ import { idleCycleIndex } from '../lib/idleCycle';
 import { IDLE_CYCLE_MS } from '../kiosk-theme/motion';
 import { IDLE_PROMPT } from '../content/i18n';
 import { useLang } from '../i18n/language';
+import KioskImage from '../components/KioskImage';
 
 const BRAND_LOGO = '/kupu2-logo-black.svg'; // Use the dark logo for the light background
 
@@ -98,17 +99,18 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
               transition={{ duration: 2.5, ease: 'easeInOut' }}
               className="absolute inset-0"
             >
-              <img
+              <KioskImage
                 src={currentImage}
                 alt=""
-                aria-hidden="true"
-                className="h-full w-full object-cover"
+                loading="eager"
+                className="h-full w-full"
+                imgClassName="object-cover"
               />
               {/* Soft vignette for text legibility if needed, though text is on the left */}
               <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/10" />
             </motion.div>
           ) : (
-            <div className="h-full w-full bg-kiosk-green-100" />
+            <div className="h-full w-full bg-kiosk-orange-100" />
           )}
         </AnimatePresence>
       </div>
@@ -119,7 +121,14 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
         {/* Top: Location & Clock */}
         <div className="flex flex-col gap-[1.618rem]">
           <div className="flex items-center gap-4">
-            <img src={BRAND_LOGO} alt="Logo" className="h-12 w-12 object-contain opacity-80" />
+            <KioskImage
+              src={BRAND_LOGO}
+              alt="Logo"
+              loading="eager"
+              imgClassName="object-contain opacity-80"
+              className="h-12 w-12"
+              fill={false}
+            />
             <IdleClock />
           </div>
           <div className="flex items-center gap-2 text-kiosk-accent-teal">
@@ -137,13 +146,13 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
           transition={{ duration: 1.2, delay: 0.2 }}
           className="flex flex-col items-start gap-[1.618rem]"
         >
-          <span className="flex items-center gap-2 rounded-full border border-kiosk-accent-amber/30 bg-kiosk-accent-amber/10 px-4 py-1.5 font-sans text-[1rem] font-semibold text-kiosk-accent-amber">
+          <span className="flex items-center gap-2 rounded-full border border-kiosk-orange-300 bg-kiosk-orange-100 px-4 py-1.5 font-sans text-[1rem] font-semibold text-kiosk-orange-700">
             <Sparkles className="h-4 w-4" /> Virtual Insektarium
           </span>
 
           <h1 className="font-serif text-[4.236rem] leading-[1.05] tracking-tight text-kiosk-ink">
             Eduwisata<br/>
-            <span className="italic text-kiosk-green-700">Polinator.</span>
+            <span className="italic text-kiosk-orange-700">Polinator</span>
           </h1>
 
           <p className="max-w-md font-sans text-[1rem] leading-relaxed text-kiosk-ink-muted">
@@ -157,7 +166,7 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
         <motion.div
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex w-max items-center gap-3 rounded-full bg-kiosk-green-700 px-[1.618rem] py-[1rem] text-kiosk-on-green shadow-lg transition-transform hover:scale-105 hover:bg-kiosk-green-800"
+          className="flex w-max items-center gap-3 rounded-full bg-kiosk-orange-700 px-[1.618rem] py-[1rem] text-kiosk-on-green shadow-lg transition-transform hover:scale-105 hover:bg-kiosk-orange-800"
         >
           <Hand className="h-6 w-6" />
           <span className="font-sans text-[1rem] font-semibold tracking-wide">{t(IDLE_PROMPT)}</span>

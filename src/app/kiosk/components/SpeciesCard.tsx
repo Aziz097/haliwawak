@@ -4,22 +4,23 @@
  * SpeciesCard - image-dominant card for a single butterfly species.
  *
  * Renders the species' top-view photo as the dominant element (with a
- * token-colored placeholder icon when the photo is missing), a bilingual-style
- * name caption (common name primary, scientific name secondary), and an IUCN
- * conservation-status badge.
+ * token-colored placeholder icon when the photo is missing) via the shared
+ * <KioskImage /> component, a bilingual-style name caption (common name primary,
+ * scientific name secondary), and an IUCN conservation-status badge.
  *
  * The IUCN badge maps known status labels to the `kiosk-iucn-*` design tokens.
  * When the status is null/empty, a NEUTRAL placeholder badge ("N/A") is shown
  * using the `kiosk-iucn-na` token color (Req 14.4).
  *
- * Uses only the bright-green kiosk design tokens (no raw hex / legacy colors).
- * The photo uses a plain <img loading="lazy" /> per the kiosk image strategy.
+ * Uses only the bright-orange kiosk design tokens (no raw hex / legacy colors).
+ * The photo uses the shared <KioskImage /> component for loading skeletons.
  *
  * Requirements: 8.4, 14.3, 14.4
  */
 
 import { ImageOff } from 'lucide-react';
 import type { KioskSpecies } from '../lib/speciesMapping';
+import KioskImage from './KioskImage';
 
 export interface SpeciesCardProps {
   /** The species view model to render. */
@@ -81,17 +82,16 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
 
   const content = (
     <>
-      <div className="relative aspect-square w-full overflow-hidden bg-kiosk-green-100">
+      <div className="relative aspect-square w-full overflow-hidden rounded-[calc(1rem-0.125rem)] bg-kiosk-orange-100">
         {species.topPhotoUrl ? (
-          <img
+          <KioskImage
             src={species.topPhotoUrl}
             alt={name}
-            loading="lazy"
-            className="h-full w-full object-cover"
+            className="h-full w-full"
           />
         ) : (
-          <span className="flex h-full w-full items-center justify-center text-kiosk-green-400">
-            <ImageOff className="h-12 w-12" aria-hidden="true" />
+          <span className="flex h-full w-full items-center justify-center text-kiosk-orange-400">
+            <ImageOff className="h-12 w-12" aria-hidden="true" strokeWidth={1.25} />
           </span>
         )}
 
@@ -118,7 +118,7 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
   );
 
   const frameClass =
-    'flex w-full flex-col overflow-hidden rounded-2xl border border-kiosk-green-200 bg-kiosk-surface shadow-sm';
+    'flex w-full flex-col overflow-hidden rounded-2xl bg-white/60 p-1.5 shadow-[0_4px_20px_-4px_rgba(30,51,40,0.08)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]';
 
   if (interactive) {
     return (
@@ -126,7 +126,7 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
         type="button"
         onClick={() => onSelect?.(species)}
         aria-label={`${name} - ${badge.label}`}
-        className={`${frameClass} text-left transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-green-300`}
+        className={`${frameClass} text-left hover:-translate-y-1 hover:shadow-[0_12px_32px_-8px_rgba(30,51,40,0.15)] hover:bg-white/80 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300`}
       >
         {content}
       </button>

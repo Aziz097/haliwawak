@@ -27,6 +27,7 @@ import ClickableCard from '../components/ClickableCard';
 import Caption from '../components/Caption';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';
+import KioskImage from '../components/KioskImage';
 
 export interface LivingHeritageScreenProps {
   /**
@@ -48,26 +49,43 @@ export default function LivingHeritageScreen({
   heroImageUrl = DEFAULT_HERO_IMAGE,
 }: LivingHeritageScreenProps) {
   const { t } = useLang();
-  const [imageOk, setImageOk] = useState(true);
   const [infoCard, setInfoCard] = useState<InfoCard | null>(null);
 
   return (
     <section className="relative flex h-full w-full overflow-hidden bg-kiosk-bg text-kiosk-ink">
-      {/* Golden Ratio Left Panel (61.8% width): Breathing Hero Imagery */}
-      <div className="relative z-10 h-full w-[61.8%] overflow-hidden rounded-r-[40px] shadow-[20px_0_40px_rgba(30,51,40,0.05)]">
-        {imageOk ? (
-          <img
+      {/* Golden Ratio Left Panel (61.8% width): the opening image.
+          A triptych rather than one photo, because the screen's claim is that
+          culture and nature are one thing here - the butterfly, the standing
+          stones and the stepped pyramid are that claim, side by side. Each
+          photo sits in a cell matching its own orientation: the two portraits
+          stand tall, the landscape gets a wide slot. */}
+      <div className="relative z-10 grid h-full w-[61.8%] grid-cols-[1.3fr_1fr] grid-rows-[1.35fr_1fr] gap-[clamp(0.4rem,0.7vw,0.85rem)] overflow-hidden rounded-r-[40px] p-[clamp(0.4rem,0.7vw,0.85rem)] shadow-[20px_0_40px_rgba(30,51,40,0.05)]">
+        <div className="row-span-2 min-h-0 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.08)]">
+          <KioskImage
             src={heroImageUrl}
-            alt={t(LIVING_HERITAGE_TITLE)}
-            className="h-full w-full object-cover"
-            onError={() => setImageOk(false)}
+            alt="Kupu-kupu ekor walet hinggap di dedaunan kawasan situs"
+            loading="eager"
+            className="h-full w-full"
           />
-        ) : (
-          <div
-            aria-hidden="true"
-            className="h-full w-full bg-kiosk-green-100"
+        </div>
+
+        <div className="min-h-0 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.08)]">
+          <KioskImage
+            src={KIOSK_ASSETS.scenes.livingHeritage[2]}
+            alt="Punden berundak Situs Purbakala Pugung Raharjo"
+            loading="eager"
+            className="h-full w-full"
           />
-        )}
+        </div>
+
+        <div className="min-h-0 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.08)]">
+          <KioskImage
+            src={KIOSK_ASSETS.scenes.livingHeritage[1]}
+            alt="Susunan batu megalitik di kompleks situs"
+            loading="eager"
+            className="h-full w-full"
+          />
+        </div>
       </div>
 
       {/* Golden Ratio Right Panel (38.2% width): Airy Typography & Content */}

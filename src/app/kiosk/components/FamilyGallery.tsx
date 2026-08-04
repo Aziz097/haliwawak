@@ -14,6 +14,7 @@ import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../i18n/language';
 import ClickableCard from './ClickableCard';
 import EmptyState from './EmptyState';
+import KioskImage from './KioskImage';
 
 export interface FamilyGalleryProps {
   /** The butterfly family name this gallery groups (e.g. "Papilionidae"). */
@@ -48,14 +49,14 @@ function SpeciesGalleryCard({
     >
       <div className="relative aspect-square w-full overflow-hidden bg-kiosk-surface-tint">
         {photoUrl ? (
-          <img
+          <KioskImage
             src={photoUrl}
             alt={name}
-            loading="lazy"
-            className="h-full w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+            hoverScale
+            className="h-full w-full"
           />
         ) : (
-          <span className="flex h-full w-full items-center justify-center text-kiosk-green-300">
+          <span className="flex h-full w-full items-center justify-center text-kiosk-orange-300">
             <ImageOff className="h-10 w-10 opacity-30" aria-hidden="true" />
           </span>
         )}
@@ -65,7 +66,7 @@ function SpeciesGalleryCard({
           {name}
         </span>
         {species.scientificName && species.scientificName !== name ? (
-          <span className="font-sans text-[0.8rem] font-bold uppercase italic tracking-widest text-kiosk-green-600">
+          <span className="font-sans text-[0.8rem] font-bold uppercase italic tracking-widest text-kiosk-orange-600">
             {species.scientificName}
           </span>
         ) : null}
@@ -82,11 +83,11 @@ export default function FamilyGallery({ family, species, onSelectSpecies }: Fami
   return (
     <section className="flex flex-col gap-8">
       <header className="flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-kiosk-green-100 text-kiosk-green-700">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-kiosk-orange-100 text-kiosk-orange-700">
           <Tag className="h-5 w-5" strokeWidth={2} />
         </div>
         <h3 className="font-serif text-[2.618rem] text-kiosk-ink">{t(heading)}</h3>
-        <span className="ml-2 rounded-full border border-kiosk-green-200 bg-kiosk-surface px-4 py-1.5 font-sans text-[1rem] font-bold text-kiosk-green-700 shadow-sm">
+        <span className="ml-2 rounded-full border border-kiosk-orange-200 bg-kiosk-surface px-4 py-1.5 font-sans text-[1rem] font-bold text-kiosk-orange-700 shadow-sm">
           {species.length} Spesies
         </span>
       </header>

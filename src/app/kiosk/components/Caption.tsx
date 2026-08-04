@@ -13,6 +13,7 @@
  */
 
 import type { Caption as CaptionType } from '../content/i18n';
+import { sci } from '../content/sci';
 import { useLang } from '../i18n/language';
 
 export type CaptionSize = 'sm' | 'md' | 'lg';
@@ -47,11 +48,11 @@ export function Caption({ caption, subtitle, size = 'md', align }: CaptionProps)
   return (
     <div className={`flex flex-col gap-2 ${alignCls}`}>
       <p className={`text-kiosk-ink ${PRIMARY_SIZE[size]}`}>
-        {t(caption)}
+        {sci(t(caption))}
       </p>
       {subtitle && (
         <p className={`text-kiosk-ink-muted ${SECONDARY_SIZE[size]}`}>
-          {t(subtitle)}
+          {sci(t(subtitle))}
         </p>
       )}
     </div>

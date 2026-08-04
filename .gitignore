@@ -1,9 +1,25 @@
+# Dependencies
 node_modules/
+
+# Build output
 .next/
-.env
-public/uploads/*
-!public/uploads/.gitkeep
 dist/
 *.tsbuildinfo
 next-env.d.ts
-dev.log
+
+# Secrets
+.env
+.env*.local
+
+# Runtime uploads (ephemeral on serverless hosts; never commit user uploads)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Logs
+*.log
+
+# Local tooling scratch output
+.playwright-mcp/
+
+# Deployment
+.vercel

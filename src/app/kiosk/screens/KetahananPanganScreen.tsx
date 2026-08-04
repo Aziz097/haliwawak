@@ -56,7 +56,7 @@ export default function KetahananPanganScreen() {
           measured zero and the photo never appeared. */}
       <FadeUp
         delay={0.1}
-        className="relative flex min-h-0 flex-1 overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]"
+        className="relative flex h-[clamp(9rem,24vh,16rem)] shrink-0 overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]"
       >
         <KioskImage
           src={KIOSK_ASSETS.scenes.ketahananPangan}
@@ -64,11 +64,10 @@ export default function KetahananPanganScreen() {
           imgClassName="object-center"
           className="w-full"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-kiosk-orange-900/40 to-transparent" />
       </FadeUp>
 
       {/* Two icon-led food-security sections. */}
-      <StaggerList className="grid min-h-0 flex-[1.5] grid-cols-1 gap-[1.618rem] overflow-y-auto lg:grid-cols-2" delay={0.2}>
+      <StaggerList className="grid min-h-0 flex-1 grid-cols-1 gap-[clamp(0.75rem,1.4vw,1.618rem)] lg:grid-cols-2" delay={0.2}>
         {FOOD_SECURITY.map((section, idx) => {
           const Icon = SECTION_ICONS[section.icon] ?? Sprout;
           const card = FOOD_SECURITY_INFO_CARDS.find((c) => c.key === section.key);

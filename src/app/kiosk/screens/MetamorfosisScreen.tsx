@@ -22,10 +22,8 @@ import {
   RotateCcw,
   type LucideIcon,
 } from 'lucide-react';
-import KioskImage from '../components/KioskImage';
 import ScreenHeader from '../components/ScreenHeader';
 import { StaggerList, StaggerItem } from '../components/ScreenEntrance';
-import { KIOSK_ASSETS } from '../content/assets';
 import {
   METAMORFOSIS_STAGES,
   METAMORFOSIS_TITLE,
@@ -198,24 +196,19 @@ export default function MetamorfosisScreen() {
           );
         })}
 
-        {/* Hub: the site photo, with the line that explains why this is drawn
-            as a ring rather than a list. */}
-        <div className="col-start-2 row-start-2 z-10 flex min-h-0 flex-col items-center justify-center gap-[clamp(0.3rem,0.9vh,0.8rem)]">
-          {/* Explicit square size: an `aspect-square` box with only a max-height
-              has no width basis to derive from here, so it collapsed to a dot. */}
-          <div className="relative h-[clamp(5rem,14vh,10rem)] w-[clamp(5rem,14vh,10rem)] shrink-0 overflow-hidden rounded-full border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.12)]">
-            <KioskImage
-              src={KIOSK_ASSETS.scenes.metamorfosis}
-              alt="Habitat kupu-kupu di Situs Pugung Raharjo"
-              loading="eager"
-              className="h-full w-full"
-            />
-          </div>
-          <span className="max-w-[26ch] rounded-full border border-kiosk-orange-200 bg-kiosk-bg px-4 py-1.5 text-center font-sans text-[clamp(0.7rem,0.8vw,0.85rem)] font-bold uppercase leading-tight tracking-[0.16em] text-kiosk-orange-700">
+        {/* Hub: what the ring means. A photograph was tried here and did not
+            work - at hub size a caterpillar reads as an unidentifiable scrap,
+            and seating one stage at the centre wrongly implies it outranks the
+            other three. The centre states the rule that makes this a cycle. */}
+        <div className="col-start-2 row-start-2 z-10 flex min-h-0 flex-col items-center justify-center gap-[clamp(0.4rem,1.1vh,0.9rem)] text-center">
+          <span className="flex h-[clamp(2.75rem,6.5vh,4.5rem)] w-[clamp(2.75rem,6.5vh,4.5rem)] shrink-0 items-center justify-center rounded-full bg-kiosk-orange-100 text-kiosk-orange-700 ring-4 ring-white">
+            <RotateCcw className="h-[52%] w-[52%]" strokeWidth={2} aria-hidden="true" />
+          </span>
+          <p className="max-w-[22ch] font-serif text-[clamp(0.95rem,1.1vw,1.3rem)] font-medium leading-snug text-kiosk-ink">
             {lang === 'id'
               ? 'Imago bertelur - siklus dimulai lagi'
               : 'The adult lays eggs - the cycle begins again'}
-          </span>
+          </p>
         </div>
       </StaggerList>
 

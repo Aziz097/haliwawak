@@ -3,12 +3,13 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
-      bodySizeLimit: '50mb',
+      // Vercel rejects serverless request bodies over 4.5 MB, so a 50 MB limit
+      // here only moved the failure to a place with a worse error message.
+      bodySizeLimit: '4mb',
     },
   },
   images: {
     remotePatterns: [],
-    unoptimized: true,
   },
   eslint: {
     // Project has pre-existing lint debt outside the kiosk scope.

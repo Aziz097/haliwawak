@@ -1,5 +1,5 @@
-import { db } from './index';
-import { staticPages } from './schema';
+import { db } from '../src/db';
+import { staticPages } from '../src/db/schema';
 import { eq } from 'drizzle-orm';
 
 const PAGES = [

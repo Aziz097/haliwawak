@@ -17,7 +17,7 @@ import type { KioskSpecies } from '../lib/speciesMapping';
 import { idleCycleIndex } from '../lib/idleCycle';
 import { IDLE_CYCLE_MS } from '../kiosk-theme/motion';
 import { IDLE_PROMPT } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import KioskImage from '../components/KioskImage';
 
 const BRAND_LOGO = '/kupu2-logo-black.svg'; // Use the dark logo for the light background

@@ -13,7 +13,7 @@
 
 import { Info } from 'lucide-react';
 import { DATA_NOTICE, type Caption } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface DataNoticeProps {
   /** Bilingual notice message. Defaults to the shared fallback-data notice. */

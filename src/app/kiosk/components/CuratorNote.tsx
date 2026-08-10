@@ -9,7 +9,7 @@
 import { Sparkles } from 'lucide-react';
 
 import type { Caption } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface CuratorNoteProps {
   /** The attribution sentence. */

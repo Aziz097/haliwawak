@@ -22,7 +22,7 @@ import {
 } from '../content/i18n';
 import { KIOSK_ASSETS } from '../content/assets';
 import { fadeUp, stagger } from '../kiosk-theme/motion';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';
 import Caption from '../components/Caption';
 import InfoHotspot from '../components/InfoHotspot';

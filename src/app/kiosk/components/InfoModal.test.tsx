@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import InfoModal from './InfoModal';
 import type { InfoCard } from '../content/i18n';
 
-vi.mock('../i18n/language', () => ({
+vi.mock('../language', () => ({
   useLang: () => ({
     lang: 'id',
     t: (caption: { id: string; en: string }) => caption.id,

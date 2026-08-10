@@ -11,7 +11,7 @@
 import { ImageOff, Tag } from 'lucide-react';
 import { FAMILY_LABELS, type Caption } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import ClickableCard from './ClickableCard';
 import EmptyState from './EmptyState';
 import KioskImage from './KioskImage';

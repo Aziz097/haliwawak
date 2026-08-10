@@ -17,7 +17,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import type { Caption } from '../content/i18n';
+import type { Caption } from './content/i18n';
 
 export type Lang = 'id' | 'en';
 

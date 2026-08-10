@@ -21,7 +21,7 @@ import {
   DATA_SPESIES_TITLE,
 } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';
 import SpeciesDetailModal from '../components/SpeciesDetailModal';
 

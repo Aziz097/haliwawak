@@ -2,7 +2,7 @@
 
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import { sci } from '../content/sci';
 import type { InfoCard } from '../content/i18n';
 
@@ -20,7 +20,7 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
     <Dialog.Root open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <Dialog.Portal>
         <Dialog.Overlay
-          className="fixed inset-0 z-50 bg-kiosk-ink/55 backdrop-blur-sm"
+          className="fixed inset-0 z-50 bg-kiosk-ink/40"
           onClick={onClose}
         />
         <Dialog.Content

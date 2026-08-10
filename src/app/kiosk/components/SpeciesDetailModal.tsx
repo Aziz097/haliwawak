@@ -3,7 +3,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { X } from 'lucide-react';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import { getSpeciesDetail } from '../content/speciesDetails';
 import KioskImage from './KioskImage';
 import type { KioskSpecies } from '../lib/speciesMapping';

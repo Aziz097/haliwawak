@@ -17,7 +17,7 @@
 import { useEffect, useState } from 'react';
 import { Languages } from 'lucide-react';
 import { KIOSK_BRAND_LOGO, KIOSK_LOGOS } from '../content/assets';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import KioskImage from './KioskImage';
 
 export interface TopBarProps {

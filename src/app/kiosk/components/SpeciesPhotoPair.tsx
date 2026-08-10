@@ -14,7 +14,7 @@
  */
 
 import { ImageOff } from 'lucide-react';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import KioskImage from './KioskImage';
 
 export interface SpeciesPhotoPairProps {

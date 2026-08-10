@@ -106,14 +106,8 @@
 /* Kiosk screens that legitimately run long (species catalogue, credits) must
    SHOW that they scroll - a touch panel gives no other hint. Sized for a
    fingertip and coloured against the cream canvas, not the old dark theme. */
-.kiosk-scrollbar::-webkit-scrollbar { width: 14px; }
-.kiosk-scrollbar::-webkit-scrollbar-track { background: #FFE8D9; border-radius: 7px; }
-.kiosk-scrollbar::-webkit-scrollbar-thumb {
-  background: #FB923C;
-  border: 3px solid #FFE8D9;
-  border-radius: 7px;
-}
-.kiosk-scrollbar::-webkit-scrollbar-thumb:active { background: #C2410C; }
+.kiosk-scrollbar::-webkit-scrollbar { width: 0; display: none; }
+.kiosk-scrollbar { scrollbar-width: none; }
 
 /* ── Kiosk Site Map tile container queries ─────────────────────────────── */
 .kiosk-tile-container {

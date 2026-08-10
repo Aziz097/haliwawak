@@ -13,7 +13,7 @@ import SiteMapTile from '../components/SiteMapTile';
 import { StaggerList, StaggerItem } from '../components/ScreenEntrance';
 import type { Screen } from '../navigation/screens';
 import { SITE_MAP_TILES } from '../navigation/screens';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface SiteMapScreenProps {
   /** Invoked with the chosen tile's target screen when a tile is activated. */

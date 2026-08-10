@@ -9,7 +9,6 @@
     "lint": "eslint src/app/kiosk",
     "lint:all": "eslint .",
     "seed": "tsx scripts/seed-users.ts",
-    "seed:species": "tsx scripts/seed-species.ts",
     "seed:articles": "tsx scripts/seed-articles.ts",
     "seed:supabase": "tsx scripts/seed-supabase.ts",
     "db:generate": "drizzle-kit generate",

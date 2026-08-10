@@ -14,7 +14,7 @@
  */
 
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface NavControlsProps {
   /** Whether there is history to go back to; back is hidden when false. */

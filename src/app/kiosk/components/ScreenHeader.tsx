@@ -19,7 +19,7 @@ import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import type { Caption } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import { FadeUp } from './ScreenEntrance';
 
 export interface ScreenHeaderProps {

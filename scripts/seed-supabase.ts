@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import { db } from '../src/db';
 import { accounts, species } from '../src/db/schema';
-import { CORRECTED_SPECIES } from '../src/db/seed-species-corrected';
-import { seedPages } from '../src/db/seed-pages';
+import { CORRECTED_SPECIES } from './seed-species-corrected';
+import { seedPages } from './seed-pages';
 import bcrypt from 'bcryptjs';
 import { sql } from 'drizzle-orm';
 

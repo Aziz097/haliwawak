@@ -14,7 +14,7 @@
 
 import type { Caption as CaptionType } from '../content/i18n';
 import { sci } from '../content/sci';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export type CaptionSize = 'sm' | 'md' | 'lg';
 

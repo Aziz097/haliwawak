@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import QRCode from 'qrcode';
 import { Star, X } from 'lucide-react';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import KioskImage from './KioskImage';
 
 const SURVEY_URL = 'https://s.itera.id/surveyhaliwawakpugung';

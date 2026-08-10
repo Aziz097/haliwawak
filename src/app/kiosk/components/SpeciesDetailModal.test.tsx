@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import SpeciesDetailModal from './SpeciesDetailModal';
 import type { KioskSpecies } from '../lib/speciesMapping';
 
-vi.mock('../i18n/language', () => ({
+vi.mock('../language', () => ({
   useLang: () => ({
     lang: 'id',
     t: (caption: { id: string; en: string }) => caption.id,

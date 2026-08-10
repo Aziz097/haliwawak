@@ -12,7 +12,7 @@
 
 import { Inbox } from 'lucide-react';
 import { EMPTY_STATE, type Caption } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface EmptyStateProps {
   /** Bilingual message to display. Defaults to the shared empty-state caption. */

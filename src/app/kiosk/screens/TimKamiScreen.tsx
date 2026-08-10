@@ -17,7 +17,7 @@ import KioskImage from '../components/KioskImage';
 import { FadeUp, StaggerList, StaggerItem } from '../components/ScreenEntrance';
 import ScreenHeader from '../components/ScreenHeader';
 import { KIOSK_LOGOS } from '../content/assets';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import {
   CONTRACTS,
   FUNDING_LABEL,

@@ -24,7 +24,7 @@ import {
   EKOSISTEM_INFO_CARDS,
   type InfoCard,
 } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';
 import InfoHotspot from '../components/InfoHotspot';
 import InfoModal from '../components/InfoModal';

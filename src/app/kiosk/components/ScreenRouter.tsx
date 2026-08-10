@@ -142,7 +142,7 @@ export default function ScreenRouter({
             <motion.div
               layoutId={morphId(current)}
               transition={MORPH_SPRING}
-              className="flex min-h-full w-full flex-col overflow-hidden bg-kiosk-bg [&>*]:flex-1"
+              className="flex h-full w-full flex-col overflow-hidden bg-kiosk-bg [&>*]:flex-1"
             >
               {screen}
             </motion.div>

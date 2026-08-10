@@ -24,7 +24,7 @@ import { useIdleTimer } from './hooks/useIdleTimer';
 import { IDLE_TIMEOUT_MS } from './kiosk-theme/motion';
 import { STATIC_SPECIES } from './content/staticSpecies';
 import { enrichSpeciesPhotos } from './content/speciesPhotos';
-import { LanguageProvider } from './i18n/language';
+import { LanguageProvider } from './language';
 import KioskShell from './components/KioskShell';
 
 export default function KioskPage() {

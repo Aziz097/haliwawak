@@ -12,7 +12,7 @@
 
 import { Loader2 } from 'lucide-react';
 import { LOADING_MESSAGE, type Caption } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface LoadingIndicatorProps {
   /** Bilingual message to display. Defaults to the shared loading caption. */

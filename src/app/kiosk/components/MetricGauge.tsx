@@ -13,7 +13,7 @@
 import React from 'react';
 import { Caption } from './Caption';
 import type { Caption as CaptionType } from '../content/i18n';
-import { useLang } from '../i18n/language';
+import { useLang } from '../language';
 
 export interface MetricGaugeProps {
   /** The metric value to display prominently (e.g. "2,77" or "0,00 – 0,13"). */
@@ -85,7 +85,7 @@ function RadialGauge({ value, fraction }: { value: string; fraction: number }) {
         // A range like "0,00 – 0,13" is far wider than a single figure and
         // spills out of the ring at the headline size.
         className={`fill-kiosk-ink font-serif font-semibold ${
-          value.length > 6 ? 'text-[1.5rem]' : 'text-[2.618rem]'
+          value.length > 6 ? 'text-[1.8rem]' : 'text-[2.618rem]'
         }`}
       >
         {value}

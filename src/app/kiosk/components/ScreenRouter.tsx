@@ -130,7 +130,7 @@ export default function ScreenRouter({
     // one waiting for the other to leave. Overlap is also what makes the
     // shared-element morph possible at all.
     <div className="relative h-full w-full overflow-hidden">
-      <AnimatePresence custom={direction} initial={false}>
+      <AnimatePresence custom={direction} initial={false} mode={morphFromTile ? 'sync' : 'wait'}>
         <motion.div
           key={current}
           custom={direction}

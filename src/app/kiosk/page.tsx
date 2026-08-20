@@ -26,6 +26,7 @@ import { STATIC_SPECIES } from './content/staticSpecies';
 import { enrichSpeciesPhotos } from './content/speciesPhotos';
 import { LanguageProvider } from './language';
 import KioskShell from './components/KioskShell';
+import KioskOrientationGuard from './components/KioskOrientationGuard';
 
 export default function KioskPage() {
   const { state, go, back, home, start, resetIdle, canGoBack, nextScreen } =
@@ -49,20 +50,22 @@ export default function KioskPage() {
   };
 
   return (
-    <LanguageProvider initial="id">
-      <KioskShell
-        current={state.current}
-        direction={state.direction}
-        species={species}
-        canGoBack={canGoBack}
-        hasNext={nextScreen !== null}
-        usedFallback={false}
-        onStart={handleStart}
-        onSelectTile={go}
-        onBack={back}
-        onForward={() => nextScreen && go(nextScreen)}
-        onHome={home}
-      />
-    </LanguageProvider>
+    <KioskOrientationGuard>
+      <LanguageProvider initial="id">
+        <KioskShell
+          current={state.current}
+          direction={state.direction}
+          species={species}
+          canGoBack={canGoBack}
+          hasNext={nextScreen !== null}
+          usedFallback={false}
+          onStart={handleStart}
+          onSelectTile={go}
+          onBack={back}
+          onForward={() => nextScreen && go(nextScreen)}
+          onHome={home}
+        />
+      </LanguageProvider>
+    </KioskOrientationGuard>
   );
 }

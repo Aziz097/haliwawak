@@ -25,9 +25,9 @@ export const IDLE_TIMEOUT_MS = 180000;
 
 /** Content block entering: fade in and rise with a touch of blur. */
 export const fadeUp: Variants = {
-  initial: { opacity: 0, y: 30, filter: 'blur(4px)' },
-  animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: EASING } },
-  exit: { opacity: 0, y: -20, filter: 'blur(4px)', transition: { duration: 0.3 } },
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.32, ease: EASING } },
+  exit: { opacity: 0, y: -12, transition: { duration: 0.18 } },
 };
 
 /** Container that staggers its children's entrance. */
@@ -37,9 +37,9 @@ export const stagger: Variants = {
 
 /** Emphasis variant for tiles / detail content: scale + fade. */
 export const morphScale: Variants = {
-  initial: { opacity: 0, scale: 0.94, filter: 'blur(6px)' },
-  animate: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 0.6, ease: EASING } },
-  exit: { opacity: 0, scale: 1.03, filter: 'blur(4px)', transition: { duration: 0.3 } },
+  initial: { opacity: 0, scale: 0.98 },
+  animate: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: EASING } },
+  exit: { opacity: 0, scale: 1.01, transition: { duration: 0.18 } },
 };
 
 /**
@@ -67,17 +67,13 @@ export const screenMorphVariants: Variants = {
   }),
   center: {
     opacity: 1,
-    scale: 1,
     x: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.55, ease: EASING },
+    transition: { duration: 0.28, ease: EASING },
   },
   exit: (direction: number) => ({
     opacity: 0,
-    scale: 1.03,
     x: direction < 0 ? 48 : -48,
-    filter: 'blur(6px)',
-    transition: { duration: 0.32, ease: EASING_SNAP },
+    transition: { duration: 0.18, ease: EASING_SNAP },
   }),
 };
 

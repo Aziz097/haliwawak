@@ -23,7 +23,7 @@ export const IDLE_CYCLE_MS = 5000;
 /** Inactivity timeout that returns the kiosk to the idle screen (ms). */
 export const IDLE_TIMEOUT_MS = 180000;
 
-/** Content block entering: fade in and rise with a touch of blur. */
+/** Content block entering: lightweight fade in and rise. */
 export const fadeUp: Variants = {
   initial: { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.32, ease: EASING } },
@@ -55,15 +55,13 @@ export const slideVariants: Variants = {
 /**
  * Flow transition: a soft crossfade-morph that replaces the hard horizontal
  * slide. Keeps a small directional drift (48px, vs the slide's 160px) so the
- * move still reads as forward/back, but the dominant motion is scale + blur —
- * which reads as one screen morphing into the next rather than sliding past it.
+ * move still reads as forward/back, but the dominant motion is opacity + drift,
+ * which is inexpensive on kiosk hardware.
  */
 export const screenMorphVariants: Variants = {
   enter: (direction: number) => ({
     opacity: 0,
-    scale: 0.96,
     x: direction > 0 ? 48 : -48,
-    filter: 'blur(8px)',
   }),
   center: {
     opacity: 1,

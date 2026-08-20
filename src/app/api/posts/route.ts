@@ -1,7 +1,8 @@
 import { db } from '@/db';
 import { species } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import { NextRequest, NextResponse } from 'next/server';
+import { invalidateSpeciesCache } from '@/lib/public-cache';
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
@@ -15,5 +16,6 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const result = await db.insert(species).values(body).returning();
+  invalidateSpeciesCache();
   return NextResponse.json(result[0], { status: 201 });
 }

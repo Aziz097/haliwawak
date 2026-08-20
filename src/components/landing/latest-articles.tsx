@@ -1,7 +1,9 @@
 import Link from 'next/link';
-import { BookOpen, ChevronRight, ImageOff } from 'lucide-react';
+import { ChevronRight, ImageOff } from 'lucide-react';
+import PublicImage from '@/components/shared/public-image';
+import type { PublicArticleListItem } from '@/lib/public-data';
 
-export default function LatestArticles({ articles }: { articles: any[] }) {
+export default function LatestArticles({ articles }: { articles: PublicArticleListItem[] }) {
   if (articles.length === 0) {
     return null;
   }
@@ -26,7 +28,7 @@ export default function LatestArticles({ articles }: { articles: any[] }) {
             className="group md:col-span-2 bg-white border border-kiosk-surface-tint rounded-2xl overflow-hidden hover:border-kiosk-accent-teal/30 transition-all">
             <div className="aspect-[2/1] bg-kiosk-surface-tint relative">
               {featured.thumbnailUrl ? (
-                <img src={featured.thumbnailUrl} alt={featured.title} className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                <PublicImage src={featured.thumbnailUrl} alt={featured.title} fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-12 h-12 text-kiosk-ink-muted/30" /></div>
               )}
@@ -38,12 +40,12 @@ export default function LatestArticles({ articles }: { articles: any[] }) {
             </div>
           </Link>
           <div className="flex flex-col gap-6">
-            {side.map((a: any) => (
+            {side.map((a) => (
               <Link key={a.id} href={`/edukasi/${a.slug}`}
                 className="group flex gap-4 bg-white border border-kiosk-surface-tint rounded-2xl p-4 hover:border-kiosk-accent-teal/30 transition-all">
-                <div className="w-24 h-24 shrink-0 bg-kiosk-surface-tint rounded-xl overflow-hidden">
+                <div className="relative w-24 h-24 shrink-0 bg-kiosk-surface-tint rounded-xl overflow-hidden">
                   {a.thumbnailUrl ? (
-                    <img src={a.thumbnailUrl} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <PublicImage src={a.thumbnailUrl} alt={a.title} fill sizes="96px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-6 h-6 text-kiosk-ink-muted/30" /></div>
                   )}

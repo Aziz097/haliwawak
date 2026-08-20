@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Bug, ChevronLeft } from 'lucide-react';
+import type { PublicSpeciesDetail } from '@/lib/public-data';
 
 const IUCN: Record<string, { bg: string }> = {
   'Least Concern': { bg: '#059669' },
@@ -12,7 +13,7 @@ const IUCN: Record<string, { bg: string }> = {
   'Critically Endangered': { bg: '#7F1D1D' },
 };
 
-export default function SpeciesDetailClient({ species: s }: { species: any }) {
+export default function SpeciesDetailClient({ species: s }: { species: PublicSpeciesDetail }) {
   const [tab, setTab] = useState<'deskripsi' | 'ekologi'>('deskripsi');
   const [mainPhoto, setMainPhoto] = useState<string | null>(null);
   const iucn = s.iucnStatus ? IUCN[s.iucnStatus] : null;

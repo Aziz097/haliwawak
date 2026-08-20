@@ -1,10 +1,8 @@
-import { db } from '@/db';
-import { staticPages } from '@/db/schema';
-import { eq } from 'drizzle-orm';
 import { MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
+import { getPublicStaticPage } from '@/lib/public-data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Tentang - Situs Purbakala Pugung Raharjo',
@@ -66,7 +64,7 @@ const FALLBACK_CONTENT = `
 `;
 
 export default async function TentangPage() {
-  const page = await db.select().from(staticPages).where(eq(staticPages.slug, 'tentang-kami')).limit(1).then(r => r[0]);
+  const page = await getPublicStaticPage('tentang-kami');
 
   if (page && page.isActive) {
     return (

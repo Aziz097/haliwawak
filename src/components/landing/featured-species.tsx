@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { Bug, ChevronRight } from 'lucide-react';
+import PublicImage from '@/components/shared/public-image';
+import type { PublicSpeciesListItem } from '@/lib/public-data';
 
 const IUCN_BADGE: Record<string, { color: string; bg: string }> = {
   'Least Concern': { color: '#065F46', bg: '#D1FAE5' },
@@ -18,7 +20,7 @@ function slugify(s: string, id: number) {
   return s?.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-') || String(id);
 }
 
-export default function FeaturedSpecies({ species, featuredSpecies }: { species: any[]; featuredSpecies?: any[] }) {
+export default function FeaturedSpecies({ species, featuredSpecies }: { species: PublicSpeciesListItem[]; featuredSpecies?: PublicSpeciesListItem[] }) {
   const displaySpecies = (featuredSpecies && featuredSpecies.length > 0) ? featuredSpecies : species;
   if (displaySpecies.length === 0) {
     return (
@@ -50,7 +52,7 @@ export default function FeaturedSpecies({ species, featuredSpecies }: { species:
           <Link href={`/katalog/${cover.slug || slugify(cover.commonName, cover.id)}`}
             className="group relative md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden bg-white border border-kiosk-surface-tint hover:border-kiosk-accent-teal/30 transition-all">
             {cover.primaryPhotoUrl ? (
-              <img src={cover.primaryPhotoUrl} alt={cover.commonName} className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              <PublicImage src={cover.primaryPhotoUrl} alt={cover.commonName} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover group-hover:scale-[1.02] transition-transform duration-700" />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-kiosk-surface-tint"><Bug className="w-16 h-16 text-kiosk-accent-teal/30" /></div>
             )}
@@ -66,13 +68,13 @@ export default function FeaturedSpecies({ species, featuredSpecies }: { species:
               </span>
             )}
           </Link>
-          {rest.map((s: any) => {
+          {rest.map((s) => {
             const href = `/katalog/${s.slug || slugify(s.commonName, s.id)}`;
             return (
               <Link key={s.id} href={href}
                 className="group relative rounded-2xl overflow-hidden bg-white border border-kiosk-surface-tint hover:border-kiosk-accent-teal/30 transition-all">
                 {s.primaryPhotoUrl ? (
-                  <img src={s.primaryPhotoUrl} alt={s.commonName} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <PublicImage src={s.primaryPhotoUrl} alt={s.commonName} fill sizes="(min-width: 768px) 25vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-kiosk-surface-tint"><Bug className="w-8 h-8 text-kiosk-accent-teal/30" /></div>
                 )}

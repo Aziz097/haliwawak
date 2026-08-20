@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Playfair_Display, Source_Serif_4 } from 'next/font/google';
+import { Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
 const jakarta = Plus_Jakarta_Sans({
@@ -12,12 +12,6 @@ const jakarta = Plus_Jakarta_Sans({
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
-  display: 'swap',
-});
-
-const sourceSerif = Source_Serif_4({
-  subsets: ['latin'],
-  variable: '--font-source-serif',
   display: 'swap',
 });
 
@@ -41,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${jakarta.variable} ${playfair.variable} ${sourceSerif.variable}`}>
+    <html lang="id" className={`${jakarta.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
       </body>

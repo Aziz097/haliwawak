@@ -1,17 +1,15 @@
-import { db } from '@/db';
-import { staticPages } from '@/db/schema';
-import { eq } from 'drizzle-orm';
 import { Clock, Ticket, MapPin, Calendar } from 'lucide-react';
 import type { Metadata } from 'next';
+import { getPublicStaticPage } from '@/lib/public-data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Kunjungi - Situs Purbakala Pugung Raharjo',
 };
 
 export default async function KunjungiPage() {
-  const page = await db.select().from(staticPages).where(eq(staticPages.slug, 'cara-berkunjung')).limit(1).then(r => r[0]);
+  const page = await getPublicStaticPage('cara-berkunjung');
 
   if (page && page.isActive) {
     return (

@@ -8,6 +8,7 @@
  * Requirements: 8.5
  */
 
+import { memo } from 'react';
 import { ImageOff, Tag } from 'lucide-react';
 import { FAMILY_LABELS, type Caption } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
@@ -76,7 +77,7 @@ function SpeciesGalleryCard({
 }
 
 /** A family-grouped gallery grid with elegant headings and empty fallback. */
-export default function FamilyGallery({ family, species, onSelectSpecies }: FamilyGalleryProps) {
+function FamilyGallery({ family, species, onSelectSpecies }: FamilyGalleryProps) {
   const { t } = useLang();
   const heading = familyCaption(family);
 
@@ -106,3 +107,5 @@ export default function FamilyGallery({ family, species, onSelectSpecies }: Fami
     </section>
   );
 }
+
+export default memo(FamilyGallery);

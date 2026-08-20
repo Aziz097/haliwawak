@@ -1,4 +1,4 @@
-import NavbarWrapper from '@/components/landing/navbar-wrapper';
+import Navbar from '@/components/landing/navbar';
 
 export default function PublicLayout({
   children,
@@ -7,7 +7,7 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <NavbarWrapper />
+      <Navbar />
       {children}
     </>
   );

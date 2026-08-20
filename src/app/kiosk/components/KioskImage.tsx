@@ -32,6 +32,8 @@ export interface KioskImageProps {
   hoverScale?: boolean;
   /** Loading strategy. */
   loading?: 'eager' | 'lazy';
+  /** Browser fetch priority for above-the-fold kiosk assets. */
+  fetchPriority?: 'high' | 'low' | 'auto';
   /** Called when the image fails to load. */
   onError?: () => void;
 }
@@ -44,6 +46,7 @@ export default function KioskImage({
   fill = true,
   hoverScale = false,
   loading = 'lazy',
+  fetchPriority = 'auto',
   onError,
 }: KioskImageProps) {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +76,7 @@ export default function KioskImage({
           src={src}
           alt={alt}
           loading={loading}
+          fetchPriority={fetchPriority}
           decoding="async"
           onLoad={() => setLoaded(true)}
           onError={() => {

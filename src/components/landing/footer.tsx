@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -16,7 +17,7 @@ export default function Footer() {
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="mb-4 flex items-center gap-3">
-              <img src="/kupu-logo-white.svg" alt="Logo" className="h-10 w-10 opacity-90" />
+              <Image src="/kupu-logo-white.svg" alt="Logo" width={40} height={40} className="opacity-90" />
               <span className="font-heading text-lg font-bold tracking-wide text-white">Eduwisata Polinator</span>
             </div>
             <p className="max-w-sm text-sm leading-relaxed">

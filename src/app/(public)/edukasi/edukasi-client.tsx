@@ -3,14 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { BookOpen, Search, ImageOff } from 'lucide-react';
+import PublicImage from '@/components/shared/public-image';
+import type { PublicArticleListItem } from '@/lib/public-data';
 
-export default function EdukasiClient({ articles }: { articles: any[] }) {
+export default function EdukasiClient({ articles }: { articles: PublicArticleListItem[] }) {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('Semua');
 
-  const categories = ['Semua', ...new Set(articles.map((a: any) => a.category).filter(Boolean))];
+  const categories = ['Semua', ...new Set(articles.map((a) => a.category).filter(Boolean))];
 
-  const filtered = articles.filter((a: any) => {
+  const filtered = articles.filter((a) => {
     const matchSearch = !search ||
       a.title?.toLowerCase().includes(search.toLowerCase()) ||
       a.summary?.toLowerCase().includes(search.toLowerCase());
@@ -56,15 +58,15 @@ export default function EdukasiClient({ articles }: { articles: any[] }) {
         </div>
       ) : (
         <div className="flex flex-col gap-5">
-          {filtered.map((a: any) => (
+          {filtered.map((a) => (
             <Link
               key={a.id}
               href={`/edukasi/${a.slug}`}
               className="group flex flex-col md:flex-row gap-6 bg-card-bg border border-card-border rounded-2xl p-5 hover:border-primary/30 hover:shadow-md transition-all"
             >
-              <div className="w-full md:w-48 h-40 md:h-32 bg-primary-light rounded-xl overflow-hidden shrink-0">
+              <div className="relative w-full md:w-48 h-40 md:h-32 bg-primary-light rounded-xl overflow-hidden shrink-0">
                 {a.thumbnailUrl ? (
-                  <img src={a.thumbnailUrl} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <PublicImage src={a.thumbnailUrl} alt={a.title} fill sizes="(min-width: 768px) 192px, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-8 h-8 text-primary/30" /></div>
                 )}

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Bug, Search, ImageOff } from 'lucide-react';
+import PublicImage from '@/components/shared/public-image';
+import type { PublicSpeciesListItem } from '@/lib/public-data';
 
 const FAMILIES = ['Semua', 'Nymphalidae', 'Papilionidae', 'Pieridae', 'Hesperidae'];
 
@@ -23,11 +25,11 @@ function slugify(s: string, id: number) {
   return s?.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-') || String(id);
 }
 
-export default function CatalogClient({ species }: { species: any[] }) {
+export default function CatalogClient({ species }: { species: PublicSpeciesListItem[] }) {
   const [search, setSearch] = useState('');
   const [family, setFamily] = useState('Semua');
 
-  const filtered = species.filter((s: any) => {
+  const filtered = species.filter((s) => {
     const matchSearch = !search ||
       s.commonName?.toLowerCase().includes(search.toLowerCase()) ||
       s.scientificName?.toLowerCase().includes(search.toLowerCase());
@@ -73,9 +75,10 @@ export default function CatalogClient({ species }: { species: any[] }) {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((s: any) => {
+          {filtered.map((s) => {
             const href = `/katalog/${s.slug || slugify(s.commonName, s.id)}`;
-            const badge = s.iucnStatus ? IUCN_BADGE[s.iucnStatus] : null;
+            const iucnStatus = s.iucnStatus;
+            const badge = iucnStatus ? IUCN_BADGE[iucnStatus] : null;
             return (
               <Link
                 key={s.id}
@@ -84,13 +87,13 @@ export default function CatalogClient({ species }: { species: any[] }) {
               >
                 <div className="aspect-[4/3] bg-primary-light relative">
                   {s.primaryPhotoUrl ? (
-                    <img src={s.primaryPhotoUrl} alt={s.commonName} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <PublicImage src={s.primaryPhotoUrl} alt={s.commonName} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-10 h-10 text-primary/30" /></div>
                   )}
                   {badge && (
                     <span className="absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-md" style={{ color: badge.color, background: badge.bg }}>
-                      {IUCN_ABBR[s.iucnStatus] || s.iucnStatus}
+                      {iucnStatus ? IUCN_ABBR[iucnStatus] || iucnStatus : null}
                     </span>
                   )}
                 </div>

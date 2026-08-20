@@ -8,6 +8,13 @@
       "when": 1781544722076,
       "tag": "0000_minor_ares",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787221115526,
+      "tag": "0001_minor_vapor",
+      "breakpoints": true
     }
   ]
 }

@@ -8,7 +8,7 @@
  * Requirements: 8.1, 8.2, 8.3, 8.4, 8.5
  */
 
-import { useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Fingerprint } from 'lucide-react';
 import FamilyGallery from '../components/FamilyGallery';
 import KioskImage from '../components/KioskImage';
@@ -34,10 +34,13 @@ export interface VirtualInsektariumScreenProps {
  */
 const INSEKTARIUM_FAMILIES = ['Papilionidae', 'Pieridae', 'Nymphalidae'] as const;
 
-export default function VirtualInsektariumScreen({
+function VirtualInsektariumScreen({
   species,
 }: VirtualInsektariumScreenProps) {
-  const grouped = groupByFamily(species, [...INSEKTARIUM_FAMILIES]);
+  const grouped = useMemo(
+    () => groupByFamily(species, [...INSEKTARIUM_FAMILIES]),
+    [species],
+  );
   const [selectedSpecies, setSelectedSpecies] = useState<KioskSpecies | null>(null);
 
   return (
@@ -53,7 +56,10 @@ export default function VirtualInsektariumScreen({
       {/* Galleries */}
       <StaggerList className="flex flex-col gap-20" delay={0.15}>
         {INSEKTARIUM_FAMILIES.map((family) => (
-          <StaggerItem key={family}>
+          <StaggerItem
+            key={family}
+            className="[content-visibility:auto] [contain-intrinsic-size:0_900px]"
+          >
             <div className="flex flex-col gap-8">
               {/* Hero Collage for the Family */}
               <div className="overflow-hidden rounded-[2.618rem] border-4 border-white bg-kiosk-surface shadow-md">
@@ -61,6 +67,8 @@ export default function VirtualInsektariumScreen({
                   src={KIOSK_ASSETS.insektarium[family]}
                   alt={`Koleksi spesies Famili ${family}`}
                   fill={false}
+                  loading={family === INSEKTARIUM_FAMILIES[0] ? 'eager' : 'lazy'}
+                  fetchPriority={family === INSEKTARIUM_FAMILIES[0] ? 'high' : 'low'}
                   className="w-full"
                   imgClassName="h-auto w-full"
                 />
@@ -80,3 +88,5 @@ export default function VirtualInsektariumScreen({
     </section>
   );
 }
+
+export default memo(VirtualInsektariumScreen);

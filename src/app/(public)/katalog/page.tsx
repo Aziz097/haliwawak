@@ -1,19 +1,10 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
-import { db } from '@/db';
-import { species } from '@/db/schema';
-import { eq } from 'drizzle-orm';
-import { withWebpPhotos } from '@/lib/kiosk-assets';
+import { getPublicSpecies } from '@/lib/public-data';
 import CatalogClient from './catalog-client';
 
 export default async function KatalogPage() {
-  const rows = await db
-    .select()
-    .from(species)
-    .where(eq(species.isPublished, true));
-
-  // Stored rows may still point at the pre-WebP filenames, which no longer exist.
-  const allSpecies = rows.map(withWebpPhotos);
+  const allSpecies = await getPublicSpecies();
 
   return (
     <main className="min-h-screen bg-bg">

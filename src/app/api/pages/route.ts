@@ -1,6 +1,7 @@
 import { db } from '@/db';
 import { staticPages } from '@/db/schema';
 import { NextRequest, NextResponse } from 'next/server';
+import { invalidateStaticPagesCache } from '@/lib/public-cache';
 
 export async function GET() {
   const data = await db.select().from(staticPages);
@@ -18,5 +19,6 @@ export async function POST(req: NextRequest) {
     metaTitle: body.metaTitle ?? null,
     metaDescription: body.metaDescription ?? null,
   }).returning();
+  invalidateStaticPagesCache();
   return NextResponse.json(result[0], { status: 201 });
 }

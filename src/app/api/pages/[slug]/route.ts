@@ -2,6 +2,7 @@ import { db } from '@/db';
 import { staticPages } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextRequest, NextResponse } from 'next/server';
+import { invalidateStaticPagesCache } from '@/lib/public-cache';
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -24,5 +25,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ slug
     updatedAt: new Date(),
   }).where(eq(staticPages.slug, slug)).returning();
   if (!result.length) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  invalidateStaticPagesCache();
   return NextResponse.json(result[0]);
 }

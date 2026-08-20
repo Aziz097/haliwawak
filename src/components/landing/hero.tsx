@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { Bug, Calendar, ArrowRight } from 'lucide-react';
+import { Bug } from 'lucide-react';
+import Image from 'next/image';
 
-export default function Hero({ species }: { species: { primaryPhotoUrl?: string | null }[] }) {
+export default function Hero() {
   const bgImage = '/kiosk/scenes/living-heritage-1.webp';
 
   return (
@@ -30,7 +31,14 @@ export default function Hero({ species }: { species: { primaryPhotoUrl?: string 
 
         <div className="order-1 lg:order-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-[2.618rem] border-4 border-white shadow-[0_20px_60px_rgba(30,51,40,0.1)]">
-            <img src={bgImage} alt="Kupu-kupu di Pugung Raharjo" className="h-full w-full object-cover" />
+            <Image
+              src={bgImage}
+              alt="Kupu-kupu di Pugung Raharjo"
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-kiosk-ink/20 to-transparent" />
           </div>
         </div>

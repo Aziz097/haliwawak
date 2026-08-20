@@ -1,16 +1,10 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
-import { db } from '@/db';
-import { articles } from '@/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import { getPublicArticles } from '@/lib/public-data';
 import EdukasiClient from './edukasi-client';
 
 export default async function EdukasiPage() {
-  const allArticles = await db
-    .select()
-    .from(articles)
-    .where(eq(articles.status, 'active'))
-    .orderBy(desc(articles.publishedAt));
+  const allArticles = await getPublicArticles();
 
   return (
     <main className="min-h-screen bg-bg">

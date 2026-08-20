@@ -1,7 +1,8 @@
 import { db } from '@/db';
 import { species } from '@/db/schema';
-import { inArray, eq } from 'drizzle-orm';
+import { inArray } from 'drizzle-orm';
 import { NextRequest, NextResponse } from 'next/server';
+import { invalidateSpeciesCache } from '@/lib/public-cache';
 
 export async function POST(req: NextRequest) {
   const { action, ids } = await req.json();
@@ -15,5 +16,6 @@ export async function POST(req: NextRequest) {
     await db.delete(species).where(inArray(species.id, ids));
   }
 
+  invalidateSpeciesCache();
   return NextResponse.json({ success: true });
 }

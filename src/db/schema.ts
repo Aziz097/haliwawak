@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, boolean, integer, jsonb } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, timestamp, boolean, integer, jsonb, index } from 'drizzle-orm/pg-core';
 
 export const accounts = pgTable('accounts', {
   id: serial('id').primaryKey(),
@@ -43,7 +43,10 @@ export const species = pgTable('species', {
   internalNotes: text('internal_notes'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-});
+}, (table) => [
+  index('species_published_home_order_idx').on(table.isPublished, table.homeOrder),
+  index('species_slug_idx').on(table.slug),
+]);
 
 // M3. Manajemen Konten (Artikel)
 export const articles = pgTable('articles', {
@@ -63,7 +66,9 @@ export const articles = pgTable('articles', {
   metaDescription: text('meta_description'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-});
+}, (table) => [
+  index('articles_status_published_at_idx').on(table.status, table.publishedAt),
+]);
 
 // M3b. Halaman Statis
 export const staticPages = pgTable('static_pages', {

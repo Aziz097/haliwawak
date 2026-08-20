@@ -1,11 +1,10 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
-import { db } from '@/db';
-import { articles } from '@/db/schema';
-import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ChevronLeft, BookOpen } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+import { getPublicArticleBySlug } from '@/lib/public-data';
+import PublicImage from '@/components/shared/public-image';
 
 export default async function ArticleDetailPage({
   params,
@@ -13,12 +12,7 @@ export default async function ArticleDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = await db
-    .select()
-    .from(articles)
-    .where(eq(articles.slug, slug))
-    .limit(1)
-    .then((r) => r[0]);
+  const article = await getPublicArticleBySlug(slug);
 
   if (!article || article.status !== 'active') notFound();
 
@@ -32,7 +26,7 @@ export default async function ArticleDetailPage({
         <article className="max-w-4xl mx-auto">
           {article.thumbnailUrl && (
             <div className="aspect-[2/1] rounded-2xl overflow-hidden mb-8 bg-primary-light">
-              <img src={article.thumbnailUrl} alt={article.title} className="w-full h-full object-cover" />
+                <PublicImage src={article.thumbnailUrl} alt={article.title} fill sizes="(min-width: 1024px) 896px, 100vw" className="object-cover" />
             </div>
           )}
 

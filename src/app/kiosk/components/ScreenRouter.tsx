@@ -45,6 +45,16 @@ export interface ScreenRouterProps {
   onSelectTile: (screen: Screen) => void;
 }
 
+const SCROLLABLE_SCREENS = new Set<Screen>([
+  'VIRTUAL_INSEKTARIUM',
+  'DATA_SPESIES',
+  'TIM_KAMI',
+]);
+
+export function isScrollableScreen(screen: Screen) {
+  return SCROLLABLE_SCREENS.has(screen);
+}
+
 /** Resolve the current screen id to its matching screen component element. */
 function renderScreen(
   current: Screen,
@@ -128,7 +138,8 @@ export default function ScreenRouter({
           initial={reduceMotion ? false : 'enter'}
           animate="center"
           exit={reduceMotion ? undefined : 'exit'}
-          className="kiosk-scrollbar absolute inset-0 overflow-y-auto bg-kiosk-bg text-kiosk-ink"
+          className="kiosk-scrollbar absolute inset-0 overflow-y-auto overscroll-contain bg-kiosk-bg text-kiosk-ink"
+          style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}
         >
           {morphFromTile ? (
             // Same layoutId as the tile that was tapped → framer-motion grows
@@ -142,7 +153,11 @@ export default function ScreenRouter({
             <motion.div
               layoutId={morphId(current)}
               transition={MORPH_SPRING}
-              className="flex h-full w-full flex-col overflow-hidden bg-kiosk-bg [&>*]:flex-1"
+              className={
+                isScrollableScreen(current)
+                  ? 'min-h-full w-full bg-kiosk-bg'
+                  : 'flex h-full w-full flex-col overflow-hidden bg-kiosk-bg [&>*]:flex-1'
+              }
             >
               {screen}
             </motion.div>

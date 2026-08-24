@@ -14,22 +14,41 @@ const statusBadge: Record<string, string> = {
   inactive: 'text-kiosk-ink-muted bg-kiosk-orange-100 border-kiosk-orange-100',
 };
 
+interface UserItem {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  isActive: boolean;
+}
+
+interface UserForm {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
 export default function AdminUsersPage() {
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<UserItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [editUser, setEditUser] = useState<any>(null);
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'editor' });
+  const [editUser, setEditUser] = useState<UserItem | null>(null);
+  const [form, setForm] = useState<UserForm>({ name: '', email: '', password: '', role: 'editor' });
   const [saving, setSaving] = useState(false);
 
   const fetchUsers = () => {
-    fetch('/api/users').then(r => r.json()).then(data => {
-      setUsers(Array.isArray(data) ? data : []);
-      setLoading(false);
-    });
+    fetch('/api/users')
+      .then((r) => r.json())
+      .then((data) => {
+        setUsers(Array.isArray(data) ? (data as UserItem[]) : []);
+        setLoading(false);
+      });
   };
 
-  useEffect(() => { fetchUsers(); }, []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const toggleActive = async (id: number, current: boolean) => {
     await fetch(`/api/users/${id}`, {
@@ -52,7 +71,7 @@ export default function AdminUsersPage() {
     setShowModal(true);
   };
 
-  const openEdit = (u: any) => {
+  const openEdit = (u: UserItem) => {
     setEditUser(u);
     setForm({ name: u.name || '', email: u.email || '', password: '', role: u.role || 'editor' });
     setShowModal(true);
@@ -62,7 +81,11 @@ export default function AdminUsersPage() {
     setSaving(true);
     const url = editUser ? `/api/users/${editUser.id}` : '/api/users';
     const method = editUser ? 'PUT' : 'POST';
-    const body: any = { name: form.name, email: form.email, role: form.role };
+    const body: { name: string; email: string; role: string; password?: string } = {
+      name: form.name,
+      email: form.email,
+      role: form.role,
+    };
     if (form.password) body.password = form.password;
     if (editUser && !form.password) delete body.password;
     await fetch(url, {
@@ -81,7 +104,9 @@ export default function AdminUsersPage() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider">Ringkasan Sistem</p>
+          <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider">
+            Ringkasan Sistem
+          </p>
           <h1 className="font-heading text-2xl font-bold text-kiosk-ink mt-1">Pengguna</h1>
           <p className="text-sm text-kiosk-ink-muted mt-1">{users.length} pengguna</p>
         </div>
@@ -97,14 +122,22 @@ export default function AdminUsersPage() {
         <table className="w-full text-sm">
           <thead className="bg-kiosk-bg border-b border-kiosk-orange-100">
             <tr>
-              <th className="text-left px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Pengguna</th>
-              <th className="text-left px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Role</th>
-              <th className="text-left px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Status</th>
-              <th className="text-right px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Aksi</th>
+              <th className="text-left px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                Pengguna
+              </th>
+              <th className="text-left px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                Role
+              </th>
+              <th className="text-left px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                Status
+              </th>
+              <th className="text-right px-5 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                Aksi
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-kiosk-orange-100">
-            {users.map((u: any) => (
+            {users.map((u) => (
               <tr key={u.id} className="hover:bg-kiosk-bg">
                 <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
@@ -118,7 +151,9 @@ export default function AdminUsersPage() {
                   </div>
                 </td>
                 <td className="px-5 py-4">
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-[0.618rem] border ${roleBadge[u.role] || 'text-kiosk-ink-muted bg-kiosk-orange-100'}`}>
+                  <span
+                    className={`text-xs font-medium px-2.5 py-1 rounded-[0.618rem] border ${roleBadge[u.role] || 'text-kiosk-ink-muted bg-kiosk-orange-100'}`}
+                  >
                     {u.role}
                   </span>
                 </td>
@@ -132,12 +167,16 @@ export default function AdminUsersPage() {
                 </td>
                 <td className="px-5 py-4 text-right">
                   <div className="flex items-center justify-end gap-1.5">
-                    <button onClick={() => openEdit(u)}
-                      className="p-2 border border-kiosk-orange-100 rounded-[0.618rem] text-kiosk-ink-muted hover:text-kiosk-orange-600 hover:border-kiosk-orange-600/50 transition-colors">
+                    <button
+                      onClick={() => openEdit(u)}
+                      className="p-2 border border-kiosk-orange-100 rounded-[0.618rem] text-kiosk-ink-muted hover:text-kiosk-orange-600 hover:border-kiosk-orange-600/50 transition-colors"
+                    >
                       <Edit className="w-4 h-4" />
                     </button>
-                    <button onClick={() => handleDelete(u.id)}
-                      className="p-2 border border-kiosk-orange-100 rounded-[0.618rem] text-kiosk-ink-muted hover:text-danger hover:border-danger/40 transition-colors">
+                    <button
+                      onClick={() => handleDelete(u.id)}
+                      className="p-2 border border-kiosk-orange-100 rounded-[0.618rem] text-kiosk-ink-muted hover:text-danger hover:border-danger/40 transition-colors"
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
@@ -159,50 +198,64 @@ export default function AdminUsersPage() {
           <div className="absolute inset-0 bg-black/40" onClick={() => setShowModal(false)} />
           <div className="relative bg-white border border-kiosk-orange-100 rounded-[1.618rem] shadow-xl w-full max-w-md mx-4 p-6">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="font-heading text-lg font-bold text-kiosk-ink">{editUser ? 'Edit Pengguna' : 'Tambah Pengguna'}</h2>
-              <button onClick={() => setShowModal(false)} className="p-1 text-kiosk-ink-muted hover:text-kiosk-ink transition-colors">
+              <h2 className="font-heading text-lg font-bold text-kiosk-ink">
+                {editUser ? 'Edit Pengguna' : 'Tambah Pengguna'}
+              </h2>
+              <button
+                onClick={() => setShowModal(false)}
+                className="p-1 text-kiosk-ink-muted hover:text-kiosk-ink transition-colors"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">Nama</label>
+                <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">
+                  Nama
+                </label>
                 <input
                   type="text"
                   value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   className="w-full px-3 py-2.5 rounded-[1rem] border border-kiosk-orange-100 bg-kiosk-bg text-kiosk-ink text-sm placeholder-kiosk-ink-muted focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-colors"
                   placeholder="Nama lengkap"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">Email</label>
+                <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">
+                  Email
+                </label>
                 <input
                   type="email"
                   value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   className="w-full px-3 py-2.5 rounded-[1rem] border border-kiosk-orange-100 bg-kiosk-bg text-kiosk-ink text-sm placeholder-kiosk-ink-muted focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-colors"
                   placeholder="email@contoh.com"
                 />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">
-                  Password {editUser && <span className="normal-case font-normal">(kosongkan jika tidak diubah)</span>}
+                  Password{' '}
+                  {editUser && (
+                    <span className="normal-case font-normal">(kosongkan jika tidak diubah)</span>
+                  )}
                 </label>
                 <input
                   type="password"
                   value={form.password}
-                  onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
                   className="w-full px-3 py-2.5 rounded-[1rem] border border-kiosk-orange-100 bg-kiosk-bg text-kiosk-ink text-sm placeholder-kiosk-ink-muted focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-colors"
                   placeholder={editUser ? '••••••••' : 'Password'}
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">Role</label>
+                <label className="block text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider mb-1.5">
+                  Role
+                </label>
                 <select
                   value={form.role}
-                  onChange={e => setForm(f => ({ ...f, role: e.target.value }))}
+                  onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
                   className="w-full px-3 py-2.5 rounded-[1rem] border border-kiosk-orange-100 bg-kiosk-bg text-kiosk-ink text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-colors"
                 >
                   <option value="editor">Editor</option>

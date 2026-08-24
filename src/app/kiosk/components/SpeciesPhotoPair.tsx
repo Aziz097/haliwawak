@@ -41,11 +41,7 @@ function PhotoView({ url, label, alt }: PhotoViewProps) {
     <figure className="flex flex-col overflow-hidden rounded-2xl border border-kiosk-orange-200 bg-kiosk-surface shadow-sm">
       <div className="relative aspect-square w-full overflow-hidden bg-kiosk-orange-100">
         {url ? (
-          <KioskImage
-            src={url}
-            alt={alt}
-            className="h-full w-full"
-          />
+          <KioskImage src={url} alt={alt} className="h-full w-full" />
         ) : (
           <span className="flex h-full w-full items-center justify-center text-kiosk-orange-400">
             <ImageOff className="h-12 w-12" aria-hidden="true" />

@@ -13,7 +13,8 @@ export default function EdukasiClient({ articles }: { articles: PublicArticleLis
   const categories = ['Semua', ...new Set(articles.map((a) => a.category).filter(Boolean))];
 
   const filtered = articles.filter((a) => {
-    const matchSearch = !search ||
+    const matchSearch =
+      !search ||
       a.title?.toLowerCase().includes(search.toLowerCase()) ||
       a.summary?.toLowerCase().includes(search.toLowerCase());
     const matchCategory = category === 'Semua' || a.category === category;
@@ -66,18 +67,36 @@ export default function EdukasiClient({ articles }: { articles: PublicArticleLis
             >
               <div className="relative w-full md:w-48 h-40 md:h-32 bg-primary-light rounded-xl overflow-hidden shrink-0">
                 {a.thumbnailUrl ? (
-                  <PublicImage src={a.thumbnailUrl} alt={a.title} fill sizes="(min-width: 768px) 192px, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <PublicImage
+                    src={a.thumbnailUrl}
+                    alt={a.title}
+                    fill
+                    sizes="(min-width: 768px) 192px, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-8 h-8 text-primary/30" /></div>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <ImageOff className="w-8 h-8 text-primary/30" />
+                  </div>
                 )}
               </div>
               <div className="flex-1 min-w-0 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-accent-warm bg-accent-warm/10 px-2.5 py-1 rounded-md w-fit mb-3">{a.category}</span>
-                <h3 className="font-heading font-bold text-xl text-fg leading-snug group-hover:text-primary transition-colors line-clamp-2 mb-2">{a.title}</h3>
-                {a.summary && <p className="text-sm text-fg-muted line-clamp-2 mb-3">{a.summary}</p>}
+                <span className="text-xs font-semibold text-accent-warm bg-accent-warm/10 px-2.5 py-1 rounded-md w-fit mb-3">
+                  {a.category}
+                </span>
+                <h3 className="font-heading font-bold text-xl text-fg leading-snug group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                  {a.title}
+                </h3>
+                {a.summary && (
+                  <p className="text-sm text-fg-muted line-clamp-2 mb-3">{a.summary}</p>
+                )}
                 {a.publishedAt && (
                   <p className="text-xs text-fg-muted/50 font-medium">
-                    {new Date(a.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(a.publishedAt).toLocaleDateString('id-ID', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
                   </p>
                 )}
               </div>

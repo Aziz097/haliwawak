@@ -17,12 +17,21 @@ const IUCN_BADGE: Record<string, { color: string; bg: string }> = {
 };
 
 const IUCN_ABBR: Record<string, string> = {
-  'Least Concern': 'LC', 'Near Threatened': 'NT', Vulnerable: 'VU',
-  Endangered: 'EN', 'Critically Endangered': 'CR',
+  'Least Concern': 'LC',
+  'Near Threatened': 'NT',
+  Vulnerable: 'VU',
+  Endangered: 'EN',
+  'Critically Endangered': 'CR',
 };
 
 function slugify(s: string, id: number) {
-  return s?.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-') || String(id);
+  return (
+    s
+      ?.toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-') || String(id)
+  );
 }
 
 export default function CatalogClient({ species }: { species: PublicSpeciesListItem[] }) {
@@ -30,7 +39,8 @@ export default function CatalogClient({ species }: { species: PublicSpeciesListI
   const [family, setFamily] = useState('Semua');
 
   const filtered = species.filter((s) => {
-    const matchSearch = !search ||
+    const matchSearch =
+      !search ||
       s.commonName?.toLowerCase().includes(search.toLowerCase()) ||
       s.scientificName?.toLowerCase().includes(search.toLowerCase());
     const matchFamily = family === 'Semua' || s.family === family;
@@ -87,21 +97,36 @@ export default function CatalogClient({ species }: { species: PublicSpeciesListI
               >
                 <div className="aspect-[4/3] bg-primary-light relative">
                   {s.primaryPhotoUrl ? (
-                    <PublicImage src={s.primaryPhotoUrl} alt={s.commonName} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <PublicImage
+                      src={s.primaryPhotoUrl}
+                      alt={s.commonName}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center"><ImageOff className="w-10 h-10 text-primary/30" /></div>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <ImageOff className="w-10 h-10 text-primary/30" />
+                    </div>
                   )}
                   {badge && (
-                    <span className="absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-md" style={{ color: badge.color, background: badge.bg }}>
+                    <span
+                      className="absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-md"
+                      style={{ color: badge.color, background: badge.bg }}
+                    >
                       {iucnStatus ? IUCN_ABBR[iucnStatus] || iucnStatus : null}
                     </span>
                   )}
                 </div>
                 <div className="p-5">
-                  <h3 className="font-heading font-bold text-fg text-xl mb-1 group-hover:text-primary transition-colors">{s.commonName}</h3>
+                  <h3 className="font-heading font-bold text-fg text-xl mb-1 group-hover:text-primary transition-colors">
+                    {s.commonName}
+                  </h3>
                   <p className="text-fg-muted italic text-sm mb-3">{s.scientificName}</p>
                   {s.family && (
-                    <span className="inline-block text-xs font-medium text-accent-warm bg-accent-warm/10 px-2 py-1 rounded">{s.family}</span>
+                    <span className="inline-block text-xs font-medium text-accent-warm bg-accent-warm/10 px-2 py-1 rounded">
+                      {s.family}
+                    </span>
                   )}
                 </div>
               </Link>

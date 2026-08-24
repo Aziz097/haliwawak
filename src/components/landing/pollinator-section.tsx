@@ -12,12 +12,15 @@ export default function PollinatorSection() {
     <section className="relative overflow-hidden bg-kiosk-surface py-20 px-4">
       <div className="page-container relative z-10">
         <div className="mb-12 text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">Mengapa Ini Penting?</p>
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">
+            Mengapa Ini Penting?
+          </p>
           <h2 className="font-heading text-3xl font-medium text-kiosk-ink md:text-4xl">
             Peran Polinator dalam Ketahanan Pangan
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-kiosk-ink-muted">
-            Kupu-kupu bukan sekadar indah - mereka adalah agen penyerbukan kritis yang menjaga ekosistem pertanian kita tetap berjalan.
+            Kupu-kupu bukan sekadar indah - mereka adalah agen penyerbukan kritis yang menjaga
+            ekosistem pertanian kita tetap berjalan.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-12">

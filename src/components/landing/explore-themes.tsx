@@ -45,8 +45,12 @@ export default function ExploreThemes() {
     <section className="bg-kiosk-bg py-20 px-4">
       <div className="page-container">
         <div className="mb-12 text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">Jelajahi</p>
-          <h2 className="font-heading text-3xl font-medium text-kiosk-ink md:text-4xl">Cerita di Balik Situs</h2>
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-kiosk-accent-teal">
+            Jelajahi
+          </p>
+          <h2 className="font-heading text-3xl font-medium text-kiosk-ink md:text-4xl">
+            Cerita di Balik Situs
+          </h2>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {THEMES.map((theme) => {
@@ -61,11 +65,14 @@ export default function ExploreThemes() {
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <h3 className="font-heading text-xl font-semibold text-kiosk-ink">{theme.title}</h3>
+                  <h3 className="font-heading text-xl font-semibold text-kiosk-ink">
+                    {theme.title}
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-kiosk-ink-muted">{theme.desc}</p>
                 </div>
                 <span className="mt-auto inline-flex items-center gap-2 text-sm font-bold text-kiosk-accent-teal">
-                  Selengkapnya <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Selengkapnya{' '}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
             );

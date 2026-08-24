@@ -24,7 +24,7 @@ import {
   KOLAM_MEGALITIK_INTRO,
   KOLAM_MEGALITIK_TITLE,
   KOLAM_INFO_CARDS,
-  type InfoCard
+  type InfoCard,
 } from '../content/i18n';
 import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';

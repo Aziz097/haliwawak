@@ -29,10 +29,7 @@ export default function DataNotice({ caption = DATA_NOTICE }: DataNoticeProps) {
       aria-live="polite"
       className="flex items-center gap-3 rounded-xl border border-kiosk-orange-300 bg-kiosk-orange-100 px-4 py-3 text-left"
     >
-      <Info
-        className="h-6 w-6 shrink-0 text-kiosk-orange-700"
-        aria-hidden="true"
-      />
+      <Info className="h-6 w-6 shrink-0 text-kiosk-orange-700" aria-hidden="true" />
       <p className="text-base font-semibold text-kiosk-ink">{t(caption)}</p>
     </div>
   );

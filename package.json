@@ -2,20 +2,30 @@
   "name": "cms-nextjs",
   "version": "1.0.0",
   "private": true,
+  "description": "Website Eduwisata Polinator dan kiosk interaktif Situs Purbakala Pugung Raharjo",
+  "author": "Tim Pengabdian Masyarakat ITERA",
+  "license": "UNLICENSED",
+  "packageManager": "npm@11.4.1",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev --port 3033",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src/app/kiosk",
+    "lint": "eslint .",
     "lint:all": "eslint .",
     "seed": "tsx scripts/seed-users.ts",
     "seed:articles": "tsx scripts/seed-articles.ts",
-    "seed:supabase": "tsx scripts/seed-supabase.ts",
+    "seed:database": "tsx scripts/seed-database.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:migrate": "drizzle-kit migrate",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.16",
@@ -31,7 +41,7 @@
     "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.40.0",
     "lucide-react": "^0.545.0",
-    "next": "^15.2.0",
+    "next": "^15.5.23",
     "postgres": "^3.4.9",
     "qrcode": "^1.5.4",
     "react": "^19.0.0",
@@ -49,18 +59,18 @@
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "^2.1.8",
+    "@vitejs/plugin-react": "^6.1.0",
+    "@vitest/coverage-v8": "^4.1.11",
     "dotenv": "^17.4.2",
     "drizzle-kit": "^0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "^15.2.0",
     "jsdom": "^25.0.1",
-    "postcss": "^8.5.0",
+    "postcss": "^8.5.26",
+    "prettier": "^3.9.6",
     "tailwindcss": "^4.1.18",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
-    "vitest": "^2.1.8",
-    "xlsx": "^0.18.5"
+    "vitest": "^4.1.11"
   }
 }

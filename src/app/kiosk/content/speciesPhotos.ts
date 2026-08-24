@@ -75,10 +75,7 @@ function detectSex(...texts: string[]): 'jantan' | 'betina' | null {
 }
 
 /** Resolve the photo slug for a species, or null when no curated photo exists. */
-export function resolvePhotoSlug(
-  scientificName: string,
-  commonName = '',
-): string | null {
+export function resolvePhotoSlug(scientificName: string, commonName = ''): string | null {
   const norm = normalizeScientific(scientificName);
   if (!norm) return null;
 

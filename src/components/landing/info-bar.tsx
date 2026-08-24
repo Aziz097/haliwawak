@@ -19,7 +19,9 @@ export default function InfoBar() {
                   <Icon className="h-5 w-5" strokeWidth={2} />
                 </span>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-kiosk-ink-muted">{item.label}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-kiosk-ink-muted">
+                    {item.label}
+                  </p>
                   <p className="font-heading text-lg font-semibold text-kiosk-ink">{item.value}</p>
                 </div>
               </div>

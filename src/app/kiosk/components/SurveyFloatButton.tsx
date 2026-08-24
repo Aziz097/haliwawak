@@ -43,15 +43,11 @@ export default function SurveyFloatButton() {
     resetIdleTimer();
 
     const events = ['pointerdown', 'keydown', 'touchstart', 'mousemove', 'wheel'];
-    events.forEach((event) =>
-      window.addEventListener(event, resetIdleTimer, { passive: true })
-    );
+    events.forEach((event) => window.addEventListener(event, resetIdleTimer, { passive: true }));
 
     return () => {
       if (timer) clearTimeout(timer);
-      events.forEach((event) =>
-        window.removeEventListener(event, resetIdleTimer)
-      );
+      events.forEach((event) => window.removeEventListener(event, resetIdleTimer));
     };
   }, []);
 
@@ -103,7 +99,9 @@ export default function SurveyFloatButton() {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onClick={onClick}
-        aria-label={lang === 'id' ? 'Buka penilaian pengalaman kiosk' : 'Open kiosk experience rating'}
+        aria-label={
+          lang === 'id' ? 'Buka penilaian pengalaman kiosk' : 'Open kiosk experience rating'
+        }
         className="fixed z-40 flex h-14 w-[220px] items-center justify-center gap-2 rounded-full bg-kiosk-accent-teal px-5 text-white shadow-[0_8px_30px_rgba(30,51,40,0.25)] transition-transform hover:scale-105 active:scale-95"
         style={{ right: pos.x, bottom: pos.y }}
       >
@@ -120,7 +118,9 @@ export default function SurveyFloatButton() {
             <div className="flex items-start justify-between">
               <div>
                 <Dialog.Title className="font-serif text-[1.618rem] font-semibold text-kiosk-ink">
-                  {lang === 'id' ? 'Bantu Kami Meningkatkan Kiosk Ini' : 'Help Us Improve This Kiosk'}
+                  {lang === 'id'
+                    ? 'Bantu Kami Meningkatkan Kiosk Ini'
+                    : 'Help Us Improve This Kiosk'}
                 </Dialog.Title>
                 <Dialog.Description className="mt-2 text-sm leading-relaxed text-kiosk-ink-muted">
                   {lang === 'id'

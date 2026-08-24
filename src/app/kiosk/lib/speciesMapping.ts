@@ -84,9 +84,7 @@ export function normalizeGalleryUrls(input: unknown): string[] {
 
   if (!Array.isArray(arr)) return [];
 
-  return arr
-    .map((entry) => toStr(entry))
-    .filter((url) => url.length > 0);
+  return arr.map((entry) => toStr(entry)).filter((url) => url.length > 0);
 }
 
 /** Derive the genus from the first whitespace token of a scientific name. */
@@ -140,15 +138,13 @@ export function mapSpeciesRow(row: SpeciesRowInput): KioskSpecies {
  */
 export function groupByFamily(
   list: KioskSpecies[],
-  families: string[]
+  families: string[],
 ): Record<string, KioskSpecies[]> {
   const result: Record<string, KioskSpecies[]> = {};
 
   for (const family of families) {
     const target = family.trim().toLowerCase();
-    result[family] = list.filter(
-      (species) => species.family.trim().toLowerCase() === target
-    );
+    result[family] = list.filter((species) => species.family.trim().toLowerCase() === target);
   }
 
   return result;

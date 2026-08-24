@@ -27,9 +27,7 @@ describe('KioskImage sizing', () => {
   });
 
   it('lets a caller-supplied className win over the fallback', () => {
-    const { container } = render(
-      <KioskImage src="/a.jpg" alt="" className="h-64 md:h-full" />,
-    );
+    const { container } = render(<KioskImage src="/a.jpg" alt="" className="h-64 md:h-full" />);
     // Token match, not substring: `md:h-full` legitimately contains "h-full".
     const tokens = wrapperOf(container).className.split(/\s+/);
     expect(tokens).toContain('h-64');
@@ -70,9 +68,7 @@ describe('KioskImage sizing', () => {
   });
 
   it('contains (not crops) in logo mode, and covers in fill mode', () => {
-    const { container: logo } = render(
-      <KioskImage src="/logo.svg" alt="" fill={false} />,
-    );
+    const { container: logo } = render(<KioskImage src="/logo.svg" alt="" fill={false} />);
     expect(imgOf(logo).className).toContain('object-contain');
 
     const { container: photo } = render(<KioskImage src="/a.jpg" alt="" />);

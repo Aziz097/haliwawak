@@ -14,7 +14,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-kiosk-orange-200 bg-kiosk-bg/95 backdrop-blur-sm">
       <nav className="page-container flex items-center justify-between gap-4 py-4">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/kupu2-logo-black.svg" alt="Eduwisata Polinator" width={40} height={40} className="object-contain" />
+          <Image
+            src="/kupu2-logo-black.svg"
+            alt="Eduwisata Polinator"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
           <span className="font-heading text-xl font-bold text-kiosk-ink">Eduwisata Polinator</span>
         </Link>
 

@@ -2,7 +2,7 @@
  * VirtualInsektariumScreen - Screen 3 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
- * Soft paper background, serif headings, terracota/sage accents, and 
+ * Soft paper background, serif headings, terracota/sage accents, and
  * organic flow grouping species into their respective families.
  *
  * Requirements: 8.1, 8.2, 8.3, 8.4, 8.5
@@ -15,11 +15,7 @@ import KioskImage from '../components/KioskImage';
 import CuratorNote from '../components/CuratorNote';
 import ScreenHeader from '../components/ScreenHeader';
 import { StaggerList, StaggerItem } from '../components/ScreenEntrance';
-import {
-  INSEKTARIUM_ATTRIBUTION,
-  INSEKTARIUM_INTRO,
-  INSEKTARIUM_TITLE,
-} from '../content/i18n';
+import { INSEKTARIUM_ATTRIBUTION, INSEKTARIUM_INTRO, INSEKTARIUM_TITLE } from '../content/i18n';
 import { KIOSK_ASSETS } from '../content/assets';
 import { groupByFamily, type KioskSpecies } from '../lib/speciesMapping';
 import SpeciesDetailModal from '../components/SpeciesDetailModal';
@@ -34,13 +30,8 @@ export interface VirtualInsektariumScreenProps {
  */
 const INSEKTARIUM_FAMILIES = ['Papilionidae', 'Pieridae', 'Nymphalidae'] as const;
 
-function VirtualInsektariumScreen({
-  species,
-}: VirtualInsektariumScreenProps) {
-  const grouped = useMemo(
-    () => groupByFamily(species, [...INSEKTARIUM_FAMILIES]),
-    [species],
-  );
+function VirtualInsektariumScreen({ species }: VirtualInsektariumScreenProps) {
+  const grouped = useMemo(() => groupByFamily(species, [...INSEKTARIUM_FAMILIES]), [species]);
   const [selectedSpecies, setSelectedSpecies] = useState<KioskSpecies | null>(null);
 
   return (
@@ -84,7 +75,11 @@ function VirtualInsektariumScreen({
           </StaggerItem>
         ))}
       </StaggerList>
-      <SpeciesDetailModal open={selectedSpecies !== null} onClose={() => setSelectedSpecies(null)} species={selectedSpecies} />
+      <SpeciesDetailModal
+        open={selectedSpecies !== null}
+        onClose={() => setSelectedSpecies(null)}
+        species={selectedSpecies}
+      />
     </section>
   );
 }

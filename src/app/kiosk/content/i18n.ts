@@ -210,7 +210,10 @@ export const FOOD_SECURITY: {
   {
     key: 'sahabat-petani',
     icon: 'Sprout',
-    title: { id: 'Pengunjung Bunga dan Penyerbuk Umum', en: 'Flower Visitors and General Pollinators' },
+    title: {
+      id: 'Pengunjung Bunga dan Penyerbuk Umum',
+      en: 'Flower Visitors and General Pollinators',
+    },
     keySpecies: {
       id: 'Spesies: _Eurema blanda_, _Catopsilia pyranthe_, _Appias olferna_ (Famili Pieridae).',
       en: 'Species: _Eurema blanda_, _Catopsilia pyranthe_, _Appias olferna_ (Family Pieridae).',
@@ -223,7 +226,10 @@ export const FOOD_SECURITY: {
   {
     key: 'benteng-alami',
     icon: 'ShieldCheck',
-    title: { id: 'Zona Penyangga Alami Pengendali Hama', en: 'Natural Buffer Zone for Pest Control' },
+    title: {
+      id: 'Zona Penyangga Alami Pengendali Hama',
+      en: 'Natural Buffer Zone for Pest Control',
+    },
     keySpecies: {
       id: 'Indikator Kesehatan Lingkungan: Genus _Junonia_ dan _Hypolimnas_ (Famili Nymphalidae).',
       en: 'Environmental Health Indicator: Genus _Junonia_ and _Hypolimnas_ (Family Nymphalidae).',
@@ -247,7 +253,7 @@ export const KOLAM_MEGALITIK_TITLE: Caption = {
 /** Short bilingual framing caption for the megalithic spring screen. */
 export const KOLAM_MEGALITIK_INTRO: Caption = {
   id: 'Mata Air Kehidupan Kupu-Kupu - kolam purba adalah jantung ekosistem.',
-  en: "The Spring of Butterfly Life - the ancient pool is the heart of the ecosystem.",
+  en: 'The Spring of Butterfly Life - the ancient pool is the heart of the ecosystem.',
 };
 
 /** Stable identifiers for the three megalithic-spring concepts. */
@@ -266,7 +272,10 @@ export const KOLAM_CONCEPTS: {
   {
     key: 'puddling',
     icon: 'Droplet',
-    title: { id: 'Puddling: Rahasia Cinta Kupu Jantan', en: "Puddling: The Male Butterfly's Secret" },
+    title: {
+      id: 'Puddling: Rahasia Cinta Kupu Jantan',
+      en: "Puddling: The Male Butterfly's Secret",
+    },
     description: {
       id: 'Kupu jantan menyerap mineral dari tanah basah untuk energi dan reproduksi. Tanpa kolam ini, generasi baru terancam.',
       en: 'Males absorb minerals from damp soil for energy and reproduction. Without this pool, the next generation is at risk.',
@@ -275,7 +284,10 @@ export const KOLAM_CONCEPTS: {
   {
     key: 'bioindicator',
     icon: 'Sparkles',
-    title: { id: 'Kupu-Kupu sebagai Indikator Lingkungan Sehat', en: 'Butterflies as Indicators of a Healthy Environment' },
+    title: {
+      id: 'Kupu-Kupu sebagai Indikator Lingkungan Sehat',
+      en: 'Butterflies as Indicators of a Healthy Environment',
+    },
     description: {
       id: 'Kehadiran kupu-kupu yang melimpah adalah bukti bahwa ekosistem darat di sekitar sumber air masih sehat, alami, dan bebas dari polusi udara serta pestisida berlebih.',
       en: 'An abundance of butterflies is evidence that the land ecosystem around the water source remains healthy, natural, and free of air pollution and excess pesticides.',
@@ -309,11 +321,7 @@ export const CALL_TO_ACTION_INTRO: Caption = {
 
 /** Stable identifiers for the five conservation actions. */
 export type ActionKey =
-  | 'tanam-masa-depan'
-  | 'stop-pestisida'
-  | 'amati-jangan-tangkap'
-  | 'jaga-kolam'
-  | 'scan-learn';
+  'tanam-masa-depan' | 'stop-pestisida' | 'amati-jangan-tangkap' | 'jaga-kolam' | 'scan-learn';
 
 /**
  * Five CTA actions, each with a lucide-react icon name and a bilingual
@@ -367,7 +375,10 @@ export const CALL_TO_ACTIONS: {
   {
     key: 'scan-learn',
     icon: 'QrCode',
-    title: { id: 'Scan & Learn: Jadilah Ilmuwan Warga', en: 'Scan & Learn: Be a Citizen Scientist' },
+    title: {
+      id: 'Scan & Learn: Jadilah Ilmuwan Warga',
+      en: 'Scan & Learn: Be a Citizen Scientist',
+    },
     note: {
       id: 'Segera hadir. Pindai QR Code untuk mempelajari spesies dan melaporkan temuan Anda ke tim peneliti ITERA.',
       en: 'Coming soon. Scan a QR code to identify species and report your sightings to the ITERA research team.',
@@ -438,11 +449,7 @@ export const TIM_KAMI_PROGRAM: Caption = {
 };
 
 /** Role of a team member, bilingual. */
-export type TeamRole =
-  | 'ketua'
-  | 'anggota'
-  | 'anggota-mahasiswa'
-  | 'tim-ahli-eksternal';
+export type TeamRole = 'ketua' | 'anggota' | 'anggota-mahasiswa' | 'tim-ahli-eksternal';
 
 /** Team members with names and bilingual role labels (Req 15.1). */
 export const TEAM_MEMBERS: {
@@ -602,7 +609,10 @@ export const EKOSISTEM_INFO_CARDS: InfoCard[] = [
 export const KOLAM_INFO_CARDS: InfoCard[] = [
   {
     key: 'puddling',
-    title: { id: 'Puddling: Ritual Cinta Kupu-Kupu Jantan', en: 'Puddling: The Male Butterfly Ritual' },
+    title: {
+      id: 'Puddling: Ritual Cinta Kupu-Kupu Jantan',
+      en: 'Puddling: The Male Butterfly Ritual',
+    },
     body: {
       id: 'Kupu-kupu jantan sering berkumpul di tepi kolam basah. Mereka tidak hanya minum, tapi menyerap mineral dan garam dari tanah basah untuk kesuburan dan daya tarik saat kawin.',
       en: 'Male butterflies often gather at damp pool edges. They are not just drinking; they absorb minerals and salts from wet soil for fertility and mating appeal.',
@@ -614,7 +624,10 @@ export const KOLAM_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'bioindicator',
-    title: { id: 'Kupu-Kupu sebagai Indikator Lingkungan Sehat', en: 'Butterflies as Indicators of a Healthy Environment' },
+    title: {
+      id: 'Kupu-Kupu sebagai Indikator Lingkungan Sehat',
+      en: 'Butterflies as Indicators of a Healthy Environment',
+    },
     body: {
       id: 'Kupu-kupu sangat sensitif terhadap perubahan lingkungan.',
       en: 'Butterflies are highly sensitive to environmental change.',
@@ -641,7 +654,10 @@ export const KOLAM_INFO_CARDS: InfoCard[] = [
 export const FOOD_SECURITY_INFO_CARDS: InfoCard[] = [
   {
     key: 'sahabat-petani',
-    title: { id: 'Pengunjung Bunga dan Penyerbuk Umum', en: 'Flower Visitors and General Pollinators' },
+    title: {
+      id: 'Pengunjung Bunga dan Penyerbuk Umum',
+      en: 'Flower Visitors and General Pollinators',
+    },
     body: {
       id: 'Peran polinasinya membantu reproduksi tanaman secara umum di ekosistem terbuka, meskipun pada fase ulatnya, sebagian besar spesies ini mengonsumsi daun dari tanaman suku kacang-kacangan (Fabaceae) dan sesawi (Brassicaceae).',
       en: 'Their pollination supports plant reproduction broadly across open ecosystems, even though in the caterpillar stage most of these species feed on the leaves of legumes (Fabaceae) and mustards (Brassicaceae).',
@@ -653,7 +669,10 @@ export const FOOD_SECURITY_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'benteng-alami',
-    title: { id: 'Zona Penyangga Alami Pengendali Hama', en: 'Natural Buffer Zone for Pest Control' },
+    title: {
+      id: 'Zona Penyangga Alami Pengendali Hama',
+      en: 'Natural Buffer Zone for Pest Control',
+    },
     body: {
       id: 'Kawasan alami yang lestari ini berfungsi sebagai zona penyangga (buffer zone) yang menyediakan rumah bagi berbagai musuh alami hama (seperti predator dan parasitoid). Ekosistem yang seimbang ini membantu mencegah ledakan populasi hama di sawah dan ladang sekitarnya.',
       en: 'This preserved natural area acts as a buffer zone that houses a range of the pests’ natural enemies (predators and parasitoids). A balanced ecosystem like this helps prevent pest population explosions in the surrounding rice fields and farms.',
@@ -704,7 +723,10 @@ export const METAMORFOSIS_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'imago',
-    title: { id: 'Tahap Imago: Penyerbuk Sayap Indah', en: 'Imago Stage: Beautiful-Winged Pollinator' },
+    title: {
+      id: 'Tahap Imago: Penyerbuk Sayap Indah',
+      en: 'Imago Stage: Beautiful-Winged Pollinator',
+    },
     body: {
       id: 'Kupu-kupu dewasa keluar dari kepompong, mengeringkan sayapnya, lalu terbang mencari bunga dan pasangan. Mereka hidup 2–4 minggu.',
       en: 'Adult butterflies emerge from the chrysalis, dry their wings, then fly off to find flowers and mates. They live 2–4 weeks.',
@@ -719,7 +741,10 @@ export const METAMORFOSIS_INFO_CARDS: InfoCard[] = [
 export const CALL_TO_ACTION_INFO_CARDS: InfoCard[] = [
   {
     key: 'tanam-masa-depan',
-    title: { id: 'Tanam Masa Depan: Satu Bibit untuk Seribu Sayap', en: 'Plant the Future: One Seed for a Thousand Wings' },
+    title: {
+      id: 'Tanam Masa Depan: Satu Bibit untuk Seribu Sayap',
+      en: 'Plant the Future: One Seed for a Thousand Wings',
+    },
     body: {
       id: 'Tanaman liar di sekitar situs adalah tanaman inang bagi ulat kupu-kupu. Tanpa ulat, tidak akan ada kupu-kupu dewasa.',
       en: 'Wild plants around the site are host plants for butterfly caterpillars. Without caterpillars, there will be no adult butterflies.',
@@ -770,7 +795,10 @@ export const CALL_TO_ACTION_INFO_CARDS: InfoCard[] = [
   },
   {
     key: 'scan-learn',
-    title: { id: 'Scan & Learn: Jadilah Ilmuwan Warga', en: 'Scan & Learn: Be a Citizen Scientist' },
+    title: {
+      id: 'Scan & Learn: Jadilah Ilmuwan Warga',
+      en: 'Scan & Learn: Be a Citizen Scientist',
+    },
     body: {
       id: 'Fitur ini sedang disiapkan dan belum tersedia di kios. Nantinya Anda dapat memindai QR Code untuk mengenali spesies dan mengirim hasil pengamatan langsung ke tim peneliti ITERA.',
       en: 'This feature is still in preparation and is not yet available at the kiosk. Soon you will be able to scan a QR code to identify species and send your observations straight to the ITERA research team.',
@@ -784,7 +812,10 @@ export const CALL_TO_ACTION_INFO_CARDS: InfoCard[] = [
 
 export const LIVING_HERITAGE_INFO: InfoCard = {
   key: 'living-heritage',
-  title: { id: 'Warisan Hidup: Budaya dan Alam Bersatu', en: 'Living Heritage: Culture and Nature United' },
+  title: {
+    id: 'Warisan Hidup: Budaya dan Alam Bersatu',
+    en: 'Living Heritage: Culture and Nature United',
+  },
   body: {
     id: 'Situs Pugung Raharjo bukan hanya menyimpan batu megalitik, tapi juga menjadi rumah bagi puluhan jenis kupu-kupu. Warisan budaya dan keanekaragaman hayati di sini tidak dapat dipisahkan.',
     en: 'Pugung Raharjo preserves not only megalithic stones but also dozens of butterfly species. Its cultural heritage and biodiversity cannot be separated.',

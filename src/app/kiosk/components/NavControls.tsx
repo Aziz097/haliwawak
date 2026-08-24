@@ -35,8 +35,7 @@ export interface NavControlsProps {
 // `6vh` and the footer did not, leaving the footer visibly taller.
 const BUTTON_SIZE = 'min-h-[clamp(48px,6vh,64px)] min-w-[clamp(48px,6vh,64px)]';
 
-const BUTTON_BASE =
-  `group flex ${BUTTON_SIZE} items-center justify-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300 active:scale-[0.98]`;
+const BUTTON_BASE = `group flex ${BUTTON_SIZE} items-center justify-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300 active:scale-[0.98]`;
 
 /** Icon medallion inside each control, scaled to sit within the button. */
 const ICON_CIRCLE = 'h-[clamp(2rem,4.2vh,2.75rem)] w-[clamp(2rem,4.2vh,2.75rem)]';
@@ -70,7 +69,9 @@ export default function NavControls({
             aria-label={L.back}
             className={`${BUTTON_BASE} gap-2 bg-kiosk-surface-tint/80 pl-2 pr-5 text-kiosk-ink ring-1 ring-kiosk-orange-200 hover:bg-kiosk-orange-100 hover:shadow-md`}
           >
-            <span className={`flex ${ICON_CIRCLE} items-center justify-center rounded-full bg-white/50 transition-transform duration-500 group-hover:-translate-x-1`}>
+            <span
+              className={`flex ${ICON_CIRCLE} items-center justify-center rounded-full bg-white/50 transition-transform duration-500 group-hover:-translate-x-1`}
+            >
               <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
             </span>
             <span className="text-base font-semibold">{L.back}</span>
@@ -86,7 +87,9 @@ export default function NavControls({
           aria-label={L.home}
           className={`${BUTTON_BASE} gap-2 bg-kiosk-orange-700 pl-2 pr-5 text-kiosk-on-green shadow-[0_4px_20px_rgba(199,70,15,0.25)] hover:bg-kiosk-orange-800 hover:shadow-[0_6px_28px_rgba(199,70,15,0.35)]`}
         >
-          <span className={`flex ${ICON_CIRCLE} items-center justify-center rounded-full bg-white/15 transition-transform duration-500 group-hover:rotate-12`}>
+          <span
+            className={`flex ${ICON_CIRCLE} items-center justify-center rounded-full bg-white/15 transition-transform duration-500 group-hover:rotate-12`}
+          >
             <Home className="h-5 w-5" strokeWidth={1.5} />
           </span>
           <span className="text-base font-semibold">{L.home}</span>
@@ -103,7 +106,9 @@ export default function NavControls({
             className={`${BUTTON_BASE} gap-2 bg-kiosk-orange-600 pl-5 pr-2 text-kiosk-on-green shadow-[0_4px_20px_rgba(249,115,22,0.25)] hover:bg-kiosk-orange-700 hover:shadow-[0_6px_28px_rgba(249,115,22,0.35)]`}
           >
             <span className="text-base font-semibold">{L.next}</span>
-            <span className={`flex ${ICON_CIRCLE} items-center justify-center rounded-full bg-white/15 transition-transform duration-500 group-hover:translate-x-1`}>
+            <span
+              className={`flex ${ICON_CIRCLE} items-center justify-center rounded-full bg-white/15 transition-transform duration-500 group-hover:translate-x-1`}
+            >
               <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
             </span>
           </button>

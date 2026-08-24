@@ -12,7 +12,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email dan password harus diisi' }, { status: 400 });
     }
 
-    const user = await db.select().from(accounts).where(eq(accounts.email, email)).limit(1).then(r => r[0]);
+    const user = await db
+      .select()
+      .from(accounts)
+      .where(eq(accounts.email, email))
+      .limit(1)
+      .then((r) => r[0]);
     if (!user) {
       return NextResponse.json({ error: 'Email atau password salah' }, { status: 401 });
     }
@@ -27,7 +32,10 @@ export async function POST(req: NextRequest) {
     }
 
     await setSession(String(user.id));
-    return NextResponse.json({ success: true, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+    return NextResponse.json({
+      success: true,
+      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+    });
   } catch {
     return NextResponse.json({ error: 'Terjadi kesalahan' }, { status: 500 });
   }

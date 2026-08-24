@@ -2,8 +2,8 @@
  * CallToActionScreen - Screen 8 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
- * Golden ratio typography, warm parchment background, and a 
- * beautifully spaced grid of 5 action cards featuring soft shadows 
+ * Golden ratio typography, warm parchment background, and a
+ * beautifully spaced grid of 5 action cards featuring soft shadows
  * and organic accent colors.
  *
  * Requirements: 13.1, 13.2
@@ -22,7 +22,7 @@ import {
   CALL_TO_ACTION_INFO_CARDS,
   COMING_SOON_ACTIONS,
   COMING_SOON_BADGE,
-  type InfoCard
+  type InfoCard,
 } from '../content/i18n';
 import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';
@@ -53,9 +53,15 @@ export default function CallToActionScreen() {
       {/* Scene pair: what taking part actually looks like on site. Leads the
           screen at full width - the two photos set the scene before the
           instructions, rather than trailing off the bottom edge. */}
-      <StaggerList className="grid h-[clamp(9rem,26vh,17rem)] shrink-0 grid-cols-2 gap-[clamp(0.5rem,1vw,1.25rem)]" delay={0.1}>
+      <StaggerList
+        className="grid h-[clamp(9rem,26vh,17rem)] shrink-0 grid-cols-2 gap-[clamp(0.5rem,1vw,1.25rem)]"
+        delay={0.1}
+      >
         {KIOSK_ASSETS.scenes.callToAction.map((src, i) => (
-          <StaggerItem key={src} className="min-h-0 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]">
+          <StaggerItem
+            key={src}
+            className="min-h-0 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_8px_30px_rgba(30,51,40,0.06)]"
+          >
             <KioskImage
               src={src}
               alt={
@@ -73,11 +79,14 @@ export default function CallToActionScreen() {
 
       {/* Five icon-led action cards, kept on one row so all five actions are
           visible at once rather than the last two falling below the fold. */}
-      <StaggerList className="grid min-h-0 flex-1 grid-cols-2 gap-[clamp(0.5rem,1vw,1.25rem)] sm:grid-cols-3 lg:grid-cols-5" delay={0.15}>
+      <StaggerList
+        className="grid min-h-0 flex-1 grid-cols-2 gap-[clamp(0.5rem,1vw,1.25rem)] sm:grid-cols-3 lg:grid-cols-5"
+        delay={0.15}
+      >
         {CALL_TO_ACTIONS.map((action, idx) => {
           const Icon = ACTION_ICONS[action.icon] ?? Sprout;
           const card = CALL_TO_ACTION_INFO_CARDS.find((c) => c.key === action.key);
-          
+
           const accentColors = [
             'text-kiosk-orange-600 bg-kiosk-orange-100',
             'text-kiosk-accent-teal bg-kiosk-accent-teal/10',

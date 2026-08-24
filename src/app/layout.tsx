@@ -29,11 +29,7 @@ export const viewport = {
   themeColor: '#F97316',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={`${jakarta.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased" suppressHydrationWarning>

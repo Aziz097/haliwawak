@@ -10,15 +10,18 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const result = await db.insert(staticPages).values({
-    title: body.title,
-    slug: body.slug,
-    content: body.content,
-    navOrder: body.navOrder ?? 0,
-    isActive: body.isActive ?? true,
-    metaTitle: body.metaTitle ?? null,
-    metaDescription: body.metaDescription ?? null,
-  }).returning();
+  const result = await db
+    .insert(staticPages)
+    .values({
+      title: body.title,
+      slug: body.slug,
+      content: body.content,
+      navOrder: body.navOrder ?? 0,
+      isActive: body.isActive ?? true,
+      metaTitle: body.metaTitle ?? null,
+      metaDescription: body.metaDescription ?? null,
+    })
+    .returning();
   invalidateStaticPagesCache();
   return NextResponse.json(result[0], { status: 201 });
 }

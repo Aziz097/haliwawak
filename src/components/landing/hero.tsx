@@ -16,8 +16,8 @@ export default function Hero() {
             Situs Purbakala & <span className="text-kiosk-accent-teal">Surga Polinator</span>
           </h1>
           <p className="mb-8 mt-6 max-w-lg text-lg leading-relaxed text-kiosk-ink-muted">
-            Temukan keanekaragaman kupu-kupu dan pelajari perannya yang tak tergantikan dalam menjaga
-            ketahanan pangan di ekosistem Situs Purbakala Pugung Raharjo.
+            Temukan keanekaragaman kupu-kupu dan pelajari perannya yang tak tergantikan dalam
+            menjaga ketahanan pangan di ekosistem Situs Purbakala Pugung Raharjo.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link

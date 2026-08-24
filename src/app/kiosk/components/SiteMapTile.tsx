@@ -57,7 +57,10 @@ export default function SiteMapTile({ tile, onSelect }: SiteMapTileProps) {
       onClick={() => onSelect(tile.screen)}
       aria-label={`${tile.label.id} / ${tile.label.en}`}
       className="kiosk-tile-container group relative h-full w-full rounded-[clamp(1.25rem,4cqmin,2.25rem)] p-2 text-left transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-2 hover:shadow-[0_24px_48px_-12px_rgba(30,51,40,0.25)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300"
-      style={{ background: 'rgba(255,255,255,0.06)', boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.12), 0 1px 0 rgba(255,255,255,0.06)' }}
+      style={{
+        background: 'rgba(255,255,255,0.06)',
+        boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.12), 0 1px 0 rgba(255,255,255,0.06)',
+      }}
     >
       {/* Inner core — the actual content container.
           `layoutId` is the morph origin: when this tile is selected, ScreenRouter
@@ -79,7 +82,11 @@ export default function SiteMapTile({ tile, onSelect }: SiteMapTileProps) {
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-kiosk-orange-300">
-              <Icon className="h-[clamp(3rem,14cqmin,5rem)] w-[clamp(3rem,14cqmin,5rem)] opacity-20" aria-hidden="true" strokeWidth={1} />
+              <Icon
+                className="h-[clamp(3rem,14cqmin,5rem)] w-[clamp(3rem,14cqmin,5rem)] opacity-20"
+                aria-hidden="true"
+                strokeWidth={1}
+              />
             </div>
           )}
         </div>

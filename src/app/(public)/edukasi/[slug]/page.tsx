@@ -6,11 +6,7 @@ import { ChevronLeft } from 'lucide-react';
 import { getPublicArticleBySlug } from '@/lib/public-data';
 import PublicImage from '@/components/shared/public-image';
 
-export default async function ArticleDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = await getPublicArticleBySlug(slug);
 
@@ -19,14 +15,23 @@ export default async function ArticleDetailPage({
   return (
     <main className="min-h-screen bg-bg py-12">
       <div className="page-container">
-        <Link href="/edukasi" className="inline-flex items-center gap-2 text-fg-muted hover:text-primary transition-colors mb-8 text-sm font-medium">
+        <Link
+          href="/edukasi"
+          className="inline-flex items-center gap-2 text-fg-muted hover:text-primary transition-colors mb-8 text-sm font-medium"
+        >
           <ChevronLeft className="w-4 h-4" /> Kembali ke Artikel
         </Link>
 
         <article className="max-w-4xl mx-auto">
           {article.thumbnailUrl && (
             <div className="aspect-[2/1] rounded-2xl overflow-hidden mb-8 bg-primary-light">
-                <PublicImage src={article.thumbnailUrl} alt={article.title} fill sizes="(min-width: 1024px) 896px, 100vw" className="object-cover" />
+              <PublicImage
+                src={article.thumbnailUrl}
+                alt={article.title}
+                fill
+                sizes="(min-width: 1024px) 896px, 100vw"
+                className="object-cover"
+              />
             </div>
           )}
 
@@ -47,8 +52,11 @@ export default async function ArticleDetailPage({
             </div>
             {article.publishedAt && (
               <div className="mt-12 pt-8 border-t border-card-border text-sm text-fg-muted/50">
-                Dipublikasikan pada {new Date(article.publishedAt).toLocaleDateString('id-ID', {
-                  day: 'numeric', month: 'long', year: 'numeric'
+                Dipublikasikan pada{' '}
+                {new Date(article.publishedAt).toLocaleDateString('id-ID', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
                 })}
               </div>
             )}

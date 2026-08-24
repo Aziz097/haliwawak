@@ -21,7 +21,7 @@ describe('InfoHotspot', () => {
     render(
       <div onClick={parentClick}>
         <InfoHotspot onClick={hotspotClick} />
-      </div>
+      </div>,
     );
     fireEvent.click(screen.getByLabelText(/learn more/i));
     expect(hotspotClick).toHaveBeenCalledTimes(1);

@@ -9,7 +9,8 @@ const PAGES = [
     navOrder: 1,
     isActive: true,
     metaTitle: 'Tentang - Situs Purbakala Pugung Raharjo',
-    metaDescription: 'Kawasan cagar budaya dan alam di Lampung Timur yang menjadi rumah bagi keanekaragaman hayati, khususnya polinator.',
+    metaDescription:
+      'Kawasan cagar budaya dan alam di Lampung Timur yang menjadi rumah bagi keanekaragaman hayati, khususnya polinator.',
     content: `<section style="text-align:center; padding:4rem 1rem; background:#431407; color:white;">
   <h1 style="font-size:2.5rem; font-weight:bold; margin-bottom:1rem;">Situs Purbakala Pugung Raharjo</h1>
   <p style="max-width:600px; margin:0 auto; font-size:1.1rem; color:rgba(255,255,255,0.6);">Kawasan cagar budaya dan alam di Lampung Timur yang menjadi rumah bagi keanekaragaman hayati &mdash; khususnya polinator yang menjadi fondasi ketahanan pangan ekosistem Lampung.</p>
@@ -54,7 +55,8 @@ const PAGES = [
     navOrder: 2,
     isActive: true,
     metaTitle: 'Kunjungi - Situs Purbakala Pugung Raharjo',
-    metaDescription: 'Rencanakan kunjungan Anda ke Situs Purbakala Pugung Raharjo dan saksikan keindahan alam serta keanekaragaman kupu-kupu.',
+    metaDescription:
+      'Rencanakan kunjungan Anda ke Situs Purbakala Pugung Raharjo dan saksikan keindahan alam serta keanekaragaman kupu-kupu.',
     content: `<section style="text-align:center; padding:4rem 1rem; background:#431407; color:white;">
   <h1 style="font-size:2.5rem; font-weight:bold; margin-bottom:1rem;">Cara Berkunjung</h1>
   <p style="max-width:600px; margin:0 auto; font-size:1.1rem; color:rgba(255,255,255,0.6);">Rencanakan kunjungan Anda ke Situs Purbakala Pugung Raharjo dan saksikan keindahan alam serta keanekaragaman kupu-kupu.</p>
@@ -113,7 +115,8 @@ const PAGES = [
     navOrder: 3,
     isActive: true,
     metaTitle: 'Kontak - Situs Purbakala Pugung Raharjo',
-    metaDescription: 'Hubungi kami untuk informasi lebih lanjut tentang Situs Purbakala Pugung Raharjo.',
+    metaDescription:
+      'Hubungi kami untuk informasi lebih lanjut tentang Situs Purbakala Pugung Raharjo.',
     content: `<section style="text-align:center; padding:4rem 1rem; background:#431407; color:white;">
   <h1 style="font-size:2.5rem; font-weight:bold; margin-bottom:1rem;">Kontak Kami</h1>
   <p style="max-width:600px; margin:0 auto; font-size:1.1rem; color:rgba(255,255,255,0.6);">Hubungi kami untuk informasi lebih lanjut tentang Situs Purbakala Pugung Raharjo.</p>
@@ -203,7 +206,11 @@ const PAGES = [
 
 export async function seedPages() {
   for (const page of PAGES) {
-    const existing = await db.select().from(staticPages).where(eq(staticPages.slug, page.slug)).limit(1);
+    const existing = await db
+      .select()
+      .from(staticPages)
+      .where(eq(staticPages.slug, page.slug))
+      .limit(1);
     if (existing.length === 0) {
       await db.insert(staticPages).values(page);
       console.log(`Seeded page: ${page.slug}`);

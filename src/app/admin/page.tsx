@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Bug, FileText, Clock, Users, Activity, ExternalLink, Wifi, Database, ChevronRight } from 'lucide-react';
+import { Bug, FileText, Clock, Users, Activity, Wifi, Database, ChevronRight } from 'lucide-react';
 
 function timeAgo(dateStr: string): string {
   if (!dateStr) return '';
@@ -67,8 +67,11 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetch('/api/dashboard')
-      .then(r => r.json())
-      .then(d => { setData(d); setLoading(false); })
+      .then((r) => r.json())
+      .then((d) => {
+        setData(d);
+        setLoading(false);
+      })
       .catch(() => setLoading(false));
   }, []);
 
@@ -77,7 +80,9 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-kiosk-orange-600 border-t-transparent rounded-full animate-spin" />
-          <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider">Memuat Dashboard</p>
+          <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider">
+            Memuat Dashboard
+          </p>
         </div>
       </div>
     );
@@ -99,8 +104,12 @@ export default function AdminDashboard() {
       <div className="mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <p className="text-kiosk-ink-muted uppercase text-xs font-bold tracking-wider mb-1">Ringkasan Sistem</p>
-            <h1 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-kiosk-ink">Dashboard</h1>
+            <p className="text-kiosk-ink-muted uppercase text-xs font-bold tracking-wider mb-1">
+              Ringkasan Sistem
+            </p>
+            <h1 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-kiosk-ink">
+              Dashboard
+            </h1>
           </div>
           <div className="flex items-center gap-2 text-success bg-success/10 border border-success/30 px-3 py-1.5 rounded-full text-sm font-medium">
             <span className="relative flex h-2 w-2">
@@ -155,15 +164,23 @@ export default function AdminDashboard() {
               {activityItems.map((log) => {
                 const iconInfo = getActionIcon(log.action);
                 return (
-                  <div key={log.id} className="flex items-center gap-3 px-3 py-2.5 rounded-[1rem] hover:bg-kiosk-bg transition-colors">
-                    <div className={`w-8 h-8 rounded-full ${iconInfo.bg} flex items-center justify-center text-xs font-bold shrink-0`}>
+                  <div
+                    key={log.id}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-[1rem] hover:bg-kiosk-bg transition-colors"
+                  >
+                    <div
+                      className={`w-8 h-8 rounded-full ${iconInfo.bg} flex items-center justify-center text-xs font-bold shrink-0`}
+                    >
                       {iconInfo.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm text-kiosk-ink font-medium truncate">
                         {log.action}
                         {log.entity && (
-                          <span className="text-kiosk-ink-muted font-normal ml-1">• {log.entity}{log.entityId ? ` #${log.entityId}` : ''}</span>
+                          <span className="text-kiosk-ink-muted font-normal ml-1">
+                            • {log.entity}
+                            {log.entityId ? ` #${log.entityId}` : ''}
+                          </span>
                         )}
                       </p>
                       {log.userName && (
@@ -223,7 +240,9 @@ export default function AdminDashboard() {
       <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6">
         <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-1">Spesies Terbaru</p>
+            <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-1">
+              Spesies Terbaru
+            </p>
             <h2 className="text-sm font-bold text-kiosk-ink">5 spesies terakhir ditambahkan</h2>
           </div>
           <a
@@ -239,7 +258,10 @@ export default function AdminDashboard() {
             {recentSpeciesList.map((sp) => {
               const badge = getIucnBadge(sp.iucnStatus);
               return (
-                <div key={sp.id} className="group relative bg-kiosk-bg rounded-[1rem] p-4 border border-transparent hover:border-kiosk-orange-200 transition-all">
+                <div
+                  key={sp.id}
+                  className="group relative bg-kiosk-bg rounded-[1rem] p-4 border border-transparent hover:border-kiosk-orange-200 transition-all"
+                >
                   <div className="w-full aspect-square rounded-[1rem] bg-kiosk-orange-100 mb-3 overflow-hidden">
                     {sp.primaryPhotoUrl ? (
                       <img
@@ -254,10 +276,14 @@ export default function AdminDashboard() {
                     )}
                   </div>
                   <p className="text-sm font-semibold text-kiosk-ink truncate">{sp.commonName}</p>
-                  <p className="text-xs text-kiosk-ink-muted italic truncate">{sp.scientificName}</p>
+                  <p className="text-xs text-kiosk-ink-muted italic truncate">
+                    {sp.scientificName}
+                  </p>
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-xs text-kiosk-ink-muted">{sp.family}</span>
-                    <span className={`inline-flex text-[10px] font-bold px-1.5 py-0.5 rounded ${badge.cls}`}>
+                    <span
+                      className={`inline-flex text-[10px] font-bold px-1.5 py-0.5 rounded ${badge.cls}`}
+                    >
                       {badge.label}
                     </span>
                   </div>

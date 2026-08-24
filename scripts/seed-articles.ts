@@ -10,7 +10,8 @@ async function main() {
       title: 'Menjaga Kolam Megalitik: Mata Air Kehidupan Kupu-Kupu',
       slug: 'menjaga-kolam-megalitik-mata-air-kehidupan-kupu-kupu',
       category: 'Edukasi Ekosistem',
-      summary: 'Kolam purba di Pugung Raharjo bukan sekadar peninggalan sejarah-ia adalah jantung ekosistem yang memberi kehidupan bagi kupu-kupu. Pelajari tentang puddling, bioindikator, dan harmoni leluhur.',
+      summary:
+        'Kolam purba di Pugung Raharjo bukan sekadar peninggalan sejarah-ia adalah jantung ekosistem yang memberi kehidupan bagi kupu-kupu. Pelajari tentang puddling, bioindikator, dan harmoni leluhur.',
       content: `<h2>Kolam Purba yang Hidup</h2>
 <p>Kolam Purba di Pugung Raharjo bukan sekadar peninggalan sejarah yang mati. Hingga hari ini, ia adalah jantung ekosistem yang berdenyut, memberi kehidupan bagi ratusan kepakan sayap kupu-kupu.</p>
 <h3>Mengapa satu tetes air di kolam ini begitu berarti?</h3>
@@ -28,7 +29,8 @@ async function main() {
       title: 'Metamorfosis Kupu-Kupu',
       slug: 'metamorfosis-kupu-kupu',
       category: 'Ensiklopedia Spesies',
-      summary: 'Proses metamorfosis sempurna kupu-kupu dari telur, ulat, kepompong, hingga menjadi imago yang indah.',
+      summary:
+        'Proses metamorfosis sempurna kupu-kupu dari telur, ulat, kepompong, hingga menjadi imago yang indah.',
       content: `<h2>Siklus Metamorfosis Sempurna</h2>
 <p>Kupu-kupu mengalami metamorfosis sempurna (holometabola) dalam empat tahap kehidupan yang menakjubkan:</p>
 <h3>1. Fase Telur</h3>
@@ -47,7 +49,8 @@ async function main() {
       title: 'Ekosistem Kupu-Kupu di Pugung Raharjo',
       slug: 'ekosistem-kupu-kupu-di-pugung-raharjo',
       category: 'Laporan Konservasi',
-      summary: 'Penilaian ekologis menunjukkan Situs Megalitik Pugung Raharjo adalah habitat yang stabil dan seimbang bagi populasi kupu-kupu.',
+      summary:
+        'Penilaian ekologis menunjukkan Situs Megalitik Pugung Raharjo adalah habitat yang stabil dan seimbang bagi populasi kupu-kupu.',
       content: `<h2>Penilaian Ekologis Situs Megalitik Pugung Raharjo</h2>
 <p>Penilaian ekologis kami menunjukkan bahwa Situs Megalitik Pugung Raharjo jauh lebih dari sekadar jendela ke masa lalu-ini adalah tempat perlindungan alam yang berkembang dan tangguh. Data yang dikumpulkan menggambarkan habitat yang sangat stabil dan seimbang di mana populasi kupu-kupu lokal berkembang dalam harmoni yang sempurna.</p>
 <p>Dari keragaman spesies yang kaya hingga distribusi yang sangat merata di seluruh ekosistem, metrik ini menyoroti lingkungan sehat yang tetap tidak terganggu oleh kerusakan ekologis.</p>
@@ -66,7 +69,8 @@ async function main() {
       title: 'Call to Action: Melindungi Kupu-Kupu',
       slug: 'call-to-action-melindungi-kupu-kupu',
       category: 'Edukasi Ekosistem',
-      summary: 'Lima aksi nyata yang dapat Anda lakukan untuk membantu menjaga kelestarian kupu-kupu di Situs Pugung Raharjo.',
+      summary:
+        'Lima aksi nyata yang dapat Anda lakukan untuk membantu menjaga kelestarian kupu-kupu di Situs Pugung Raharjo.',
       content: `<h2>5 Aksi Nyata Menjaga Kupu-Kupu</h2>
 <p>Kepakan sayap kupu-kupu di Pugung Raharjo adalah tanda alam yang sehat-mari ambil peran nyata untuk menjaga kelestarian mereka hari ini!</p>
 <h3>1. Tanam Masa Depan: Satu Bibit untuk Seribu Sayap</h3>
@@ -91,16 +95,19 @@ async function main() {
   ];
 
   for (const a of articlesData) {
-    await db.insert(articles).values({
-      title: a.title,
-      slug: a.slug,
-      category: a.category,
-      content: a.content,
-      summary: a.summary,
-      status: a.status,
-      publishedAt: a.publishedAt,
-      authorId: a.authorId,
-    }).onConflictDoNothing({ target: articles.slug });
+    await db
+      .insert(articles)
+      .values({
+        title: a.title,
+        slug: a.slug,
+        category: a.category,
+        content: a.content,
+        summary: a.summary,
+        status: a.status,
+        publishedAt: a.publishedAt,
+        authorId: a.authorId,
+      })
+      .onConflictDoNothing({ target: articles.slug });
     console.log(`Article "${a.title}" created.`);
   }
 

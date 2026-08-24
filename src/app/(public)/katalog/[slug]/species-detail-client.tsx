@@ -22,7 +22,10 @@ export default function SpeciesDetailClient({ species: s }: { species: PublicSpe
 
   return (
     <div>
-      <Link href="/katalog" className="inline-flex items-center gap-2 text-fg-muted hover:text-primary transition-colors mb-8 text-sm font-medium">
+      <Link
+        href="/katalog"
+        className="inline-flex items-center gap-2 text-fg-muted hover:text-primary transition-colors mb-8 text-sm font-medium"
+      >
         <ChevronLeft className="w-4 h-4" /> Kembali ke Katalog
       </Link>
 
@@ -32,10 +35,15 @@ export default function SpeciesDetailClient({ species: s }: { species: PublicSpe
             {displayedPhoto ? (
               <img src={displayedPhoto} alt={s.commonName} className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center"><Bug className="w-24 h-24 text-fg-muted/20" /></div>
+              <div className="w-full h-full flex items-center justify-center">
+                <Bug className="w-24 h-24 text-fg-muted/20" />
+              </div>
             )}
             {iucn && (
-              <span className="absolute top-4 right-4 font-bold px-3 py-1.5 rounded-lg text-white text-sm shadow-md" style={{ background: iucn.bg }}>
+              <span
+                className="absolute top-4 right-4 font-bold px-3 py-1.5 rounded-lg text-white text-sm shadow-md"
+                style={{ background: iucn.bg }}
+              >
                 {s.iucnStatus}
               </span>
             )}
@@ -70,12 +78,22 @@ export default function SpeciesDetailClient({ species: s }: { species: PublicSpe
         </div>
 
         <div className="lg:col-span-7">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-fg leading-tight mb-2">{s.commonName}</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-fg leading-tight mb-2">
+            {s.commonName}
+          </h1>
           <p className="text-primary italic font-serif text-2xl mb-6">{s.scientificName}</p>
 
           <div className="flex flex-wrap gap-3 mb-6">
-            {s.family && <span className="bg-card-bg border border-card-border px-4 py-2 rounded-lg text-sm font-medium">{s.family}</span>}
-            {s.wingspan && <span className="bg-card-bg border border-card-border px-4 py-2 rounded-lg text-sm font-medium">Rentang Sayap: {s.wingspan}</span>}
+            {s.family && (
+              <span className="bg-card-bg border border-card-border px-4 py-2 rounded-lg text-sm font-medium">
+                {s.family}
+              </span>
+            )}
+            {s.wingspan && (
+              <span className="bg-card-bg border border-card-border px-4 py-2 rounded-lg text-sm font-medium">
+                Rentang Sayap: {s.wingspan}
+              </span>
+            )}
             {s.ecosystemRole && (
               <span className="bg-primary-light text-primary border border-primary/30 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
                 <Bug className="w-4 h-4" /> {s.ecosystemRole}
@@ -98,36 +116,74 @@ export default function SpeciesDetailClient({ species: s }: { species: PublicSpe
           </div>
 
           <div className="text-fg-muted leading-relaxed custom-scrollbar max-h-[400px] overflow-y-auto pr-4">
-            {tab === 'deskripsi' && (s.description || s.characteristics || 'Informasi deskripsi belum tersedia.')}
+            {tab === 'deskripsi' &&
+              (s.description || s.characteristics || 'Informasi deskripsi belum tersedia.')}
             {tab === 'ekologi' && (
               <div className="space-y-6">
                 {s.hostPlants?.length > 0 && (
                   <div>
-                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">Tanaman Inang</p>
-                    <div className="flex flex-wrap gap-2">{s.hostPlants.map((h: string) => <span key={h} className="text-sm font-medium bg-card-bg border border-card-border px-3 py-1.5 rounded-md">{h}</span>)}</div>
+                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">
+                      Tanaman Inang
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {s.hostPlants.map((h: string) => (
+                        <span
+                          key={h}
+                          className="text-sm font-medium bg-card-bg border border-card-border px-3 py-1.5 rounded-md"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {s.pollinatedPlants?.length > 0 && (
                   <div>
-                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">Tanaman yang Diserbuki</p>
-                    <div className="flex flex-wrap gap-2">{s.pollinatedPlants.map((h: string) => <span key={h} className="text-sm font-medium bg-primary-light border border-primary/30 text-primary px-3 py-1.5 rounded-md">{h}</span>)}</div>
+                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">
+                      Tanaman yang Diserbuki
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {s.pollinatedPlants.map((h: string) => (
+                        <span
+                          key={h}
+                          className="text-sm font-medium bg-primary-light border border-primary/30 text-primary px-3 py-1.5 rounded-md"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {s.activeMonths?.length > 0 && (
                   <div>
-                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">Musim Aktif</p>
+                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">
+                      Musim Aktif
+                    </p>
                     <p className="text-sm">{s.activeMonths.join(', ')}</p>
                   </div>
                 )}
                 {s.foundLocations?.length > 0 && (
                   <div>
-                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">Lokasi Temuan</p>
-                    <div className="flex flex-wrap gap-2">{s.foundLocations.map((l: string) => <span key={l} className="text-sm font-medium bg-card-bg border border-card-border px-3 py-1.5 rounded-md">{l}</span>)}</div>
+                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">
+                      Lokasi Temuan
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {s.foundLocations.map((l: string) => (
+                        <span
+                          key={l}
+                          className="text-sm font-medium bg-card-bg border border-card-border px-3 py-1.5 rounded-md"
+                        >
+                          {l}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {s.ecologyNotes && (
                   <div>
-                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">Catatan Ekologi</p>
+                    <p className="text-fg-muted/50 text-xs font-bold uppercase tracking-widest mb-2">
+                      Catatan Ekologi
+                    </p>
                     <p className="text-sm">{s.ecologyNotes}</p>
                   </div>
                 )}

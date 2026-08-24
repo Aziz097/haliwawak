@@ -53,9 +53,9 @@ export default function ScreenEntrance({
 
   return (
     <motion.div
-       initial={{ opacity: 0, y: 18 }}
-       animate={{ opacity: 1, y: 0 }}
-       transition={{ duration: 0.32, ease: EASING, delay }}
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.32, ease: EASING, delay }}
       className={className}
     >
       {children}
@@ -77,9 +77,9 @@ export function FadeUp({
   if (reduce) return <div className={className}>{children}</div>;
   return (
     <motion.div
-       initial={{ opacity: 0, y: 18 }}
-       animate={{ opacity: 1, y: 0 }}
-       transition={{ duration: 0.32, ease: EASING, delay }}
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.32, ease: EASING, delay }}
       className={className}
     >
       {children}

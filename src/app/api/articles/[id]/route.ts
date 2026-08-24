@@ -6,7 +6,12 @@ import { invalidateArticlesCache } from '@/lib/public-cache';
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const article = await db.select().from(articles).where(eq(articles.id, Number(id))).limit(1).then(r => r[0]);
+  const article = await db
+    .select()
+    .from(articles)
+    .where(eq(articles.id, Number(id)))
+    .limit(1)
+    .then((r) => r[0]);
   if (!article) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(article);
 }
@@ -14,7 +19,11 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const body = await req.json();
-  const result = await db.update(articles).set(body).where(eq(articles.id, Number(id))).returning();
+  const result = await db
+    .update(articles)
+    .set(body)
+    .where(eq(articles.id, Number(id)))
+    .returning();
   invalidateArticlesCache();
   return NextResponse.json(result[0]);
 }

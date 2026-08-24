@@ -8,7 +8,8 @@ export default function VisitCta() {
         <Ticket className="mx-auto mb-6 h-12 w-12 text-white/70" />
         <h2 className="font-heading text-3xl font-bold md:text-4xl">Rencanakan Kunjungan Anda</h2>
         <p className="mx-auto mb-8 mt-4 max-w-xl text-lg leading-relaxed text-white/80">
-          Saksikan langsung keindahan alam Pugung Raharjo dan berinteraksi dengan keanekaragaman kupu-kupu polinator.
+          Saksikan langsung keindahan alam Pugung Raharjo dan berinteraksi dengan keanekaragaman
+          kupu-kupu polinator.
         </p>
         <div className="mb-8 flex flex-col justify-center gap-3 text-sm font-medium sm:flex-row">
           <span className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 backdrop-blur-sm">

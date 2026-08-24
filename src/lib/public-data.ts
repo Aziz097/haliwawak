@@ -29,7 +29,12 @@ export type PublicArticleListItem = {
 
 export type PublicSpeciesDetail = Omit<
   InferSelectModel<typeof species>,
-  'dominantColors' | 'hostPlants' | 'pollinatedPlants' | 'activeMonths' | 'foundLocations' | 'galleryUrls'
+  | 'dominantColors'
+  | 'hostPlants'
+  | 'pollinatedPlants'
+  | 'activeMonths'
+  | 'foundLocations'
+  | 'galleryUrls'
 > & {
   dominantColors: string[];
   hostPlants: string[];

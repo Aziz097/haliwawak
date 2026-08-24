@@ -1,20 +1,20 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
 
-  --color-bg: #FFF7ED;
+  --color-bg: #fff7ed;
   --color-fg: #431407;
-  --color-fg-muted: #9A3412;
-  --color-primary: #F97316;
-  --color-primary-light: #FFE8D9;
-  --color-accent-warm: #F59E0B;
-  --color-accent-teal: #F97316;
-  --color-card-bg: #FFFFFF;
-  --color-card-border: #FFE8D9;
+  --color-fg-muted: #9a3412;
+  --color-primary: #f97316;
+  --color-primary-light: #ffe8d9;
+  --color-accent-warm: #f59e0b;
+  --color-accent-teal: #f97316;
+  --color-card-bg: #ffffff;
+  --color-card-border: #ffe8d9;
   --color-section-dark: #431407;
   --color-danger: #dc2626;
   --color-warning: #d97706;
@@ -22,43 +22,47 @@
 
   /* ── Kiosk: Claude-inspired Orange Palette ─────────────── */
   /* Canvas / surfaces - warm cream paper */
-  --color-kiosk-bg:            #FFF7ED;  /* page canvas */
-  --color-kiosk-surface:       #FFFFFF;  /* cards */
-  --color-kiosk-surface-tint:  #FFE8D9;  /* tinted panels */
+  --color-kiosk-bg: #fff7ed; /* page canvas */
+  --color-kiosk-surface: #ffffff; /* cards */
+  --color-kiosk-surface-tint: #ffe8d9; /* tinted panels */
 
   /* Orange scale - bright Claude orange */
-  --color-kiosk-orange-50:  #FFF7ED;
-  --color-kiosk-orange-100: #FFE8D9;
-  --color-kiosk-orange-200: #FED7AA;
-  --color-kiosk-orange-300: #FDBA74;
-  --color-kiosk-orange-400: #FB923C;
-  --color-kiosk-orange-500: #F97316;  /* primary orange */
-  --color-kiosk-orange-600: #EA580C;
-  --color-kiosk-orange-700: #C2410C;
-  --color-kiosk-orange-800: #9A3412;
-  --color-kiosk-orange-900: #7C2D12;
+  --color-kiosk-orange-50: #fff7ed;
+  --color-kiosk-orange-100: #ffe8d9;
+  --color-kiosk-orange-200: #fed7aa;
+  --color-kiosk-orange-300: #fdba74;
+  --color-kiosk-orange-400: #fb923c;
+  --color-kiosk-orange-500: #f97316; /* primary orange */
+  --color-kiosk-orange-600: #ea580c;
+  --color-kiosk-orange-700: #c2410c;
+  --color-kiosk-orange-800: #9a3412;
+  --color-kiosk-orange-900: #7c2d12;
 
   /* Text inks */
-  --color-kiosk-ink:        #431407;
-  --color-kiosk-ink-muted:  #9A3412;
-  --color-kiosk-on-green:   #FFFFFF;
+  --color-kiosk-ink: #431407;
+  --color-kiosk-ink-muted: #9a3412;
+  --color-kiosk-on-green: #ffffff;
 
   /* Supporting accents */
-  --color-kiosk-accent-amber: #F59E0B; /* amber */
-  --color-kiosk-accent-teal:  #F97316; /* claude orange */
+  --color-kiosk-accent-amber: #f59e0b; /* amber */
+  --color-kiosk-accent-teal: #f97316; /* claude orange */
 
   /* IUCN status */
-  --color-kiosk-iucn-lc: #4A725D;  
-  --color-kiosk-iucn-nt: #EBA741;
-  --color-kiosk-iucn-vu: #D05A3D;
-  --color-kiosk-iucn-en: #B91C1C;
-  --color-kiosk-iucn-cr: #7F1D1D;
-  --color-kiosk-iucn-na: #6B7280;  
+  --color-kiosk-iucn-lc: #4a725d;
+  --color-kiosk-iucn-nt: #eba741;
+  --color-kiosk-iucn-vu: #d05a3d;
+  --color-kiosk-iucn-en: #b91c1c;
+  --color-kiosk-iucn-cr: #7f1d1d;
+  --color-kiosk-iucn-na: #6b7280;
 }
 
 @layer base {
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-bg);
     color: var(--color-fg);
@@ -85,9 +89,18 @@
     flex-shrink: 0;
   }
 
-  .icon-slot-sm { width: 32px; height: 32px; }
-  .icon-slot-md { width: 44px; height: 44px; }
-  .icon-slot-lg { width: 56px; height: 56px; }
+  .icon-slot-sm {
+    width: 32px;
+    height: 32px;
+  }
+  .icon-slot-md {
+    width: 44px;
+    height: 44px;
+  }
+  .icon-slot-lg {
+    width: 56px;
+    height: 56px;
+  }
 
   .iucn-badge {
     @apply text-xs font-bold px-2 py-0.5 rounded;
@@ -98,16 +111,30 @@
   }
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #e7e1d8; }
-::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #78716c; }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e7e1d8;
+}
+::-webkit-scrollbar-thumb {
+  background: #a8a29e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #78716c;
+}
 
 /* Kiosk screens that legitimately run long (species catalogue, credits) must
    SHOW that they scroll - a touch panel gives no other hint. Sized for a
    fingertip and coloured against the cream canvas, not the old dark theme. */
-.kiosk-scrollbar::-webkit-scrollbar { width: 0; display: none; }
-.kiosk-scrollbar { scrollbar-width: none; }
+.kiosk-scrollbar::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+.kiosk-scrollbar {
+  scrollbar-width: none;
+}
 
 /* ── Kiosk Site Map tile container queries ─────────────────────────────── */
 .kiosk-tile-container {
@@ -115,15 +142,31 @@
 }
 
 @keyframes particleDrift {
-  0%, 100% { opacity: 0; transform: translate(0, 0) scale(1); }
-  20% { opacity: 0.8; }
-  50% { opacity: 0.4; transform: translate(var(--drift, 20px), -30px) scale(1.2); }
-  80% { opacity: 0.6; }
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(var(--drift, 20px), -30px) scale(1.2);
+  }
+  80% {
+    opacity: 0.6;
+  }
 }
 
 @keyframes softPulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @container (max-height: 100px) {
@@ -139,7 +182,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

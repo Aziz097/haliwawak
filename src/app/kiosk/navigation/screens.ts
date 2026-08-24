@@ -67,9 +67,7 @@ export const SCREEN_FLOW: Screen[] = [
  * Content screens are every flow screen except the Site Map hub itself.
  * These are the screens the Site Map links to (one tile each, Req 6.1).
  */
-export const CONTENT_SCREENS: Screen[] = SCREEN_FLOW.filter(
-  (screen) => screen !== 'SITE_MAP',
-);
+export const CONTENT_SCREENS: Screen[] = SCREEN_FLOW.filter((screen) => screen !== 'SITE_MAP');
 
 /**
  * Bilingual label: Indonesian (`id`) is primary, English (`en`) is secondary.

@@ -9,7 +9,12 @@ export async function GET(req: NextRequest) {
   const page = parseInt(url.searchParams.get('page') || '1');
   const limit = parseInt(url.searchParams.get('limit') || '50');
   const offset = (page - 1) * limit;
-  const data = await db.select().from(articles).orderBy(desc(articles.createdAt)).limit(limit).offset(offset);
+  const data = await db
+    .select()
+    .from(articles)
+    .orderBy(desc(articles.createdAt))
+    .limit(limit)
+    .offset(offset);
   return NextResponse.json(data);
 }
 

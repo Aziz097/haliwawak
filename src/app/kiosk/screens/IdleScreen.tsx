@@ -45,14 +45,17 @@ function IdleClock() {
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
-  
+
   if (!now) return <span className="font-serif text-[1.618rem] text-kiosk-ink-muted">--:--</span>;
-  
+
   const h = now.getHours().toString().padStart(2, '0');
   const m = now.getMinutes().toString().padStart(2, '0');
 
   return (
-    <span suppressHydrationWarning className="font-serif text-[1.618rem] italic text-kiosk-ink-muted">
+    <span
+      suppressHydrationWarning
+      className="font-serif text-[1.618rem] italic text-kiosk-ink-muted"
+    >
       {h}:{m}
     </span>
   );
@@ -117,7 +120,6 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
 
       {/* Golden Ratio Left Panel (38.2% width): Airy Typography & Content */}
       <div className="absolute left-0 top-0 z-20 flex h-full w-[38.2%] flex-col justify-between px-[2.618rem] py-[4.236rem]">
-        
         {/* Top: Location & Clock */}
         <div className="flex flex-col gap-[1.618rem]">
           <div className="flex items-center gap-4">
@@ -151,7 +153,8 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
           </span>
 
           <h1 className="font-serif text-[4.236rem] leading-[1.05] tracking-tight text-kiosk-ink">
-            Eduwisata<br/>
+            Eduwisata
+            <br />
             <span className="italic text-kiosk-orange-700">Polinator</span>
           </h1>
 
@@ -169,9 +172,11 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
           className="flex w-max items-center gap-3 rounded-full bg-kiosk-orange-700 px-[1.618rem] py-[1rem] text-kiosk-on-green shadow-lg transition-transform hover:scale-105 hover:bg-kiosk-orange-800"
         >
           <Hand className="h-6 w-6" />
-          <span className="font-sans text-[1rem] font-semibold tracking-wide">{t(IDLE_PROMPT)}</span>
+          <span className="font-sans text-[1rem] font-semibold tracking-wide">
+            {t(IDLE_PROMPT)}
+          </span>
         </motion.div>
-        
+
         {/* Footer info inside the left panel */}
         <div className="absolute bottom-[1rem] left-[2.618rem] font-sans text-[0.7rem] uppercase tracking-widest text-kiosk-ink-muted/50">
           Institut Teknologi Sumatera · Kemdiktisaintek RI
@@ -180,4 +185,3 @@ export default function IdleScreen({ species, onStart }: IdleScreenProps) {
     </section>
   );
 }
-

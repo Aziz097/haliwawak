@@ -45,11 +45,7 @@ export interface ScreenRouterProps {
   onSelectTile: (screen: Screen) => void;
 }
 
-const SCROLLABLE_SCREENS = new Set<Screen>([
-  'VIRTUAL_INSEKTARIUM',
-  'DATA_SPESIES',
-  'TIM_KAMI',
-]);
+const SCROLLABLE_SCREENS = new Set<Screen>(['VIRTUAL_INSEKTARIUM', 'DATA_SPESIES', 'TIM_KAMI']);
 
 export function isScrollableScreen(screen: Screen) {
   return SCROLLABLE_SCREENS.has(screen);

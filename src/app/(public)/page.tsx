@@ -11,10 +11,7 @@ import VisitCta from '@/components/landing/visit-cta';
 import Footer from '@/components/landing/footer';
 
 export default async function HomePage() {
-  const [activeArticles, allSpecies] = await Promise.all([
-    getPublicArticles(),
-    getPublicSpecies(),
-  ]);
+  const [activeArticles, allSpecies] = await Promise.all([getPublicArticles(), getPublicSpecies()]);
 
   // Curated in the CMS via `featuredOnHome`; until an editor flags any, fall
   // back to the first few in `homeOrder` so the section is never empty.

@@ -34,8 +34,10 @@ describe('ClickableCard', () => {
     const buttonClick = vi.fn();
     render(
       <ClickableCard onClick={cardClick}>
-        <button type="button" onClick={buttonClick}>Nested</button>
-      </ClickableCard>
+        <button type="button" onClick={buttonClick}>
+          Nested
+        </button>
+      </ClickableCard>,
     );
     fireEvent.click(screen.getByText('Nested'));
     expect(buttonClick).toHaveBeenCalledTimes(1);

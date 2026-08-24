@@ -29,8 +29,7 @@ import KioskShell from './components/KioskShell';
 import KioskOrientationGuard from './components/KioskOrientationGuard';
 
 export default function KioskPage() {
-  const { state, go, back, home, start, resetIdle, canGoBack, nextScreen } =
-    useKioskNavigation();
+  const { state, go, back, home, start, resetIdle, canGoBack, nextScreen } = useKioskNavigation();
 
   // Hard-coded species (curated photos, no backend). Memoized so the array
   // identity is stable across renders.

@@ -19,13 +19,8 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
   return (
     <Dialog.Root open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <Dialog.Portal>
-        <Dialog.Overlay
-          className="fixed inset-0 z-50 bg-kiosk-ink/40"
-          onClick={onClose}
-        />
-        <Dialog.Content
-          className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-[2rem] bg-white p-0 shadow-[0_20px_60px_rgba(30,51,40,0.18)] outline-none"
-        >
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-kiosk-ink/40" onClick={onClose} />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-[2rem] bg-white p-0 shadow-[0_20px_60px_rgba(30,51,40,0.18)] outline-none">
           <div className="flex max-h-[85vh] flex-col">
             <div className="flex items-start justify-between border-b border-kiosk-orange-100 p-8">
               <div>
@@ -48,9 +43,7 @@ export default function InfoModal({ open, onClose, card }: InfoModalProps) {
 
             <div className="overflow-y-auto p-8">
               <Dialog.Description asChild>
-                <p className="text-lg leading-relaxed text-kiosk-ink-muted">
-                  {sci(t(card.body))}
-                </p>
+                <p className="text-lg leading-relaxed text-kiosk-ink-muted">{sci(t(card.body))}</p>
               </Dialog.Description>
               <div className="mt-6 rounded-2xl border border-kiosk-orange-200 bg-kiosk-orange-50 p-6">
                 <h4 className="mb-2 font-sans text-base font-bold text-kiosk-orange-800">

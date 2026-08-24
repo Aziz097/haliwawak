@@ -5,11 +5,7 @@ import { getPublicSpeciesBySlug } from '@/lib/public-data';
 import type { PublicSpeciesDetail } from '@/lib/public-data';
 import SpeciesDetailClient from './species-detail-client';
 
-export default async function SpeciesDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function SpeciesDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const sp = (await getPublicSpeciesBySlug(slug)) as PublicSpeciesDetail | undefined;
 

@@ -5,7 +5,7 @@
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
  * Editorial/museum layout using the Golden Ratio (61.8% image / 38.2% text).
- * The image stands proudly without dark overlays, while the text panel 
+ * The image stands proudly without dark overlays, while the text panel
  * breathes on a warm parchment canvas with elegant typography.
  *
  * Requirements: 7.1, 7.2, 7.3
@@ -18,7 +18,7 @@ import {
   LIVING_HERITAGE_TITLE,
   LIVING_HERITAGE_INTRO,
   LIVING_HERITAGE_INFO,
-  type InfoCard
+  type InfoCard,
 } from '../content/i18n';
 import { KIOSK_ASSETS } from '../content/assets';
 import { fadeUp, stagger } from '../kiosk-theme/motion';
@@ -90,7 +90,6 @@ export default function LivingHeritageScreen({
 
       {/* Golden Ratio Right Panel (38.2% width): Airy Typography & Content */}
       <div className="relative z-20 flex h-full w-[38.2%] flex-col justify-center px-[4.236rem] py-10">
-        
         {/* Editorial Content Block */}
         <motion.div
           variants={stagger}
@@ -99,7 +98,10 @@ export default function LivingHeritageScreen({
           className="flex flex-col items-start gap-[2.618rem]"
         >
           {/* Subtle Motif */}
-          <motion.div variants={fadeUp} className="flex h-16 w-16 items-center justify-center rounded-full bg-kiosk-surface-tint text-kiosk-accent-teal shadow-inner">
+          <motion.div
+            variants={fadeUp}
+            className="flex h-16 w-16 items-center justify-center rounded-full bg-kiosk-surface-tint text-kiosk-accent-teal shadow-inner"
+          >
             <Landmark className="h-8 w-8" strokeWidth={1.5} />
           </motion.div>
 
@@ -130,7 +132,6 @@ export default function LivingHeritageScreen({
             </ClickableCard>
           </motion.div>
         </motion.div>
-
       </div>
       <InfoModal open={infoCard !== null} onClose={() => setInfoCard(null)} card={infoCard} />
     </section>

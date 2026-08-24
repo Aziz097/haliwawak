@@ -6,7 +6,12 @@ import { invalidateSpeciesCache } from '@/lib/public-cache';
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const post = await db.select().from(species).where(eq(species.id, Number(id))).limit(1).then(r => r[0]);
+  const post = await db
+    .select()
+    .from(species)
+    .where(eq(species.id, Number(id)))
+    .limit(1)
+    .then((r) => r[0]);
   if (!post) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(post);
 }
@@ -14,7 +19,11 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const body = await req.json();
-  const result = await db.update(species).set(body).where(eq(species.id, Number(id))).returning();
+  const result = await db
+    .update(species)
+    .set(body)
+    .where(eq(species.id, Number(id)))
+    .returning();
   invalidateSpeciesCache();
   return NextResponse.json(result[0]);
 }

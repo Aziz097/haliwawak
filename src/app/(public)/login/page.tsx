@@ -38,7 +38,9 @@ export default function LoginPage() {
         </div>
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8 space-y-5">
           {error && (
-            <div className="text-sm text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] px-4 py-3 rounded-lg">{error}</div>
+            <div className="text-sm text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] px-4 py-3 rounded-lg">
+              {error}
+            </div>
           )}
           <div>
             <label className="block text-sm font-semibold text-[#374151] mb-1.5">Email</label>
@@ -62,11 +64,16 @@ export default function LoginPage() {
               required
             />
           </div>
-          <button type="submit" className="w-full bg-[#059669] hover:bg-[#047857] text-white font-bold py-3 rounded-lg transition-all text-sm">
+          <button
+            type="submit"
+            className="w-full bg-[#059669] hover:bg-[#047857] text-white font-bold py-3 rounded-lg transition-all text-sm"
+          >
             Masuk
           </button>
         </form>
-        <p className="text-center text-white/30 text-xs mt-6">Sistem Informasi Eduwisata Polinator &mdash; ITERA</p>
+        <p className="text-center text-white/30 text-xs mt-6">
+          Sistem Informasi Eduwisata Polinator &mdash; ITERA
+        </p>
       </div>
     </div>
   );

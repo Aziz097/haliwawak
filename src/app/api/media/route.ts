@@ -6,9 +6,9 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const category = url.searchParams.get('category');
-  let query = db.select().from(media).orderBy(desc(media.createdAt));
+  const query = db.select().from(media).orderBy(desc(media.createdAt));
   const data = await query;
-  return NextResponse.json(category ? data.filter(m => m.category === category) : data);
+  return NextResponse.json(category ? data.filter((m) => m.category === category) : data);
 }
 
 export async function POST(req: NextRequest) {

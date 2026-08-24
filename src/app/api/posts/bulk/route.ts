@@ -6,7 +6,8 @@ import { invalidateSpeciesCache } from '@/lib/public-cache';
 
 export async function POST(req: NextRequest) {
   const { action, ids } = await req.json();
-  if (!Array.isArray(ids) || ids.length === 0) return NextResponse.json({ error: 'No IDs' }, { status: 400 });
+  if (!Array.isArray(ids) || ids.length === 0)
+    return NextResponse.json({ error: 'No IDs' }, { status: 400 });
 
   if (action === 'publish') {
     await db.update(species).set({ isPublished: true }).where(inArray(species.id, ids));

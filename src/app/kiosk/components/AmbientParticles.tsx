@@ -8,19 +8,21 @@ import { useState, useEffect } from 'react';
  * Rendered as fixed, pointer-events-none layers to avoid blocking interaction.
  */
 export function AmbientParticles() {
-  const [particles, setParticles] = useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    delay: number;
-    duration: number;
-    drift: number;
-  }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      delay: number;
+      duration: number;
+      drift: number;
+    }>
+  >([]);
 
   useEffect(() => {
     setParticles(
-       Array.from({ length: 12 }, (_, i) => ({
+      Array.from({ length: 12 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
@@ -28,7 +30,7 @@ export function AmbientParticles() {
         delay: Math.random() * 8,
         duration: Math.random() * 6 + 8,
         drift: (Math.random() - 0.5) * 40,
-      }))
+      })),
     );
   }, []);
 
@@ -38,16 +40,18 @@ export function AmbientParticles() {
         <div
           key={p.id}
           className="absolute rounded-full opacity-0"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-            background: 'radial-gradient(circle, rgba(249,115,22,0.55) 0%, transparent 70%)',
-            boxShadow: `0 0 ${p.size * 5}px ${p.size * 2}px rgba(249,115,22,0.18)`,
-            animation: `particleDrift ${p.duration}s ${p.delay}s ease-in-out infinite`,
-            '--drift': `${p.drift}px`,
-          } as React.CSSProperties}
+          style={
+            {
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size,
+              height: p.size,
+              background: 'radial-gradient(circle, rgba(249,115,22,0.55) 0%, transparent 70%)',
+              boxShadow: `0 0 ${p.size * 5}px ${p.size * 2}px rgba(249,115,22,0.18)`,
+              animation: `particleDrift ${p.duration}s ${p.delay}s ease-in-out infinite`,
+              '--drift': `${p.drift}px`,
+            } as React.CSSProperties
+          }
         />
       ))}
     </div>

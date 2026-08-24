@@ -4,6 +4,7 @@ node_modules/
 # Build output
 .next/
 dist/
+coverage/
 *.tsbuildinfo
 next-env.d.ts
 

@@ -20,9 +20,7 @@ export interface LoadingIndicatorProps {
 }
 
 /** Bilingual loading block with an animated spinner (single language). */
-export default function LoadingIndicator({
-  caption = LOADING_MESSAGE,
-}: LoadingIndicatorProps) {
+export default function LoadingIndicator({ caption = LOADING_MESSAGE }: LoadingIndicatorProps) {
   const { t } = useLang();
   return (
     <div
@@ -30,10 +28,7 @@ export default function LoadingIndicator({
       aria-live="polite"
       className="flex flex-col items-center justify-center gap-4 px-8 py-12 text-center"
     >
-      <Loader2
-        className="h-12 w-12 animate-spin text-kiosk-orange-600"
-        aria-hidden="true"
-      />
+      <Loader2 className="h-12 w-12 animate-spin text-kiosk-orange-600" aria-hidden="true" />
       <p className="text-xl font-semibold text-kiosk-ink">{t(caption)}</p>
     </div>
   );

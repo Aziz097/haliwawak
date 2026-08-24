@@ -5,26 +5,57 @@ import { Trash2, X, Save } from 'lucide-react';
 
 const CATEGORIES = ['Spesies', 'Kegiatan', 'Fasilitas Situs', 'Artefak', 'Umum'];
 
+interface MediaItem {
+  id: number;
+  filename: string;
+  originalName: string | null;
+  url: string | null;
+  altText: string | null;
+  title?: string | null;
+  photographer?: string | null;
+  category?: string | null;
+  tags?: string[] | null;
+  mimeType?: string | null;
+  sizeBytes?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+
+interface MediaEditForm {
+  title: string;
+  altText: string;
+  photographer: string;
+  category: string;
+  tags: string;
+}
+
 export default function AdminMediaPage() {
-  const [media, setMedia] = useState<any[]>([]);
+  const [media, setMedia] = useState<MediaItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<any>(null);
-  const [editForm, setEditForm] = useState<any>(null);
+  const [selected, setSelected] = useState<MediaItem | null>(null);
+  const [editForm, setEditForm] = useState<MediaEditForm | null>(null);
 
   const fetchMedia = useCallback(() => {
-    fetch('/api/media').then(r => r.json()).then(data => {
-      setMedia(Array.isArray(data) ? data : []);
-      setLoading(false);
-    });
+    fetch('/api/media')
+      .then((r) => r.json())
+      .then((data) => {
+        setMedia(Array.isArray(data) ? (data as MediaItem[]) : []);
+        setLoading(false);
+      });
   }, []);
 
-  useEffect(() => { fetchMedia(); }, [fetchMedia]);
+  useEffect(() => {
+    fetchMedia();
+  }, [fetchMedia]);
 
   const handleDelete = async (e: React.MouseEvent, id: number) => {
     e.stopPropagation();
     if (!confirm('Hapus media ini?')) return;
     await fetch(`/api/media/${id}`, { method: 'DELETE' });
-    if (selected?.id === id) { setSelected(null); setEditForm(null); }
+    if (selected?.id === id) {
+      setSelected(null);
+      setEditForm(null);
+    }
     fetchMedia();
   };
 
@@ -39,14 +70,20 @@ export default function AdminMediaPage() {
       await fetch('/api/media', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename: data.filename, originalName: file.name, url: data.url, mimeType: file.type, sizeBytes: file.size }),
+        body: JSON.stringify({
+          filename: data.filename,
+          originalName: file.name,
+          url: data.url,
+          mimeType: file.type,
+          sizeBytes: file.size,
+        }),
       });
       fetchMedia();
     }
     e.target.value = '';
   };
 
-  const openDetail = (m: any) => {
+  const openDetail = (m: MediaItem) => {
     setSelected(m);
     setEditForm({
       title: m.title || '',
@@ -58,8 +95,11 @@ export default function AdminMediaPage() {
   };
 
   const handleSave = async () => {
-    if (!selected) return;
-    const tagsArray = editForm.tags.split(',').map((t: string) => t.trim()).filter(Boolean);
+    if (!selected || !editForm) return;
+    const tagsArray = editForm.tags
+      .split(',')
+      .map((t: string) => t.trim())
+      .filter(Boolean);
     const res = await fetch(`/api/media/${selected.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -72,7 +112,7 @@ export default function AdminMediaPage() {
       }),
     });
     const updated = await res.json();
-    setMedia(prev => prev.map(m => m.id === selected.id ? { ...m, ...updated } : m));
+    setMedia((prev) => prev.map((m) => (m.id === selected.id ? { ...m, ...updated } : m)));
     setSelected(null);
     setEditForm(null);
   };
@@ -90,10 +130,12 @@ export default function AdminMediaPage() {
       </div>
 
       {media.length === 0 ? (
-        <p className="text-kiosk-ink-muted text-center py-12">Belum ada media. Upload gambar untuk digunakan pada spesies dan artikel.</p>
+        <p className="text-kiosk-ink-muted text-center py-12">
+          Belum ada media. Upload gambar untuk digunakan pada spesies dan artikel.
+        </p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-          {media.map((m: any) => (
+          {media.map((m) => (
             <div
               key={m.id}
               onClick={() => openDetail(m)}
@@ -101,12 +143,20 @@ export default function AdminMediaPage() {
             >
               <div className="aspect-square overflow-hidden">
                 {m.url ? (
-                  <img src={m.url} alt={m.altText || m.originalName || ''} className="w-full h-full object-cover" />
+                  <img
+                    src={m.url}
+                    alt={m.altText || m.originalName || ''}
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-kiosk-ink-muted text-xs">No preview</div>
+                  <div className="w-full h-full flex items-center justify-center text-kiosk-ink-muted text-xs">
+                    No preview
+                  </div>
                 )}
               </div>
-              <p className="text-[11px] text-kiosk-ink px-2 py-1.5 truncate font-medium">{m.originalName || m.filename}</p>
+              <p className="text-[11px] text-kiosk-ink px-2 py-1.5 truncate font-medium">
+                {m.originalName || m.filename}
+              </p>
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                 <button
                   onClick={(e) => handleDelete(e, m.id)}
@@ -126,11 +176,26 @@ export default function AdminMediaPage() {
       )}
 
       {selected && editForm && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => { setSelected(null); setEditForm(null); }}>
-          <div className="bg-white rounded-[2.618rem] shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => {
+            setSelected(null);
+            setEditForm(null);
+          }}
+        >
+          <div
+            className="bg-white rounded-[2.618rem] shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between p-5 border-b border-kiosk-orange-100">
               <h2 className="font-heading font-bold text-kiosk-ink text-lg">Detail Media</h2>
-              <button onClick={() => { setSelected(null); setEditForm(null); }} className="p-1 text-kiosk-ink-muted hover:text-kiosk-ink transition-colors">
+              <button
+                onClick={() => {
+                  setSelected(null);
+                  setEditForm(null);
+                }}
+                className="p-1 text-kiosk-ink-muted hover:text-kiosk-ink transition-colors"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -138,9 +203,15 @@ export default function AdminMediaPage() {
             <div className="p-5">
               <div className="mb-5 rounded-[1.618rem] overflow-hidden bg-kiosk-bg border border-kiosk-orange-100">
                 {selected.url ? (
-                  <img src={selected.url} alt={editForm.altText || selected.originalName} className="w-full max-h-80 object-contain" />
+                  <img
+                    src={selected.url}
+                    alt={editForm.altText || selected.originalName || ''}
+                    className="w-full max-h-80 object-contain"
+                  />
                 ) : (
-                  <div className="h-48 flex items-center justify-center text-kiosk-ink-muted">No preview</div>
+                  <div className="h-48 flex items-center justify-center text-kiosk-ink-muted">
+                    No preview
+                  </div>
                 )}
               </div>
 
@@ -149,16 +220,18 @@ export default function AdminMediaPage() {
                   <label className="block text-sm font-medium text-kiosk-ink mb-1.5">Judul</label>
                   <input
                     value={editForm.title}
-                    onChange={e => setEditForm({ ...editForm, title: e.target.value })}
+                    onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
                     placeholder="Judul media"
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-kiosk-ink mb-1.5">Fotografer</label>
+                  <label className="block text-sm font-medium text-kiosk-ink mb-1.5">
+                    Fotografer
+                  </label>
                   <input
                     value={editForm.photographer}
-                    onChange={e => setEditForm({ ...editForm, photographer: e.target.value })}
+                    onChange={(e) => setEditForm({ ...editForm, photographer: e.target.value })}
                     placeholder="Nama fotografer"
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
@@ -169,7 +242,7 @@ export default function AdminMediaPage() {
                 <label className="block text-sm font-medium text-kiosk-ink mb-1.5">Alt Text</label>
                 <input
                   value={editForm.altText}
-                  onChange={e => setEditForm({ ...editForm, altText: e.target.value })}
+                  onChange={(e) => setEditForm({ ...editForm, altText: e.target.value })}
                   placeholder="Deskripsi alternatif gambar"
                   className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                 />
@@ -177,20 +250,26 @@ export default function AdminMediaPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-sm font-medium text-kiosk-ink mb-1.5">Kategori</label>
+                  <label className="block text-sm font-medium text-kiosk-ink mb-1.5">
+                    Kategori
+                  </label>
                   <select
                     value={editForm.category}
-                    onChange={e => setEditForm({ ...editForm, category: e.target.value })}
+                    onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   >
-                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                    {CATEGORIES.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-kiosk-ink mb-1.5">Tag</label>
                   <input
                     value={editForm.tags}
-                    onChange={e => setEditForm({ ...editForm, tags: e.target.value })}
+                    onChange={(e) => setEditForm({ ...editForm, tags: e.target.value })}
                     placeholder="Pisahkan dengan koma"
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
@@ -198,17 +277,38 @@ export default function AdminMediaPage() {
               </div>
 
               <div className="bg-kiosk-bg rounded-[1.618rem] p-4 text-xs text-kiosk-ink-muted space-y-1 mb-5 border border-kiosk-orange-100">
-                <p><span className="font-medium text-kiosk-ink">File:</span> {selected.originalName}</p>
-                <p><span className="font-medium text-kiosk-ink">Tipe:</span> {selected.mimeType}</p>
-                <p><span className="font-medium text-kiosk-ink">Ukuran:</span> {selected.sizeBytes ? `${(selected.sizeBytes / 1024).toFixed(1)} KB` : '-'}</p>
-                {selected.width && selected.height && <p><span className="font-medium text-kiosk-ink">Dimensi:</span> {selected.width} × {selected.height}</p>}
+                <p>
+                  <span className="font-medium text-kiosk-ink">File:</span> {selected.originalName}
+                </p>
+                <p>
+                  <span className="font-medium text-kiosk-ink">Tipe:</span> {selected.mimeType}
+                </p>
+                <p>
+                  <span className="font-medium text-kiosk-ink">Ukuran:</span>{' '}
+                  {selected.sizeBytes ? `${(selected.sizeBytes / 1024).toFixed(1)} KB` : '-'}
+                </p>
+                {selected.width && selected.height && (
+                  <p>
+                    <span className="font-medium text-kiosk-ink">Dimensi:</span> {selected.width} ×{' '}
+                    {selected.height}
+                  </p>
+                )}
               </div>
 
               <div className="flex justify-end gap-3">
-                <button onClick={() => { setSelected(null); setEditForm(null); }} className="px-5 py-2.5 rounded-[1rem] text-sm font-medium text-kiosk-ink-muted hover:bg-kiosk-bg transition-colors">
+                <button
+                  onClick={() => {
+                    setSelected(null);
+                    setEditForm(null);
+                  }}
+                  className="px-5 py-2.5 rounded-[1rem] text-sm font-medium text-kiosk-ink-muted hover:bg-kiosk-bg transition-colors"
+                >
                   Batal
                 </button>
-                <button onClick={handleSave} className="flex items-center gap-2 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-5 py-2.5 rounded-[1rem] text-sm font-bold transition-all">
+                <button
+                  onClick={handleSave}
+                  className="flex items-center gap-2 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-5 py-2.5 rounded-[1rem] text-sm font-bold transition-all"
+                >
                   <Save className="w-4 h-4" />
                   Simpan
                 </button>

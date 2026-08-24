@@ -13,15 +13,7 @@
  */
 
 import { useState } from 'react';
-import {
-  ArrowRight,
-  Bug,
-  CircleDot,
-  Egg,
-  Leaf,
-  RotateCcw,
-  type LucideIcon,
-} from 'lucide-react';
+import { ArrowRight, Bug, CircleDot, Egg, Leaf, RotateCcw, type LucideIcon } from 'lucide-react';
 import ScreenHeader from '../components/ScreenHeader';
 import { StaggerList, StaggerItem } from '../components/ScreenEntrance';
 import {
@@ -31,7 +23,7 @@ import {
   METAMORFOSIS_INFO_CARDS,
   type Caption,
   type MetamorphosisStage,
-  type InfoCard
+  type InfoCard,
 } from '../content/i18n';
 import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';
@@ -108,8 +100,8 @@ const STAGE_CELLS = [
  * points along the path between the two stages it sits between.
  */
 const CYCLE_ARROWS = [
-  { cell: 'col-start-1 row-start-1', rotate: '-rotate-45' },   // imago → egg
-  { cell: 'col-start-3 row-start-1', rotate: 'rotate-45' },    // egg   → larva
+  { cell: 'col-start-1 row-start-1', rotate: '-rotate-45' }, // imago → egg
+  { cell: 'col-start-3 row-start-1', rotate: 'rotate-45' }, // egg   → larva
   { cell: 'col-start-3 row-start-3', rotate: 'rotate-[135deg]' }, // larva → pupa
   { cell: 'col-start-1 row-start-3', rotate: 'rotate-[225deg]' }, // pupa  → imago
 ];

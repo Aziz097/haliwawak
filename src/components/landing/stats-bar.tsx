@@ -1,4 +1,12 @@
-export default function StatsBar({ speciesCount, areaHa, foundedYear }: { speciesCount: number | string; areaHa: number | string; foundedYear: number | string }) {
+export default function StatsBar({
+  speciesCount,
+  areaHa,
+  foundedYear,
+}: {
+  speciesCount: number | string;
+  areaHa: number | string;
+  foundedYear: number | string;
+}) {
   const items = [
     { value: speciesCount, label: 'Spesies Terdokumentasi' },
     { value: `${areaHa}+`, label: 'Hektar Kawasan' },
@@ -10,7 +18,9 @@ export default function StatsBar({ speciesCount, areaHa, foundedYear }: { specie
         <div className="flex flex-col sm:flex-row justify-center gap-8 sm:gap-16 text-center">
           {items.map((item) => (
             <div key={item.label}>
-              <p className="font-heading text-4xl sm:text-5xl font-bold text-[#4ADE80] mb-1">{item.value}</p>
+              <p className="font-heading text-4xl sm:text-5xl font-bold text-[#4ADE80] mb-1">
+                {item.value}
+              </p>
               <p className="text-white/60 text-sm font-medium">{item.label}</p>
             </div>
           ))}

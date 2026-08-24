@@ -12,14 +12,10 @@ import { useState } from 'react';
 import { ImageOff, Table } from 'lucide-react';
 import EmptyState from '../components/EmptyState';
 import KioskImage from '../components/KioskImage';
-import { FadeUp, StaggerList, StaggerItem } from '../components/ScreenEntrance';
+import { StaggerList, StaggerItem } from '../components/ScreenEntrance';
 import ScreenHeader from '../components/ScreenHeader';
 import SpeciesPhotoPair from '../components/SpeciesPhotoPair';
-import {
-  DATA_SPESIES_COLUMNS,
-  DATA_SPESIES_INTRO,
-  DATA_SPESIES_TITLE,
-} from '../content/i18n';
+import { DATA_SPESIES_COLUMNS, DATA_SPESIES_INTRO, DATA_SPESIES_TITLE } from '../content/i18n';
 import type { KioskSpecies } from '../lib/speciesMapping';
 import { useLang } from '../language';
 import ClickableCard from '../components/ClickableCard';
@@ -41,6 +37,11 @@ interface IucnBadge {
 }
 
 const IUCN_MAP: Record<string, IucnBadge> = {
+  '-': {
+    label: '-',
+    title: 'Tidak dievaluasi / Tidak berstatus khusus',
+    bgClass: 'bg-kiosk-iucn-na',
+  },
   'least concern': { label: 'LC', title: 'Least Concern', bgClass: 'bg-kiosk-iucn-lc' },
   lc: { label: 'LC', title: 'Least Concern', bgClass: 'bg-kiosk-iucn-lc' },
   'near threatened': { label: 'NT', title: 'Near Threatened', bgClass: 'bg-kiosk-iucn-nt' },
@@ -49,7 +50,11 @@ const IUCN_MAP: Record<string, IucnBadge> = {
   vu: { label: 'VU', title: 'Vulnerable', bgClass: 'bg-kiosk-iucn-vu' },
   endangered: { label: 'EN', title: 'Endangered', bgClass: 'bg-kiosk-iucn-en' },
   en: { label: 'EN', title: 'Endangered', bgClass: 'bg-kiosk-iucn-en' },
-  'critically endangered': { label: 'CR', title: 'Critically Endangered', bgClass: 'bg-kiosk-iucn-cr' },
+  'critically endangered': {
+    label: 'CR',
+    title: 'Critically Endangered',
+    bgClass: 'bg-kiosk-iucn-cr',
+  },
   cr: { label: 'CR', title: 'Critically Endangered', bgClass: 'bg-kiosk-iucn-cr' },
 };
 
@@ -62,7 +67,9 @@ const IUCN_NEUTRAL: IucnBadge = {
 function resolveIucnBadge(status: string | null): IucnBadge {
   const key = (status ?? '').trim().toLowerCase();
   if (key.length === 0) return IUCN_NEUTRAL;
-  return IUCN_MAP[key] ?? { label: status!.trim(), title: status!.trim(), bgClass: 'bg-kiosk-iucn-na' };
+  return (
+    IUCN_MAP[key] ?? { label: status!.trim(), title: status!.trim(), bgClass: 'bg-kiosk-iucn-na' }
+  );
 }
 
 /** A small labeled taxonomic field. */
@@ -125,9 +132,13 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?
             {t(DATA_SPESIES_COLUMNS.species)}
           </dt>
           <dd className="flex flex-col">
-            <span className="font-serif text-[1.618rem] font-semibold italic text-kiosk-ink leading-tight">{name}</span>
+            <span className="font-serif text-[1.618rem] font-semibold italic text-kiosk-ink leading-tight">
+              {name}
+            </span>
             {species.scientificName && species.scientificName !== name ? (
-              <span className="font-sans text-[0.8rem] italic tracking-wide text-kiosk-ink-muted">{species.scientificName}</span>
+              <span className="font-sans text-[0.8rem] italic tracking-wide text-kiosk-ink-muted">
+                {species.scientificName}
+              </span>
             ) : null}
           </dd>
         </div>
@@ -150,7 +161,6 @@ function SpeciesRecord({ species, onSelect }: { species: KioskSpecies; onSelect?
 }
 
 export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
-  const { t, lang } = useLang();
   const [selectedSpecies, setSelectedSpecies] = useState<KioskSpecies | null>(null);
 
   return (
@@ -165,7 +175,10 @@ export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
       {species.length === 0 ? (
         <EmptyState />
       ) : (
-        <StaggerList className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 xl:grid-cols-3" delay={0.15}>
+        <StaggerList
+          className="grid grid-cols-1 gap-[1.618rem] sm:grid-cols-2 xl:grid-cols-3"
+          delay={0.15}
+        >
           {species.map((record) => (
             <StaggerItem key={record.id}>
               <SpeciesRecord species={record} onSelect={() => setSelectedSpecies(record)} />
@@ -173,7 +186,11 @@ export default function DataSpesiesScreen({ species }: DataSpesiesScreenProps) {
           ))}
         </StaggerList>
       )}
-      <SpeciesDetailModal open={selectedSpecies !== null} onClose={() => setSelectedSpecies(null)} species={selectedSpecies} />
+      <SpeciesDetailModal
+        open={selectedSpecies !== null}
+        onClose={() => setSelectedSpecies(null)}
+        species={selectedSpecies}
+      />
     </section>
   );
 }

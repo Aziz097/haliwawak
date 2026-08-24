@@ -49,7 +49,12 @@ export const morphScale: Variants = {
 export const slideVariants: Variants = {
   enter: (direction: number) => ({ x: direction > 0 ? 160 : -160, opacity: 0, scale: 0.98 }),
   center: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.5, ease: EASING } },
-  exit: (direction: number) => ({ x: direction < 0 ? 160 : -160, opacity: 0, scale: 0.98, transition: { duration: 0.35, ease: EASING_SNAP } }),
+  exit: (direction: number) => ({
+    x: direction < 0 ? 160 : -160,
+    opacity: 0,
+    scale: 0.98,
+    transition: { duration: 0.35, ease: EASING_SNAP },
+  }),
 };
 
 /**
@@ -99,6 +104,18 @@ export const modalVariants: Variants = {
 
 export const modalPanelVariants: Variants = {
   initial: { opacity: 0, scale: 0.92, y: 40, filter: 'blur(8px)' },
-  animate: { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.45, ease: EASING } },
-  exit: { opacity: 0, scale: 0.96, y: 20, filter: 'blur(4px)', transition: { duration: 0.25, ease: EASING_SNAP } },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.45, ease: EASING },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.96,
+    y: 20,
+    filter: 'blur(4px)',
+    transition: { duration: 0.25, ease: EASING_SNAP },
+  },
 };

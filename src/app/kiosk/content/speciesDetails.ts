@@ -240,7 +240,9 @@ export const SPECIES_DETAILS: Record<string, SpeciesDetail> = {
   },
 };
 
-export function getSpeciesDetail(scientificName: string | null | undefined): SpeciesDetail | undefined {
+export function getSpeciesDetail(
+  scientificName: string | null | undefined,
+): SpeciesDetail | undefined {
   if (!scientificName) return undefined;
   return SPECIES_DETAILS[scientificName.trim()];
 }

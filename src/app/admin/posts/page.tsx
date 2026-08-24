@@ -8,37 +8,51 @@ import { Plus, Edit, Trash2, Search, Bug, ChevronLeft, ChevronRight } from 'luci
 const IUCN_BADGE: Record<string, string> = {
   'Least Concern': 'text-kiosk-on-green bg-kiosk-iucn-lc',
   'Near Threatened': 'text-kiosk-on-green bg-kiosk-iucn-nt',
-  'Vulnerable': 'text-kiosk-on-green bg-kiosk-iucn-vu',
-  'Endangered': 'text-kiosk-on-green bg-kiosk-iucn-en',
+  Vulnerable: 'text-kiosk-on-green bg-kiosk-iucn-vu',
+  Endangered: 'text-kiosk-on-green bg-kiosk-iucn-en',
   'Critically Endangered': 'text-kiosk-on-green bg-kiosk-iucn-cr',
-  'Extinct': 'text-kiosk-on-green bg-kiosk-iucn-na',
+  Extinct: 'text-kiosk-on-green bg-kiosk-iucn-na',
 };
 
 const IUCN_ABBR: Record<string, string> = {
   'Least Concern': 'LC',
   'Near Threatened': 'NT',
-  'Vulnerable': 'VU',
-  'Endangered': 'EN',
+  Vulnerable: 'VU',
+  Endangered: 'EN',
   'Critically Endangered': 'CR',
-  'Extinct': 'EX',
+  Extinct: 'EX',
 };
 
 const PAGE_SIZE = 20;
 
+interface SpeciesListItem {
+  id: number;
+  commonName: string;
+  scientificName: string;
+  family: string;
+  iucnStatus: string | null;
+  isPublished: boolean;
+  primaryPhotoUrl: string | null;
+}
+
 export default function AdminPostsPage() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<SpeciesListItem[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
   const fetchPosts = () => {
-    fetch('/api/posts').then(r => r.json()).then(data => {
-      setPosts(Array.isArray(data) ? data : []);
-      setLoading(false);
-    });
+    fetch('/api/posts')
+      .then((r) => r.json())
+      .then((data) => {
+        setPosts(Array.isArray(data) ? (data as SpeciesListItem[]) : []);
+        setLoading(false);
+      });
   };
 
-  useEffect(() => { fetchPosts(); }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   const handleDelete = async (id: number) => {
     if (!confirm('Hapus spesies ini?')) return;
@@ -46,22 +60,39 @@ export default function AdminPostsPage() {
     fetchPosts();
   };
 
-  const filtered = posts.filter(p =>
-    !search || p.commonName?.toLowerCase().includes(search.toLowerCase()) || p.scientificName?.toLowerCase().includes(search.toLowerCase())
+  const filtered = posts.filter(
+    (p) =>
+      !search ||
+      p.commonName?.toLowerCase().includes(search.toLowerCase()) ||
+      p.scientificName?.toLowerCase().includes(search.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-  useEffect(() => { setPage(1); }, [search]);
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
 
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
         <div className="flex items-center gap-3 text-kiosk-ink-muted">
           <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+              fill="none"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+            />
           </svg>
           <span className="text-sm font-medium">Memuat data spesies...</span>
         </div>
@@ -73,7 +104,9 @@ export default function AdminPostsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-1">Ringkasan Sistem</p>
+        <p className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-1">
+          Ringkasan Sistem
+        </p>
         <div className="flex items-center justify-between">
           <div>
             <h1 className="font-heading text-2xl font-bold text-kiosk-ink">Spesies</h1>
@@ -96,7 +129,7 @@ export default function AdminPostsPage() {
           type="text"
           placeholder="Cari berdasarkan nama umum atau nama ilmiah..."
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-10 pr-4 py-2.5 rounded-[1rem] border border-kiosk-orange-100 bg-kiosk-bg text-kiosk-ink text-sm placeholder:text-kiosk-ink-muted focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 transition-colors"
         />
       </div>
@@ -107,21 +140,39 @@ export default function AdminPostsPage() {
           <table className="w-full text-sm">
             <thead className="bg-kiosk-bg border-b border-kiosk-orange-100">
               <tr>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Foto</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Nama Umum</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Nama Ilmiah</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Famili</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Status IUCN</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Status</th>
-                <th className="text-right px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">Aksi</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Foto
+                </th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Nama Umum
+                </th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Nama Ilmiah
+                </th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Famili
+                </th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Status IUCN
+                </th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="text-right px-4 py-3 text-xs font-semibold text-kiosk-ink-muted uppercase tracking-wider">
+                  Aksi
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-kiosk-orange-100">
-              {paginated.map((p: any) => (
+              {paginated.map((p) => (
                 <tr key={p.id} className="hover:bg-kiosk-bg transition-colors">
                   <td className="px-4 py-3">
                     {p.primaryPhotoUrl ? (
-                      <img src={p.primaryPhotoUrl} alt={p.commonName} className="w-8 h-8 rounded-full object-cover border border-kiosk-orange-100" />
+                      <img
+                        src={p.primaryPhotoUrl}
+                        alt={p.commonName}
+                        className="w-8 h-8 rounded-full object-cover border border-kiosk-orange-100"
+                      />
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-kiosk-bg border border-kiosk-orange-100 flex items-center justify-center">
                         <Bug className="w-4 h-4 text-kiosk-ink-muted" />
@@ -133,7 +184,9 @@ export default function AdminPostsPage() {
                   <td className="px-4 py-3 text-kiosk-ink-muted">{p.family}</td>
                   <td className="px-4 py-3">
                     {p.iucnStatus ? (
-                      <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${IUCN_BADGE[p.iucnStatus] || 'text-kiosk-ink-muted bg-kiosk-orange-100'}`}>
+                      <span
+                        className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${IUCN_BADGE[p.iucnStatus] || 'text-kiosk-ink-muted bg-kiosk-orange-100'}`}
+                      >
                         {IUCN_ABBR[p.iucnStatus] || p.iucnStatus}
                       </span>
                     ) : (
@@ -185,17 +238,18 @@ export default function AdminPostsPage() {
         {totalPages > 1 && (
           <div className="flex items-center justify-between px-4 py-3 border-t border-kiosk-orange-100 bg-kiosk-bg">
             <p className="text-xs text-kiosk-ink-muted">
-              Menampilkan {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} dari {filtered.length} spesies
+              Menampilkan {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, filtered.length)}{' '}
+              dari {filtered.length} spesies
             </p>
             <div className="flex items-center gap-2">
               <button
-                onClick={() => setPage(p => Math.max(1, p - 1))}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
                 className="p-2 border border-kiosk-orange-100 rounded-[0.618rem] text-kiosk-ink-muted hover:text-kiosk-orange-600 hover:border-kiosk-orange-600/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                 <button
                   key={n}
                   onClick={() => setPage(n)}
@@ -209,7 +263,7 @@ export default function AdminPostsPage() {
                 </button>
               ))}
               <button
-                onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
                 className="p-2 border border-kiosk-orange-100 rounded-[0.618rem] text-kiosk-ink-muted hover:text-kiosk-orange-600 hover:border-kiosk-orange-600/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >

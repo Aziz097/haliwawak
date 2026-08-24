@@ -47,13 +47,9 @@ export function Caption({ caption, subtitle, size = 'md', align }: CaptionProps)
 
   return (
     <div className={`flex flex-col gap-2 ${alignCls}`}>
-      <p className={`text-kiosk-ink ${PRIMARY_SIZE[size]}`}>
-        {sci(t(caption))}
-      </p>
+      <p className={`text-kiosk-ink ${PRIMARY_SIZE[size]}`}>{sci(t(caption))}</p>
       {subtitle && (
-        <p className={`text-kiosk-ink-muted ${SECONDARY_SIZE[size]}`}>
-          {sci(t(subtitle))}
-        </p>
+        <p className={`text-kiosk-ink-muted ${SECONDARY_SIZE[size]}`}>{sci(t(subtitle))}</p>
       )}
     </div>
   );

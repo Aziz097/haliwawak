@@ -55,22 +55,22 @@ graph TD
 
 ## Struktur Sitemap
 
-| Section | Halaman | Route |
-|---------|---------|-------|
-| **Public** | Beranda | `/` |
-| | Katalog Spesies | `/katalog` |
-| | Detail Spesies | `/katalog/[slug]` |
-| | Edukasi | `/edukasi` |
-| | Detail Artikel | `/edukasi/[slug]` |
-| | Tentang | `/tentang` |
-| | Kunjungi | `/kunjungi` |
-| | Kontak | `/kontak` |
-| | Login | `/login` |
-| **Admin** | Dashboard | `/admin` |
-| | Manajemen Spesies | `/admin/posts` |
-| | Manajemen Artikel | `/admin/konten` |
-| | Halaman Statis | `/admin/pages` |
-| | Media Library | `/admin/media` |
-| | Manajemen Pengguna | `/admin/users` |
-| | Pengaturan | `/admin/settings` |
-| **Kiosk** | 10 Screen Interaktif | `/kiosk` |
+| Section    | Halaman              | Route             |
+| ---------- | -------------------- | ----------------- |
+| **Public** | Beranda              | `/`               |
+|            | Katalog Spesies      | `/katalog`        |
+|            | Detail Spesies       | `/katalog/[slug]` |
+|            | Edukasi              | `/edukasi`        |
+|            | Detail Artikel       | `/edukasi/[slug]` |
+|            | Tentang              | `/tentang`        |
+|            | Kunjungi             | `/kunjungi`       |
+|            | Kontak               | `/kontak`         |
+|            | Login                | `/login`          |
+| **Admin**  | Dashboard            | `/admin`          |
+|            | Manajemen Spesies    | `/admin/posts`    |
+|            | Manajemen Artikel    | `/admin/konten`   |
+|            | Halaman Statis       | `/admin/pages`    |
+|            | Media Library        | `/admin/media`    |
+|            | Manajemen Pengguna   | `/admin/users`    |
+|            | Pengaturan           | `/admin/settings` |
+| **Kiosk**  | 10 Screen Interaktif | `/kiosk`          |

@@ -15,11 +15,7 @@ interface SpeciesDetailModalProps {
   species: KioskSpecies | null;
 }
 
-export default function SpeciesDetailModal({
-  open,
-  onClose,
-  species,
-}: SpeciesDetailModalProps) {
+export default function SpeciesDetailModal({ open, onClose, species }: SpeciesDetailModalProps) {
   const { t } = useLang();
   const reduceMotion = useReducedMotion();
   if (!species) return null;
@@ -66,7 +62,9 @@ export default function SpeciesDetailModal({
                   />
                 ) : (
                   <div className="flex h-64 items-center justify-center bg-kiosk-orange-50 md:h-full">
-                    <span className="text-kiosk-ink-muted">{t({ id: 'Foto tidak tersedia', en: 'Photo not available' })}</span>
+                    <span className="text-kiosk-ink-muted">
+                      {t({ id: 'Foto tidak tersedia', en: 'Photo not available' })}
+                    </span>
                   </div>
                 )}
               </div>
@@ -82,7 +80,9 @@ export default function SpeciesDetailModal({
                       {displayName}
                     </Dialog.Title>
                     {species.scientificName !== displayName && (
-                      <p className="mt-1 text-sm italic text-kiosk-ink-muted">{species.scientificName}</p>
+                      <p className="mt-1 text-sm italic text-kiosk-ink-muted">
+                        {species.scientificName}
+                      </p>
                     )}
                   </div>
                   <button
@@ -99,12 +99,21 @@ export default function SpeciesDetailModal({
                   {[
                     { label: t({ id: 'Famili', en: 'Family' }), value: species.family },
                     { label: t({ id: 'Genus', en: 'Genus' }), value: species.genus },
-                    { label: t({ id: 'Status IUCN', en: 'IUCN Status' }), value: species.iucnStatus ?? t({ id: 'Belum dievaluasi', en: 'Not evaluated' }) },
-                    { label: t({ id: 'Jumlah di Situs', en: 'Occurrence' }), value: t({ id: 'Terekam', en: 'Recorded' }) },
+                    {
+                      label: t({ id: 'Status IUCN', en: 'IUCN Status' }),
+                      value:
+                        species.iucnStatus ?? t({ id: 'Belum dievaluasi', en: 'Not evaluated' }),
+                    },
+                    {
+                      label: t({ id: 'Jumlah di Situs', en: 'Occurrence' }),
+                      value: t({ id: 'Terekam', en: 'Recorded' }),
+                    },
                   ].map(({ label, value }) => (
                     <div key={label} className="rounded-[1.25rem] p-1 bg-kiosk-surface-tint/60">
                       <div className="h-full rounded-[calc(1.25rem-0.25rem)] bg-kiosk-surface-tint p-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.5)]">
-                        <p className="text-xs font-bold uppercase tracking-widest text-kiosk-orange-700">{label}</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-kiosk-orange-700">
+                          {label}
+                        </p>
                         <p className="font-semibold text-kiosk-ink">{value}</p>
                       </div>
                     </div>
@@ -126,13 +135,18 @@ export default function SpeciesDetailModal({
                         <h4 className="mb-2 font-sans text-base font-bold text-kiosk-orange-700">
                           {t({ id: 'Peran dalam Ekosistem', en: 'Ecosystem Role' })}
                         </h4>
-                        <p className="text-sm leading-relaxed text-kiosk-ink">{t(detail.ecosystemRole)}</p>
+                        <p className="text-sm leading-relaxed text-kiosk-ink">
+                          {t(detail.ecosystemRole)}
+                        </p>
                       </div>
                     </div>
                   </>
                 ) : (
                   <Dialog.Description className="sr-only">
-                    {t({ id: 'Detail spesies tidak tersedia.', en: 'Species detail not available.' })}
+                    {t({
+                      id: 'Detail spesies tidak tersedia.',
+                      en: 'Species detail not available.',
+                    })}
                   </Dialog.Description>
                 )}
               </div>

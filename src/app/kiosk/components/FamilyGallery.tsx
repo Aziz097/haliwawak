@@ -50,12 +50,7 @@ function SpeciesGalleryCard({
     >
       <div className="relative aspect-square w-full overflow-hidden bg-kiosk-surface-tint">
         {photoUrl ? (
-          <KioskImage
-            src={photoUrl}
-            alt={name}
-            hoverScale
-            className="h-full w-full"
-          />
+          <KioskImage src={photoUrl} alt={name} hoverScale className="h-full w-full" />
         ) : (
           <span className="flex h-full w-full items-center justify-center text-kiosk-orange-300">
             <ImageOff className="h-10 w-10 opacity-30" aria-hidden="true" />

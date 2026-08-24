@@ -25,7 +25,10 @@ export default function KontakPage() {
             { icon: Phone, title: 'Telepon', content: '(0725) 123-456' },
             { icon: Mail, title: 'Email', content: 'info@eduwisatapolinator.id' },
           ].map((item) => (
-            <div key={item.title} className="bg-card-bg border border-card-border rounded-2xl p-8 text-center">
+            <div
+              key={item.title}
+              className="bg-card-bg border border-card-border rounded-2xl p-8 text-center"
+            >
               <item.icon className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="font-heading font-bold text-fg text-lg mb-2">{item.title}</h3>
               <p className="text-fg-muted text-sm">{item.content}</p>

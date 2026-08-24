@@ -110,7 +110,10 @@ export default function TopBar({ showHome, onHome }: TopBarProps) {
           aria-label={`Ganti bahasa ke ${switchToLabel} / Switch language to ${switchToLabel}`}
           className="flex min-h-[clamp(48px,6vh,64px)] items-center gap-1.5 rounded-xl bg-kiosk-orange-700 px-[clamp(0.75rem,1.5vw,1.25rem)] text-kiosk-on-green transition-colors hover:bg-kiosk-orange-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-kiosk-orange-300"
         >
-          <Languages className="h-[clamp(1.25rem,2vw,1.5rem)] w-[clamp(1.25rem,2vw,1.5rem)]" strokeWidth={2} />
+          <Languages
+            className="h-[clamp(1.25rem,2vw,1.5rem)] w-[clamp(1.25rem,2vw,1.5rem)]"
+            strokeWidth={2}
+          />
           <span className="text-[clamp(0.8rem,1.2vw,1rem)] font-medium">{switchToCode}</span>
           {/* The full language name is the first thing to go when the bar tightens. */}
           <span className="hidden text-[clamp(0.8rem,1.2vw,1rem)] font-medium opacity-90 xl:inline">

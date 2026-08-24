@@ -1,9 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Save, Plus, X, Check } from 'lucide-react';
+import { Save, Plus, Check } from 'lucide-react';
 
 type TabGroup = 'umum' | 'seo' | 'kiosk' | 'backup';
+
+interface SettingItem {
+  id: number;
+  key: string;
+  value: string;
+  group: TabGroup;
+}
 
 const TABS: { key: TabGroup; label: string }[] = [
   { key: 'umum', label: 'Umum' },
@@ -35,7 +42,7 @@ function isLongField(key: string): boolean {
 }
 
 export default function AdminSettingsPage() {
-  const [settings, setSettings] = useState<any[]>([]);
+  const [settings, setSettings] = useState<SettingItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<TabGroup>('umum');
@@ -45,16 +52,20 @@ export default function AdminSettingsPage() {
   const [newValue, setNewValue] = useState('');
 
   const fetchSettings = () => {
-    fetch('/api/settings').then(r => r.json()).then(data => {
-      setSettings(Array.isArray(data) ? data : []);
-      setLoading(false);
-    });
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((data) => {
+        setSettings(Array.isArray(data) ? (data as SettingItem[]) : []);
+        setLoading(false);
+      });
   };
 
-  useEffect(() => { fetchSettings(); }, []);
+  useEffect(() => {
+    fetchSettings();
+  }, []);
 
   const updateSetting = (id: number, value: string) => {
-    setSettings(prev => prev.map(s => s.id === id ? { ...s, value } : s));
+    setSettings((prev) => prev.map((s) => (s.id === id ? { ...s, value } : s)));
   };
 
   const handleSave = async () => {
@@ -79,7 +90,7 @@ export default function AdminSettingsPage() {
     });
     const data = await res.json();
     if (Array.isArray(data)) {
-      setSettings(prev => [...prev, data[0]]);
+      setSettings((prev) => [...prev, data[0]]);
     }
     setNewKey('');
     setNewValue('');
@@ -88,7 +99,7 @@ export default function AdminSettingsPage() {
 
   if (loading) return <p className="text-kiosk-ink-muted">Memuat...</p>;
 
-  const tabSettings = settings.filter(s => s.group === activeTab);
+  const tabSettings = settings.filter((s) => s.group === activeTab);
 
   return (
     <div className="relative">
@@ -104,7 +115,7 @@ export default function AdminSettingsPage() {
       </div>
 
       <div className="flex gap-1 bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-1 mb-6">
-        {TABS.map(tab => (
+        {TABS.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
@@ -121,10 +132,12 @@ export default function AdminSettingsPage() {
 
       <div className="bg-white border border-kiosk-orange-100 rounded-[1.618rem] p-6">
         {tabSettings.length === 0 && !showAddForm ? (
-          <p className="text-kiosk-ink-muted text-center py-8">Belum ada pengaturan untuk tab ini.</p>
+          <p className="text-kiosk-ink-muted text-center py-8">
+            Belum ada pengaturan untuk tab ini.
+          </p>
         ) : (
           <div className="space-y-5">
-            {tabSettings.map(s => (
+            {tabSettings.map((s) => (
               <div key={s.id || s.key}>
                 <label className="block text-sm font-medium text-kiosk-ink mb-1.5">
                   {s.key.replace(/_/g, ' ')}
@@ -135,14 +148,14 @@ export default function AdminSettingsPage() {
                 {isLongField(s.key) ? (
                   <textarea
                     value={s.value || ''}
-                    onChange={e => updateSetting(s.id, e.target.value)}
+                    onChange={(e) => updateSetting(s.id, e.target.value)}
                     rows={3}
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 resize-y"
                   />
                 ) : (
                   <input
                     value={s.value || ''}
-                    onChange={e => updateSetting(s.id, e.target.value)}
+                    onChange={(e) => updateSetting(s.id, e.target.value)}
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
                 )}
@@ -153,13 +166,15 @@ export default function AdminSettingsPage() {
 
         {showAddForm && (
           <div className="mt-5 pt-5 border-t border-kiosk-orange-100">
-            <h3 className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-3">Tambah Pengaturan Baru</h3>
+            <h3 className="text-xs font-bold text-kiosk-orange-600 uppercase tracking-wider mb-3">
+              Tambah Pengaturan Baru
+            </h3>
             <div className="space-y-3">
               <div>
                 <label className="block text-xs font-medium text-kiosk-ink-muted mb-1">Key</label>
                 <input
                   value={newKey}
-                  onChange={e => setNewKey(e.target.value)}
+                  onChange={(e) => setNewKey(e.target.value)}
                   placeholder="contoh: site_tagline"
                   className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                 />
@@ -169,7 +184,7 @@ export default function AdminSettingsPage() {
                 {isLongField(newKey) ? (
                   <textarea
                     value={newValue}
-                    onChange={e => setNewValue(e.target.value)}
+                    onChange={(e) => setNewValue(e.target.value)}
                     rows={3}
                     placeholder="Nilai pengaturan"
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600 resize-y"
@@ -177,17 +192,27 @@ export default function AdminSettingsPage() {
                 ) : (
                   <input
                     value={newValue}
-                    onChange={e => setNewValue(e.target.value)}
+                    onChange={(e) => setNewValue(e.target.value)}
                     placeholder="Nilai pengaturan"
                     className="w-full px-4 py-2.5 bg-kiosk-bg border border-kiosk-orange-100 rounded-[1rem] text-sm focus:outline-none focus:border-kiosk-orange-600 focus:ring-1 focus:ring-kiosk-orange-600"
                   />
                 )}
               </div>
               <div className="flex gap-2 justify-end">
-                <button onClick={() => { setShowAddForm(false); setNewKey(''); setNewValue(''); }} className="px-4 py-2 rounded-[1rem] text-sm text-kiosk-ink-muted hover:bg-kiosk-bg transition-colors">
+                <button
+                  onClick={() => {
+                    setShowAddForm(false);
+                    setNewKey('');
+                    setNewValue('');
+                  }}
+                  className="px-4 py-2 rounded-[1rem] text-sm text-kiosk-ink-muted hover:bg-kiosk-bg transition-colors"
+                >
                   Batal
                 </button>
-                <button onClick={handleAdd} className="flex items-center gap-1.5 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-4 py-2 rounded-[1rem] text-sm font-bold transition-all">
+                <button
+                  onClick={handleAdd}
+                  className="flex items-center gap-1.5 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-4 py-2 rounded-[1rem] text-sm font-bold transition-all"
+                >
                   <Plus className="w-3.5 h-3.5" />
                   Tambah
                 </button>
@@ -205,8 +230,11 @@ export default function AdminSettingsPage() {
           <Plus className="w-4 h-4" />
           Tambah Pengaturan
         </button>
-        <button onClick={handleSave} disabled={saving}
-          className="flex items-center gap-2 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-6 py-3 rounded-[1rem] font-bold text-sm transition-all disabled:opacity-50">
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="flex items-center gap-2 bg-kiosk-orange-600 hover:bg-kiosk-orange-700 text-white px-6 py-3 rounded-[1rem] font-bold text-sm transition-all disabled:opacity-50"
+        >
           <Save className="w-4 h-4" />
           {saving ? 'Menyimpan...' : 'Simpan Pengaturan'}
         </button>

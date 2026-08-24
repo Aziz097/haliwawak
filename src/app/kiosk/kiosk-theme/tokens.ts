@@ -12,8 +12,8 @@
 /** Every kiosk palette token as a hex constant (mirrors `--color-kiosk-*`). */
 export const palette = {
   // Canvas / surfaces - warm cream paper
-  'bg': '#FFF7ED', // warm cream
-  'surface': '#FFFFFF', // clean white cards
+  bg: '#FFF7ED', // warm cream
+  surface: '#FFFFFF', // clean white cards
   'surface-tint': '#FFE8D9', // soft peach tint
 
   // Orange scale - bright Claude orange
@@ -29,21 +29,21 @@ export const palette = {
   'orange-900': '#7C2D12', // deepest brown
 
   // Text inks
-  'ink': '#431407', // primary text is dark brown
+  ink: '#431407', // primary text is dark brown
   'ink-muted': '#9A3412', // secondary text
   'on-green': '#FFFFFF', // text on dark surfaces
 
   // Supporting accents
   'accent-amber': '#F59E0B', // amber
-  'accent-teal': '#F97316',  // claude orange
+  'accent-teal': '#F97316', // claude orange
 
   // IUCN status (keep these standard but harmonious)
-  'iucn-lc': '#4A725D', 
+  'iucn-lc': '#4A725D',
   'iucn-nt': '#EBA741',
   'iucn-vu': '#D05A3D',
   'iucn-en': '#B91C1C',
   'iucn-cr': '#7F1D1D',
-  'iucn-na': '#6B7280', 
+  'iucn-na': '#6B7280',
 } as const;
 
 /** A kiosk palette token name (key of {@link palette}). */

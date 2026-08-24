@@ -9,14 +9,7 @@
  * string for the active language from a bilingual `{ id, en }` caption.
  */
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  type ReactNode,
-} from 'react';
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
 import type { Caption } from './content/i18n';
 
 export type Lang = 'id' | 'en';

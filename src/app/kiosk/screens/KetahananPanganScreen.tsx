@@ -2,7 +2,7 @@
  * KetahananPanganScreen - Screen 6 of the kiosk flow.
  *
  * Designed for the "Bright Organic Heritage" aesthetic:
- * Spacious layouts, golden ratio serif typography, and elegant 
+ * Spacious layouts, golden ratio serif typography, and elegant
  * soft-shadow white cards that bring out the bright natural palette.
  *
  * Requirements: 11.1, 11.2
@@ -67,12 +67,18 @@ export default function KetahananPanganScreen() {
       </FadeUp>
 
       {/* Two icon-led food-security sections. */}
-      <StaggerList className="grid min-h-0 flex-1 grid-cols-1 gap-[clamp(0.75rem,1.4vw,1.618rem)] lg:grid-cols-2" delay={0.2}>
+      <StaggerList
+        className="grid min-h-0 flex-1 grid-cols-1 gap-[clamp(0.75rem,1.4vw,1.618rem)] lg:grid-cols-2"
+        delay={0.2}
+      >
         {FOOD_SECURITY.map((section, idx) => {
           const Icon = SECTION_ICONS[section.icon] ?? Sprout;
           const card = FOOD_SECURITY_INFO_CARDS.find((c) => c.key === section.key);
           // Alternate accent colors for the two cards
-          const accentClass = idx === 0 ? 'text-kiosk-accent-amber bg-kiosk-accent-amber/10' : 'text-kiosk-orange-600 bg-kiosk-orange-100';
+          const accentClass =
+            idx === 0
+              ? 'text-kiosk-accent-amber bg-kiosk-accent-amber/10'
+              : 'text-kiosk-orange-600 bg-kiosk-orange-100';
 
           return (
             <StaggerItem key={section.key} className="list-none">
@@ -83,7 +89,9 @@ export default function KetahananPanganScreen() {
               >
                 {card && <InfoHotspot onClick={() => setInfoCard(card)} />}
                 {/* Dominant icon element. */}
-                <span className={`flex h-[clamp(3rem,7vh,6rem)] w-[clamp(3rem,7vh,6rem)] shrink-0 items-center justify-center rounded-full ${accentClass}`}>
+                <span
+                  className={`flex h-[clamp(3rem,7vh,6rem)] w-[clamp(3rem,7vh,6rem)] shrink-0 items-center justify-center rounded-full ${accentClass}`}
+                >
                   <Icon className="h-[55%] w-[55%]" strokeWidth={1.5} aria-hidden="true" />
                 </span>
 

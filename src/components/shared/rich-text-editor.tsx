@@ -5,7 +5,21 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import { Bold, Italic, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Undo, Redo, ImagePlus, Upload, LinkIcon } from 'lucide-react';
+import {
+  Bold,
+  Italic,
+  Heading1,
+  Heading2,
+  Heading3,
+  List,
+  ListOrdered,
+  Quote,
+  Undo,
+  Redo,
+  ImagePlus,
+  Upload,
+  LinkIcon,
+} from 'lucide-react';
 
 interface RichTextEditorProps {
   content: string;
@@ -40,38 +54,55 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
     },
   });
 
-  const insertImage = useCallback((src: string) => {
-    if (!editor || !src) return;
-    editor.chain().focus().setImage({ src }).run();
-    setShowImageModal(false);
-    setImageUrl('');
-  }, [editor]);
+  const insertImage = useCallback(
+    (src: string) => {
+      if (!editor || !src) return;
+      editor.chain().focus().setImage({ src }).run();
+      setShowImageModal(false);
+      setImageUrl('');
+    },
+    [editor],
+  );
 
-  const handleFileUpload = useCallback(async (file: File) => {
-    setUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      const res = await fetch('/api/upload', { method: 'POST', body: formData });
-      if (!res.ok) throw new Error('Upload failed');
-      const data = await res.json();
-      insertImage(data.url);
-    } catch (err) {
-      console.error('Image upload failed:', err);
-    } finally {
-      setUploading(false);
-    }
-  }, [insertImage]);
+  const handleFileUpload = useCallback(
+    async (file: File) => {
+      setUploading(true);
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const res = await fetch('/api/upload', { method: 'POST', body: formData });
+        if (!res.ok) throw new Error('Upload failed');
+        const data = await res.json();
+        insertImage(data.url);
+      } catch (err) {
+        console.error('Image upload failed:', err);
+      } finally {
+        setUploading(false);
+      }
+    },
+    [insertImage],
+  );
 
-  const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) handleFileUpload(file);
-    e.target.value = '';
-  }, [handleFileUpload]);
+  const handleFileChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) handleFileUpload(file);
+      e.target.value = '';
+    },
+    [handleFileUpload],
+  );
 
   if (!editor) return null;
 
-  const ToolButton = ({ onClick, active, children }: { onClick: () => void; active?: boolean; children: React.ReactNode }) => (
+  const ToolButton = ({
+    onClick,
+    active,
+    children,
+  }: {
+    onClick: () => void;
+    active?: boolean;
+    children: React.ReactNode;
+  }) => (
     <button
       type="button"
       onClick={onClick}
@@ -84,30 +115,54 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
   return (
     <div className="border border-kiosk-orange-100 rounded-[1.618rem] overflow-hidden bg-white">
       <div className="flex flex-wrap gap-1 p-2 border-b border-kiosk-orange-100 bg-kiosk-bg">
-        <ToolButton onClick={() => editor.chain().focus().toggleBold().run()} active={editor.isActive('bold')}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          active={editor.isActive('bold')}
+        >
           <Bold className="w-4 h-4" />
         </ToolButton>
-        <ToolButton onClick={() => editor.chain().focus().toggleItalic().run()} active={editor.isActive('italic')}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          active={editor.isActive('italic')}
+        >
           <Italic className="w-4 h-4" />
         </ToolButton>
         <span className="w-px h-6 bg-kiosk-orange-100 mx-1 self-center" />
-        <ToolButton onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} active={editor.isActive('heading', { level: 1 })}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          active={editor.isActive('heading', { level: 1 })}
+        >
           <Heading1 className="w-4 h-4" />
         </ToolButton>
-        <ToolButton onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} active={editor.isActive('heading', { level: 2 })}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          active={editor.isActive('heading', { level: 2 })}
+        >
           <Heading2 className="w-4 h-4" />
         </ToolButton>
-        <ToolButton onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} active={editor.isActive('heading', { level: 3 })}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          active={editor.isActive('heading', { level: 3 })}
+        >
           <Heading3 className="w-4 h-4" />
         </ToolButton>
         <span className="w-px h-6 bg-kiosk-orange-100 mx-1 self-center" />
-        <ToolButton onClick={() => editor.chain().focus().toggleBulletList().run()} active={editor.isActive('bulletList')}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          active={editor.isActive('bulletList')}
+        >
           <List className="w-4 h-4" />
         </ToolButton>
-        <ToolButton onClick={() => editor.chain().focus().toggleOrderedList().run()} active={editor.isActive('orderedList')}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          active={editor.isActive('orderedList')}
+        >
           <ListOrdered className="w-4 h-4" />
         </ToolButton>
-        <ToolButton onClick={() => editor.chain().focus().toggleBlockquote().run()} active={editor.isActive('blockquote')}>
+        <ToolButton
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          active={editor.isActive('blockquote')}
+        >
           <Quote className="w-4 h-4" />
         </ToolButton>
         <span className="w-px h-6 bg-kiosk-orange-100 mx-1 self-center" />
@@ -164,7 +219,13 @@ export default function RichTextEditor({ content, onChange }: RichTextEditorProp
                   </button>
                 </div>
               )}
-              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+              />
             </div>
           )}
         </div>

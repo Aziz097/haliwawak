@@ -1,4 +1,13 @@
-import { pgTable, serial, text, timestamp, boolean, integer, jsonb, index } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  boolean,
+  integer,
+  jsonb,
+  index,
+} from 'drizzle-orm/pg-core';
 
 export const accounts = pgTable('accounts', {
   id: serial('id').primaryKey(),
@@ -13,62 +22,68 @@ export const accounts = pgTable('accounts', {
 });
 
 // M2. Manajemen Spesies
-export const species = pgTable('species', {
-  id: serial('id').primaryKey(),
-  commonName: text('common_name').notNull(),
-  scientificName: text('scientific_name').notNull(),
-  family: text('family').notNull(),
-  order: text('order').default('Lepidoptera').notNull(),
-  description: text('description'),
-  characteristics: text('characteristics'),
-  wingspan: text('wingspan'),
-  dominantColors: jsonb('dominant_colors').default('[]').notNull(),
-  hostPlants: jsonb('host_plants').default('[]').notNull(),
-  pollinatedPlants: jsonb('pollinated_plants').default('[]').notNull(),
-  ecosystemRole: text('ecosystem_role'),
-  ecologyNotes: text('ecology_notes'),
-  iucnStatus: text('iucn_status'),
-  siteStatus: text('site_status'),
-  activeMonths: jsonb('active_months').default('[]').notNull(),
-  foundLocations: jsonb('found_locations').default('[]').notNull(),
-  primaryPhotoUrl: text('primary_photo_url'),
-  galleryUrls: jsonb('gallery_urls').default('[]').notNull(),
-  isPublished: boolean('is_published').default(false).notNull(),
-  // Public website fields (PRD v1.1.0)
-  slug: text('slug'), // generated from commonName, enforced at app level
-  featuredOnHome: boolean('featured_on_home').default(false).notNull(),
-  homeOrder: integer('home_order').default(0).notNull(),
-  discoveredAt: timestamp('discovered_at'),
-  discoveredBy: text('discovered_by'),
-  internalNotes: text('internal_notes'),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
-}, (table) => [
-  index('species_published_home_order_idx').on(table.isPublished, table.homeOrder),
-  index('species_slug_idx').on(table.slug),
-]);
+export const species = pgTable(
+  'species',
+  {
+    id: serial('id').primaryKey(),
+    commonName: text('common_name').notNull(),
+    scientificName: text('scientific_name').notNull(),
+    family: text('family').notNull(),
+    order: text('order').default('Lepidoptera').notNull(),
+    description: text('description'),
+    characteristics: text('characteristics'),
+    wingspan: text('wingspan'),
+    dominantColors: jsonb('dominant_colors').default('[]').notNull(),
+    hostPlants: jsonb('host_plants').default('[]').notNull(),
+    pollinatedPlants: jsonb('pollinated_plants').default('[]').notNull(),
+    ecosystemRole: text('ecosystem_role'),
+    ecologyNotes: text('ecology_notes'),
+    iucnStatus: text('iucn_status'),
+    siteStatus: text('site_status'),
+    activeMonths: jsonb('active_months').default('[]').notNull(),
+    foundLocations: jsonb('found_locations').default('[]').notNull(),
+    primaryPhotoUrl: text('primary_photo_url'),
+    galleryUrls: jsonb('gallery_urls').default('[]').notNull(),
+    isPublished: boolean('is_published').default(false).notNull(),
+    // Public website fields (PRD v1.1.0)
+    slug: text('slug'), // generated from commonName, enforced at app level
+    featuredOnHome: boolean('featured_on_home').default(false).notNull(),
+    homeOrder: integer('home_order').default(0).notNull(),
+    discoveredAt: timestamp('discovered_at'),
+    discoveredBy: text('discovered_by'),
+    internalNotes: text('internal_notes'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  },
+  (table) => [
+    index('species_published_home_order_idx').on(table.isPublished, table.homeOrder),
+    index('species_slug_idx').on(table.slug),
+  ],
+);
 
 // M3. Manajemen Konten (Artikel)
-export const articles = pgTable('articles', {
-  id: serial('id').primaryKey(),
-  title: text('title').notNull(),
-  slug: text('slug').unique().notNull(),
-  category: text('category').notNull(),
-  thumbnailUrl: text('thumbnail_url'),
-  content: text('content').notNull(),
-  summary: text('summary'),
-  tags: jsonb('tags').default('[]').notNull(),
-  authorId: integer('author_id').references(() => accounts.id),
-  status: text('status').default('draft').notNull(), // draft, review, active, archived
-  publishedAt: timestamp('published_at'),
-  scheduledAt: timestamp('scheduled_at'),
-  metaTitle: text('meta_title'),
-  metaDescription: text('meta_description'),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
-}, (table) => [
-  index('articles_status_published_at_idx').on(table.status, table.publishedAt),
-]);
+export const articles = pgTable(
+  'articles',
+  {
+    id: serial('id').primaryKey(),
+    title: text('title').notNull(),
+    slug: text('slug').unique().notNull(),
+    category: text('category').notNull(),
+    thumbnailUrl: text('thumbnail_url'),
+    content: text('content').notNull(),
+    summary: text('summary'),
+    tags: jsonb('tags').default('[]').notNull(),
+    authorId: integer('author_id').references(() => accounts.id),
+    status: text('status').default('draft').notNull(), // draft, review, active, archived
+    publishedAt: timestamp('published_at'),
+    scheduledAt: timestamp('scheduled_at'),
+    metaTitle: text('meta_title'),
+    metaDescription: text('meta_description'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  },
+  (table) => [index('articles_status_published_at_idx').on(table.status, table.publishedAt)],
+);
 
 // M3b. Halaman Statis
 export const staticPages = pgTable('static_pages', {

@@ -30,10 +30,7 @@ export const KIOSK_ASSETS = {
       '/kiosk/scenes/kolam-2.webp',
       '/kiosk/scenes/kolam-3.webp',
     ],
-    callToAction: [
-      '/kiosk/scenes/cta-1.webp',
-      '/kiosk/scenes/cta-2.webp',
-    ],
+    callToAction: ['/kiosk/scenes/cta-1.webp', '/kiosk/scenes/cta-2.webp'],
   },
   insektarium: {
     Papilionidae: '/kiosk/insektarium/papilionidae.webp',

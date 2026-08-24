@@ -13,7 +13,8 @@ export default async function EdukasiPage() {
           <p className="section-kicker mb-2">Konten Edukasi</p>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-fg">Artikel Edukasi</h1>
           <p className="text-fg-muted mt-3 max-w-xl">
-            Pelajari lebih lanjut tentang peran kupu-kupu sebagai polinator dan ekosistem Situs Purbakala Pugung Raharjo.
+            Pelajari lebih lanjut tentang peran kupu-kupu sebagai polinator dan ekosistem Situs
+            Purbakala Pugung Raharjo.
           </p>
         </div>
         <EdukasiClient articles={allArticles} />

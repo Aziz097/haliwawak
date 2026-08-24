@@ -56,7 +56,11 @@ const IUCN_MAP: Record<string, IucnBadge> = {
   vu: { abbr: 'VU', label: 'Vulnerable', bgClass: 'bg-kiosk-iucn-vu' },
   endangered: { abbr: 'EN', label: 'Endangered', bgClass: 'bg-kiosk-iucn-en' },
   en: { abbr: 'EN', label: 'Endangered', bgClass: 'bg-kiosk-iucn-en' },
-  'critically endangered': { abbr: 'CR', label: 'Critically Endangered', bgClass: 'bg-kiosk-iucn-cr' },
+  'critically endangered': {
+    abbr: 'CR',
+    label: 'Critically Endangered',
+    bgClass: 'bg-kiosk-iucn-cr',
+  },
   cr: { abbr: 'CR', label: 'Critically Endangered', bgClass: 'bg-kiosk-iucn-cr' },
 };
 
@@ -71,7 +75,9 @@ const IUCN_NEUTRAL: IucnBadge = {
 function resolveIucnBadge(status: string | null): IucnBadge {
   const key = (status ?? '').trim().toLowerCase();
   if (key.length === 0) return IUCN_NEUTRAL;
-  return IUCN_MAP[key] ?? { abbr: status!.trim(), label: status!.trim(), bgClass: 'bg-kiosk-iucn-na' };
+  return (
+    IUCN_MAP[key] ?? { abbr: status!.trim(), label: status!.trim(), bgClass: 'bg-kiosk-iucn-na' }
+  );
 }
 
 /** Image-dominant species card with name caption and IUCN badge. */
@@ -84,11 +90,7 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
     <>
       <div className="relative aspect-square w-full overflow-hidden rounded-[calc(1rem-0.125rem)] bg-kiosk-orange-100">
         {species.topPhotoUrl ? (
-          <KioskImage
-            src={species.topPhotoUrl}
-            alt={name}
-            className="h-full w-full"
-          />
+          <KioskImage src={species.topPhotoUrl} alt={name} className="h-full w-full" />
         ) : (
           <span className="flex h-full w-full items-center justify-center text-kiosk-orange-400">
             <ImageOff className="h-12 w-12" aria-hidden="true" strokeWidth={1.25} />
@@ -105,9 +107,7 @@ export default function SpeciesCard({ species, onSelect }: SpeciesCardProps) {
       </div>
 
       <figcaption className="flex flex-col gap-0.5 px-3 py-3 text-left">
-        <span className="text-base font-semibold italic leading-tight text-kiosk-ink">
-          {name}
-        </span>
+        <span className="text-base font-semibold italic leading-tight text-kiosk-ink">{name}</span>
         {species.scientificName && species.scientificName !== name ? (
           <span className="text-sm italic leading-tight text-kiosk-ink-muted">
             {species.scientificName}

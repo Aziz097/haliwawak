@@ -72,10 +72,7 @@ function directionBetween(from: Screen, to: Screen): 1 | -1 {
  * Pure kiosk reducer. Given the current state and an action, returns the next
  * state. Never mutates the input state and performs no side effects.
  */
-export function kioskReducer(
-  state: KioskState,
-  action: KioskAction,
-): KioskState {
+export function kioskReducer(state: KioskState, action: KioskAction): KioskState {
   switch (action.type) {
     case 'NAVIGATE': {
       // Push current onto history, move to `to`, derive direction from flow.

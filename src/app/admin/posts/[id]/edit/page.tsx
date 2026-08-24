@@ -4,16 +4,22 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import SpeciesForm from '@/components/shared/species-form';
 
+interface SpeciesFormData {
+  [key: string]: unknown;
+}
+
 export default function EditPostPage() {
   const params = useParams();
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<SpeciesFormData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/posts/${params.id}`).then(r => r.json()).then(d => {
-      setData(d);
-      setLoading(false);
-    });
+    fetch(`/api/posts/${params.id}`)
+      .then((r) => r.json())
+      .then((d) => {
+        setData(d as SpeciesFormData);
+        setLoading(false);
+      });
   }, [params.id]);
 
   if (loading) return <p className="text-kiosk-ink-muted">Memuat...</p>;

@@ -13,10 +13,17 @@ export async function POST(req: NextRequest) {
   const results = [];
   for (const item of body) {
     if (item.id) {
-      const result = await db.update(settings).set({ value: item.value }).where(eq(settings.id, item.id)).returning();
+      const result = await db
+        .update(settings)
+        .set({ value: item.value })
+        .where(eq(settings.id, item.id))
+        .returning();
       results.push(result[0]);
     } else {
-      const result = await db.insert(settings).values({ key: item.key, value: item.value, group: item.group }).returning();
+      const result = await db
+        .insert(settings)
+        .values({ key: item.key, value: item.value, group: item.group })
+        .returning();
       results.push(result[0]);
     }
   }
